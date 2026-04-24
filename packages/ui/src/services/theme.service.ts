@@ -57,7 +57,13 @@ export class ThemeService {
    *
    * @param _registry - The theme registry containing all registered theme definitions
    */
-  public constructor(private readonly _registry: ThemeRegistry) {}
+  public constructor(private readonly _registry: ThemeRegistry) {
+    console.log(
+      "[ThemeService] constructor called, _registry:",
+      typeof _registry,
+      _registry ? "exists" : "UNDEFINED",
+    );
+  }
 
   // ── Getters ─────────────────────────────────────────────────────────────
 
