@@ -661,8 +661,3 @@ export type RegistryEvent =
   | { type: 'cleared' }
   | { type: 'group-registered'; group: ShortcutGroup }
   | { type: 'platform-changed'; platform: Platform };
-
-/**
- * Global shortcut registry instance
- */
-export const shortcutRegistry = new ShortcutRegistry();

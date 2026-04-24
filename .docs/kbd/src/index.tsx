@@ -128,7 +128,7 @@ export type {
 // ============================================================================
 // Registry
 // ============================================================================
-export { shortcutRegistry } from './registries/shortcut.registry';
+export { ShortcutRegistry } from './registries/shortcut.registry';
 export type { ShortcutRegistry } from './registries/shortcut.registry';
 
 // ============================================================================

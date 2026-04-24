@@ -7,13 +7,18 @@
  * |
  * | Registers:
  * |   - `KBD_CONFIG`          — raw config object
- * |   - `ShortcutRegistry`    — the global singleton registry
- * |   - `SHORTCUT_REGISTRY`   — useValue alias to the same singleton
+ * |   - `ShortcutRegistry`    — container-managed singleton
+ * |   - `SHORTCUT_REGISTRY`   — alias token to the same singleton
  * |
- * | Users inject `ShortcutRegistry` (or use the `shortcutRegistry` export
- * | for non-DI usage) and call register/unregister/query directly.
+ * | Users inject `ShortcutRegistry` and call register/unregister/query
+ * | directly. The container manages the singleton lifecycle.
  * |
- * | Follows the exact same pattern as CacheModule, EventsModule, etc.
+ * | ## Why the Type Assertion
+ * |
+ * | The container's `Type<T>` interface requires `new (...args: unknown[]): T`,
+ * | but `BaseRegistry` has an optional typed constructor param. This is a
+ * | TypeScript-level mismatch only — the DI container resolves the class
+ * | correctly at runtime. The `as Type<T>` assertion bridges this gap.
  * |
  * @example
  * ```typescript
@@ -31,10 +36,10 @@
  * @module @stackra/kbd
  */
 
-import { Module, type DynamicModule } from '@stackra/ts-container';
+import { Module, type DynamicModule, type Type } from '@stackra/ts-container';
 
 import type { KeyboardShortcut, ShortcutGroup } from '@/interfaces';
-import { shortcutRegistry, ShortcutRegistry } from '@/registries/shortcut.registry';
+import { ShortcutRegistry } from '@/registries/shortcut.registry';
 import { BUILT_IN_SHORTCUTS, BUILT_IN_GROUPS } from '@/shortcuts/built-in-shortcuts';
 import { KBD_CONFIG, SHORTCUT_REGISTRY } from '@/constants';
 
@@ -67,15 +72,16 @@ export class KbdModule {
   | forRoot
   |--------------------------------------------------------------------------
   |
-  | Registers the ShortcutRegistry as a global DI singleton.
+  | Registers the ShortcutRegistry as a container-managed singleton.
   |
   | Applies options:
   |   - registerBuiltIn: registers navigation, search, editing shortcuts
   |   - shortcuts: registers additional shortcuts from config
   |   - groups: registers shortcut groups from config
   |
-  | The global `shortcutRegistry` singleton is the same instance
-  | registered in DI — backward compatibility is preserved.
+  | Built-in shortcuts and config-provided shortcuts are registered via
+  | a factory provider that runs during container resolution, ensuring
+  | the registry is populated before any consumer reads from it.
   |
   */
   static forRoot(config?: KbdModuleOptions): DynamicModule {
@@ -85,60 +91,67 @@ export class KbdModule {
       ...config,
     };
 
-    /*
-    |--------------------------------------------------------------------------
-    | Register built-in shortcuts and groups.
-    |--------------------------------------------------------------------------
-    */
-    if (options.registerBuiltIn !== false) {
-      for (const shortcut of BUILT_IN_SHORTCUTS) {
-        shortcutRegistry.register(shortcut, { onConflict: 'skip' });
-      }
-      for (const group of BUILT_IN_GROUPS) {
-        shortcutRegistry.registerGroup(group);
-      }
-
-      if (options.debug) {
-        console.log(`[KbdModule] Registered ${BUILT_IN_SHORTCUTS.length} built-in shortcuts`);
-        console.log(`[KbdModule] Registered ${BUILT_IN_GROUPS.length} built-in groups`);
-      }
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Register shortcuts from config.
-    |--------------------------------------------------------------------------
-    */
-    if (options.shortcuts) {
-      for (const shortcut of options.shortcuts) {
-        shortcutRegistry.register(shortcut, { onConflict: 'skip' });
-      }
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Register groups from config.
-    |--------------------------------------------------------------------------
-    */
-    if (options.groups) {
-      for (const group of options.groups) {
-        shortcutRegistry.registerGroup(group);
-      }
-    }
-
-    if (options.debug) {
-      console.log('[KbdModule] Initialized. Total shortcuts:', shortcutRegistry.getAll().length);
-    }
-
     return {
       module: KbdModule,
       global: true,
       providers: [
         { provide: KBD_CONFIG, useValue: options },
-        { provide: ShortcutRegistry, useValue: shortcutRegistry },
-        { provide: SHORTCUT_REGISTRY, useValue: shortcutRegistry },
+        ShortcutRegistry as Type<ShortcutRegistry>,
+        { provide: SHORTCUT_REGISTRY, useExisting: ShortcutRegistry as Type<ShortcutRegistry> },
+        {
+          provide: 'KBD_INIT',
+          useFactory: (registry: ShortcutRegistry) => {
+            /*
+            |--------------------------------------------------------------------------
+            | Register built-in shortcuts and groups.
+            |--------------------------------------------------------------------------
+            */
+            if (options.registerBuiltIn !== false) {
+              for (const shortcut of BUILT_IN_SHORTCUTS) {
+                registry.register(shortcut, { onConflict: 'skip' });
+              }
+              for (const group of BUILT_IN_GROUPS) {
+                registry.registerGroup(group);
+              }
+
+              if (options.debug) {
+                console.log(`[KbdModule] Registered ${BUILT_IN_SHORTCUTS.length} built-in shortcuts`);
+                console.log(`[KbdModule] Registered ${BUILT_IN_GROUPS.length} built-in groups`);
+              }
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | Register shortcuts from config.
+            |--------------------------------------------------------------------------
+            */
+            if (options.shortcuts) {
+              for (const shortcut of options.shortcuts) {
+                registry.register(shortcut, { onConflict: 'skip' });
+              }
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | Register groups from config.
+            |--------------------------------------------------------------------------
+            */
+            if (options.groups) {
+              for (const group of options.groups) {
+                registry.registerGroup(group);
+              }
+            }
+
+            if (options.debug) {
+              console.log('[KbdModule] Initialized. Total shortcuts:', registry.getAll().length);
+            }
+
+            return true;
+          },
+          inject: [ShortcutRegistry as Type<ShortcutRegistry>],
+        },
       ],
-      exports: [ShortcutRegistry, SHORTCUT_REGISTRY, KBD_CONFIG],
+      exports: [ShortcutRegistry as Type<ShortcutRegistry>, SHORTCUT_REGISTRY, KBD_CONFIG],
     };
   }
 
@@ -148,14 +161,26 @@ export class KbdModule {
   |--------------------------------------------------------------------------
   |
   | Register additional shortcuts from a feature module.
-  | Shortcuts are added to the global ShortcutRegistry singleton.
+  | Shortcuts are added to the container-managed ShortcutRegistry singleton
+  | via a factory provider.
   |
   */
   static forFeature(shortcuts: KeyboardShortcut[]): DynamicModule {
-    for (const shortcut of shortcuts) {
-      shortcutRegistry.register(shortcut, { onConflict: 'skip' });
-    }
-
-    return { module: KbdModule, providers: [], exports: [] };
+    return {
+      module: KbdModule,
+      providers: [
+        {
+          provide: 'KBD_FEATURE_INIT',
+          useFactory: (registry: ShortcutRegistry) => {
+            for (const shortcut of shortcuts) {
+              registry.register(shortcut, { onConflict: 'skip' });
+            }
+            return true;
+          },
+          inject: [ShortcutRegistry as Type<ShortcutRegistry>],
+        },
+      ],
+      exports: [],
+    };
   }
 }
