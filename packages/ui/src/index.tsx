@@ -39,7 +39,7 @@ export { ThemeService } from "./services/theme.service";
 // ============================================================================
 // Registries
 // ============================================================================
-export { ThemeRegistry } from "./registries/theme.registry";
+export { ThemeRegistry, themeRegistry } from "./registries/theme.registry";
 
 // ============================================================================
 // Facades

@@ -6,9 +6,13 @@
  * `forFeature()` method for declarative theme registration following
  * the `@stackra` module pattern.
  *
+ * Follows the same pattern as `KbdModule` — uses a pre-created
+ * singleton registry instance with `useValue` providers, avoiding
+ * type casting entirely.
+ *
  * @module UIModule
  *
- * @example Basic Usage
+ * @example
  * ```typescript
  * import { UIModule } from "@repo/ui";
  *
@@ -20,18 +24,11 @@
  */
 
 import { Module } from "@stackra/ts-container";
-import type { DynamicModule, Type } from "@stackra/ts-container";
+import type { DynamicModule } from "@stackra/ts-container";
 import { THEME_SERVICE } from "./constants/tokens.constant";
-import { ThemeRegistry } from "./registries/theme.registry";
+import { ThemeRegistry, themeRegistry } from "./registries/theme.registry";
 import { ThemeService } from "./services/theme.service";
 import type { ThemeFeatureOptions } from "./types/theme-feature-options.type";
-
-// Cast classes to satisfy the DI container's Type<any> constraint.
-// BaseRegistry's optional constructor param and ThemeService's
-// ThemeRegistry dependency cause strict type mismatches with the
-// container's generic provider signatures.
-const ThemeRegistryProvider = ThemeRegistry as unknown as Type<ThemeRegistry>;
-const ThemeServiceProvider = ThemeService as unknown as Type<ThemeService>;
 
 /**
  * UIModule — the DI module for the shared UI package.
@@ -39,8 +36,10 @@ const ThemeServiceProvider = ThemeService as unknown as Type<ThemeService>;
  * Registers {@link ThemeRegistry} and {@link ThemeService} as
  * providers and exports them for injection by other modules.
  *
- * Use the static `forFeature()` method to declaratively register
- * theme definitions from your app module.
+ * The ThemeRegistry is provided as a `useValue` singleton — the
+ * same instance used by `forFeature()` to register themes. This
+ * ensures all theme definitions are available to ThemeService
+ * regardless of module initialization order.
  *
  * @example
  * ```typescript
@@ -56,18 +55,18 @@ const ThemeServiceProvider = ThemeService as unknown as Type<ThemeService>;
  * export class AppModule {}
  * ```
  */
-@Module({
-  providers: [ThemeRegistryProvider, { provide: THEME_SERVICE, useClass: ThemeServiceProvider }],
-  exports: [ThemeRegistryProvider, THEME_SERVICE],
-})
+@Module({})
 export class UIModule {
   /**
    * Register theme definitions into the ThemeRegistry.
    *
    * Accepts a {@link ThemeFeatureOptions} object containing an array
    * of {@link ThemeDefinition} entries and registers each one into
-   * the global {@link ThemeRegistry}. Returns a dynamic module
-   * configuration for the DI container.
+   * the global {@link ThemeRegistry} singleton. Returns a dynamic
+   * module configuration for the DI container.
+   *
+   * Themes are registered immediately (before DI resolution) so
+   * they are available when ThemeService initializes.
    *
    * @param options - Configuration containing the themes to register
    * @returns A dynamic module configuration with registered themes.
@@ -77,30 +76,24 @@ export class UIModule {
    * UIModule.forFeature({
    *   themes: [
    *     { baseName: "lavender", label: "Lavender", icon: "palette", accentColor: "oklch(77% 0.13 305)", variants: ["lavender-light", "lavender-dark"] },
-   *     { baseName: "mint", label: "Mint", icon: "leaf", accentColor: "oklch(77% 0.15 165)", variants: ["mint-light", "mint-dark"] },
    *   ],
    * });
    * ```
    */
   public static forFeature(options: ThemeFeatureOptions): DynamicModule {
+    // Register themes into the singleton immediately
+    for (const definition of options.themes) {
+      themeRegistry.registerDefinition(definition);
+    }
+
     return {
       module: UIModule,
+      global: true,
       providers: [
-        ThemeRegistryProvider,
-        { provide: THEME_SERVICE, useClass: ThemeServiceProvider },
-        {
-          provide: "THEME_FEATURE_INIT",
-          useFactory: (registry: ThemeRegistry) => {
-            for (const definition of options.themes) {
-              registry.registerDefinition(definition);
-            }
-
-            return true;
-          },
-          inject: [ThemeRegistryProvider],
-        },
+        { provide: ThemeRegistry, useValue: themeRegistry },
+        { provide: THEME_SERVICE, useValue: new ThemeService(themeRegistry) },
       ],
-      exports: [ThemeRegistryProvider, THEME_SERVICE],
+      exports: [ThemeRegistry, THEME_SERVICE],
     };
   }
 }
