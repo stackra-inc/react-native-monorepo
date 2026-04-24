@@ -61,3 +61,6 @@ Thumbs.db
 *.tsbuildinfo
 .cache/
 dependency-graph.html
+
+# ── Reference Docs (external package copies) ─────────────────────────────────
+.docs/
