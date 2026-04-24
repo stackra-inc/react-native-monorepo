@@ -17,16 +17,13 @@ export function ExploreScreen() {
         showsVerticalScrollIndicator={false}
       >
         <Text className="text-2xl font-semibold text-foreground">Explore</Text>
-        <Text className="text-base text-muted">
-          Discover components and patterns
-        </Text>
+        <Text className="text-base text-muted">Discover components and patterns</Text>
 
         <Card>
           <Card.Body>
             <Card.Title>Components</Card.Title>
             <Card.Description>
-              Browse the full HeroUI Native component library with live examples
-              and usage patterns.
+              Browse the full HeroUI Native component library with live examples and usage patterns.
             </Card.Description>
           </Card.Body>
         </Card>
@@ -35,8 +32,8 @@ export function ExploreScreen() {
           <Card.Body>
             <Card.Title>Themes</Card.Title>
             <Card.Description>
-              Switch between Lavender, Mint, Sky, and default themes to see the
-              design system in action.
+              Switch between Lavender, Mint, Sky, and default themes to see the design system in
+              action.
             </Card.Description>
           </Card.Body>
         </Card>

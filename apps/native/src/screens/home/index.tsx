@@ -31,9 +31,7 @@ export function HomeScreen() {
       >
         {/* Header */}
         <View className="gap-1">
-          <Text className="text-3xl font-semibold text-foreground">
-            {appName}
-          </Text>
+          <Text className="text-3xl font-semibold text-foreground">{appName}</Text>
           <Text className="text-base text-muted">{subtitle}</Text>
         </View>
 
@@ -67,16 +65,12 @@ export function HomeScreen() {
             <Card.Body>
               <Card.Title>Enterprise Ready</Card.Title>
               <Card.Description>
-                Configured with HeroUI Native, Uniwind (Tailwind v4), Inter
-                fonts, Reanimated, Gesture Handler, Keyboard Controller, DI
-                container, and custom themes.
+                Configured with HeroUI Native, Uniwind (Tailwind v4), Inter fonts, Reanimated,
+                Gesture Handler, Keyboard Controller, DI container, and custom themes.
               </Card.Description>
             </Card.Body>
             <Card.Footer className="gap-3">
-              <Button
-                variant="primary"
-                onPress={() => logger.log("Get started!", "HomeScreen")}
-              >
+              <Button variant="primary" onPress={() => logger.log("Get started!", "HomeScreen")}>
                 Get Started
               </Button>
               <Button variant="ghost">
@@ -88,9 +82,7 @@ export function HomeScreen() {
 
         {/* Button Variants */}
         <View className="gap-3">
-          <Text className="text-lg font-semibold text-foreground">
-            Button Variants
-          </Text>
+          <Text className="text-lg font-semibold text-foreground">Button Variants</Text>
           <View className="gap-2">
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
@@ -103,9 +95,7 @@ export function HomeScreen() {
 
         {/* Button Sizes */}
         <View className="gap-3">
-          <Text className="text-lg font-semibold text-foreground">
-            Button Sizes
-          </Text>
+          <Text className="text-lg font-semibold text-foreground">Button Sizes</Text>
           <View className="flex-row gap-2 items-center">
             <Button size="sm">Small</Button>
             <Button size="md">Medium</Button>
@@ -120,27 +110,21 @@ export function HomeScreen() {
             <Alert.Indicator />
             <Alert.Content>
               <Alert.Title>Info</Alert.Title>
-              <Alert.Description>
-                This is an informational alert.
-              </Alert.Description>
+              <Alert.Description>This is an informational alert.</Alert.Description>
             </Alert.Content>
           </Alert>
           <Alert status="warning">
             <Alert.Indicator />
             <Alert.Content>
               <Alert.Title>Warning</Alert.Title>
-              <Alert.Description>
-                Please review before continuing.
-              </Alert.Description>
+              <Alert.Description>Please review before continuing.</Alert.Description>
             </Alert.Content>
           </Alert>
           <Alert status="danger">
             <Alert.Indicator />
             <Alert.Content>
               <Alert.Title>Error</Alert.Title>
-              <Alert.Description>
-                Something went wrong. Please try again.
-              </Alert.Description>
+              <Alert.Description>Something went wrong. Please try again.</Alert.Description>
             </Alert.Content>
           </Alert>
         </View>

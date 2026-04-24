@@ -48,7 +48,9 @@
     "uniwind": "^1.6.3"
   },
   "devDependencies": {
+    "@testing-library/react-native": "^13.3.3",
     "@types/react": "~19.2.14",
+    "jest-expo": "^55.0.16",
     "typescript": "6.0.3"
   },
   "expo": {

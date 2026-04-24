@@ -68,13 +68,7 @@ const config = {
      * Register additional asset extensions for fonts and vector graphics.
      * Metro needs these to bundle font files and SVGs as assets.
      */
-    assetExts: [
-      ...(defaultConfig.resolver.assetExts ?? []),
-      "ttf",
-      "otf",
-      "woff",
-      "woff2",
-    ],
+    assetExts: [...(defaultConfig.resolver.assetExts ?? []), "ttf", "otf", "woff", "woff2"],
   },
 };
 

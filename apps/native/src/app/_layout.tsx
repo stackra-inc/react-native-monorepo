@@ -28,10 +28,7 @@ import type { HeroUINativeConfig } from "heroui-native";
 import { useCallback, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import {
-  KeyboardAvoidingView,
-  KeyboardProvider,
-} from "react-native-keyboard-controller";
+import { KeyboardAvoidingView, KeyboardProvider } from "react-native-keyboard-controller";
 
 import "../styles/global.css";
 import { bootstrap } from "@/bootstrap";

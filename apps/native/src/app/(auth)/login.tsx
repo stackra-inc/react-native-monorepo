@@ -16,14 +16,8 @@ export default function LoginRoute() {
   return (
     <View className="flex-1 bg-background justify-center items-center p-6 gap-6">
       <Text className="text-3xl font-bold text-foreground">Welcome Back</Text>
-      <Text className="text-base text-muted text-center">
-        Sign in to continue
-      </Text>
-      <Button
-        variant="primary"
-        className="w-full"
-        onPress={() => router.replace("/(tabs)")}
-      >
+      <Text className="text-base text-muted text-center">Sign in to continue</Text>
+      <Button variant="primary" className="w-full" onPress={() => router.replace("/(tabs)")}>
         Sign In
       </Button>
     </View>

@@ -74,9 +74,7 @@ export function SettingsScreen() {
         <Card>
           <Card.Body className="gap-3">
             <Card.Title>Appearance</Card.Title>
-            <Card.Description>
-              Toggle between light and dark mode
-            </Card.Description>
+            <Card.Description>Toggle between light and dark mode</Card.Description>
             <Button variant="secondary" onPress={handleToggleTheme}>
               Toggle Dark Mode
             </Button>
@@ -92,22 +90,13 @@ export function SettingsScreen() {
               <Button variant="primary" onPress={() => handleSetTheme("light")}>
                 Default
               </Button>
-              <Button
-                variant="secondary"
-                onPress={() => handleSetTheme("lavender-light")}
-              >
+              <Button variant="secondary" onPress={() => handleSetTheme("lavender-light")}>
                 Lavender
               </Button>
-              <Button
-                variant="secondary"
-                onPress={() => handleSetTheme("mint-light")}
-              >
+              <Button variant="secondary" onPress={() => handleSetTheme("mint-light")}>
                 Mint
               </Button>
-              <Button
-                variant="secondary"
-                onPress={() => handleSetTheme("sky-light")}
-              >
+              <Button variant="secondary" onPress={() => handleSetTheme("sky-light")}>
                 Sky
               </Button>
             </View>
