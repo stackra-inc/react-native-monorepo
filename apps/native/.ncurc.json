@@ -8,8 +8,10 @@
     "react-native-safe-area-context",
     "react-native-screens",
     "react-native-svg",
+    "react-native-keyboard-controller",
     "@gorhom/bottom-sheet",
     "tailwind-variants",
-    "tailwind-merge"
+    "tailwind-merge",
+    "typescript"
   ]
 }
