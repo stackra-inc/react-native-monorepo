@@ -1,0 +1,80 @@
+{
+  "mcpServers": {
+    "tailwindcss-docs": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://gitmcp.io/tailwindlabs/tailwindcss"
+      ],
+      "autoApprove": ["search_tailwindcss_documentation"]
+    },
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"],
+      "disabled": false,
+      "autoApprove": [
+        "get_build_errors",
+        "get_runtime_errors",
+        "get_routes",
+        "get_server_actions",
+        "get_project_config"
+      ]
+    },
+    "heroui-react": {
+      "command": "npx",
+      "args": ["-y", "@heroui/react-mcp@latest"],
+      "disabled": false,
+      "autoApprove": [
+        "get_component",
+        "list_components",
+        "get_component_props",
+        "get_component_examples",
+        "get_theme_config"
+      ]
+    },
+    "tailwindcss": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://gitmcp.io/tailwindlabs/tailwindcss"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "search_docs",
+        "get_class_reference",
+        "get_config_reference"
+      ]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "get_file_contents",
+        "list_commits",
+        "list_issues",
+        "get_issue",
+        "search_repositories",
+        "create_issue",
+        "create_pull_request"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"],
+      "disabled": false,
+      "autoApprove": [
+        "browser_navigate",
+        "browser_snapshot",
+        "browser_take_screenshot",
+        "browser_click",
+        "browser_type"
+      ]
+    }
+  }
+}

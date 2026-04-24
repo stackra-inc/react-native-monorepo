@@ -36,6 +36,8 @@ PODS:
     - ExpoModulesCore
   - ExpoGlassEffect (55.0.10):
     - ExpoModulesCore
+  - ExpoHaptics (55.0.14):
+    - ExpoModulesCore
   - ExpoImage (55.0.9):
     - ExpoModulesCore
     - libavif/libdav1d
@@ -82,6 +84,8 @@ PODS:
   - ExpoRouter (55.0.13):
     - ExpoModulesCore
     - RNScreens
+  - ExpoSplashScreen (55.0.19):
+    - ExpoModulesCore
   - ExpoSymbols (55.0.7):
     - ExpoModulesCore
   - ExpoSystemUI (55.0.16):
@@ -1500,6 +1504,51 @@ PODS:
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
+  - react-native-keyboard-controller (1.21.6):
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - react-native-keyboard-controller/common (= 1.21.6)
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
+  - react-native-keyboard-controller/common (1.21.6):
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
   - react-native-safe-area-context (5.6.0):
     - hermes-engine
     - RCTRequired
@@ -2233,6 +2282,7 @@ DEPENDENCIES:
   - "ExpoFileSystem (from `../../../node_modules/.pnpm/expo-file-system@55.0.17_expo@55.0.17_react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0_/node_modules/expo-file-system/ios`)"
   - "ExpoFont (from `../../../node_modules/.pnpm/expo-font@55.0.6_expo@55.0.17_react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0__react@19.2.0/node_modules/expo-font/ios`)"
   - "ExpoGlassEffect (from `../../../node_modules/.pnpm/expo-glass-effect@55.0.10_expo@55.0.17_react-native@0.83.2_@babel+core@7.29.0_@types+re_3b2c37900027c0a7ff687feaeb53598f/node_modules/expo-glass-effect/ios`)"
+  - "ExpoHaptics (from `../../../node_modules/.pnpm/expo-haptics@55.0.14_expo@55.0.17/node_modules/expo-haptics/ios`)"
   - "ExpoImage (from `../../../node_modules/.pnpm/expo-image@55.0.9_expo@55.0.17_react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0__react@19.2.0/node_modules/expo-image/ios`)"
   - "ExpoKeepAwake (from `../../../node_modules/.pnpm/expo-keep-awake@55.0.6_expo@55.0.17_react@19.2.0/node_modules/expo-keep-awake/ios`)"
   - "ExpoLinking (from `../../../node_modules/.pnpm/expo-linking@55.0.14_expo@55.0.17_react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0__react@19.2.0/node_modules/expo-linking/ios`)"
@@ -2240,6 +2290,7 @@ DEPENDENCIES:
   - "ExpoModulesCore (from `../../../node_modules/.pnpm/expo-modules-core@55.0.23_react-native-worklets@0.7.4_@babel+core@7.29.0_react-native@0_ea5eaa21534dcaaf824086e483600495/node_modules/expo-modules-core`)"
   - "ExpoModulesJSI (from `../../../node_modules/.pnpm/expo-modules-core@55.0.23_react-native-worklets@0.7.4_@babel+core@7.29.0_react-native@0_ea5eaa21534dcaaf824086e483600495/node_modules/expo-modules-core`)"
   - "ExpoRouter (from `../../../node_modules/.pnpm/expo-router@55.0.13_@expo+log-box@55.0.11_@expo+metro-runtime@55.0.10_@types+react@19.2_2ed9b4047d96763422603899f11f4835/node_modules/expo-router/ios`)"
+  - "ExpoSplashScreen (from `../../../node_modules/.pnpm/expo-splash-screen@55.0.19_expo@55.0.17_typescript@5.9.2/node_modules/expo-splash-screen/ios`)"
   - "ExpoSymbols (from `../../../node_modules/.pnpm/expo-symbols@55.0.7_expo-font@55.0.6_expo@55.0.17_react-native@0.83.2_@babel+core@7.29._b09ef022745de66d4cd8306c3e29a126/node_modules/expo-symbols/ios`)"
   - "ExpoSystemUI (from `../../../node_modules/.pnpm/expo-system-ui@55.0.16_expo@55.0.17_react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0_/node_modules/expo-system-ui/ios`)"
   - "FBLazyVector (from `../../../node_modules/.pnpm/react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0/node_modules/react-native/Libraries/FBLazyVector`)"
@@ -2281,6 +2332,7 @@ DEPENDENCIES:
   - "React-logger (from `../../../node_modules/.pnpm/react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0/node_modules/react-native/ReactCommon/logger`)"
   - "React-Mapbuffer (from `../../../node_modules/.pnpm/react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0/node_modules/react-native/ReactCommon`)"
   - "React-microtasksnativemodule (from `../../../node_modules/.pnpm/react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0/node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)"
+  - "react-native-keyboard-controller (from `../../../node_modules/.pnpm/react-native-keyboard-controller@1.21.6_react-native-reanimated@4.2.1_react-native-work_37d893ac2df7d5fbf07699ec6e51544c/node_modules/react-native-keyboard-controller`)"
   - "react-native-safe-area-context (from `../../../node_modules/.pnpm/react-native-safe-area-context@5.6.0_react-native@0.83.2_@babel+core@7.29.0_@types+reac_8e370b8ee6dff71f0dee4d146e1176ad/node_modules/react-native-safe-area-context`)"
   - "React-NativeModulesApple (from `../../../node_modules/.pnpm/react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0/node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)"
   - "React-networking (from `../../../node_modules/.pnpm/react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0/node_modules/react-native/ReactCommon/react/networking`)"
@@ -2348,6 +2400,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/.pnpm/expo-font@55.0.6_expo@55.0.17_react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0__react@19.2.0/node_modules/expo-font/ios"
   ExpoGlassEffect:
     :path: "../../../node_modules/.pnpm/expo-glass-effect@55.0.10_expo@55.0.17_react-native@0.83.2_@babel+core@7.29.0_@types+re_3b2c37900027c0a7ff687feaeb53598f/node_modules/expo-glass-effect/ios"
+  ExpoHaptics:
+    :path: "../../../node_modules/.pnpm/expo-haptics@55.0.14_expo@55.0.17/node_modules/expo-haptics/ios"
   ExpoImage:
     :path: "../../../node_modules/.pnpm/expo-image@55.0.9_expo@55.0.17_react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0__react@19.2.0/node_modules/expo-image/ios"
   ExpoKeepAwake:
@@ -2362,6 +2416,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/.pnpm/expo-modules-core@55.0.23_react-native-worklets@0.7.4_@babel+core@7.29.0_react-native@0_ea5eaa21534dcaaf824086e483600495/node_modules/expo-modules-core"
   ExpoRouter:
     :path: "../../../node_modules/.pnpm/expo-router@55.0.13_@expo+log-box@55.0.11_@expo+metro-runtime@55.0.10_@types+react@19.2_2ed9b4047d96763422603899f11f4835/node_modules/expo-router/ios"
+  ExpoSplashScreen:
+    :path: "../../../node_modules/.pnpm/expo-splash-screen@55.0.19_expo@55.0.17_typescript@5.9.2/node_modules/expo-splash-screen/ios"
   ExpoSymbols:
     :path: "../../../node_modules/.pnpm/expo-symbols@55.0.7_expo-font@55.0.6_expo@55.0.17_react-native@0.83.2_@babel+core@7.29._b09ef022745de66d4cd8306c3e29a126/node_modules/expo-symbols/ios"
   ExpoSystemUI:
@@ -2443,6 +2499,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/.pnpm/react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0/node_modules/react-native/ReactCommon"
   React-microtasksnativemodule:
     :path: "../../../node_modules/.pnpm/react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0/node_modules/react-native/ReactCommon/react/nativemodule/microtasks"
+  react-native-keyboard-controller:
+    :path: "../../../node_modules/.pnpm/react-native-keyboard-controller@1.21.6_react-native-reanimated@4.2.1_react-native-work_37d893ac2df7d5fbf07699ec6e51544c/node_modules/react-native-keyboard-controller"
   react-native-safe-area-context:
     :path: "../../../node_modules/.pnpm/react-native-safe-area-context@5.6.0_react-native@0.83.2_@babel+core@7.29.0_@types+reac_8e370b8ee6dff71f0dee4d146e1176ad/node_modules/react-native-safe-area-context"
   React-NativeModulesApple:
@@ -2534,6 +2592,7 @@ SPEC CHECKSUMS:
   ExpoFileSystem: a0e4a5a09c9c4f84338289b273a172609452dec9
   ExpoFont: cdd7a1d574a376fa003c713eff49e0a4df8672c7
   ExpoGlassEffect: 72bcb9dc634262c59897ff7c53c16e2ff03990d0
+  ExpoHaptics: 679f09dc37d5981e619bc197732007a3334e80b8
   ExpoImage: bd9e9c5bc4eff7a6883339be305f8b0bb5a0cf1c
   ExpoKeepAwake: a1baf9810a2dee1905aa9bdd336852598f7220e9
   ExpoLinking: f9e01f5182f2653ea9d90f18fb47f1913e2f99ef
@@ -2541,6 +2600,7 @@ SPEC CHECKSUMS:
   ExpoModulesCore: 121f306333afed9321507d99a9804fe5e795c03a
   ExpoModulesJSI: 24121c9a2f32d5f6b6ca2f7ff54925be716d5841
   ExpoRouter: e2c56f80102b153c5f8c887b38094ef936c266a2
+  ExpoSplashScreen: 43517d54a0f90d381c80deda859aa6087e80884b
   ExpoSymbols: 8b63e859ba013df1f2fc666f535fddb3d5270569
   ExpoSystemUI: f0f31e6aea8f76b549a463483bdeeb1dcb8a5593
   FBLazyVector: 32e9ed0301d0fcbc1b2b341dd7fcbf291f51eb83
@@ -2584,6 +2644,7 @@ SPEC CHECKSUMS:
   React-logger: 69811317123fe08dc34ed5837dc1d269c468cc8d
   React-Mapbuffer: 8f8cbeb5bedb521cce0897a71274e3a72b5236a1
   React-microtasksnativemodule: bef4a47c7efd42421de52201e6d76a73cf6c816e
+  react-native-keyboard-controller: d3b10138cca486acf5beda70959269c4ccceeda7
   react-native-safe-area-context: eb2fb5c796f18a08959ee5400bb1c65e4c1b4833
   React-NativeModulesApple: f9fa097fc24cec967b77bfc05f72d2ea7db05b87
   React-networking: 29a9ae1a2e6ce8bb19174cc47110b36ae7ffcbcd
@@ -2630,6 +2691,6 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   Yoga: dd994d8c85dca5cc9b10f5df8c01f9ef1d0da191
 
-PODFILE CHECKSUM: 3402b86972f9851564fd30c3dc1de51433a1cf5d
+PODFILE CHECKSUM: 31bd4581f9df631b7ffe1c9b8fbafd6ef560c76d
 
 COCOAPODS: 1.16.2

@@ -23,4 +23,12 @@ config.resolver.nodeModulesPaths = [
 module.exports = withUniwindConfig(wrapWithReanimatedMetroConfig(config), {
   cssEntryFile: "./global.css",
   dtsFile: "./uniwind.d.ts",
+  extraThemes: [
+    "lavender-light",
+    "lavender-dark",
+    "mint-light",
+    "mint-dark",
+    "sky-light",
+    "sky-dark",
+  ],
 });
