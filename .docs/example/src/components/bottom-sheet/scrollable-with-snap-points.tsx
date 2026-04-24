@@ -1,11 +1,11 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { BottomSheetFooter, BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import { BottomSheet, Button, Card, cn, Separator } from "heroui-native";
-import { useCallback, useMemo, useState } from "react";
-import { View } from "react-native";
-import { withUniwind } from "uniwind";
-import { useAppTheme } from "../../contexts/app-theme-context";
-import { AppText } from "../app-text";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { BottomSheetFooter, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { BottomSheet, Button, Card, cn, Separator } from 'heroui-native';
+import { useCallback, useMemo, useState } from 'react';
+import { View } from 'react-native';
+import { withUniwind } from 'uniwind';
+import { useAppTheme } from '../../contexts/app-theme-context';
+import { AppText } from '../app-text';
 
 const StyledIonicons = withUniwind(Ionicons);
 
@@ -14,53 +14,53 @@ export const ScrollableWithSnapPointsContent = () => {
 
   const { isDark } = useAppTheme();
 
-  const snapPoints = useMemo(() => ["40%", "80%"], []);
+  const snapPoints = useMemo(() => ['40%', '80%'], []);
 
   const taxiOptions = [
     {
-      id: "priority",
-      name: "Taxi Priority",
-      icon: "flash-outline" as const,
-      time: "1 min",
-      capacity: "4",
-      price: "c. €12-19",
+      id: 'priority',
+      name: 'Taxi Priority',
+      icon: 'flash-outline' as const,
+      time: '1 min',
+      capacity: '4',
+      price: 'c. €12-19',
       highlight: false,
     },
     {
-      id: "comfort",
-      name: "Taxi Comfort",
-      icon: "star-outline" as const,
-      time: "6 min",
-      capacity: "4",
-      price: "c. €11-18",
+      id: 'comfort',
+      name: 'Taxi Comfort',
+      icon: 'star-outline' as const,
+      time: '6 min',
+      capacity: '4',
+      price: 'c. €11-18',
       highlight: false,
     },
     {
-      id: "green",
-      name: "Green Taxi",
-      icon: "leaf-outline" as const,
-      time: "6 min",
-      capacity: "4",
-      price: "c. €11-17",
+      id: 'green',
+      name: 'Green Taxi',
+      icon: 'leaf-outline' as const,
+      time: '6 min',
+      capacity: '4',
+      price: 'c. €11-17',
       highlight: false,
     },
     {
-      id: "premium",
-      name: "Premium",
-      icon: "car-sport-outline" as const,
-      time: "10 min",
-      capacity: "4",
-      description: "High end cars, top drivers",
-      price: "€30.89",
+      id: 'premium',
+      name: 'Premium',
+      icon: 'car-sport-outline' as const,
+      time: '10 min',
+      capacity: '4',
+      description: 'High end cars, top drivers',
+      price: '€30.89',
       highlight: true,
     },
     {
-      id: "xl",
-      name: "Taxi XL",
-      icon: "car-outline" as const,
-      time: "2 min",
-      capacity: "5-8",
-      price: "c. €12-19",
+      id: 'xl',
+      name: 'Taxi XL',
+      icon: 'car-outline' as const,
+      time: '2 min',
+      capacity: '5-8',
+      price: 'c. €12-19',
       highlight: false,
     },
   ];
@@ -76,7 +76,7 @@ export const ScrollableWithSnapPointsContent = () => {
         </View>
       </BottomSheetFooter>
     ),
-    [],
+    []
   );
 
   return (
@@ -85,7 +85,9 @@ export const ScrollableWithSnapPointsContent = () => {
         <BottomSheet isOpen={isOpen} onOpenChange={setIsOpen}>
           <BottomSheet.Trigger asChild>
             <Button variant="secondary" isDisabled={isOpen}>
-              <Button.Label maxFontSizeMultiplier={1.2}>Scrollable with snap points</Button.Label>
+              <Button.Label maxFontSizeMultiplier={1.2}>
+                Scrollable with snap points
+              </Button.Label>
             </Button>
           </BottomSheet.Trigger>
           <BottomSheet.Portal>
@@ -118,28 +120,34 @@ export const ScrollableWithSnapPointsContent = () => {
                     <Card
                       key={option.id}
                       className={cn(
-                        "flex-row items-center mb-2 shadow-none",
+                        'flex-row items-center mb-2 shadow-none',
                         !option.highlight
-                          ? "bg-transparent"
+                          ? 'bg-transparent'
                           : isDark
-                            ? "bg-green-900/40"
-                            : "bg-green-50",
+                            ? 'bg-green-900/40'
+                            : 'bg-green-50'
                       )}
                     >
                       <View
                         className={cn(
-                          "size-12 items-center justify-center rounded-full mr-3",
+                          'size-12 items-center justify-center rounded-full mr-3',
                           option.highlight
-                            ? "bg-black"
-                            : option.icon === "leaf-outline"
-                              ? "bg-green-500"
-                              : "bg-black",
+                            ? 'bg-black'
+                            : option.icon === 'leaf-outline'
+                              ? 'bg-green-500'
+                              : 'bg-black'
                         )}
                       >
-                        <StyledIonicons name={option.icon} size={24} className="text-white" />
+                        <StyledIonicons
+                          name={option.icon}
+                          size={24}
+                          className="text-white"
+                        />
                       </View>
                       <Card.Body className="flex-1">
-                        <Card.Title className="text-base font-semibold">{option.name}</Card.Title>
+                        <Card.Title className="text-base font-semibold">
+                          {option.name}
+                        </Card.Title>
                         <Card.Description className="text-sm">
                           in {option.time} • {option.capacity}
                         </Card.Description>
@@ -167,12 +175,14 @@ export const ScrollableWithSnapPointsContent = () => {
                 <View className="px-3">
                   <Card
                     className={cn(
-                      "mb-4 flex-row items-center",
-                      isDark ? "bg-amber-900/40" : "bg-amber-50",
+                      'mb-4 flex-row items-center',
+                      isDark ? 'bg-amber-900/40' : 'bg-amber-50'
                     )}
                   >
                     <View className="size-8 mr-3 items-center justify-center rounded-full bg-yellow-400">
-                      <AppText className="text-xs font-bold text-black">P</AppText>
+                      <AppText className="text-xs font-bold text-black">
+                        P
+                      </AppText>
                     </View>
                     <Card.Body className="flex-1">
                       <Card.Title className="text-sm font-semibold">
@@ -182,22 +192,38 @@ export const ScrollableWithSnapPointsContent = () => {
                         Subscribe for €6.99/month
                       </Card.Description>
                     </Card.Body>
-                    <StyledIonicons name="chevron-forward" size={20} className="text-muted" />
+                    <StyledIonicons
+                      name="chevron-forward"
+                      size={20}
+                      className="text-muted"
+                    />
                   </Card>
                   <Card
                     className={cn(
-                      "mb-8 flex-row items-center",
-                      isDark ? "bg-gray-900/40" : "bg-gray-100",
+                      'mb-8 flex-row items-center',
+                      isDark ? 'bg-gray-900/40' : 'bg-gray-100'
                     )}
                   >
                     <View className="size-10 mr-3 items-center justify-center rounded-lg bg-red-500">
-                      <StyledIonicons name="person" size={20} className="text-white" />
+                      <StyledIonicons
+                        name="person"
+                        size={20}
+                        className="text-white"
+                      />
                     </View>
                     <Card.Body className="flex-1">
-                      <Card.Title className="text-sm font-semibold">Personal</Card.Title>
-                      <Card.Description className="text-xs">Visa ••••</Card.Description>
+                      <Card.Title className="text-sm font-semibold">
+                        Personal
+                      </Card.Title>
+                      <Card.Description className="text-xs">
+                        Visa ••••
+                      </Card.Description>
                     </Card.Body>
-                    <StyledIonicons name="chevron-forward" size={20} className="text-muted" />
+                    <StyledIonicons
+                      name="chevron-forward"
+                      size={20}
+                      className="text-muted"
+                    />
                   </Card>
                   <View className="px-4 mb-6">
                     <BottomSheet.Title className="font-semibold mb-3">
@@ -210,8 +236,8 @@ export const ScrollableWithSnapPointsContent = () => {
                       Distance: 4.2 km
                     </BottomSheet.Description>
                     <BottomSheet.Description className="text-sm">
-                      Your driver will arrive at the pickup location shortly. Please be ready when
-                      they arrive.
+                      Your driver will arrive at the pickup location shortly.
+                      Please be ready when they arrive.
                     </BottomSheet.Description>
                   </View>
                   <View className="px-4 mb-6">
@@ -228,7 +254,8 @@ export const ScrollableWithSnapPointsContent = () => {
                       • Cancellation fees may apply if cancelled after 2 minutes
                     </BottomSheet.Description>
                     <BottomSheet.Description className="text-sm">
-                      • For support, contact us through the app or call +1-800-TAXI-HELP
+                      • For support, contact us through the app or call
+                      +1-800-TAXI-HELP
                     </BottomSheet.Description>
                   </View>
                   <View className="px-4">
@@ -236,11 +263,12 @@ export const ScrollableWithSnapPointsContent = () => {
                       Safety & Security
                     </BottomSheet.Title>
                     <BottomSheet.Description className="text-sm mb-2">
-                      All our drivers are verified and background-checked. Your safety is our top
-                      priority.
+                      All our drivers are verified and background-checked. Your
+                      safety is our top priority.
                     </BottomSheet.Description>
                     <BottomSheet.Description className="text-sm">
-                      Share your trip details with friends and family for added security.
+                      Share your trip details with friends and family for added
+                      security.
                     </BottomSheet.Description>
                   </View>
                 </View>

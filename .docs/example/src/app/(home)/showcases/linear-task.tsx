@@ -1,18 +1,18 @@
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { useRouter } from "expo-router";
-import { Avatar, Card, Separator } from "heroui-native";
-import { Pressable, View } from "react-native";
-import { KeyboardController } from "react-native-keyboard-controller";
-import Animated, { FadeIn } from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { withUniwind } from "uniwind";
-import { AppText } from "../../../components/app-text";
-import { Assignee } from "../../../components/showcases/linear-task/dialogs/assignee";
-import { Labels } from "../../../components/showcases/linear-task/dialogs/labels";
-import { Priority } from "../../../components/showcases/linear-task/dialogs/priority";
-import { Project } from "../../../components/showcases/linear-task/dialogs/project";
-import { Status } from "../../../components/showcases/linear-task/dialogs/status";
-import { simulatePress } from "../../../helpers/utils/simulate-press";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { useRouter } from 'expo-router';
+import { Avatar, Card, Separator } from 'heroui-native';
+import { Pressable, View } from 'react-native';
+import { KeyboardController } from 'react-native-keyboard-controller';
+import Animated, { FadeIn } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { withUniwind } from 'uniwind';
+import { AppText } from '../../../components/app-text';
+import { Assignee } from '../../../components/showcases/linear-task/dialogs/assignee';
+import { Labels } from '../../../components/showcases/linear-task/dialogs/labels';
+import { Priority } from '../../../components/showcases/linear-task/dialogs/priority';
+import { Project } from '../../../components/showcases/linear-task/dialogs/project';
+import { Status } from '../../../components/showcases/linear-task/dialogs/status';
+import { simulatePress } from '../../../helpers/utils/simulate-press';
 
 const StyledMaterialCommunityIcons = withUniwind(MaterialCommunityIcons);
 const StyledAnimatedScrollView = withUniwind(Animated.ScrollView);
@@ -32,9 +32,18 @@ export default function LinearTaskScreen() {
       showsVerticalScrollIndicator={false}
     >
       <View className="flex-row items-center gap-5 mb-4">
-        <Pressable className="flex-row items-center gap-1" onPress={router.back}>
-          <StyledMaterialCommunityIcons name="arrow-left" size={16} className="text-foreground" />
-          <AppText className="text-lg font-medium text-foreground">Back</AppText>
+        <Pressable
+          className="flex-row items-center gap-1"
+          onPress={router.back}
+        >
+          <StyledMaterialCommunityIcons
+            name="arrow-left"
+            size={16}
+            className="text-foreground"
+          />
+          <AppText className="text-lg font-medium text-foreground">
+            Back
+          </AppText>
         </Pressable>
         <AppText className="text-base font-medium text-muted">DEV-37</AppText>
       </View>
@@ -55,17 +64,22 @@ export default function LinearTaskScreen() {
       </Card>
 
       <AppText className="text-base text-foreground mb-6">
-        Build a best-in-class dialog component that sets new standards for performance and user
-        experience. The implementation should feature smooth animations, keyboard-aware positioning,
-        and adaptive layouts that work seamlessly across all device sizes. Focus on creating an
-        intuitive API that makes complex interactions feel effortless.
+        Build a best-in-class dialog component that sets new standards for
+        performance and user experience. The implementation should feature
+        smooth animations, keyboard-aware positioning, and adaptive layouts that
+        work seamlessly across all device sizes. Focus on creating an intuitive
+        API that makes complex interactions feel effortless.
       </AppText>
 
       <Pressable onPress={simulatePress}>
         <Card className="mb-6 border-0 bg-surface-tertiary rounded-2xl p-4">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center gap-3">
-              <StyledMaterialCommunityIcons name="github" size={20} className="text-foreground" />
+              <StyledMaterialCommunityIcons
+                name="github"
+                size={20}
+                className="text-foreground"
+              />
               <AppText className="text-base font-semibold text-foreground">
                 feat/dialog-component
               </AppText>
@@ -86,27 +100,33 @@ export default function LinearTaskScreen() {
 
       <View className="mb-8">
         <View className="flex-row items-center justify-between mb-4">
-          <AppText className="text-lg font-semibold text-muted">Activity</AppText>
+          <AppText className="text-lg font-semibold text-muted">
+            Activity
+          </AppText>
           <View className="flex-row items-center">
             <View className="flex-row">
               <Avatar alt="volo" className="size-6 bg-purple-500">
                 <Avatar.Image
                   source={{
-                    uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/volo-avatar.png",
+                    uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/volo-avatar.png',
                   }}
                 />
                 <Avatar.Fallback>
-                  <AppText className="text-[10px] font-bold text-white">VS</AppText>
+                  <AppText className="text-[10px] font-bold text-white">
+                    VS
+                  </AppText>
                 </Avatar.Fallback>
               </Avatar>
               <Avatar alt="Junior" className="-ml-3 size-6 bg-sky-500">
                 <Avatar.Image
                   source={{
-                    uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/junior-avatar.jpg",
+                    uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/junior-avatar.jpg',
                   }}
                 />
                 <Avatar.Fallback>
-                  <AppText className="text-[10px] font-bold text-white">JG</AppText>
+                  <AppText className="text-[10px] font-bold text-white">
+                    JG
+                  </AppText>
                 </Avatar.Fallback>
               </Avatar>
             </View>
@@ -121,8 +141,10 @@ export default function LinearTaskScreen() {
             </View>
             <View className="flex-1">
               <AppText className="text-base text-foreground/60">
-                <AppText className="font-semibold text-foreground">Junior</AppText> created the
-                issue
+                <AppText className="font-semibold text-foreground">
+                  Junior
+                </AppText>{' '}
+                created the issue
               </AppText>
               <AppText className="text-sm text-foreground/35 mt-1">
                 18 September 2025 at 13:32
@@ -137,9 +159,17 @@ export default function LinearTaskScreen() {
             </View>
             <View className="flex-1">
               <AppText className="text-base text-foreground/60">
-                <AppText className="font-semibold text-foreground">volo</AppText> changed status
-                from <AppText className="font-semibold text-foreground">Todo</AppText> to{" "}
-                <AppText className="font-semibold text-foreground">In Progress</AppText>
+                <AppText className="font-semibold text-foreground">
+                  volo
+                </AppText>{' '}
+                changed status from{' '}
+                <AppText className="font-semibold text-foreground">
+                  Todo
+                </AppText>{' '}
+                to{' '}
+                <AppText className="font-semibold text-foreground">
+                  In Progress
+                </AppText>
               </AppText>
             </View>
           </View>
@@ -151,9 +181,17 @@ export default function LinearTaskScreen() {
             </View>
             <View className="flex-1">
               <AppText className="text-base text-foreground/60">
-                <AppText className="font-semibold text-foreground">volo</AppText> changed status
-                from <AppText className="font-semibold text-foreground">In Progress</AppText> to{" "}
-                <AppText className="font-semibold text-foreground">In Review</AppText>
+                <AppText className="font-semibold text-foreground">
+                  volo
+                </AppText>{' '}
+                changed status from{' '}
+                <AppText className="font-semibold text-foreground">
+                  In Progress
+                </AppText>{' '}
+                to{' '}
+                <AppText className="font-semibold text-foreground">
+                  In Review
+                </AppText>
               </AppText>
             </View>
           </View>
@@ -164,9 +202,17 @@ export default function LinearTaskScreen() {
             </View>
             <View className="flex-1">
               <AppText className="text-base text-foreground/60">
-                <AppText className="font-semibold text-foreground">Junior</AppText> changed status
-                from <AppText className="font-semibold text-foreground">In Review</AppText> to{" "}
-                <AppText className="font-semibold text-foreground">Done</AppText>
+                <AppText className="font-semibold text-foreground">
+                  Junior
+                </AppText>{' '}
+                changed status from{' '}
+                <AppText className="font-semibold text-foreground">
+                  In Review
+                </AppText>{' '}
+                to{' '}
+                <AppText className="font-semibold text-foreground">
+                  Done
+                </AppText>
               </AppText>
               <AppText className="text-sm text-foreground/35 mt-1">
                 20 September 2025 at 11:54

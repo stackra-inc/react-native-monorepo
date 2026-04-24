@@ -1,17 +1,31 @@
-import { cn, Description, FieldError, Input, Label, TextField } from "heroui-native";
-import { useState } from "react";
-import { Pressable, useWindowDimensions, View } from "react-native";
-import { useReanimatedKeyboardAnimation } from "react-native-keyboard-controller";
-import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
-import { EyeIcon } from "../../../components/icons/eye";
-import { EyeSlashIcon } from "../../../components/icons/eye-slash";
-import { LockIcon } from "../../../components/icons/lock";
-import { WithStateToggle } from "../../../components/with-state-toggle";
-import { useAppTheme } from "../../../contexts/app-theme-context";
+import {
+  cn,
+  Description,
+  FieldError,
+  Input,
+  Label,
+  TextField,
+} from 'heroui-native';
+import { useState } from 'react';
+import { Pressable, useWindowDimensions, View } from 'react-native';
+import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
+import Animated, {
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { EyeIcon } from '../../../components/icons/eye';
+import { EyeSlashIcon } from '../../../components/icons/eye-slash';
+import { LockIcon } from '../../../components/icons/lock';
+import { WithStateToggle } from '../../../components/with-state-toggle';
+import { useAppTheme } from '../../../contexts/app-theme-context';
 
-const KeyboardAvoidingContainer = ({ children }: { children: React.ReactNode }) => {
+const KeyboardAvoidingContainer = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const { height } = useWindowDimensions();
 
   const { progress } = useReanimatedKeyboardAnimation();
@@ -42,7 +56,9 @@ const BasicTextFieldContent = () => {
             keyboardType="email-address"
             autoCapitalize="none"
           />
-          <Description>We'll never share your email with anyone else.</Description>
+          <Description>
+            We'll never share your email with anyone else.
+          </Description>
         </TextField>
       </KeyboardAvoidingContainer>
     </View>
@@ -71,7 +87,10 @@ const TextFieldWithIconsContent = () => {
               onPress={() => setIsPasswordVisible(!isPasswordVisible)}
             >
               {isPasswordVisible ? (
-                <EyeSlashIcon size={16} colorClassName="accent-field-placeholder" />
+                <EyeSlashIcon
+                  size={16}
+                  colorClassName="accent-field-placeholder"
+                />
               ) : (
                 <EyeIcon size={16} colorClassName="accent-field-placeholder" />
               )}
@@ -107,7 +126,7 @@ const DisabledTextFieldContent = () => {
 
 const TextFieldWithValidationContent = () => {
   const [isTestFieldInvalid, setIsTestFieldInvalid] = useState(false);
-  const [testFieldValue, setTestFieldValue] = useState("");
+  const [testFieldValue, setTestFieldValue] = useState('');
 
   return (
     <WithStateToggle
@@ -126,7 +145,9 @@ const TextFieldWithValidationContent = () => {
               onChangeText={setTestFieldValue}
               autoCapitalize="characters"
             />
-            <Description hideOnInvalid>Enter a valid code to receive discount</Description>
+            <Description hideOnInvalid>
+              Enter a valid code to receive discount
+            </Description>
             <FieldError>This promo code is invalid or has expired</FieldError>
           </TextField>
         </KeyboardAvoidingContainer>
@@ -148,8 +169,8 @@ const TextFieldWithCustomStylesContent = () => {
             keyboardType="number-pad"
             maxLength={16}
             className={cn(
-              "border-[0.5px] border-neutral-900 bg-background rounded-none",
-              isDark && "border-neutral-100",
+              'border-[0.5px] border-neutral-900 bg-background rounded-none',
+              isDark && 'border-neutral-100'
             )}
           />
           <Description>Redeem your gift card at checkout</Description>
@@ -161,28 +182,28 @@ const TextFieldWithCustomStylesContent = () => {
 
 const TEXT_FIELD_VARIANTS: UsageVariant[] = [
   {
-    value: "basic-text-field",
-    label: "Basic TextField",
+    value: 'basic-text-field',
+    label: 'Basic TextField',
     content: <BasicTextFieldContent />,
   },
   {
-    value: "text-field-with-icons",
-    label: "TextField with icons",
+    value: 'text-field-with-icons',
+    label: 'TextField with icons',
     content: <TextFieldWithIconsContent />,
   },
   {
-    value: "disabled-text-field",
-    label: "Disabled TextField",
+    value: 'disabled-text-field',
+    label: 'Disabled TextField',
     content: <DisabledTextFieldContent />,
   },
   {
-    value: "text-field-with-validation",
-    label: "TextField with validation",
+    value: 'text-field-with-validation',
+    label: 'TextField with validation',
     content: <TextFieldWithValidationContent />,
   },
   {
-    value: "text-field-with-custom-styles",
-    label: "TextField with custom styles",
+    value: 'text-field-with-custom-styles',
+    label: 'TextField with custom styles',
     content: <TextFieldWithCustomStylesContent />,
   },
 ];

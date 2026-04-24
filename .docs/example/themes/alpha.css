@@ -1,10 +1,10 @@
 @layer theme {
   :root {
     @variant alpha-light {
-      --font-normal: "Inter-Regular";
-      --font-medium: "Inter-Medium";
-      --font-semibold: "Inter-SemiBold";
-      --font-bold: "Inter-Bold";
+      --font-normal: 'Inter-Regular';
+      --font-medium: 'Inter-Medium';
+      --font-semibold: 'Inter-SemiBold';
+      --font-bold: 'Inter-Bold';
 
       --radius: 0.5rem;
 
@@ -74,10 +74,10 @@
     }
 
     @variant alpha-dark {
-      --font-normal: "Inter-Regular";
-      --font-medium: "Inter-Medium";
-      --font-semibold: "Inter-SemiBold";
-      --font-bold: "Inter-Bold";
+      --font-normal: 'Inter-Regular';
+      --font-medium: 'Inter-Medium';
+      --font-semibold: 'Inter-SemiBold';
+      --font-bold: 'Inter-Bold';
 
       --radius: 0.5rem;
 

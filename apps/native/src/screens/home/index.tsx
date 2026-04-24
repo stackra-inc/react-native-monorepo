@@ -14,7 +14,7 @@ import { Button, Card, Alert, Chip } from "heroui-native";
 import { View, Text, ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
-import { LoggerService } from "@/../services/logger.service";
+import { LoggerService } from "@/services/logger.service";
 
 export function HomeScreen() {
   const logger = useInject(LoggerService);

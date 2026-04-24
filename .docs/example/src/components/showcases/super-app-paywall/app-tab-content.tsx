@@ -1,7 +1,7 @@
-import { Checkbox, cn, ControlField } from "heroui-native";
-import { StyleSheet, View } from "react-native";
-import { useAppTheme } from "../../../contexts/app-theme-context";
-import { AppText } from "../../app-text";
+import { Checkbox, cn, ControlField } from 'heroui-native';
+import { StyleSheet, View } from 'react-native';
+import { useAppTheme } from '../../../contexts/app-theme-context';
+import { AppText } from '../../app-text';
 
 export function AppTabContent() {
   const { isDark } = useAppTheme();
@@ -13,7 +13,7 @@ export function AppTabContent() {
     >
       <ControlField
         isSelected
-        className={cn(" bg-neutral-50 px-5 py-4", isDark && "bg-neutral-900")}
+        className={cn(' bg-neutral-50 px-5 py-4', isDark && 'bg-neutral-900')}
       >
         <View className="gap-2">
           <View className="flex-row items-center gap-3">
@@ -23,7 +23,7 @@ export function AppTabContent() {
                   className="bg-yellow-500"
                   iconProps={{
                     size: 16,
-                    color: "white",
+                    color: 'white',
                   }}
                   animation={{
                     translateX: { value: [0, 0] },
@@ -31,7 +31,9 @@ export function AppTabContent() {
                 />
               </Checkbox>
             </ControlField.Indicator>
-            <AppText className="text-foreground text-lg font-black">Lifetime</AppText>
+            <AppText className="text-foreground text-lg font-black">
+              Lifetime
+            </AppText>
           </View>
           <AppText className="text-foreground/80 text-base font-medium">
             $14.99 one-time purchase
@@ -44,6 +46,6 @@ export function AppTabContent() {
 
 const styles = StyleSheet.create({
   formField: {
-    borderCurve: "continuous",
+    borderCurve: 'continuous',
   },
 });

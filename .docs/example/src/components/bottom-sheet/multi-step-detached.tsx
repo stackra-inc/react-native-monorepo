@@ -4,10 +4,10 @@
  * that smoothly morphs between states using Reanimated layout animations.
  */
 
-import Feather from "@expo/vector-icons/Feather";
-import { BottomSheet, Button } from "heroui-native";
-import { useCallback, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import Feather from '@expo/vector-icons/Feather';
+import { BottomSheet, Button } from 'heroui-native';
+import { useCallback, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 import Animated, {
   FadeIn,
   FadeOut,
@@ -15,10 +15,10 @@ import Animated, {
   useSharedValue,
   withSequence,
   withTiming,
-} from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { withUniwind } from "uniwind";
-import { AnimatedBlurView } from "../animated-blur-view";
+} from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { withUniwind } from 'uniwind';
+import { AnimatedBlurView } from '../animated-blur-view';
 
 /** Feather icon wrapped with uniwind for className-based styling */
 const StyledFeather = withUniwind(Feather);
@@ -43,39 +43,39 @@ const fadeOut = FadeOut.duration(150);
 
 /** Step 1 body text — 6 lorem ipsum sentences */
 const STEP_1_BODY = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-  "Nisi ut aliquip ex ea commodo consequat.",
-  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-  "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.",
-].join(" ");
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+  'Nisi ut aliquip ex ea commodo consequat.',
+  'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
+  'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.',
+].join(' ');
 
 /** Step 2 body text — 10 lorem ipsum sentences */
 const STEP_2_BODY = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-  "Nisi ut aliquip ex ea commodo consequat.",
-  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-  "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.",
-  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.",
-  "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
-  "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.",
-  "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.",
-].join(" ");
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+  'Nisi ut aliquip ex ea commodo consequat.',
+  'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
+  'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.',
+  'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.',
+  'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.',
+  'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.',
+  'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.',
+].join(' ');
 
 /** Step 3 body text — 8 lorem ipsum sentences */
 const STEP_3_BODY = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-  "Nisi ut aliquip ex ea commodo consequat.",
-  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-  "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.",
-  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.",
-  "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
-].join(" ");
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+  'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
+  'Nisi ut aliquip ex ea commodo consequat.',
+  'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.',
+  'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.',
+  'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.',
+  'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.',
+].join(' ');
 
 /**
  * Multi-step detached bottom sheet component.
@@ -96,7 +96,7 @@ export const MultiStepDetachedContent = () => {
   const triggerBlurPulse = useCallback(() => {
     blurIntensity.value = withSequence(
       withTiming(10, { duration: 150 }),
-      withTiming(0, { duration: 200 }),
+      withTiming(0, { duration: 200 })
     );
   }, [blurIntensity]);
 
@@ -109,7 +109,7 @@ export const MultiStepDetachedContent = () => {
       }
       setIsOpen(open);
     },
-    [blurIntensity],
+    [blurIntensity]
   );
 
   /** Navigate to the previous step with a blur pulse */
@@ -165,7 +165,11 @@ export const MultiStepDetachedContent = () => {
                         size="sm"
                         className="size-8"
                       >
-                        <StyledFeather name="chevron-left" size={20} className="text-foreground" />
+                        <StyledFeather
+                          name="chevron-left"
+                          size={20}
+                          className="text-foreground"
+                        />
                       </Button>
                     </Animated.View>
                   )}
@@ -174,7 +178,7 @@ export const MultiStepDetachedContent = () => {
                   <Animated.View layout={layoutTransition}>
                     <View className="flex-1">
                       <BottomSheet.Title>
-                        {step === 1 ? "Content One" : "Content Two"}
+                        {step === 1 ? 'Content One' : 'Content Two'}
                       </BottomSheet.Title>
                     </View>
                   </Animated.View>
@@ -193,8 +197,12 @@ export const MultiStepDetachedContent = () => {
                   {/* Step 1 content */}
                   {step === 1 && (
                     <Animated.View entering={fadeIn} exiting={fadeOut}>
-                      <BottomSheet.Title>This is a test title</BottomSheet.Title>
-                      <BottomSheet.Description>{STEP_1_BODY}</BottomSheet.Description>
+                      <BottomSheet.Title>
+                        This is a test title
+                      </BottomSheet.Title>
+                      <BottomSheet.Description>
+                        {STEP_1_BODY}
+                      </BottomSheet.Description>
                     </Animated.View>
                   )}
 
@@ -202,7 +210,9 @@ export const MultiStepDetachedContent = () => {
                   {step === 2 && (
                     <Animated.View entering={fadeIn} exiting={fadeOut}>
                       <BottomSheet.Title>Different title</BottomSheet.Title>
-                      <BottomSheet.Description>{STEP_2_BODY}</BottomSheet.Description>
+                      <BottomSheet.Description>
+                        {STEP_2_BODY}
+                      </BottomSheet.Description>
                     </Animated.View>
                   )}
 
@@ -210,7 +220,9 @@ export const MultiStepDetachedContent = () => {
                   {step === 3 && (
                     <Animated.View entering={fadeIn} exiting={fadeOut}>
                       <BottomSheet.Title>Another title</BottomSheet.Title>
-                      <BottomSheet.Description>{STEP_3_BODY}</BottomSheet.Description>
+                      <BottomSheet.Description>
+                        {STEP_3_BODY}
+                      </BottomSheet.Description>
                     </Animated.View>
                   )}
 

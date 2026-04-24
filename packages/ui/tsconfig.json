@@ -13,6 +13,8 @@
     "declarationMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "paths": {
       "@/*": ["./src/*"]
     }

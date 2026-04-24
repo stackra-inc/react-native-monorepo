@@ -1,15 +1,22 @@
-import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
-import { LinearGradient } from "expo-linear-gradient";
-import { Button, Label, ScrollShadow, Select, Separator, useThemeColor } from "heroui-native";
-import React, { useState } from "react";
-import { Platform, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { AppText } from "../../../components/app-text";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
-import { PlacementSelect } from "../../../components/select/placement-select";
-import { SearchableDialogSelect } from "../../../components/select/searchable-dialog-select";
-import { SelectButtonTrigger } from "../../../components/select/select-button-trigger";
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { LinearGradient } from 'expo-linear-gradient';
+import {
+  Button,
+  Label,
+  ScrollShadow,
+  Select,
+  Separator,
+  useThemeColor,
+} from 'heroui-native';
+import React, { useState } from 'react';
+import { Platform, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { AppText } from '../../../components/app-text';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { PlacementSelect } from '../../../components/select/placement-select';
+import { SearchableDialogSelect } from '../../../components/select/searchable-dialog-select';
+import { SelectButtonTrigger } from '../../../components/select/select-button-trigger';
 
 type SelectOption = {
   value: string;
@@ -24,28 +31,28 @@ type CountryOption = {
 };
 
 const US_STATES: SelectOption[] = [
-  { value: "CA", label: "California" },
-  { value: "NY", label: "New York" },
-  { value: "TX", label: "Texas" },
-  { value: "FL", label: "Florida" },
-  { value: "IL", label: "Illinois" },
-  { value: "PA", label: "Pennsylvania" },
-  { value: "OH", label: "Ohio" },
-  { value: "GA", label: "Georgia" },
-  { value: "NC", label: "North Carolina" },
+  { value: 'CA', label: 'California' },
+  { value: 'NY', label: 'New York' },
+  { value: 'TX', label: 'Texas' },
+  { value: 'FL', label: 'Florida' },
+  { value: 'IL', label: 'Illinois' },
+  { value: 'PA', label: 'Pennsylvania' },
+  { value: 'OH', label: 'Ohio' },
+  { value: 'GA', label: 'Georgia' },
+  { value: 'NC', label: 'North Carolina' },
 ];
 
 const COUNTRIES: CountryOption[] = [
-  { value: "US", label: "United States", flag: "🇺🇸", code: "+1" },
-  { value: "GB", label: "United Kingdom", flag: "🇬🇧", code: "+44" },
-  { value: "CA", label: "Canada", flag: "🇨🇦", code: "+1" },
-  { value: "AU", label: "Australia", flag: "🇦🇺", code: "+61" },
-  { value: "DE", label: "Germany", flag: "🇩🇪", code: "+49" },
-  { value: "FR", label: "France", flag: "🇫🇷", code: "+33" },
-  { value: "JP", label: "Japan", flag: "🇯🇵", code: "+81" },
-  { value: "CN", label: "China", flag: "🇨🇳", code: "+86" },
-  { value: "IN", label: "India", flag: "🇮🇳", code: "+91" },
-  { value: "BR", label: "Brazil", flag: "🇧🇷", code: "+55" },
+  { value: 'US', label: 'United States', flag: '🇺🇸', code: '+1' },
+  { value: 'GB', label: 'United Kingdom', flag: '🇬🇧', code: '+44' },
+  { value: 'CA', label: 'Canada', flag: '🇨🇦', code: '+1' },
+  { value: 'AU', label: 'Australia', flag: '🇦🇺', code: '+61' },
+  { value: 'DE', label: 'Germany', flag: '🇩🇪', code: '+49' },
+  { value: 'FR', label: 'France', flag: '🇫🇷', code: '+33' },
+  { value: 'JP', label: 'Japan', flag: '🇯🇵', code: '+81' },
+  { value: 'CN', label: 'China', flag: '🇨🇳', code: '+86' },
+  { value: 'IN', label: 'India', flag: '🇮🇳', code: '+91' },
+  { value: 'BR', label: 'Brazil', flag: '🇧🇷', code: '+55' },
 ];
 
 // ------------------------------------------------------------------------------
@@ -79,9 +86,11 @@ const BasicUsageMultipleSelectContent = () => {
 const PresentationContent = () => {
   const [popoverValue, setPopoverValue] = useState<CountryOption | undefined>();
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const [bottomSheetValue, setBottomSheetValue] = useState<CountryOption | undefined>();
+  const [bottomSheetValue, setBottomSheetValue] = useState<
+    CountryOption | undefined
+  >();
 
-  const themeColorOverlay = useThemeColor("overlay");
+  const themeColorOverlay = useThemeColor('overlay');
 
   return (
     <View className="flex-1 px-5 justify-center">
@@ -101,7 +110,10 @@ const PresentationContent = () => {
                   <AppText className="text-base" maxFontSizeMultiplier={1}>
                     {popoverValue.flag}
                   </AppText>
-                  <AppText className="text-sm text-accent font-medium" maxFontSizeMultiplier={1.2}>
+                  <AppText
+                    className="text-sm text-accent font-medium"
+                    maxFontSizeMultiplier={1.2}
+                  >
                     {popoverValue.code}
                   </AppText>
                 </View>
@@ -124,12 +136,19 @@ const PresentationContent = () => {
             >
               <ScrollView>
                 {COUNTRIES.map((country) => (
-                  <Select.Item key={country.value} value={country.value} label={country.label}>
+                  <Select.Item
+                    key={country.value}
+                    value={country.value}
+                    label={country.label}
+                  >
                     <View className="flex-1 flex-row items-center gap-3">
                       <AppText className="text-2xl" maxFontSizeMultiplier={1}>
                         {country.flag}
                       </AppText>
-                      <AppText className="text-sm text-muted w-10" maxFontSizeMultiplier={1}>
+                      <AppText
+                        className="text-sm text-muted w-10"
+                        maxFontSizeMultiplier={1}
+                      >
                         {country.code}
                       </AppText>
                       <AppText
@@ -167,7 +186,10 @@ const PresentationContent = () => {
                   <AppText className="text-base" maxFontSizeMultiplier={1}>
                     {bottomSheetValue.flag}
                   </AppText>
-                  <AppText className="text-sm text-accent font-medium" maxFontSizeMultiplier={1}>
+                  <AppText
+                    className="text-sm text-accent font-medium"
+                    maxFontSizeMultiplier={1}
+                  >
                     {bottomSheetValue.code}
                   </AppText>
                 </View>
@@ -182,7 +204,7 @@ const PresentationContent = () => {
             <Select.Overlay className="bg-black/10" />
             <Select.Content
               presentation="bottom-sheet"
-              snapPoints={["35%", "50%"]}
+              snapPoints={['35%', '50%']}
               detached
               enableDynamicSizing={false}
               enableOverDrag={false}
@@ -192,11 +214,14 @@ const PresentationContent = () => {
               contentContainerClassName="h-full pt-1 pb-1 mx-2.5 rounded-t-4xl border border-separator/20 bg-overlay overflow-hidden"
               contentContainerProps={{
                 style: {
-                  borderCurve: "continuous",
+                  borderCurve: 'continuous',
                 },
               }}
             >
-              <ScrollShadow LinearGradientComponent={LinearGradient} color={themeColorOverlay}>
+              <ScrollShadow
+                LinearGradientComponent={LinearGradient}
+                color={themeColorOverlay}
+              >
                 <BottomSheetScrollView
                   contentContainerClassName="p-4"
                   showsVerticalScrollIndicator={false}
@@ -209,7 +234,10 @@ const PresentationContent = () => {
                         className="py-5 px-3"
                       >
                         <View className="flex-row items-center gap-3 flex-1">
-                          <AppText className="text-2xl" maxFontSizeMultiplier={1}>
+                          <AppText
+                            className="text-2xl"
+                            maxFontSizeMultiplier={1}
+                          >
                             {country.flag}
                           </AppText>
                           <AppText
@@ -279,9 +307,18 @@ const AlignmentOptionsContent = () => {
           </Select.Trigger>
           <Select.Portal>
             <Select.Overlay />
-            <Select.Content presentation="popover" width={200} placement="top" align="start">
+            <Select.Content
+              presentation="popover"
+              width={200}
+              placement="top"
+              align="start"
+            >
               {US_STATES.slice(0, 3).map((state) => (
-                <Select.Item key={state.value} value={state.value} label={state.label} />
+                <Select.Item
+                  key={state.value}
+                  value={state.value}
+                  label={state.label}
+                />
               ))}
             </Select.Content>
           </Select.Portal>
@@ -300,9 +337,18 @@ const AlignmentOptionsContent = () => {
           </Select.Trigger>
           <Select.Portal>
             <Select.Overlay />
-            <Select.Content presentation="popover" width={200} placement="top" align="center">
+            <Select.Content
+              presentation="popover"
+              width={200}
+              placement="top"
+              align="center"
+            >
               {US_STATES.slice(0, 3).map((state) => (
-                <Select.Item key={state.value} value={state.value} label={state.label} />
+                <Select.Item
+                  key={state.value}
+                  value={state.value}
+                  label={state.label}
+                />
               ))}
             </Select.Content>
           </Select.Portal>
@@ -321,9 +367,18 @@ const AlignmentOptionsContent = () => {
           </Select.Trigger>
           <Select.Portal>
             <Select.Overlay />
-            <Select.Content presentation="popover" width={200} placement="top" align="end">
+            <Select.Content
+              presentation="popover"
+              width={200}
+              placement="top"
+              align="end"
+            >
               {US_STATES.slice(0, 3).map((state) => (
-                <Select.Item key={state.value} value={state.value} label={state.label} />
+                <Select.Item
+                  key={state.value}
+                  value={state.value}
+                  label={state.label}
+                />
               ))}
             </Select.Content>
           </Select.Portal>
@@ -336,12 +391,17 @@ const AlignmentOptionsContent = () => {
 // ------------------------------------------------------------------------------
 
 const NativeModalTestContent = () => {
-  const router = require("expo-router").useRouter();
+  const router = require('expo-router').useRouter();
 
   return (
     <View className="flex-1 px-5 items-center justify-center">
-      <Button variant="secondary" onPress={() => router.push("components/select-native-modal")}>
-        <Button.Label maxFontSizeMultiplier={1.4}>Select from Native Modal</Button.Label>
+      <Button
+        variant="secondary"
+        onPress={() => router.push('components/select-native-modal')}
+      >
+        <Button.Label maxFontSizeMultiplier={1.4}>
+          Select from Native Modal
+        </Button.Label>
       </Button>
     </View>
   );
@@ -351,36 +411,36 @@ const NativeModalTestContent = () => {
 
 const SELECT_VARIANTS: UsageVariant[] = [
   {
-    value: "basic-usage-button-trigger",
-    label: "Single select",
+    value: 'basic-usage-button-trigger',
+    label: 'Single select',
     content: <BasicUsageSingleSelectContent />,
   },
   {
-    value: "basic-usage-multiple-select",
-    label: "Multiple select",
+    value: 'basic-usage-multiple-select',
+    label: 'Multiple select',
     content: <BasicUsageMultipleSelectContent />,
   },
   {
-    value: "presentation",
-    label: "Presentation variants",
+    value: 'presentation',
+    label: 'Presentation variants',
     content: <PresentationContent />,
   },
   {
-    value: "placement-options",
-    label: "Placement options",
+    value: 'placement-options',
+    label: 'Placement options',
     content: <PlacementOptionsContent />,
   },
   {
-    value: "alignment-options",
-    label: "Alignment options",
+    value: 'alignment-options',
+    label: 'Alignment options',
     content: <AlignmentOptionsContent />,
   },
 ];
 
-if (Platform.OS === "ios") {
+if (Platform.OS === 'ios') {
   SELECT_VARIANTS.push({
-    value: "native-modal-test",
-    label: "Native modal test",
+    value: 'native-modal-test',
+    label: 'Native modal test',
     content: <NativeModalTestContent />,
   });
 }

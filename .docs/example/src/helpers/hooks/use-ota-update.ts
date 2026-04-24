@@ -1,6 +1,6 @@
-import * as Updates from "expo-updates";
-import { useCallback, useEffect, useRef } from "react";
-import { AppState } from "react-native";
+import * as Updates from 'expo-updates';
+import { useCallback, useEffect, useRef } from 'react';
+import { AppState } from 'react-native';
 
 type UseOtaUpdateOptions = {
   /** Whether the initial version check against the store has completed */
@@ -33,9 +33,14 @@ export function useOtaUpdate({
       await Updates.fetchUpdateAsync();
       onUpdateReady();
     } catch (error) {
-      console.log("[useOtaUpdate] Failed to fetch update:", error);
+      console.log('[useOtaUpdate] Failed to fetch update:', error);
     }
-  }, [isUpdateAvailable, isVersionChecked, isNewVersionAvailable, onUpdateReady]);
+  }, [
+    isUpdateAvailable,
+    isVersionChecked,
+    isNewVersionAvailable,
+    onUpdateReady,
+  ]);
 
   useEffect(() => {
     if (__DEV__) {
@@ -51,12 +56,18 @@ export function useOtaUpdate({
       return;
     }
 
-    const subscription = AppState.addEventListener("change", (nextAppState) => {
-      if (appState.current.match(/inactive|background/) && nextAppState === "active") {
+    const subscription = AppState.addEventListener('change', (nextAppState) => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
         Updates.checkForUpdateAsync()
           .then(() => handleUpdate())
           .catch((error) => {
-            console.log("[useOtaUpdate] Failed to check for update on foreground:", error);
+            console.log(
+              '[useOtaUpdate] Failed to check for update on foreground:',
+              error
+            );
           });
       }
 

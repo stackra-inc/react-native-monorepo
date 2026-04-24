@@ -1,5 +1,5 @@
-import { Select, useSelect } from "heroui-native";
-import { useEffect, type FC, type PropsWithChildren } from "react";
+import { Select, useSelect } from 'heroui-native';
+import { useEffect, type FC, type PropsWithChildren } from 'react';
 import Animated, {
   Easing,
   FadeOut,
@@ -7,7 +7,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
 const AnimatedSelectContent = Animated.createAnimatedComponent(Select.Content);
 
@@ -30,8 +30,8 @@ export const SelectContentContainer: FC<PropsWithChildren> = ({ children }) => {
       presentation="dialog"
       // @ts-ignore
       classNames={{
-        wrapper: "p-0 justify-start",
-        content: "w-full h-full border-0 bg-transparent gap-2",
+        wrapper: 'p-0 justify-start',
+        content: 'w-full h-full border-0 bg-transparent gap-2',
       }}
       animation={{
         entering: undefined,

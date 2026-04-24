@@ -4,34 +4,37 @@ import {
   Inter_600SemiBold,
   Inter_700Bold,
   useFonts,
-} from "@expo-google-fonts/inter";
+} from '@expo-google-fonts/inter';
 import {
   Saira_400Regular,
   Saira_500Medium,
   Saira_600SemiBold,
   Saira_700Bold,
-} from "@expo-google-fonts/saira";
+} from '@expo-google-fonts/saira';
 import {
   SNPro_400Regular,
   SNPro_500Medium,
   SNPro_600SemiBold,
   SNPro_700Bold,
-} from "@expo-google-fonts/sn-pro";
+} from '@expo-google-fonts/sn-pro';
 import {
   SpaceGrotesk_400Regular,
   SpaceGrotesk_500Medium,
   SpaceGrotesk_600SemiBold,
   SpaceGrotesk_700Bold,
-} from "@expo-google-fonts/space-grotesk";
-import { Slot } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { HeroUINativeProvider } from "heroui-native";
-import { useCallback } from "react";
-import { StyleSheet } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { KeyboardAvoidingView, KeyboardProvider } from "react-native-keyboard-controller";
-import "../../global.css";
-import { AppThemeProvider } from "../contexts/app-theme-context";
+} from '@expo-google-fonts/space-grotesk';
+import { Slot } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { HeroUINativeProvider } from 'heroui-native';
+import { useCallback } from 'react';
+import { StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import {
+  KeyboardAvoidingView,
+  KeyboardProvider,
+} from 'react-native-keyboard-controller';
+import '../../global.css';
+import { AppThemeProvider } from '../contexts/app-theme-context';
 
 SplashScreen.setOptions({
   duration: 300,
@@ -54,7 +57,7 @@ function AppContent() {
         {children}
       </KeyboardAvoidingView>
     ),
-    [],
+    []
   );
 
   return (

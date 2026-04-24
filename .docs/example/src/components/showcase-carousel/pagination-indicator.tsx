@@ -1,10 +1,10 @@
-import { View } from "react-native";
+import { View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
   type SharedValue,
   useAnimatedStyle,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
@@ -14,14 +14,18 @@ export type PaginationIndicatorProps = {
   itemSize: number;
 };
 
-export function PaginationIndicator({ index, scrollY, itemSize }: PaginationIndicatorProps) {
+export function PaginationIndicator({
+  index,
+  scrollY,
+  itemSize,
+}: PaginationIndicatorProps) {
   const rContainerStyle = useAnimatedStyle(() => {
     return {
       opacity: interpolate(
         scrollY.get() / itemSize,
         [index - 2, index - 1, index, index + 1, index + 2],
         [0.2, 0.5, 1, 0.5, 0.2],
-        Extrapolation.CLAMP,
+        Extrapolation.CLAMP
       ),
       transform: [
         {
@@ -29,7 +33,7 @@ export function PaginationIndicator({ index, scrollY, itemSize }: PaginationIndi
             scrollY.get() / itemSize,
             [index - 2, index - 1, index, index + 1, index + 2],
             [1, 1.4, 2, 1.4, 1],
-            Extrapolation.CLAMP,
+            Extrapolation.CLAMP
           ),
         },
       ],
@@ -41,7 +45,7 @@ export function PaginationIndicator({ index, scrollY, itemSize }: PaginationIndi
       className="w-3 h-[2px] bg-foreground"
       style={[
         {
-          transformOrigin: ["100%", "50%", 0],
+          transformOrigin: ['100%', '50%', 0],
         },
         rContainerStyle,
       ]}

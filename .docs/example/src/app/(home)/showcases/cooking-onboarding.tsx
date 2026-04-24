@@ -1,24 +1,36 @@
-import Feather from "@expo/vector-icons/Feather";
-import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
-import { useRouter } from "expo-router";
-import { colorKit, Separator, useThemeColor, type PopoverTriggerRef } from "heroui-native";
-import { useCallback, useEffect, useMemo, useReducer, useRef, type RefObject } from "react";
-import { Pressable, ScrollView, StyleSheet, View } from "react-native";
-import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { withUniwind } from "uniwind";
-import BgImage from "../../../../assets/images/pancakes.jpg";
-import { AppText } from "../../../components/app-text";
-import { Ask } from "../../../components/showcases/cooking-onboarding/ask";
-import { Author } from "../../../components/showcases/cooking-onboarding/author";
-import { Cook } from "../../../components/showcases/cooking-onboarding/cook";
-import { Highlights } from "../../../components/showcases/cooking-onboarding/highlights";
-import { Ingridients } from "../../../components/showcases/cooking-onboarding/ingridients";
-import ParallaxScrollView from "../../../components/showcases/cooking-onboarding/parallax-scroll-view";
-import { Plan } from "../../../components/showcases/cooking-onboarding/plan";
-import { Save } from "../../../components/showcases/cooking-onboarding/save";
-import { Share } from "../../../components/showcases/cooking-onboarding/share";
+import Feather from '@expo/vector-icons/Feather';
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
+import {
+  colorKit,
+  Separator,
+  useThemeColor,
+  type PopoverTriggerRef,
+} from 'heroui-native';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  type RefObject,
+} from 'react';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { withUniwind } from 'uniwind';
+import BgImage from '../../../../assets/images/pancakes.jpg';
+import { AppText } from '../../../components/app-text';
+import { Ask } from '../../../components/showcases/cooking-onboarding/ask';
+import { Author } from '../../../components/showcases/cooking-onboarding/author';
+import { Cook } from '../../../components/showcases/cooking-onboarding/cook';
+import { Highlights } from '../../../components/showcases/cooking-onboarding/highlights';
+import { Ingridients } from '../../../components/showcases/cooking-onboarding/ingridients';
+import ParallaxScrollView from '../../../components/showcases/cooking-onboarding/parallax-scroll-view';
+import { Plan } from '../../../components/showcases/cooking-onboarding/plan';
+import { Save } from '../../../components/showcases/cooking-onboarding/save';
+import { Share } from '../../../components/showcases/cooking-onboarding/share';
 
 const StyledAnimatedView = withUniwind(Animated.View);
 const StyledFeather = withUniwind(Feather);
@@ -37,20 +49,23 @@ type OnboardingState = {
 };
 
 type OnboardingAction =
-  | { type: "START_ONBOARDING" }
-  | { type: "NEXT_STEP" }
-  | { type: "COMPLETE_ONBOARDING" }
-  | { type: "RESET_ONBOARDING" };
+  | { type: 'START_ONBOARDING' }
+  | { type: 'NEXT_STEP' }
+  | { type: 'COMPLETE_ONBOARDING' }
+  | { type: 'RESET_ONBOARDING' };
 
-function onboardingReducer(state: OnboardingState, action: OnboardingAction): OnboardingState {
+function onboardingReducer(
+  state: OnboardingState,
+  action: OnboardingAction
+): OnboardingState {
   switch (action.type) {
-    case "START_ONBOARDING":
+    case 'START_ONBOARDING':
       return { ...state, isActive: true, currentStepIndex: 0 };
-    case "NEXT_STEP":
+    case 'NEXT_STEP':
       return { ...state, currentStepIndex: state.currentStepIndex + 1 };
-    case "COMPLETE_ONBOARDING":
+    case 'COMPLETE_ONBOARDING':
       return { ...state, isComplete: true, isActive: false };
-    case "RESET_ONBOARDING":
+    case 'RESET_ONBOARDING':
       return { currentStepIndex: 0, isComplete: false, isActive: false };
     default:
       return state;
@@ -58,7 +73,7 @@ function onboardingReducer(state: OnboardingState, action: OnboardingAction): On
 }
 
 export default function CookingOnboardingScreen() {
-  const themeColorBackground = useThemeColor("background");
+  const themeColorBackground = useThemeColor('background');
 
   const router = useRouter();
 
@@ -84,11 +99,11 @@ export default function CookingOnboardingScreen() {
       { ref: planTriggerRef, delay: 500 },
       { ref: askTriggerRef, delay: 500 },
     ],
-    [],
+    []
   );
 
   useEffect(() => {
-    dispatch({ type: "START_ONBOARDING" });
+    dispatch({ type: 'START_ONBOARDING' });
   }, []);
 
   useEffect(() => {
@@ -99,7 +114,7 @@ export default function CookingOnboardingScreen() {
     if (!currentStep) {
       const lastStep = onboardingSteps[onboardingState.currentStepIndex - 1];
       lastStep?.ref.current?.close();
-      dispatch({ type: "COMPLETE_ONBOARDING" });
+      dispatch({ type: 'COMPLETE_ONBOARDING' });
       return;
     }
 
@@ -113,26 +128,43 @@ export default function CookingOnboardingScreen() {
     }, currentStep.delay ?? 0);
 
     return () => clearTimeout(timer);
-  }, [onboardingState.currentStepIndex, onboardingState.isActive, onboardingSteps]);
+  }, [
+    onboardingState.currentStepIndex,
+    onboardingState.isActive,
+    onboardingSteps,
+  ]);
 
   const handleOverlayPress = useCallback(() => {
     if (onboardingState.isActive) {
-      dispatch({ type: "NEXT_STEP" });
+      dispatch({ type: 'NEXT_STEP' });
     }
   }, [onboardingState.isActive]);
 
   return (
-    <StyledAnimatedView entering={FadeIn.delay(300)} className="flex-1 bg-background">
+    <StyledAnimatedView
+      entering={FadeIn.delay(300)}
+      className="flex-1 bg-background"
+    >
       <View
         className="flex-row items-center justify-between absolute left-5 right-5 z-50"
         style={{ top: insets.top + 8 }}
       >
         <Pressable onPress={router.back}>
-          <StyledFeather name="chevron-left" size={26} className="text-foreground" />
+          <StyledFeather
+            name="chevron-left"
+            size={26}
+            className="text-foreground"
+          />
         </Pressable>
         <View className="flex-row gap-2">
-          <Share isOnboardingDone={onboardingState.isComplete} triggerRef={shareTriggerRef} />
-          <Save isOnboardingDone={onboardingState.isComplete} triggerRef={saveTriggerRef} />
+          <Share
+            isOnboardingDone={onboardingState.isComplete}
+            triggerRef={shareTriggerRef}
+          />
+          <Save
+            isOnboardingDone={onboardingState.isComplete}
+            triggerRef={saveTriggerRef}
+          />
         </View>
       </View>
       <ParallaxScrollView
@@ -149,21 +181,34 @@ export default function CookingOnboardingScreen() {
           className="-mx-4 mb-6"
           contentContainerClassName="px-4 gap-2"
         >
-          <Cook isOnboardingDone={onboardingState.isComplete} triggerRef={cookTriggerRef} />
-          <Plan isOnboardingDone={onboardingState.isComplete} triggerRef={planTriggerRef} />
-          <Ask isOnboardingDone={onboardingState.isComplete} triggerRef={askTriggerRef} />
+          <Cook
+            isOnboardingDone={onboardingState.isComplete}
+            triggerRef={cookTriggerRef}
+          />
+          <Plan
+            isOnboardingDone={onboardingState.isComplete}
+            triggerRef={planTriggerRef}
+          />
+          <Ask
+            isOnboardingDone={onboardingState.isComplete}
+            triggerRef={askTriggerRef}
+          />
         </ScrollView>
         <AppText className="text-foreground text-base">
-          Blueberry pancakes are a delicious and healthy breakfast option. They are made with
-          blueberries, flour, butter, and eggs. Blueberries are a great source of antioxidants and
-          fiber, making them a healthy choice for breakfast.
+          Blueberry pancakes are a delicious and healthy breakfast option. They
+          are made with blueberries, flour, butter, and eggs. Blueberries are a
+          great source of antioxidants and fiber, making them a healthy choice
+          for breakfast.
         </AppText>
         <Separator className="my-5" />
         <Highlights />
         <Ingridients />
       </ParallaxScrollView>
       <LinearGradient
-        colors={[themeColorBackground, colorKit.setAlpha(themeColorBackground, 0).hex()]}
+        colors={[
+          themeColorBackground,
+          colorKit.setAlpha(themeColorBackground, 0).hex(),
+        ]}
         style={styles.topGradient}
       />
       {onboardingState.isActive && (
@@ -184,11 +229,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   topGradient: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     height: 300,
-    pointerEvents: "none",
+    pointerEvents: 'none',
   },
 });

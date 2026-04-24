@@ -1,10 +1,16 @@
-import Feather from "@expo/vector-icons/Feather";
-import { Button, cn, Popover, useThemeColor, type PopoverTriggerRef } from "heroui-native";
-import { type FC, type RefObject } from "react";
-import { withUniwind } from "uniwind";
-import { simulatePress } from "../../../helpers/utils/simulate-press";
-import { AppText } from "../../app-text";
-import { className } from "./styles";
+import Feather from '@expo/vector-icons/Feather';
+import {
+  Button,
+  cn,
+  Popover,
+  useThemeColor,
+  type PopoverTriggerRef,
+} from 'heroui-native';
+import { type FC, type RefObject } from 'react';
+import { withUniwind } from 'uniwind';
+import { simulatePress } from '../../../helpers/utils/simulate-press';
+import { AppText } from '../../app-text';
+import { className } from './styles';
 
 const StyledFeather = withUniwind(Feather);
 
@@ -14,14 +20,17 @@ type Props = {
 };
 
 export const Share: FC<Props> = ({ isOnboardingDone, triggerRef }) => {
-  const themeColorForeground = useThemeColor("foreground");
+  const themeColorForeground = useThemeColor('foreground');
 
   return (
     <Popover>
       <Popover.Trigger ref={triggerRef}>
         <Button
           variant="secondary"
-          className={cn(className.buttonSecondarySquare, className.buttonSecondaryColors)}
+          className={cn(
+            className.buttonSecondarySquare,
+            className.buttonSecondaryColors
+          )}
           onPress={isOnboardingDone ? simulatePress : undefined}
           isIconOnly
         >
@@ -29,8 +38,14 @@ export const Share: FC<Props> = ({ isOnboardingDone, triggerRef }) => {
         </Button>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content presentation="popover" className={className.popoverContent}>
-          <Popover.Arrow stroke={themeColorForeground} fill={themeColorForeground} />
+        <Popover.Content
+          presentation="popover"
+          className={className.popoverContent}
+        >
+          <Popover.Arrow
+            stroke={themeColorForeground}
+            fill={themeColorForeground}
+          />
           <AppText className={className.popoverText}>
             Share your recipes with friends and family
           </AppText>

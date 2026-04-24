@@ -1,13 +1,16 @@
-import React from "react";
-import Svg, { Path, Rect } from "react-native-svg";
-import { withUniwind } from "uniwind";
-import type { IconProps } from "../../helpers/types/icons";
+import React from 'react';
+import Svg, { Path, Rect } from 'react-native-svg';
+import { withUniwind } from 'uniwind';
+import type { IconProps } from '../../helpers/types/icons';
 
 /**
  * Person icon component (outline variant) - React Native SVG implementation
  * Wrapped with withUniwind to enable className-based styling
  */
-const PersonIconComponent: React.FC<IconProps> = ({ size = 20, color = "currentColor" }) => {
+const PersonIconComponent: React.FC<IconProps> = ({
+  size = 20,
+  color = 'currentColor',
+}) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16">
       <Rect width={16} height={16} fill="none" />
@@ -33,7 +36,7 @@ const PersonIconComponent: React.FC<IconProps> = ({ size = 20, color = "currentC
  */
 export const PersonIcon = withUniwind(PersonIconComponent, {
   color: {
-    fromClassName: "colorClassName",
-    styleProperty: "accentColor",
+    fromClassName: 'colorClassName',
+    styleProperty: 'accentColor',
   },
 });

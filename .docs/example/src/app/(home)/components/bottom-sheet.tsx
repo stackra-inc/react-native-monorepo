@@ -1,18 +1,18 @@
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import { useRouter } from "expo-router";
-import { BottomSheet, Button } from "heroui-native";
-import { useState } from "react";
-import { Platform, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { withUniwind } from "uniwind";
-import { AppText } from "../../../components/app-text";
-import { BottomSheetBlurOverlay } from "../../../components/bottom-sheet-blur-overlay";
-import { BasicBottomSheetContent } from "../../../components/bottom-sheet/basic";
-import { ScrollableWithSnapPointsContent } from "../../../components/bottom-sheet/scrollable-with-snap-points";
-import { WithOTPInputContent } from "../../../components/bottom-sheet/with-otp-input";
-import { WithTextInputContent } from "../../../components/bottom-sheet/with-text-input";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import { useRouter } from 'expo-router';
+import { BottomSheet, Button } from 'heroui-native';
+import { useState } from 'react';
+import { Platform, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { withUniwind } from 'uniwind';
+import { AppText } from '../../../components/app-text';
+import { BottomSheetBlurOverlay } from '../../../components/bottom-sheet-blur-overlay';
+import { BasicBottomSheetContent } from '../../../components/bottom-sheet/basic';
+import { ScrollableWithSnapPointsContent } from '../../../components/bottom-sheet/scrollable-with-snap-points';
+import { WithOTPInputContent } from '../../../components/bottom-sheet/with-otp-input';
+import { WithTextInputContent } from '../../../components/bottom-sheet/with-text-input';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
 
 const StyledFontAwesome5 = withUniwind(FontAwesome5);
 
@@ -29,7 +29,9 @@ const DetachedBottomSheetContent = () => {
         <BottomSheet isOpen={isOpen} onOpenChange={setIsOpen}>
           <BottomSheet.Trigger asChild>
             <Button variant="secondary" isDisabled={isOpen}>
-              <Button.Label maxFontSizeMultiplier={1.6}>Detached bottom sheet</Button.Label>
+              <Button.Label maxFontSizeMultiplier={1.6}>
+                Detached bottom sheet
+              </Button.Label>
             </Button>
           </BottomSheet.Trigger>
           <BottomSheet.Portal>
@@ -43,7 +45,11 @@ const DetachedBottomSheetContent = () => {
             >
               <View className="items-center mb-5">
                 <View className="">
-                  <StyledFontAwesome5 name="bitcoin" size={48} className="text-green-500" />
+                  <StyledFontAwesome5
+                    name="bitcoin"
+                    size={48}
+                    className="text-green-500"
+                  />
                 </View>
               </View>
               <View className="mb-6 items-center">
@@ -60,24 +66,31 @@ const DetachedBottomSheetContent = () => {
                 onPress={() => setIsOpen(false)}
                 feedbackVariant="scale"
               >
-                <Button.Label className="text-white font-semibold">Add Cash</Button.Label>
+                <Button.Label className="text-white font-semibold">
+                  Add Cash
+                </Button.Label>
               </Button>
               <View className="flex-row items-center justify-center">
-                {["Apple Pay", "Mastercard", "Visa", "Amex"].map((label, index, array) => (
-                  <View key={label} className="flex-row items-center">
-                    <AppText className="text-xs font-normal text-muted" maxFontSizeMultiplier={1.2}>
-                      {label}
-                    </AppText>
-                    {index < array.length - 1 && (
+                {['Apple Pay', 'Mastercard', 'Visa', 'Amex'].map(
+                  (label, index, array) => (
+                    <View key={label} className="flex-row items-center">
                       <AppText
-                        className="text-xs font-normal text-muted mx-1.5"
+                        className="text-xs font-normal text-muted"
                         maxFontSizeMultiplier={1.2}
                       >
-                        •
+                        {label}
                       </AppText>
-                    )}
-                  </View>
-                ))}
+                      {index < array.length - 1 && (
+                        <AppText
+                          className="text-xs font-normal text-muted mx-1.5"
+                          maxFontSizeMultiplier={1.2}
+                        >
+                          •
+                        </AppText>
+                      )}
+                    </View>
+                  )
+                )}
               </View>
             </BottomSheet.Content>
           </BottomSheet.Portal>
@@ -107,15 +120,20 @@ const WithBlurOverlayContent = () => {
             <BottomSheetBlurOverlay />
             <BottomSheet.Content>
               <View className="mb-10 gap-3 px-2">
-                <BottomSheet.Title className="text-2xl font-semibold" maxFontSizeMultiplier={1.2}>
+                <BottomSheet.Title
+                  className="text-2xl font-semibold"
+                  maxFontSizeMultiplier={1.2}
+                >
                   Delete account?
                 </BottomSheet.Title>
                 <BottomSheet.Description maxFontSizeMultiplier={1.2}>
-                  If you delete your account, you won't be able to restore it or receive support.
+                  If you delete your account, you won't be able to restore it or
+                  receive support.
                 </BottomSheet.Description>
                 <BottomSheet.Description maxFontSizeMultiplier={1.2}>
-                  Our app will no longer be able to provide support for any of your trips, such as
-                  providing a refund or locking for lost items.
+                  Our app will no longer be able to provide support for any of
+                  your trips, such as providing a refund or locking for lost
+                  items.
                 </BottomSheet.Description>
                 <BottomSheet.Description maxFontSizeMultiplier={1.2}>
                   For other deletion options, see our Privacy Policy.
@@ -142,7 +160,7 @@ const WithBlurOverlayContent = () => {
 const NativeModalBottomSheetContent = () => {
   const router = useRouter();
 
-  if (Platform.OS !== "ios") {
+  if (Platform.OS !== 'ios') {
     return null;
   }
 
@@ -151,9 +169,11 @@ const NativeModalBottomSheetContent = () => {
       <View className="flex-1 items-center justify-center">
         <Button
           variant="secondary"
-          onPress={() => router.push("components/bottom-sheet-native-modal")}
+          onPress={() => router.push('components/bottom-sheet-native-modal')}
         >
-          <Button.Label maxFontSizeMultiplier={1.2}>Bottom sheet from native modal</Button.Label>
+          <Button.Label maxFontSizeMultiplier={1.2}>
+            Bottom sheet from native modal
+          </Button.Label>
         </Button>
       </View>
     </View>
@@ -164,66 +184,66 @@ const NativeModalBottomSheetContent = () => {
 
 const BOTTOM_SHEET_VARIANTS_IOS: UsageVariant[] = [
   {
-    value: "basic-bottom-sheet",
-    label: "Basic bottom sheet",
+    value: 'basic-bottom-sheet',
+    label: 'Basic bottom sheet',
     content: <BasicBottomSheetContent />,
   },
   {
-    value: "detached-bottom-sheet",
-    label: "Detached bottom sheet",
+    value: 'detached-bottom-sheet',
+    label: 'Detached bottom sheet',
     content: <DetachedBottomSheetContent />,
   },
   {
-    value: "with-blur-overlay",
-    label: "With blur overlay",
+    value: 'with-blur-overlay',
+    label: 'With blur overlay',
     content: <WithBlurOverlayContent />,
   },
   {
-    value: "scrollable-with-snap-points",
-    label: "Scrollable with snap points",
+    value: 'scrollable-with-snap-points',
+    label: 'Scrollable with snap points',
     content: <ScrollableWithSnapPointsContent />,
   },
   {
-    value: "native-modal-bottom-sheet",
-    label: "Bottom sheet from native modal",
+    value: 'native-modal-bottom-sheet',
+    label: 'Bottom sheet from native modal',
     content: <NativeModalBottomSheetContent />,
   },
   {
-    value: "with-text-input",
-    label: "Bottom sheet with text input",
+    value: 'with-text-input',
+    label: 'Bottom sheet with text input',
     content: <WithTextInputContent />,
   },
   {
-    value: "with-otp-input",
-    label: "Bottom sheet with OTP input",
+    value: 'with-otp-input',
+    label: 'Bottom sheet with OTP input',
     content: <WithOTPInputContent />,
   },
 ];
 
 const BOTTOM_SHEET_VARIANTS_ANDROID: UsageVariant[] = [
   {
-    value: "basic-bottom-sheet",
-    label: "Basic bottom sheet",
+    value: 'basic-bottom-sheet',
+    label: 'Basic bottom sheet',
     content: <BasicBottomSheetContent />,
   },
   {
-    value: "detached-bottom-sheet",
-    label: "Detached bottom sheet",
+    value: 'detached-bottom-sheet',
+    label: 'Detached bottom sheet',
     content: <DetachedBottomSheetContent />,
   },
   {
-    value: "scrollable-with-snap-points",
-    label: "Scrollable with snap points",
+    value: 'scrollable-with-snap-points',
+    label: 'Scrollable with snap points',
     content: <ScrollableWithSnapPointsContent />,
   },
   {
-    value: "with-text-input",
-    label: "Bottom sheet with text input",
+    value: 'with-text-input',
+    label: 'Bottom sheet with text input',
     content: <WithTextInputContent />,
   },
   {
-    value: "with-otp-input",
-    label: "Bottom sheet with OTP input",
+    value: 'with-otp-input',
+    label: 'Bottom sheet with OTP input',
     content: <WithOTPInputContent />,
   },
 ];
@@ -231,7 +251,11 @@ const BOTTOM_SHEET_VARIANTS_ANDROID: UsageVariant[] = [
 export default function BottomSheetScreen() {
   return (
     <UsageVariantFlatList
-      data={Platform.OS === "ios" ? BOTTOM_SHEET_VARIANTS_IOS : BOTTOM_SHEET_VARIANTS_ANDROID}
+      data={
+        Platform.OS === 'ios'
+          ? BOTTOM_SHEET_VARIANTS_IOS
+          : BOTTOM_SHEET_VARIANTS_ANDROID
+      }
     />
   );
 }

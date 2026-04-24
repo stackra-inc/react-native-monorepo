@@ -1,7 +1,7 @@
-import React from "react";
-import Svg, { Path, Rect } from "react-native-svg";
-import { withUniwind } from "uniwind";
-import type { IconProps } from "../../helpers/types/icons";
+import React from 'react';
+import Svg, { Path, Rect } from 'react-native-svg';
+import { withUniwind } from 'uniwind';
+import type { IconProps } from '../../helpers/types/icons';
 
 /**
  * Shield exclamation icon component - React Native SVG implementation
@@ -9,7 +9,7 @@ import type { IconProps } from "../../helpers/types/icons";
  */
 const ShieldExclamationIconComponent: React.FC<IconProps> = ({
   size = 20,
-  color = "currentColor",
+  color = 'currentColor',
 }) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16">
@@ -36,9 +36,12 @@ const ShieldExclamationIconComponent: React.FC<IconProps> = ({
  * <ShieldExclamationIcon size={48} color="#3b82f6" />
  * ```
  */
-export const ShieldExclamationIcon = withUniwind(ShieldExclamationIconComponent, {
-  color: {
-    fromClassName: "colorClassName",
-    styleProperty: "accentColor",
-  },
-});
+export const ShieldExclamationIcon = withUniwind(
+  ShieldExclamationIconComponent,
+  {
+    color: {
+      fromClassName: 'colorClassName',
+      styleProperty: 'accentColor',
+    },
+  }
+);

@@ -1,8 +1,8 @@
-import { Image } from "expo-image";
-import { Card, PressableFeedback } from "heroui-native";
-import { View } from "react-native";
-import { withUniwind } from "uniwind";
-import { AppText } from "../app-text";
+import { Image } from 'expo-image';
+import { Card, PressableFeedback } from 'heroui-native';
+import { View } from 'react-native';
+import { withUniwind } from 'uniwind';
+import { AppText } from '../app-text';
 
 const StyledImage = withUniwind(Image);
 
@@ -18,7 +18,7 @@ export const CardContent = () => {
             <Card.Header>
               <StyledImage
                 source={{
-                  uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo1.jpg",
+                  uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo1.jpg',
                 }}
                 className="h-16 aspect-square rounded-xl"
               />
@@ -27,7 +27,11 @@ export const CardContent = () => {
               <Card.Title maxFontSizeMultiplier={1.2} numberOfLines={1}>
                 Indie Hackers
               </Card.Title>
-              <Card.Description className="text-sm" maxFontSizeMultiplier={1.2} numberOfLines={1}>
+              <Card.Description
+                className="text-sm"
+                maxFontSizeMultiplier={1.2}
+                numberOfLines={1}
+              >
                 148 members
               </Card.Description>
             </Card.Body>
@@ -44,7 +48,7 @@ export const CardContent = () => {
           </View>
           <PressableFeedback.Ripple
             animation={{
-              backgroundColor: { value: "#fecdd3" },
+              backgroundColor: { value: '#fecdd3' },
               opacity: { value: [0, 0.2, 0] },
             }}
           />
@@ -59,7 +63,7 @@ export const CardContent = () => {
             <Card.Header>
               <StyledImage
                 source={{
-                  uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo2.jpg",
+                  uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo2.jpg',
                 }}
                 className="h-16 aspect-square rounded-xl"
               />
@@ -68,7 +72,11 @@ export const CardContent = () => {
               <Card.Title maxFontSizeMultiplier={1.2} numberOfLines={1}>
                 AI Builders
               </Card.Title>
-              <Card.Description className="text-sm" maxFontSizeMultiplier={1.2} numberOfLines={1}>
+              <Card.Description
+                className="text-sm"
+                maxFontSizeMultiplier={1.2}
+                numberOfLines={1}
+              >
                 362 members
               </Card.Description>
             </Card.Body>
@@ -85,7 +93,7 @@ export const CardContent = () => {
           </View>
           <PressableFeedback.Ripple
             animation={{
-              backgroundColor: { value: "#67e8f9" },
+              backgroundColor: { value: '#67e8f9' },
             }}
           />
         </Card>

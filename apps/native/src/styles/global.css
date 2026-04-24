@@ -1,14 +1,65 @@
+/**
+ * Global Stylesheet — CSS Entry Point
+ *
+ * The single CSS entry file referenced by `metro.config.js → withUniwindConfig`.
+ * Uniwind reads this file at build time to generate the React Native style
+ * objects that back every `className` prop in the app.
+ *
+ * ## Import Order (critical)
+ *
+ * 1. `tailwindcss`  — Tailwind CSS v4 core (reset, utilities, layers)
+ * 2. `uniwind`      — Uniwind bridge that translates Tailwind → RN styles
+ * 3. `heroui-native/styles` — HeroUI design tokens (variables, utilities, theme)
+ * 4. Theme overrides — custom colour palettes registered as Uniwind variants
+ *
+ * ## How It Works
+ *
+ * - `@source` tells Tailwind where to scan for class usage so unused styles
+ *   are tree-shaken. We point it at the compiled HeroUI library output.
+ * - `@layer theme` defines CSS custom properties (design tokens) that HeroUI
+ *   components read at runtime via Uniwind's variable resolution.
+ * - Each `@variant` block maps to a Uniwind theme name. The active variant is
+ *   selected at runtime by `<HeroUINativeProvider>` or the theme switcher.
+ *
+ * @see metro.config.js — `cssEntryFile` option
+ * @see https://docs.uniwind.dev/quickstart
+ * @see https://heroui.com/docs/native/getting-started/theming
+ */
+
+/* ── Framework Core ──────────────────────────────────────────────────────── */
+
 @import "tailwindcss";
 @import "uniwind";
 
+/* ── HeroUI Design Tokens ────────────────────────────────────────────────── */
+
 @import "heroui-native/styles";
+
+/* ── Custom Theme Variants ───────────────────────────────────────────────── */
 
 @import "./themes/lavander.css";
 @import "./themes/mint.css";
 @import "./themes/sky.css";
 
+/* ── Source Scanning ─────────────────────────────────────────────────────── */
+
+/*
+ * Tell Tailwind to scan the compiled HeroUI library for class names.
+ * Without this directive HeroUI's internal utility classes would be
+ * purged during the build and components would render unstyled.
+ */
 @source "../../node_modules/heroui-native/lib";
 
+/* ── Default Theme (light / dark) ────────────────────────────────────────── */
+
+/*
+ * The `light` and `dark` variants are the built-in defaults that ship with
+ * HeroUI Native. They use the Inter font family loaded via
+ * `@expo-google-fonts/inter` in the root layout.
+ *
+ * Font names must match the keys passed to `useFonts()` — Expo Google Fonts
+ * use the format `FamilyName_WeightName` (e.g. `Inter_400Regular`).
+ */
 @layer theme {
   :root {
     @variant light {
@@ -17,6 +68,7 @@
       --font-semibold: "Inter_600SemiBold";
       --font-bold: "Inter_700Bold";
 
+      /* Global border-radius scale used by HeroUI components */
       --radius: 0.5rem;
     }
 

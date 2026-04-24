@@ -1,19 +1,28 @@
-import Feather from "@expo/vector-icons/Feather";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import * as Haptics from "expo-haptics";
-import { Avatar, Chip, cn, Dialog, Label, Radio, RadioGroup, useDialog } from "heroui-native";
-import { useMemo, useState, type FC } from "react";
-import { Platform, useWindowDimensions, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { KeyboardAvoidingView } from "react-native-keyboard-controller";
-import Animated, { FadeIn } from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { withUniwind } from "uniwind";
-import { useAppTheme } from "../../../../contexts/app-theme-context";
-import { AppText } from "../../../app-text";
-import { DialogBlurBackdrop } from "../../../dialog-blur-backdrop";
-import { DialogHeader } from "../dialog-header";
-import { SearchBar } from "../search-bar";
+import Feather from '@expo/vector-icons/Feather';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import * as Haptics from 'expo-haptics';
+import {
+  Avatar,
+  Chip,
+  cn,
+  Dialog,
+  Label,
+  Radio,
+  RadioGroup,
+  useDialog,
+} from 'heroui-native';
+import { useMemo, useState, type FC } from 'react';
+import { Platform, useWindowDimensions, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
+import Animated, { FadeIn } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { withUniwind } from 'uniwind';
+import { useAppTheme } from '../../../../contexts/app-theme-context';
+import { AppText } from '../../../app-text';
+import { DialogBlurBackdrop } from '../../../dialog-blur-backdrop';
+import { DialogHeader } from '../dialog-header';
+import { SearchBar } from '../search-bar';
 
 const StyledFeather = withUniwind(Feather);
 const StyledMaterialCommunityIcons = withUniwind(MaterialCommunityIcons);
@@ -37,7 +46,7 @@ const AssigneeRadioItem: FC<AssigneeRadioItemProps> = ({ item, value }) => {
     <RadioGroup.Item
       value={item.value}
       onPress={() => {
-        if (Platform.OS === "ios") {
+        if (Platform.OS === 'ios') {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         }
         onOpenChange(false);
@@ -53,7 +62,11 @@ const AssigneeRadioItem: FC<AssigneeRadioItemProps> = ({ item, value }) => {
         <Radio.Indicator className="border-none shadow-none bg-transparent">
           {value === item.value && (
             <Animated.View key={item.value} entering={FadeIn.duration(200)}>
-              <StyledFeather name="check" size={18} className="text-foreground" />
+              <StyledFeather
+                name="check"
+                size={18}
+                className="text-foreground"
+              />
             </Animated.View>
           )}
         </Radio.Indicator>
@@ -63,8 +76,8 @@ const AssigneeRadioItem: FC<AssigneeRadioItemProps> = ({ item, value }) => {
 };
 
 export const Assignee: FC = () => {
-  const [value, setValue] = useState("volo");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [value, setValue] = useState('volo');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const { height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
@@ -76,20 +89,24 @@ export const Assignee: FC = () => {
   const items: AssigneeItem[] = useMemo(
     () => [
       {
-        value: "no-assignee",
-        label: "No Assignee",
+        value: 'no-assignee',
+        label: 'No Assignee',
         indicator: (
-          <StyledMaterialCommunityIcons name="account-circle" size={18} className="text-muted" />
+          <StyledMaterialCommunityIcons
+            name="account-circle"
+            size={18}
+            className="text-muted"
+          />
         ),
       },
       {
-        value: "junior",
-        label: "Junior",
+        value: 'junior',
+        label: 'Junior',
         indicator: (
           <Avatar alt="junior" className="size-[18px] bg-sky-500">
             <Avatar.Image
               source={{
-                uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/junior-avatar.jpg",
+                uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/junior-avatar.jpg',
               }}
             />
             <Avatar.Fallback>
@@ -99,13 +116,13 @@ export const Assignee: FC = () => {
         ),
       },
       {
-        value: "volo",
-        label: "volo",
+        value: 'volo',
+        label: 'volo',
         indicator: (
           <Avatar alt="volo" className="size-[18px] bg-purple-500">
             <Avatar.Image
               source={{
-                uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/volo-avatar.png",
+                uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/images/heroui-native-example/volo-avatar.png',
               }}
             />
             <Avatar.Fallback>
@@ -115,21 +132,26 @@ export const Assignee: FC = () => {
         ),
       },
     ],
-    [],
+    []
   );
 
   const filteredItems = useMemo(() => {
     if (!searchQuery) return items;
-    return items.filter((item) => item.label.toLowerCase().includes(searchQuery.toLowerCase()));
+    return items.filter((item) =>
+      item.label.toLowerCase().includes(searchQuery.toLowerCase())
+    );
   }, [searchQuery, items]);
 
   return (
     <Dialog>
       <Dialog.Trigger asChild>
         <Chip
-          className={cn("h-7 pl-1 pr-2", isDark ? "bg-neutral-900/50" : "bg-neutral-300/50")}
+          className={cn(
+            'h-7 pl-1 pr-2',
+            isDark ? 'bg-neutral-900/50' : 'bg-neutral-300/50'
+          )}
           onPress={() => {
-            if (Platform.OS === "ios") {
+            if (Platform.OS === 'ios') {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             }
           }}
@@ -143,7 +165,9 @@ export const Assignee: FC = () => {
       <Dialog.Portal>
         <DialogBlurBackdrop />
         <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={24}>
-          <Dialog.Content style={{ marginTop: insetTop, height: dialogContentHeight }}>
+          <Dialog.Content
+            style={{ marginTop: insetTop, height: dialogContentHeight }}
+          >
             <DialogHeader>Assignee</DialogHeader>
             <SearchBar
               value={searchQuery}
@@ -152,7 +176,9 @@ export const Assignee: FC = () => {
             />
             {filteredItems.length === 0 && (
               <View className="flex-1 items-center justify-center">
-                <AppText className="text-base font-medium text-muted">No results</AppText>
+                <AppText className="text-base font-medium text-muted">
+                  No results
+                </AppText>
               </View>
             )}
             {filteredItems.length > 0 && (
@@ -162,9 +188,17 @@ export const Assignee: FC = () => {
                 bounces={false}
                 keyboardShouldPersistTaps="handled"
               >
-                <RadioGroup value={value} onValueChange={setValue} className="gap-7">
+                <RadioGroup
+                  value={value}
+                  onValueChange={setValue}
+                  className="gap-7"
+                >
                   {filteredItems.map((item) => (
-                    <AssigneeRadioItem key={item.value} item={item} value={value} />
+                    <AssigneeRadioItem
+                      key={item.value}
+                      item={item}
+                      value={value}
+                    />
                   ))}
                 </RadioGroup>
               </StyledScrollView>

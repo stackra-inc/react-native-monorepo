@@ -5,22 +5,22 @@ import {
   PressableFeedback,
   Separator,
   useThemeColor,
-} from "heroui-native";
-import type { ReactNode } from "react";
-import { useState } from "react";
-import { View } from "react-native";
-import { AppText } from "../../../components/app-text";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
-import { BellIcon } from "../../../components/icons/bell";
-import { CreditCardIcon } from "../../../components/icons/credit-card";
-import { GlobeIcon } from "../../../components/icons/globe";
-import { MoonIcon } from "../../../components/icons/moon";
-import { PaletteIcon } from "../../../components/icons/palette";
-import { PersonIcon } from "../../../components/icons/person";
+} from 'heroui-native';
+import type { ReactNode } from 'react';
+import { useState } from 'react';
+import { View } from 'react-native';
+import { AppText } from '../../../components/app-text';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { BellIcon } from '../../../components/icons/bell';
+import { CreditCardIcon } from '../../../components/icons/credit-card';
+import { GlobeIcon } from '../../../components/icons/globe';
+import { MoonIcon } from '../../../components/icons/moon';
+import { PaletteIcon } from '../../../components/icons/palette';
+import { PersonIcon } from '../../../components/icons/person';
 
 const BasicContent = () => {
-  const mutedColor = useThemeColor("muted");
+  const mutedColor = useThemeColor('muted');
 
   return (
     <View className="flex-1 justify-center px-5">
@@ -31,7 +31,9 @@ const BasicContent = () => {
             <PersonIcon size={20} colorClassName="accent-foreground" />
           </ListGroup.ItemPrefix>
           <ListGroup.ItemContent>
-            <ListGroup.ItemTitle maxFontSizeMultiplier={1.4}>Personal Info</ListGroup.ItemTitle>
+            <ListGroup.ItemTitle maxFontSizeMultiplier={1.4}>
+              Personal Info
+            </ListGroup.ItemTitle>
             <ListGroup.ItemDescription maxFontSizeMultiplier={1.4}>
               Name, email, phone number
             </ListGroup.ItemDescription>
@@ -44,7 +46,9 @@ const BasicContent = () => {
             <CreditCardIcon size={20} colorClassName="accent-foreground" />
           </ListGroup.ItemPrefix>
           <ListGroup.ItemContent>
-            <ListGroup.ItemTitle maxFontSizeMultiplier={1.4}>Payment Methods</ListGroup.ItemTitle>
+            <ListGroup.ItemTitle maxFontSizeMultiplier={1.4}>
+              Payment Methods
+            </ListGroup.ItemTitle>
             <ListGroup.ItemDescription maxFontSizeMultiplier={1.4}>
               Visa ending in 4829
             </ListGroup.ItemDescription>
@@ -59,7 +63,9 @@ const BasicContent = () => {
             <PaletteIcon size={20} colorClassName="accent-foreground" />
           </ListGroup.ItemPrefix>
           <ListGroup.ItemContent>
-            <ListGroup.ItemTitle maxFontSizeMultiplier={1.4}>Appearance</ListGroup.ItemTitle>
+            <ListGroup.ItemTitle maxFontSizeMultiplier={1.4}>
+              Appearance
+            </ListGroup.ItemTitle>
             <ListGroup.ItemDescription maxFontSizeMultiplier={1.4}>
               Theme, font size, display
             </ListGroup.ItemDescription>
@@ -72,7 +78,9 @@ const BasicContent = () => {
             <BellIcon size={20} colorClassName="accent-foreground" />
           </ListGroup.ItemPrefix>
           <ListGroup.ItemContent>
-            <ListGroup.ItemTitle maxFontSizeMultiplier={1.4}>Notifications</ListGroup.ItemTitle>
+            <ListGroup.ItemTitle maxFontSizeMultiplier={1.4}>
+              Notifications
+            </ListGroup.ItemTitle>
             <ListGroup.ItemDescription maxFontSizeMultiplier={1.4}>
               Alerts, sounds, badges
             </ListGroup.ItemDescription>
@@ -115,11 +123,15 @@ const PressableListGroupItem = ({
     <PressableFeedback animation={false} onPress={onPress}>
       <PressableFeedback.Scale>
         <ListGroup.Item>
-          {prefix !== undefined && <ListGroup.ItemPrefix>{prefix}</ListGroup.ItemPrefix>}
+          {prefix !== undefined && (
+            <ListGroup.ItemPrefix>{prefix}</ListGroup.ItemPrefix>
+          )}
           <ListGroup.ItemContent>
             <ListGroup.ItemTitle>{title}</ListGroup.ItemTitle>
             {description !== undefined && (
-              <ListGroup.ItemDescription>{description}</ListGroup.ItemDescription>
+              <ListGroup.ItemDescription>
+                {description}
+              </ListGroup.ItemDescription>
             )}
           </ListGroup.ItemContent>
           <ListGroup.ItemSuffix>{suffix}</ListGroup.ItemSuffix>
@@ -137,19 +149,19 @@ const WithPressableFeedbackContent = () => {
         <PressableListGroupItem
           title="Appearance"
           description="Theme, font size, display"
-          onPress={() => console.log("Appearance")}
+          onPress={() => console.log('Appearance')}
         />
         <Separator className="mx-4" />
         <PressableListGroupItem
           title="Notifications"
           description="Alerts, sounds, badges"
-          onPress={() => console.log("Notifications")}
+          onPress={() => console.log('Notifications')}
         />
         <Separator className="mx-4" />
         <PressableListGroupItem
           title="Privacy & Security"
           description="Two-factor auth, app lock"
-          onPress={() => console.log("Privacy & Security")}
+          onPress={() => console.log('Privacy & Security')}
         />
       </ListGroup>
     </View>
@@ -213,18 +225,18 @@ const WithCustomSuffixContent = () => {
 
 const LIST_GROUP_VARIANTS: UsageVariant[] = [
   {
-    value: "basic",
-    label: "Basic",
+    value: 'basic',
+    label: 'Basic',
     content: <BasicContent />,
   },
   {
-    value: "with-pressable-feedback",
-    label: "With pressable feedback",
+    value: 'with-pressable-feedback',
+    label: 'With pressable feedback',
     content: <WithPressableFeedbackContent />,
   },
   {
-    value: "custom-suffix",
-    label: "Custom suffix",
+    value: 'custom-suffix',
+    label: 'Custom suffix',
     content: <WithCustomSuffixContent />,
   },
 ];

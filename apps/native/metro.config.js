@@ -24,10 +24,11 @@
  * @module metro.config
  */
 
-import path from "path";
-import { wrapWithReanimatedMetroConfig } from "react-native-reanimated/metro-config";
-import { withUniwindConfig } from "uniwind/metro";
-import { getDefaultConfig } from "expo/metro-config";
+const path = require("path");
+const { wrapWithReanimatedMetroConfig } = require("react-native-reanimated/metro-config");
+const { withUniwindConfig } = require("uniwind/metro");
+const { getDefaultConfig } = require("expo/metro-config");
+
 // ── Path Constants ──────────────────────────────────────────────────────────
 
 /** Absolute path to the monorepo workspace root (two levels up from apps/native) */
@@ -78,7 +79,7 @@ const config = {
  * Final config with Uniwind as the outermost wrapper (required).
  * Reanimated wraps the base config for worklet transformation support.
  */
-export default withUniwindConfig(wrapWithReanimatedMetroConfig(config), {
+module.exports = withUniwindConfig(wrapWithReanimatedMetroConfig(config), {
   /** Path to the CSS entry file relative to project root */
   cssEntryFile: "./src/styles/global.css",
 

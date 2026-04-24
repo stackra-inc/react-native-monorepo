@@ -1,3 +1,32 @@
+/**
+ * Mint Theme — Fresh Teal-Green Palette
+ *
+ * An energizing, nature-inspired theme with teal-green tones. Uses the
+ * Saira font family and oklch colours anchored at hue 155 (mint/teal).
+ *
+ * ## Variants
+ *
+ * | Variant      | Background        | Accent            | Radius  |
+ * |--------------|-------------------|-------------------|---------|
+ * | `mint-light` | Fresh mint wash   | Vibrant teal-mint | 0.25rem |
+ * | `mint-dark`  | Deep forest mint  | Glowing emerald   | 0.25rem |
+ *
+ * ## Font Family
+ *
+ * Saira — must be loaded via `useFonts()` in the root layout when this
+ * theme is active. Font names use hyphenated format (e.g. `Saira-Regular`).
+ *
+ * ## Colour Strategy
+ *
+ * All colours use oklch() for perceptual uniformity. The hue channel is
+ * fixed at 155 for surfaces and accents, creating a cohesive green
+ * atmosphere. The tight border-radius (0.25rem) gives this theme a
+ * sharper, more geometric feel compared to lavender and sky.
+ *
+ * @see global.css — imports this file
+ * @see https://heroui.com/docs/native/getting-started/theming
+ */
+
 @layer theme {
   :root {
     @variant mint-light {

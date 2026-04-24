@@ -1,8 +1,8 @@
-import { ControlField, Description, Label, Separator } from "heroui-native";
-import { type FC, type ReactNode } from "react";
-import { View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import useHeaderHeight from "../helpers/hooks/use-header-height";
+import { ControlField, Description, Label, Separator } from 'heroui-native';
+import { type FC, type ReactNode } from 'react';
+import { View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import useHeaderHeight from '../helpers/hooks/use-header-height';
 
 /**
  * Props for the WithStateToggle component
@@ -60,12 +60,20 @@ export const WithStateToggle: FC<WithStateToggleProps> = ({
     >
       {children}
       <View>
-        <ControlField isSelected={isSelected} onSelectedChange={onSelectedChange} className="pr-2">
+        <ControlField
+          isSelected={isSelected}
+          onSelectedChange={onSelectedChange}
+          className="pr-2"
+        >
           <View className="flex-1">
             <Label>
               <Label.Text maxFontSizeMultiplier={1.2}>{label}</Label.Text>
             </Label>
-            {description && <Description maxFontSizeMultiplier={1.2}>{description}</Description>}
+            {description && (
+              <Description maxFontSizeMultiplier={1.2}>
+                {description}
+              </Description>
+            )}
           </View>
           <ControlField.Indicator />
         </ControlField>

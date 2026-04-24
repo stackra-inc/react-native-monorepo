@@ -2,57 +2,27 @@
  * Settings Screen
  *
  * App settings including theme switching and app info.
- * Uses Uniwind's theme API for runtime theme changes.
+ * Delegates theme management to the DI-driven ThemeService
+ * via `useAppTheme` and the `ThemeSwitcher` component.
  *
  * @module screens/settings
  */
 
 import { Str } from "@stackra/ts-support";
-import { Button, Card, Alert, useThemeColor } from "heroui-native";
+import { Card, Alert, Button } from "@repo/ui";
+import { useAppTheme, ThemeSwitcher } from "@repo/ui";
 import { View, Text, ScrollView } from "react-native";
-import { Uniwind, useUniwind } from "uniwind";
-import type { UniwindConfig } from "uniwind";
 
-/** All available theme names derived from the Uniwind config */
-type ThemeName = UniwindConfig["themes"][number];
-
-/** Map of theme base names to their light/dark variants */
-const THEME_TOGGLE_MAP: Record<string, [light: ThemeName, dark: ThemeName]> = {
-  default: ["light", "dark"],
-  lavender: ["lavender-light", "lavender-dark"],
-  mint: ["mint-light", "mint-dark"],
-  sky: ["sky-light", "sky-dark"],
-};
-
+/**
+ * Settings screen component.
+ *
+ * Displays the current theme, a toggle for light/dark mode,
+ * a data-driven theme switcher, and app info.
+ *
+ * @returns The settings screen UI.
+ */
 export function SettingsScreen() {
-  const { theme } = useUniwind();
-
-  /**
-   * Toggle between light and dark variants of the current theme.
-   */
-  const handleToggleTheme = (): void => {
-    for (const [, [light, dark]] of Object.entries(THEME_TOGGLE_MAP)) {
-      if (theme === light) {
-        Uniwind.setTheme(dark);
-        return;
-      }
-      if (theme === dark) {
-        Uniwind.setTheme(light);
-        return;
-      }
-    }
-    // Fallback
-    Uniwind.setTheme("dark");
-  };
-
-  /**
-   * Switch to a named theme.
-   *
-   * @param name - The theme name to activate
-   */
-  const handleSetTheme = (name: ThemeName): void => {
-    Uniwind.setTheme(name);
-  };
+  const { currentTheme, toggleTheme } = useAppTheme();
 
   return (
     <View className="flex-1 bg-background">
@@ -66,7 +36,7 @@ export function SettingsScreen() {
         <Alert status="accent" className="items-center">
           <Alert.Indicator className="pt-0" />
           <Alert.Content>
-            <Alert.Title>Current theme: {Str.title(theme)}</Alert.Title>
+            <Alert.Title>Current theme: {Str.title(currentTheme)}</Alert.Title>
           </Alert.Content>
         </Alert>
 
@@ -75,31 +45,18 @@ export function SettingsScreen() {
           <Card.Body className="gap-3">
             <Card.Title>Appearance</Card.Title>
             <Card.Description>Toggle between light and dark mode</Card.Description>
-            <Button variant="secondary" onPress={handleToggleTheme}>
+            <Button variant="secondary" onPress={toggleTheme}>
               Toggle Dark Mode
             </Button>
           </Card.Body>
         </Card>
 
-        {/* Theme Selector */}
+        {/* Theme Selector — data-driven from ThemeRegistry */}
         <Card>
           <Card.Body className="gap-3">
             <Card.Title>Themes</Card.Title>
             <Card.Description>Choose a custom theme</Card.Description>
-            <View className="gap-2">
-              <Button variant="primary" onPress={() => handleSetTheme("light")}>
-                Default
-              </Button>
-              <Button variant="secondary" onPress={() => handleSetTheme("lavender-light")}>
-                Lavender
-              </Button>
-              <Button variant="secondary" onPress={() => handleSetTheme("mint-light")}>
-                Mint
-              </Button>
-              <Button variant="secondary" onPress={() => handleSetTheme("sky-light")}>
-                Sky
-              </Button>
-            </View>
+            <ThemeSwitcher />
           </Card.Body>
         </Card>
 

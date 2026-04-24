@@ -1,3 +1,32 @@
+/**
+ * Lavender Theme — Dreamy Purple Palette
+ *
+ * A soft, warm purple theme with pink undertones. Uses the SN Pro font
+ * family and oklch colours anchored at hue 305 (purple).
+ *
+ * ## Variants
+ *
+ * | Variant          | Background          | Accent              | Radius  |
+ * |------------------|---------------------|---------------------|---------|
+ * | `lavender-light` | Soft lavender wash  | Vibrant purple-pink | 0.65rem |
+ * | `lavender-dark`  | Deep cosmic purple  | Electric purple-pink| 0.65rem |
+ *
+ * ## Font Family
+ *
+ * SN Pro — must be loaded via `useFonts()` in the root layout when this
+ * theme is active. Font names use hyphenated format (e.g. `SNPro-Regular`).
+ *
+ * ## Colour Strategy
+ *
+ * All colours use oklch() for perceptual uniformity. The hue channel is
+ * fixed at 305 for surfaces and accents, creating a cohesive purple
+ * atmosphere. Status colours (success, warning, danger) use distinct
+ * hues for accessibility.
+ *
+ * @see global.css — imports this file
+ * @see https://heroui.com/docs/native/getting-started/theming
+ */
+
 @layer theme {
   :root {
     @variant lavender-light {

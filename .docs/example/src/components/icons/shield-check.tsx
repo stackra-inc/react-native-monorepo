@@ -1,13 +1,16 @@
-import React from "react";
-import Svg, { Path, Rect } from "react-native-svg";
-import { withUniwind } from "uniwind";
-import type { IconProps } from "../../helpers/types/icons";
+import React from 'react';
+import Svg, { Path, Rect } from 'react-native-svg';
+import { withUniwind } from 'uniwind';
+import type { IconProps } from '../../helpers/types/icons';
 
 /**
  * Shield check icon component - React Native SVG implementation
  * Wrapped with withUniwind to enable className-based styling
  */
-const ShieldCheckIconComponent: React.FC<IconProps> = ({ size = 20, color = "currentColor" }) => {
+const ShieldCheckIconComponent: React.FC<IconProps> = ({
+  size = 20,
+  color = 'currentColor',
+}) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16">
       <Rect width={16} height={16} fill="none" />
@@ -35,7 +38,7 @@ const ShieldCheckIconComponent: React.FC<IconProps> = ({ size = 20, color = "cur
  */
 export const ShieldCheckIcon = withUniwind(ShieldCheckIconComponent, {
   color: {
-    fromClassName: "colorClassName",
-    styleProperty: "accentColor",
+    fromClassName: 'colorClassName',
+    styleProperty: 'accentColor',
   },
 });

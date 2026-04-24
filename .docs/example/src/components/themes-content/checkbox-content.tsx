@@ -1,6 +1,6 @@
-import { ControlField, Description, Label } from "heroui-native";
-import React from "react";
-import { View } from "react-native";
+import { ControlField, Description, Label } from 'heroui-native';
+import React from 'react';
+import { View } from 'react-native';
 
 interface CheckboxFieldProps {
   isSelected: boolean;
@@ -15,7 +15,11 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   label,
   description,
 }) => (
-  <ControlField isSelected={isSelected} onSelectedChange={onSelectedChange} className="gap-3">
+  <ControlField
+    isSelected={isSelected}
+    onSelectedChange={onSelectedChange}
+    className="gap-3"
+  >
     <ControlField.Indicator variant="checkbox" />
     <View className="flex-1">
       <Label>{label}</Label>

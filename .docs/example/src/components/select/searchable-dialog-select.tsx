@@ -1,14 +1,17 @@
-import { LinearGradient } from "expo-linear-gradient";
-import { Button, cn, ScrollShadow, Select, useThemeColor } from "heroui-native";
-import { useState } from "react";
-import { TextInput, useWindowDimensions, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { KeyboardAvoidingView, KeyboardController } from "react-native-keyboard-controller";
-import { Easing, FadeInDown, FadeOutDown } from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useAppTheme } from "../../contexts/app-theme-context";
-import { AppText } from "../app-text";
-import { SelectBlurBackdrop } from "./select-blur-backdrop";
+import { LinearGradient } from 'expo-linear-gradient';
+import { Button, cn, ScrollShadow, Select, useThemeColor } from 'heroui-native';
+import { useState } from 'react';
+import { TextInput, useWindowDimensions, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import {
+  KeyboardAvoidingView,
+  KeyboardController,
+} from 'react-native-keyboard-controller';
+import { Easing, FadeInDown, FadeOutDown } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useAppTheme } from '../../contexts/app-theme-context';
+import { AppText } from '../app-text';
+import { SelectBlurBackdrop } from './select-blur-backdrop';
 
 KeyboardController.preload();
 
@@ -20,16 +23,16 @@ type CountryOption = {
 };
 
 const COUNTRIES: CountryOption[] = [
-  { value: "US", label: "United States", flag: "🇺🇸", code: "+1" },
-  { value: "GB", label: "United Kingdom", flag: "🇬🇧", code: "+44" },
-  { value: "CA", label: "Canada", flag: "🇨🇦", code: "+1" },
-  { value: "AU", label: "Australia", flag: "🇦🇺", code: "+61" },
-  { value: "DE", label: "Germany", flag: "🇩🇪", code: "+49" },
-  { value: "FR", label: "France", flag: "🇫🇷", code: "+33" },
-  { value: "JP", label: "Japan", flag: "🇯🇵", code: "+81" },
-  { value: "CN", label: "China", flag: "🇨🇳", code: "+86" },
-  { value: "IN", label: "India", flag: "🇮🇳", code: "+91" },
-  { value: "BR", label: "Brazil", flag: "🇧🇷", code: "+55" },
+  { value: 'US', label: 'United States', flag: '🇺🇸', code: '+1' },
+  { value: 'GB', label: 'United Kingdom', flag: '🇬🇧', code: '+44' },
+  { value: 'CA', label: 'Canada', flag: '🇨🇦', code: '+1' },
+  { value: 'AU', label: 'Australia', flag: '🇦🇺', code: '+61' },
+  { value: 'DE', label: 'Germany', flag: '🇩🇪', code: '+49' },
+  { value: 'FR', label: 'France', flag: '🇫🇷', code: '+33' },
+  { value: 'JP', label: 'Japan', flag: '🇯🇵', code: '+81' },
+  { value: 'CN', label: 'China', flag: '🇨🇳', code: '+86' },
+  { value: 'IN', label: 'India', flag: '🇮🇳', code: '+91' },
+  { value: 'BR', label: 'Brazil', flag: '🇧🇷', code: '+55' },
 ];
 
 /**
@@ -37,15 +40,13 @@ const COUNTRIES: CountryOption[] = [
  * Manages search query state, filtering, and UI rendering.
  */
 const SearchableSelectContent = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const { isDark } = useAppTheme();
 
-  const [themeColorMuted, themeColorOverlay, themeColorSurface] = useThemeColor([
-    "muted",
-    "overlay",
-    "surface",
-  ]);
+  const [themeColorMuted, themeColorOverlay, themeColorSurface] = useThemeColor(
+    ['muted', 'overlay', 'surface']
+  );
 
   const { height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
@@ -58,7 +59,7 @@ const SearchableSelectContent = () => {
    * Case-insensitive search on country labels.
    */
   const filteredCountries = COUNTRIES.filter((country) =>
-    country.label.toLowerCase().includes(searchQuery.toLowerCase()),
+    country.label.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   /**
@@ -66,7 +67,7 @@ const SearchableSelectContent = () => {
    * Called when a country is selected.
    */
   const resetSearch = () => {
-    setSearchQuery("");
+    setSearchQuery('');
   };
 
   return (
@@ -74,7 +75,7 @@ const SearchableSelectContent = () => {
       <Select.Content
         presentation="dialog"
         classNames={{
-          content: cn("gap-2 rounded-3xl", isDark && "bg-surface"),
+          content: cn('gap-2 rounded-3xl', isDark && 'bg-surface'),
         }}
         style={{ marginTop: insetTop, height: maxDialogHeight }}
         animation={{
@@ -117,10 +118,16 @@ const SearchableSelectContent = () => {
                   <AppText className="text-2xl" maxFontSizeMultiplier={1}>
                     {country.flag}
                   </AppText>
-                  <AppText className="text-sm text-muted w-10" maxFontSizeMultiplier={1}>
+                  <AppText
+                    className="text-sm text-muted w-10"
+                    maxFontSizeMultiplier={1}
+                  >
                     {country.code}
                   </AppText>
-                  <AppText className="text-base text-foreground flex-1" maxFontSizeMultiplier={1}>
+                  <AppText
+                    className="text-base text-foreground flex-1"
+                    maxFontSizeMultiplier={1}
+                  >
                     {country.label}
                   </AppText>
                 </View>
@@ -128,7 +135,10 @@ const SearchableSelectContent = () => {
               </Select.Item>
             ))}
             {filteredCountries.length === 0 && (
-              <AppText className="text-muted text-center mt-8" maxFontSizeMultiplier={1}>
+              <AppText
+                className="text-muted text-center mt-8"
+                maxFontSizeMultiplier={1}
+              >
                 No countries found
               </AppText>
             )}
@@ -159,7 +169,10 @@ export function SearchableDialogSelect() {
               <AppText className="text-base" maxFontSizeMultiplier={1}>
                 {value.flag}
               </AppText>
-              <AppText className="text-sm text-accent font-medium" maxFontSizeMultiplier={1}>
+              <AppText
+                className="text-sm text-accent font-medium"
+                maxFontSizeMultiplier={1}
+              >
                 {value.code}
               </AppText>
             </View>

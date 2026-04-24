@@ -9,21 +9,21 @@ import {
   REGEXP_ONLY_CHARS,
   useToast,
   type InputOTPRef,
-} from "heroui-native";
-import { useRef, useState, type RefObject } from "react";
-import { View } from "react-native";
-import { WithOTPInputContent } from "../../../components/bottom-sheet/with-otp-input";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
-import { simulatePress } from "../../../helpers/utils/simulate-press";
+} from 'heroui-native';
+import { useRef, useState, type RefObject } from 'react';
+import { View } from 'react-native';
+import { WithOTPInputContent } from '../../../components/bottom-sheet/with-otp-input';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { simulatePress } from '../../../helpers/utils/simulate-press';
 
 const useOnComplete = ({ ref }: { ref: RefObject<InputOTPRef | null> }) => {
   const { toast } = useToast();
 
   const onComplete = (code: string) => {
     toast.show({
-      variant: "success",
-      label: "Completed",
+      variant: 'success',
+      label: 'Completed',
       description: `Code: ${code}`,
     });
     setTimeout(() => {
@@ -45,7 +45,9 @@ const BasicOTPContent = () => {
     <View className="flex-1 px-5 items-center justify-center">
       <View>
         <Label className="px-1">Verify account</Label>
-        <Description className="px-1 mb-2.5">We've sent a code to a****@gmail.com</Description>
+        <Description className="px-1 mb-2.5">
+          We've sent a code to a****@gmail.com
+        </Description>
         <InputOTP ref={ref} maxLength={6} onComplete={onComplete}>
           <InputOTP.Group>
             <InputOTP.Slot index={0} />
@@ -61,7 +63,12 @@ const BasicOTPContent = () => {
         </InputOTP>
         <View className="flex-row flex-wrap items-center mt-2.5">
           <Description className="px-1">Didn't receive a code?</Description>
-          <Button size="sm" variant="ghost" className="px-2" onPress={simulatePress}>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="px-2"
+            onPress={simulatePress}
+          >
             Resend code
           </Button>
         </View>
@@ -155,20 +162,21 @@ const DisabledStateOTPContent = () => {
 // ------------------------------------------------------------------------------
 
 const WithValidationOTPContent = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
 
   const { toast } = useToast();
 
   const onSubmit = () => {
     if (value.length === 6) {
-      if (value === "123456") {
+      if (value === '123456') {
         toast.show({
-          variant: "success",
-          label: "Verification Successful",
-          description: "Your code has been verified successfully. You can proceed.",
+          variant: 'success',
+          label: 'Verification Successful',
+          description:
+            'Your code has been verified successfully. You can proceed.',
         });
-        setValue("");
+        setValue('');
         if (isInvalid) {
           setIsInvalid(false);
         }
@@ -177,9 +185,10 @@ const WithValidationOTPContent = () => {
       }
     } else {
       toast.show({
-        variant: "warning",
-        label: "Incomplete Code",
-        description: "Please enter all 6 digits to complete your verification code.",
+        variant: 'warning',
+        label: 'Incomplete Code',
+        description:
+          'Please enter all 6 digits to complete your verification code.',
       });
     }
   };
@@ -191,8 +200,15 @@ const WithValidationOTPContent = () => {
           <Label className="px-1" isInvalid={isInvalid}>
             Verify account
           </Label>
-          <Description className="px-1 mb-2.5">Hint: The code is 123456</Description>
-          <InputOTP value={value} onChange={setValue} maxLength={6} isInvalid={isInvalid}>
+          <Description className="px-1 mb-2.5">
+            Hint: The code is 123456
+          </Description>
+          <InputOTP
+            value={value}
+            onChange={setValue}
+            maxLength={6}
+            isInvalid={isInvalid}
+          >
             <InputOTP.Group>
               <InputOTP.Slot index={0} />
               <InputOTP.Slot index={1} />
@@ -208,7 +224,11 @@ const WithValidationOTPContent = () => {
           <FieldError className="mt-2.5" isInvalid={isInvalid}>
             The code you entered is incorrect.
           </FieldError>
-          <Button variant="secondary" className="self-start mt-5" onPress={onSubmit}>
+          <Button
+            variant="secondary"
+            className="self-start mt-5"
+            onPress={onSubmit}
+          >
             Submit
           </Button>
         </View>
@@ -228,7 +248,9 @@ const WithPatternOTPContent = () => {
     <View className="flex-1 px-5 items-center justify-center">
       <View>
         <Label className="mb-1">Enter code (letters only)</Label>
-        <Description className="mb-3">Only alphabetic characters are allowed</Description>
+        <Description className="mb-3">
+          Only alphabetic characters are allowed
+        </Description>
         <InputOTP
           ref={ref}
           maxLength={6}
@@ -263,8 +285,8 @@ const CustomStylesOTPContent = () => {
   const onComplete = (code: string) => {
     setTimeout(() => {
       toast.show({
-        variant: "success",
-        label: "Completed",
+        variant: 'success',
+        label: 'Completed',
         description: `Code: ${code}`,
       });
     }, 0);
@@ -282,7 +304,7 @@ const CustomStylesOTPContent = () => {
         onComplete={onComplete}
         className="w-full py-4 gap-8 rounded-3xl items-center justify-center bg-surface shadow-surface"
         style={{
-          borderCurve: "continuous",
+          borderCurve: 'continuous',
         }}
       >
         <InputOTP.Group className="gap-0">
@@ -292,7 +314,10 @@ const CustomStylesOTPContent = () => {
                 <InputOTP.Slot
                   key={slot.index}
                   index={slot.index}
-                  className={cn("bg-transparent shadow-none w-8", slot.isActive && "border-0")}
+                  className={cn(
+                    'bg-transparent shadow-none w-8',
+                    slot.isActive && 'border-0'
+                  )}
                 >
                   <InputOTP.SlotPlaceholder />
                   <InputOTP.SlotValue className="text-2xl" />
@@ -309,7 +334,10 @@ const CustomStylesOTPContent = () => {
                 <InputOTP.Slot
                   key={slot.index}
                   index={slot.index}
-                  className={cn("bg-transparent shadow-none w-8", slot.isActive && "border-0")}
+                  className={cn(
+                    'bg-transparent shadow-none w-8',
+                    slot.isActive && 'border-0'
+                  )}
                 >
                   <InputOTP.SlotPlaceholder />
                   <InputOTP.SlotValue className="text-2xl" />
@@ -328,43 +356,43 @@ const CustomStylesOTPContent = () => {
 
 const INPUT_OTP_VARIANTS: UsageVariant[] = [
   {
-    value: "basic",
-    label: "Basic",
+    value: 'basic',
+    label: 'Basic',
     content: <BasicOTPContent />,
   },
   {
-    value: "four-digits",
-    label: "Four Digits",
+    value: 'four-digits',
+    label: 'Four Digits',
     content: <FourDigitsOTPContent />,
   },
   {
-    value: "with-placeholder",
-    label: "With Placeholder",
+    value: 'with-placeholder',
+    label: 'With Placeholder',
     content: <WithPlaceholderOTPContent />,
   },
   {
-    value: "disabled",
-    label: "Disabled",
+    value: 'disabled',
+    label: 'Disabled',
     content: <DisabledStateOTPContent />,
   },
   {
-    value: "with-validation",
-    label: "With Validation",
+    value: 'with-validation',
+    label: 'With Validation',
     content: <WithValidationOTPContent />,
   },
   {
-    value: "with-pattern",
-    label: "With Pattern",
+    value: 'with-pattern',
+    label: 'With Pattern',
     content: <WithPatternOTPContent />,
   },
   {
-    value: "custom-styles",
-    label: "Custom Styles",
+    value: 'custom-styles',
+    label: 'Custom Styles',
     content: <CustomStylesOTPContent />,
   },
   {
-    value: "with-bottom-sheet",
-    label: "With bottom sheet",
+    value: 'with-bottom-sheet',
+    label: 'With bottom sheet',
     content: <WithOTPInputContent />,
   },
 ];

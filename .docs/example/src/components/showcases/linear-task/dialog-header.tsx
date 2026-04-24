@@ -1,7 +1,7 @@
-import { Dialog } from "heroui-native";
-import { type FC, type PropsWithChildren } from "react";
-import { View } from "react-native";
-import { AppText } from "../../app-text";
+import { Dialog } from 'heroui-native';
+import { type FC, type PropsWithChildren } from 'react';
+import { View } from 'react-native';
+import { AppText } from '../../app-text';
 
 export const DialogHeader: FC<PropsWithChildren> = ({ children }) => {
   return (

@@ -1,3 +1,29 @@
+/**
+ * Alpha Theme — HeroUI Default Neutral Palette
+ *
+ * A monochromatic, neutral theme that mirrors HeroUI Native's built-in
+ * default colour scheme. Uses the Inter font family and a balanced
+ * neutral palette derived from HeroUI's `--color-neutral-*` scale.
+ *
+ * This theme is useful as a reference implementation — it shows every
+ * design token that HeroUI components consume, with sensible defaults.
+ *
+ * ## Variants
+ *
+ * | Variant       | Background | Accent     | Radius  |
+ * |---------------|------------|------------|---------|
+ * | `alpha-light` | White      | Neutral 950| 0.5rem  |
+ * | `alpha-dark`  | Black      | Neutral 50 | 0.5rem  |
+ *
+ * ## Font Family
+ *
+ * Inter — loaded via `@expo-google-fonts/inter` in the root layout.
+ * Font names use hyphenated format (e.g. `Inter-Regular`).
+ *
+ * @see global.css — imports this file
+ * @see https://heroui.com/docs/native/getting-started/theming
+ */
+
 @layer theme {
   :root {
     @variant alpha-light {

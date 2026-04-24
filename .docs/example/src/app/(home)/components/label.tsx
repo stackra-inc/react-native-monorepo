@@ -1,7 +1,7 @@
-import { FieldError, Input, Label, TextField } from "heroui-native";
-import { View } from "react-native";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
+import { FieldError, Input, Label, TextField } from 'heroui-native';
+import { View } from 'react-native';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
 
 const BasicAndRequiredContent = () => {
   return (
@@ -45,13 +45,13 @@ const InvalidAndDisabledContent = () => {
 
 const LABEL_VARIANTS: UsageVariant[] = [
   {
-    value: "basic",
-    label: "Basic & Required",
+    value: 'basic',
+    label: 'Basic & Required',
     content: <BasicAndRequiredContent />,
   },
   {
-    value: "invalid-disabled",
-    label: "Invalid & Disabled",
+    value: 'invalid-disabled',
+    label: 'Invalid & Disabled',
     content: <InvalidAndDisabledContent />,
   },
 ];

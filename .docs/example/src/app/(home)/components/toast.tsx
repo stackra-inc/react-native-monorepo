@@ -1,18 +1,29 @@
-import Feather from "@expo/vector-icons/Feather";
-import { useRouter } from "expo-router";
-import { Button, useThemeColor, useToast, type ToastComponentProps } from "heroui-native";
-import { useCallback, useRef, useState } from "react";
-import { Platform, TextInput, View } from "react-native";
-import { withUniwind } from "uniwind";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
-import { CircleInfoFillIcon } from "../../../components/icons/circle-info-fill";
-import { ShieldCheckIcon } from "../../../components/icons/shield-check";
-import { ShieldExclamationIcon } from "../../../components/icons/shield-exclamation";
-import { Logo } from "../../../components/logo";
-import { AchievementToast } from "../../../components/toast/achievement-toast";
-import { LoadingToast, useLoadingState } from "../../../components/toast/loading-toast";
-import { ProgressToast, useProgressState } from "../../../components/toast/progress-toast";
+import Feather from '@expo/vector-icons/Feather';
+import { useRouter } from 'expo-router';
+import {
+  Button,
+  useThemeColor,
+  useToast,
+  type ToastComponentProps,
+} from 'heroui-native';
+import { useCallback, useRef, useState } from 'react';
+import { Platform, TextInput, View } from 'react-native';
+import { withUniwind } from 'uniwind';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { CircleInfoFillIcon } from '../../../components/icons/circle-info-fill';
+import { ShieldCheckIcon } from '../../../components/icons/shield-check';
+import { ShieldExclamationIcon } from '../../../components/icons/shield-exclamation';
+import { Logo } from '../../../components/logo';
+import { AchievementToast } from '../../../components/toast/achievement-toast';
+import {
+  LoadingToast,
+  useLoadingState,
+} from '../../../components/toast/loading-toast';
+import {
+  ProgressToast,
+  useProgressState,
+} from '../../../components/toast/progress-toast';
 
 const StyledFeather = withUniwind(Feather);
 
@@ -20,7 +31,7 @@ const StyledFeather = withUniwind(Feather);
 
 const DefaultVariantsContent = () => {
   const { toast } = useToast();
-  const themeColorForeground = useThemeColor("foreground");
+  const themeColorForeground = useThemeColor('foreground');
 
   return (
     <View className="flex-1 items-center justify-center px-5 gap-5">
@@ -28,15 +39,20 @@ const DefaultVariantsContent = () => {
         variant="secondary"
         onPress={() =>
           toast.show({
-            variant: "default",
-            label: "Join a team",
-            description: "Junior Garcia sent you an invitation to join HeroUI team!",
+            variant: 'default',
+            label: 'Join a team',
+            description:
+              'Junior Garcia sent you an invitation to join HeroUI team!',
             icon: (
               <View className="mt-0.5">
-                <Logo themeColorForeground={themeColorForeground} width={15} height={20.77} />
+                <Logo
+                  themeColorForeground={themeColorForeground}
+                  width={15}
+                  height={20.77}
+                />
               </View>
             ),
-            actionLabel: "Close",
+            actionLabel: 'Close',
             onActionPress: ({ hide }) => hide(),
           })
         }
@@ -47,15 +63,15 @@ const DefaultVariantsContent = () => {
         variant="secondary"
         onPress={() =>
           toast.show({
-            variant: "accent",
-            label: "You have 2 credits left",
-            description: "Get a paid plan for more credits",
+            variant: 'accent',
+            label: 'You have 2 credits left',
+            description: 'Get a paid plan for more credits',
             icon: (
               <View className="mt-0.5">
                 <CircleInfoFillIcon size={18} colorClassName="accent-accent" />
               </View>
             ),
-            actionLabel: "Close",
+            actionLabel: 'Close',
             onActionPress: ({ hide }) => hide(),
           })
         }
@@ -66,15 +82,15 @@ const DefaultVariantsContent = () => {
         variant="secondary"
         onPress={() =>
           toast.show({
-            variant: "success",
-            label: "Plan upgraded",
-            description: "You can continue using HeroUI Chat and more",
+            variant: 'success',
+            label: 'Plan upgraded',
+            description: 'You can continue using HeroUI Chat and more',
             icon: (
               <View className="mt-0.5">
                 <ShieldCheckIcon size={20} colorClassName="accent-success" />
               </View>
             ),
-            actionLabel: "Close",
+            actionLabel: 'Close',
             onActionPress: ({ hide }) => hide(),
           })
         }
@@ -85,15 +101,18 @@ const DefaultVariantsContent = () => {
         variant="secondary"
         onPress={() =>
           toast.show({
-            variant: "warning",
-            label: "No credits left",
-            description: "Upgrade to a paid plan to continue using HeroUI Chat",
+            variant: 'warning',
+            label: 'No credits left',
+            description: 'Upgrade to a paid plan to continue using HeroUI Chat',
             icon: (
               <View className="mt-0.5">
-                <ShieldExclamationIcon size={20} colorClassName="accent-warning" />
+                <ShieldExclamationIcon
+                  size={20}
+                  colorClassName="accent-warning"
+                />
               </View>
             ),
-            actionLabel: "Close",
+            actionLabel: 'Close',
             onActionPress: ({ hide }) => hide(),
           })
         }
@@ -104,19 +123,25 @@ const DefaultVariantsContent = () => {
         variant="secondary"
         onPress={() =>
           toast.show({
-            variant: "danger",
-            label: "Storage is full",
+            variant: 'danger',
+            label: 'Storage is full',
             description:
               "Remove files to release space. I'm adding more text as usual but it's okay I guess I just want to see how it looks with a lot of information",
-            icon: <StyledFeather name="hard-drive" size={16} className="text-danger mt-[3px]" />,
-            actionLabel: "Close",
+            icon: (
+              <StyledFeather
+                name="hard-drive"
+                size={16}
+                className="text-danger mt-[3px]"
+              />
+            ),
+            actionLabel: 'Close',
             onActionPress: ({ hide }) => hide(),
           })
         }
       >
         Danger toast
       </Button>
-      <Button onPress={() => toast.hide("all")} variant="danger-soft">
+      <Button onPress={() => toast.hide('all')} variant="danger-soft">
         Hide all toasts
       </Button>
     </View>
@@ -133,31 +158,31 @@ const PlacementVariantsContent = () => {
 
   const showTopToast = () =>
     toast.show({
-      variant: "success",
-      placement: "top",
-      label: "Plan upgraded",
-      description: "You can continue using HeroUI Chat and more",
+      variant: 'success',
+      placement: 'top',
+      label: 'Plan upgraded',
+      description: 'You can continue using HeroUI Chat and more',
       icon: (
         <View className="mt-0.5">
           <ShieldCheckIcon size={20} colorClassName="accent-success" />
         </View>
       ),
-      actionLabel: "Close",
+      actionLabel: 'Close',
       onActionPress: ({ hide }) => hide(),
     });
 
   const showBottomToast = () =>
     toast.show({
-      variant: "warning",
-      placement: "bottom",
-      label: "No credits left",
-      description: "Upgrade to a paid plan to continue using HeroUI Chat",
+      variant: 'warning',
+      placement: 'bottom',
+      label: 'No credits left',
+      description: 'Upgrade to a paid plan to continue using HeroUI Chat',
       icon: (
         <View className="mt-0.5">
           <ShieldExclamationIcon size={20} colorClassName="accent-warning" />
         </View>
       ),
-      actionLabel: "Close",
+      actionLabel: 'Close',
       onActionPress: ({ hide }) => hide(),
     });
 
@@ -168,7 +193,7 @@ const PlacementVariantsContent = () => {
         onPress={() => {
           setIsTopToastVisible(true);
           if (isBottomToastVisible) {
-            toast.hide("all");
+            toast.hide('all');
             setIsBottomToastVisible(false);
             setTimeout(() => {
               showTopToast();
@@ -186,7 +211,7 @@ const PlacementVariantsContent = () => {
         onPress={() => {
           setIsBottomToastVisible(true);
           if (isTopToastVisible) {
-            toast.hide("all");
+            toast.hide('all');
             setIsTopToastVisible(false);
             setTimeout(() => {
               showBottomToast();
@@ -199,7 +224,7 @@ const PlacementVariantsContent = () => {
       >
         Bottom toast
       </Button>
-      <Button onPress={() => toast.hide("all")} variant="danger-soft">
+      <Button onPress={() => toast.hide('all')} variant="danger-soft">
         Hide all toasts
       </Button>
     </View>
@@ -217,10 +242,10 @@ const DifferentContentSizesContent = () => {
         variant="secondary"
         onPress={() =>
           toast.show({
-            variant: "default",
-            label: "New message",
-            description: "Sarah sent you a message",
-            actionLabel: "Close",
+            variant: 'default',
+            label: 'New message',
+            description: 'Sarah sent you a message',
+            actionLabel: 'Close',
             onActionPress: ({ hide }) => hide(),
           })
         }
@@ -231,11 +256,11 @@ const DifferentContentSizesContent = () => {
         variant="secondary"
         onPress={() =>
           toast.show({
-            variant: "success",
-            label: "Payment successful",
+            variant: 'success',
+            label: 'Payment successful',
             description:
-              "Your subscription has been renewed. You will be charged $9.99/month. Thank you for your continued support.",
-            actionLabel: "Close",
+              'Your subscription has been renewed. You will be charged $9.99/month. Thank you for your continued support.',
+            actionLabel: 'Close',
             onActionPress: ({ hide }) => hide(),
           })
         }
@@ -246,18 +271,18 @@ const DifferentContentSizesContent = () => {
         variant="secondary"
         onPress={() =>
           toast.show({
-            variant: "success",
-            label: "Backup completed",
+            variant: 'success',
+            label: 'Backup completed',
             description:
-              "All your files have been backed up to the cloud. You can now access them from any device. The backup includes 1,234 files totaling 2.5 GB. Your data is safe and secure. The next backup will run automatically in 24 hours.",
-            actionLabel: "Close",
+              'All your files have been backed up to the cloud. You can now access them from any device. The backup includes 1,234 files totaling 2.5 GB. Your data is safe and secure. The next backup will run automatically in 24 hours.',
+            actionLabel: 'Close',
             onActionPress: ({ hide }) => hide(),
           })
         }
       >
         Large toast
       </Button>
-      <Button onPress={() => toast.hide("all")} variant="danger-soft">
+      <Button onPress={() => toast.hide('all')} variant="danger-soft">
         Hide all toasts
       </Button>
     </View>
@@ -273,7 +298,7 @@ const KeyboardAvoidingContent = () => {
 
   const inputRef = useRef<TextInput>(null);
 
-  const themeColorForeground = useThemeColor("foreground");
+  const themeColorForeground = useThemeColor('foreground');
 
   return (
     <View className="flex-1 items-center justify-center px-5 gap-5">
@@ -281,18 +306,23 @@ const KeyboardAvoidingContent = () => {
         variant="secondary"
         onPress={() => {
           toast.show({
-            id: "keyboard-avoiding-toast",
-            variant: "default",
-            placement: "bottom",
-            duration: "persistent",
-            label: "Join a team",
-            description: "Junior Garcia sent you an invitation to join HeroUI team!",
+            id: 'keyboard-avoiding-toast',
+            variant: 'default',
+            placement: 'bottom',
+            duration: 'persistent',
+            label: 'Join a team',
+            description:
+              'Junior Garcia sent you an invitation to join HeroUI team!',
             icon: (
               <View className="mt-0.5">
-                <Logo themeColorForeground={themeColorForeground} width={15} height={20.77} />
+                <Logo
+                  themeColorForeground={themeColorForeground}
+                  width={15}
+                  height={20.77}
+                />
               </View>
             ),
-            actionLabel: "Close",
+            actionLabel: 'Close',
             onActionPress: ({ hide }) => hide(),
             onHide: () => {
               inputRef.current?.blur();
@@ -314,7 +344,7 @@ const KeyboardAvoidingContent = () => {
       >
         Toggle keyboard
       </Button>
-      <Button onPress={() => toast.hide("all")} variant="danger-soft">
+      <Button onPress={() => toast.hide('all')} variant="danger-soft">
         Hide toast
       </Button>
       <TextInput
@@ -334,7 +364,10 @@ const FromNativeModalContent = () => {
 
   return (
     <View className="flex-1 items-center justify-center px-5 gap-5">
-      <Button variant="secondary" onPress={() => router.push("/components/toast-native-modal")}>
+      <Button
+        variant="secondary"
+        onPress={() => router.push('/components/toast-native-modal')}
+      >
         Open modal
       </Button>
     </View>
@@ -345,8 +378,8 @@ const FromNativeModalContent = () => {
 
 const CustomToastsContent = () => {
   const { toast, isToastVisible } = useToast();
-  const LOADING_TOAST_ID = "loading-toast";
-  const PROGRESS_TOAST_ID = "progress-toast";
+  const LOADING_TOAST_ID = 'loading-toast';
+  const PROGRESS_TOAST_ID = 'progress-toast';
   const { setIsLoading } = useLoadingState();
   const { setProgress, resetProgress } = useProgressState();
 
@@ -395,7 +428,7 @@ const CustomToastsContent = () => {
     setIsLoading(true);
     toast.show({
       id: LOADING_TOAST_ID,
-      duration: "persistent",
+      duration: 'persistent',
       component: renderLoadingToast,
     });
 
@@ -408,7 +441,7 @@ const CustomToastsContent = () => {
       /**
        * Handle errors if needed
        */
-      console.error("Failed to load data:", error);
+      console.error('Failed to load data:', error);
     } finally {
       /**
        * Set loading to false when operation completes
@@ -424,7 +457,7 @@ const CustomToastsContent = () => {
     resetProgress();
     toast.show({
       id: PROGRESS_TOAST_ID,
-      duration: "persistent",
+      duration: 'persistent',
       component: renderProgressToast,
     });
 
@@ -437,7 +470,7 @@ const CustomToastsContent = () => {
       /**
        * Handle errors if needed
        */
-      console.error("Failed to upload:", error);
+      console.error('Failed to upload:', error);
     }
   };
 
@@ -447,8 +480,8 @@ const CustomToastsContent = () => {
         variant="secondary"
         onPress={() => {
           toast.show({
-            id: "achievement-toast",
-            duration: "persistent",
+            id: 'achievement-toast',
+            duration: 'persistent',
             component: renderAchievementToast,
           });
         }}
@@ -457,15 +490,23 @@ const CustomToastsContent = () => {
         Achievement toast
       </Button>
 
-      <Button variant="secondary" onPress={handleShowLoadingToast} isDisabled={isToastVisible}>
+      <Button
+        variant="secondary"
+        onPress={handleShowLoadingToast}
+        isDisabled={isToastVisible}
+      >
         Load data
       </Button>
 
-      <Button variant="secondary" onPress={handleShowProgressToast} isDisabled={isToastVisible}>
+      <Button
+        variant="secondary"
+        onPress={handleShowProgressToast}
+        isDisabled={isToastVisible}
+      >
         Start upload
       </Button>
 
-      <Button onPress={() => toast.hide("all")} variant="danger-soft">
+      <Button onPress={() => toast.hide('all')} variant="danger-soft">
         Hide all toasts
       </Button>
     </View>
@@ -476,61 +517,61 @@ const CustomToastsContent = () => {
 
 const TOAST_VARIANTS_IOS: UsageVariant[] = [
   {
-    value: "default-variants",
-    label: "Default variants",
+    value: 'default-variants',
+    label: 'Default variants',
     content: <DefaultVariantsContent />,
   },
   {
-    value: "placement-variants",
-    label: "Placement variants",
+    value: 'placement-variants',
+    label: 'Placement variants',
     content: <PlacementVariantsContent />,
   },
   {
-    value: "different-content-sizes",
-    label: "Different content sizes",
+    value: 'different-content-sizes',
+    label: 'Different content sizes',
     content: <DifferentContentSizesContent />,
   },
   {
-    value: "keyboard-avoiding",
-    label: "Keyboard avoiding",
+    value: 'keyboard-avoiding',
+    label: 'Keyboard avoiding',
     content: <KeyboardAvoidingContent />,
   },
   {
-    value: "from-native-modal",
-    label: "From native modal",
+    value: 'from-native-modal',
+    label: 'From native modal',
     content: <FromNativeModalContent />,
   },
   {
-    value: "custom-toasts",
-    label: "Custom toasts",
+    value: 'custom-toasts',
+    label: 'Custom toasts',
     content: <CustomToastsContent />,
   },
 ];
 
 const TOAST_VARIANTS_ANDROID: UsageVariant[] = [
   {
-    value: "default-variants",
-    label: "Default variants",
+    value: 'default-variants',
+    label: 'Default variants',
     content: <DefaultVariantsContent />,
   },
   {
-    value: "placement-variants",
-    label: "Placement variants",
+    value: 'placement-variants',
+    label: 'Placement variants',
     content: <PlacementVariantsContent />,
   },
   {
-    value: "different-content-sizes",
-    label: "Different content sizes",
+    value: 'different-content-sizes',
+    label: 'Different content sizes',
     content: <DifferentContentSizesContent />,
   },
   {
-    value: "keyboard-avoiding",
-    label: "Keyboard avoiding",
+    value: 'keyboard-avoiding',
+    label: 'Keyboard avoiding',
     content: <KeyboardAvoidingContent />,
   },
   {
-    value: "custom-toasts",
-    label: "Custom toasts",
+    value: 'custom-toasts',
+    label: 'Custom toasts',
     content: <CustomToastsContent />,
   },
 ];
@@ -538,7 +579,7 @@ const TOAST_VARIANTS_ANDROID: UsageVariant[] = [
 export default function ToastScreen() {
   return (
     <UsageVariantFlatList
-      data={Platform.OS === "ios" ? TOAST_VARIANTS_IOS : TOAST_VARIANTS_ANDROID}
+      data={Platform.OS === 'ios' ? TOAST_VARIANTS_IOS : TOAST_VARIANTS_ANDROID}
     />
   );
 }

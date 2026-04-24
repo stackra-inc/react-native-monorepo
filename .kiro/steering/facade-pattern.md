@@ -13,8 +13,8 @@ Facades are typed constants created via `Facade.make<T>(token)`:
 
 ```typescript
 import { Facade } from "@stackra/ts-support";
-import { CacheManager } from "../services/cache-manager.service";
-import { CACHE_MANAGER } from "../constants/tokens.constant";
+import { CacheManager } from "@/services/cache-manager.service";
+import { CACHE_MANAGER } from "@/constants/tokens.constant";
 
 export const CacheFacade: CacheManager =
   Facade.make<CacheManager>(CACHE_MANAGER);

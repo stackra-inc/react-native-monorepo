@@ -1,14 +1,22 @@
-import Feather from "@expo/vector-icons/Feather";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import * as Haptics from "expo-haptics";
-import { Chip, cn, Dialog, Label, Radio, RadioGroup, useDialog } from "heroui-native";
-import { useState, type FC } from "react";
-import { Platform, View } from "react-native";
-import Animated, { FadeIn } from "react-native-reanimated";
-import { withUniwind } from "uniwind";
-import { useAppTheme } from "../../../../contexts/app-theme-context";
-import { DialogBlurBackdrop } from "../../../dialog-blur-backdrop";
-import { DialogHeader } from "../dialog-header";
+import Feather from '@expo/vector-icons/Feather';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import * as Haptics from 'expo-haptics';
+import {
+  Chip,
+  cn,
+  Dialog,
+  Label,
+  Radio,
+  RadioGroup,
+  useDialog,
+} from 'heroui-native';
+import { useState, type FC } from 'react';
+import { Platform, View } from 'react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
+import { withUniwind } from 'uniwind';
+import { useAppTheme } from '../../../../contexts/app-theme-context';
+import { DialogBlurBackdrop } from '../../../dialog-blur-backdrop';
+import { DialogHeader } from '../dialog-header';
 
 const StyledFeather = withUniwind(Feather);
 const StyledFontAwesome6 = withUniwind(FontAwesome6);
@@ -31,7 +39,7 @@ const PriorityRadioItem: FC<PriorityRadioItemProps> = ({ item, value }) => {
     <RadioGroup.Item
       value={item.value}
       onPress={() => {
-        if (Platform.OS === "ios") {
+        if (Platform.OS === 'ios') {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         }
         onOpenChange(false);
@@ -47,7 +55,11 @@ const PriorityRadioItem: FC<PriorityRadioItemProps> = ({ item, value }) => {
         <Radio.Indicator className="border-none shadow-none bg-transparent">
           {value === item.value && (
             <Animated.View key={item.value} entering={FadeIn.duration(200)}>
-              <StyledFeather name="check" size={18} className="text-foreground" />
+              <StyledFeather
+                name="check"
+                size={18}
+                className="text-foreground"
+              />
             </Animated.View>
           )}
         </Radio.Indicator>
@@ -57,14 +69,14 @@ const PriorityRadioItem: FC<PriorityRadioItemProps> = ({ item, value }) => {
 };
 
 export const Priority: FC = () => {
-  const [value, setValue] = useState("high");
+  const [value, setValue] = useState('high');
 
   const { isDark } = useAppTheme();
 
   const items: PriorityItem[] = [
     {
-      value: "no-priority",
-      label: "No Priority",
+      value: 'no-priority',
+      label: 'No Priority',
       indicator: (
         <View className="flex-row items-center gap-0.5">
           <View className="h-[1.5px] w-1 bg-muted/50" />
@@ -74,15 +86,19 @@ export const Priority: FC = () => {
       ),
     },
     {
-      value: "urgent",
-      label: "Urgent",
+      value: 'urgent',
+      label: 'Urgent',
       indicator: (
-        <StyledFontAwesome6 name="circle-exclamation" size={13} className="text-foreground" />
+        <StyledFontAwesome6
+          name="circle-exclamation"
+          size={13}
+          className="text-foreground"
+        />
       ),
     },
     {
-      value: "high",
-      label: "High",
+      value: 'high',
+      label: 'High',
       indicator: (
         <View className="flex-row items-end gap-0.5">
           <View className="h-1 w-[3px] rounded-[1px] bg-foreground" />
@@ -92,8 +108,8 @@ export const Priority: FC = () => {
       ),
     },
     {
-      value: "medium",
-      label: "Medium",
+      value: 'medium',
+      label: 'Medium',
       indicator: (
         <View className="flex-row items-end gap-0.5">
           <View className="h-1 w-[3px] rounded-[1px] bg-foreground" />
@@ -103,8 +119,8 @@ export const Priority: FC = () => {
       ),
     },
     {
-      value: "low",
-      label: "Low",
+      value: 'low',
+      label: 'Low',
       indicator: (
         <View className="flex-row items-end gap-0.5">
           <View className="h-1 w-[3px] rounded-[1px] bg-foreground" />
@@ -119,9 +135,12 @@ export const Priority: FC = () => {
     <Dialog>
       <Dialog.Trigger asChild>
         <Chip
-          className={cn("h-7 px-2", isDark ? "bg-neutral-900/50" : "bg-neutral-300/50")}
+          className={cn(
+            'h-7 px-2',
+            isDark ? 'bg-neutral-900/50' : 'bg-neutral-300/50'
+          )}
           onPress={() => {
-            if (Platform.OS === "ios") {
+            if (Platform.OS === 'ios') {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             }
           }}

@@ -1,5 +1,5 @@
-import { LinearGradient } from "expo-linear-gradient";
-import { useRouter } from "expo-router";
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
 import {
   Button,
   cn,
@@ -10,22 +10,22 @@ import {
   ScrollShadow,
   TextField,
   useThemeColor,
-} from "heroui-native";
-import { useState } from "react";
-import { Platform, Text, useWindowDimensions, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { KeyboardController } from "react-native-keyboard-controller";
+} from 'heroui-native';
+import { useState } from 'react';
+import { Platform, Text, useWindowDimensions, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { KeyboardController } from 'react-native-keyboard-controller';
 
-import { Easing, FadeInDown, FadeOutDown } from "react-native-reanimated";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { withUniwind } from "uniwind";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
-import { DialogBlurBackdrop } from "../../../components/dialog-blur-backdrop";
-import { FloppyDiscIcon } from "../../../components/icons/floppy-disc";
-import { TrashIcon } from "../../../components/icons/trash";
-import { useAppTheme } from "../../../contexts/app-theme-context";
-import { simulatePress } from "../../../helpers/utils/simulate-press";
+import { Easing, FadeInDown, FadeOutDown } from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { withUniwind } from 'uniwind';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { DialogBlurBackdrop } from '../../../components/dialog-blur-backdrop';
+import { FloppyDiscIcon } from '../../../components/icons/floppy-disc';
+import { TrashIcon } from '../../../components/icons/trash';
+import { useAppTheme } from '../../../contexts/app-theme-context';
+import { simulatePress } from '../../../helpers/utils/simulate-press';
 
 const StyleScrollView = withUniwind(ScrollView);
 
@@ -44,14 +44,18 @@ const BasicDialogContent = () => {
           <Dialog.Portal>
             <Dialog.Overlay />
             <Dialog.Content>
-              <Dialog.Close variant="ghost" className="absolute top-3 right-2.5 z-50" />
+              <Dialog.Close
+                variant="ghost"
+                className="absolute top-3 right-2.5 z-50"
+              />
               <View className="size-9 items-center justify-center rounded-full bg-overlay-foreground/5 mb-4">
                 <FloppyDiscIcon size={16} colorClassName="accent-warning" />
               </View>
               <View className="mb-8 gap-1.5">
                 <Dialog.Title>Low Disk Space</Dialog.Title>
                 <Dialog.Description>
-                  You are running low on disk space. Delete unnecessary files to free up space.
+                  You are running low on disk space. Delete unnecessary files to
+                  free up space.
                 </Dialog.Description>
               </View>
               <View className="flex-row justify-end gap-3">
@@ -76,17 +80,22 @@ const BasicDialogContent = () => {
 const BlurBackdropDialogContent = () => {
   const [blurBackdropDialogOpen, setBlurBackdropDialogOpen] = useState(false);
 
-  if (Platform.OS !== "ios") {
+  if (Platform.OS !== 'ios') {
     return null;
   }
 
   return (
     <View className="flex-1">
       <View className="flex-1 items-center justify-center">
-        <Dialog isOpen={blurBackdropDialogOpen} onOpenChange={setBlurBackdropDialogOpen}>
+        <Dialog
+          isOpen={blurBackdropDialogOpen}
+          onOpenChange={setBlurBackdropDialogOpen}
+        >
           <Dialog.Trigger asChild>
             <Button variant="secondary">
-              <Button.Label maxFontSizeMultiplier={1.2}>Dialog with blur backdrop</Button.Label>
+              <Button.Label maxFontSizeMultiplier={1.2}>
+                Dialog with blur backdrop
+              </Button.Label>
             </Button>
           </Dialog.Trigger>
           <Dialog.Portal>
@@ -98,7 +107,8 @@ const BlurBackdropDialogContent = () => {
               <View className="mb-8 gap-1">
                 <Dialog.Title>Delete product</Dialog.Title>
                 <Dialog.Description>
-                  Are you sure you want to delete this product? This action cannot be undone.
+                  Are you sure you want to delete this product? This action
+                  cannot be undone.
                 </Dialog.Description>
               </View>
               <View className="gap-3">
@@ -128,10 +138,10 @@ const BlurBackdropDialogContent = () => {
  * Manages form state, validation, and UI rendering.
  */
 const UpdateProfileDialogForm = ({ onClose }: { onClose: () => void }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   const { height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
@@ -139,7 +149,7 @@ const UpdateProfileDialogForm = ({ onClose }: { onClose: () => void }) => {
   const insetTop = insets.top + 12;
   const maxTextInputDialogHeight = (height - insetTop) / 2;
 
-  const themeColorMuted = useThemeColor("muted");
+  const themeColorMuted = useThemeColor('muted');
 
   /**
    * Validates email format using regex pattern.
@@ -161,31 +171,31 @@ const UpdateProfileDialogForm = ({ onClose }: { onClose: () => void }) => {
     let hasError = false;
 
     if (!name.trim()) {
-      setNameError("Name is required");
+      setNameError('Name is required');
       hasError = true;
     } else if (name.trim().length < 2) {
-      setNameError("Name must be at least 2 characters");
+      setNameError('Name must be at least 2 characters');
       hasError = true;
     } else {
-      setNameError("");
+      setNameError('');
     }
 
     if (!email.trim()) {
-      setEmailError("Email is required");
+      setEmailError('Email is required');
       hasError = true;
     } else if (!validateEmail(email)) {
-      setEmailError("Please enter a valid email address");
+      setEmailError('Please enter a valid email address');
       hasError = true;
     } else {
-      setEmailError("");
+      setEmailError('');
     }
 
     if (!hasError) {
       simulatePress();
-      setName("");
-      setEmail("");
-      setNameError("");
-      setEmailError("");
+      setName('');
+      setEmail('');
+      setNameError('');
+      setEmailError('');
       return true;
     }
 
@@ -196,10 +206,10 @@ const UpdateProfileDialogForm = ({ onClose }: { onClose: () => void }) => {
    * Resets all form fields and errors, then closes the dialog.
    */
   const handleCancel = () => {
-    setName("");
-    setEmail("");
-    setNameError("");
-    setEmailError("");
+    setName('');
+    setEmail('');
+    setNameError('');
+    setEmailError('');
     onClose();
   };
 
@@ -221,7 +231,10 @@ const UpdateProfileDialogForm = ({ onClose }: { onClose: () => void }) => {
       <Dialog.Title className="mb-6">Update Profile</Dialog.Title>
 
       <View className="flex-1">
-        <StyleScrollView contentContainerClassName="gap-5" keyboardShouldPersistTaps="always">
+        <StyleScrollView
+          contentContainerClassName="gap-5"
+          keyboardShouldPersistTaps="always"
+        >
           <TextField isRequired isInvalid={!!nameError}>
             <Label isInvalid={false}>Full Name</Label>
             <Input
@@ -230,7 +243,7 @@ const UpdateProfileDialogForm = ({ onClose }: { onClose: () => void }) => {
               value={name}
               onChangeText={(text) => {
                 setName(text);
-                if (nameError) setNameError("");
+                if (nameError) setNameError('');
               }}
               autoCapitalize="words"
               autoCorrect
@@ -249,7 +262,7 @@ const UpdateProfileDialogForm = ({ onClose }: { onClose: () => void }) => {
               value={email}
               onChangeText={(text) => {
                 setEmail(text);
-                if (emailError) setEmailError("");
+                if (emailError) setEmailError('');
               }}
               autoCapitalize="none"
               isInvalid={false}
@@ -265,7 +278,9 @@ const UpdateProfileDialogForm = ({ onClose }: { onClose: () => void }) => {
           <Button.Label maxFontSizeMultiplier={1.4}>Cancel</Button.Label>
         </Button>
         <Button size="sm" onPress={handleSubmit}>
-          <Button.Label maxFontSizeMultiplier={1.4}>Update Profile</Button.Label>
+          <Button.Label maxFontSizeMultiplier={1.4}>
+            Update Profile
+          </Button.Label>
         </Button>
       </View>
     </Dialog.Content>
@@ -286,12 +301,16 @@ const TextInputDialogContent = () => {
         >
           <Dialog.Trigger asChild>
             <Button variant="secondary">
-              <Button.Label maxFontSizeMultiplier={1.6}>Dialog with text input</Button.Label>
+              <Button.Label maxFontSizeMultiplier={1.6}>
+                Dialog with text input
+              </Button.Label>
             </Button>
           </Dialog.Trigger>
           <Dialog.Portal className="justify-start">
             <DialogBlurBackdrop />
-            <UpdateProfileDialogForm onClose={() => setTextInputDialogOpen(false)} />
+            <UpdateProfileDialogForm
+              onClose={() => setTextInputDialogOpen(false)}
+            />
           </Dialog.Portal>
         </Dialog>
       </View>
@@ -305,7 +324,7 @@ const LongContentDialogContent = () => {
   const [scrollDialogOpen, setScrollDialogOpen] = useState(false);
   const { height } = useWindowDimensions();
   const { isDark } = useAppTheme();
-  const themeColorOverlay = useThemeColor("overlay");
+  const themeColorOverlay = useThemeColor('overlay');
 
   return (
     <View className="flex-1">
@@ -313,14 +332,20 @@ const LongContentDialogContent = () => {
         <Dialog isOpen={scrollDialogOpen} onOpenChange={setScrollDialogOpen}>
           <Dialog.Trigger asChild>
             <Button variant="secondary">
-              <Button.Label maxFontSizeMultiplier={1.6}>Dialog with long content</Button.Label>
+              <Button.Label maxFontSizeMultiplier={1.6}>
+                Dialog with long content
+              </Button.Label>
             </Button>
           </Dialog.Trigger>
           <Dialog.Portal>
-            <Dialog.Overlay className={cn("bg-stone-100", isDark && "bg-stone-950")} />
+            <Dialog.Overlay
+              className={cn('bg-stone-100', isDark && 'bg-stone-950')}
+            />
             <Dialog.Content className="rounded-2xl px-0">
               <Dialog.Close variant="ghost" className="self-end mr-4" />
-              <Dialog.Title className="text-center mb-5">Upload Audio</Dialog.Title>
+              <Dialog.Title className="text-center mb-5">
+                Upload Audio
+              </Dialog.Title>
               <ScrollShadow
                 LinearGradientComponent={LinearGradient}
                 style={{ height: height * 0.35 }}
@@ -329,35 +354,43 @@ const LongContentDialogContent = () => {
               >
                 <StyleScrollView contentContainerClassName="px-6">
                   <Text className="text-foreground/80 text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    {"\n\n"}
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                    {"\n\n"}
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                    veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                    {"\n\n"}
-                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
-                    quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                    {"\n\n"}
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    {"\n\n"}
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                    {"\n\n"}
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                    veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                    {"\n\n"}
-                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed
-                    quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    {'\n\n'}
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                    {'\n\n'}
+                    Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem accusantium doloremque laudantium, totam rem
+                    aperiam, eaque ipsa quae ab illo inventore veritatis et
+                    quasi architecto beatae vitae dicta sunt explicabo.
+                    {'\n\n'}
+                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
+                    odit aut fugit, sed quia consequuntur magni dolores eos qui
+                    ratione voluptatem sequi nesciunt.
+                    {'\n\n'}
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    {'\n\n'}
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                    {'\n\n'}
+                    Sed ut perspiciatis unde omnis iste natus error sit
+                    voluptatem accusantium doloremque laudantium, totam rem
+                    aperiam, eaque ipsa quae ab illo inventore veritatis et
+                    quasi architecto beatae vitae dicta sunt explicabo.
+                    {'\n\n'}
+                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
+                    odit aut fugit, sed quia consequuntur magni dolores eos qui
+                    ratione voluptatem sequi nesciunt.
                   </Text>
                 </StyleScrollView>
               </ScrollShadow>
@@ -381,15 +414,20 @@ const LongContentDialogContent = () => {
 const NativeModalDialogContent = () => {
   const router = useRouter();
 
-  if (Platform.OS !== "ios") {
+  if (Platform.OS !== 'ios') {
     return null;
   }
 
   return (
     <View className="flex-1">
       <View className="flex-1 items-center justify-center">
-        <Button variant="secondary" onPress={() => router.push("components/dialog-native-modal")}>
-          <Button.Label maxFontSizeMultiplier={1.6}>Dialog from native modal</Button.Label>
+        <Button
+          variant="secondary"
+          onPress={() => router.push('components/dialog-native-modal')}
+        >
+          <Button.Label maxFontSizeMultiplier={1.6}>
+            Dialog from native modal
+          </Button.Label>
         </Button>
       </View>
     </View>
@@ -400,46 +438,46 @@ const NativeModalDialogContent = () => {
 
 const DIALOG_VARIANTS_IOS: UsageVariant[] = [
   {
-    value: "basic-dialog",
-    label: "Basic dialog",
+    value: 'basic-dialog',
+    label: 'Basic dialog',
     content: <BasicDialogContent />,
   },
   {
-    value: "blur-backdrop-dialog",
-    label: "Dialog with blur backdrop",
+    value: 'blur-backdrop-dialog',
+    label: 'Dialog with blur backdrop',
     content: <BlurBackdropDialogContent />,
   },
   {
-    value: "text-input-dialog",
-    label: "Dialog with text input",
+    value: 'text-input-dialog',
+    label: 'Dialog with text input',
     content: <TextInputDialogContent />,
   },
   {
-    value: "long-content-dialog",
-    label: "Dialog with long content",
+    value: 'long-content-dialog',
+    label: 'Dialog with long content',
     content: <LongContentDialogContent />,
   },
   {
-    value: "native-modal-dialog",
-    label: "Dialog from native modal",
+    value: 'native-modal-dialog',
+    label: 'Dialog from native modal',
     content: <NativeModalDialogContent />,
   },
 ];
 
 const DIALOG_VARIANTS_ANDROID: UsageVariant[] = [
   {
-    value: "basic-dialog",
-    label: "Basic dialog",
+    value: 'basic-dialog',
+    label: 'Basic dialog',
     content: <BasicDialogContent />,
   },
   {
-    value: "text-input-dialog",
-    label: "Dialog with text input",
+    value: 'text-input-dialog',
+    label: 'Dialog with text input',
     content: <TextInputDialogContent />,
   },
   {
-    value: "long-content-dialog",
-    label: "Dialog with long content",
+    value: 'long-content-dialog',
+    label: 'Dialog with long content',
     content: <LongContentDialogContent />,
   },
 ];
@@ -447,7 +485,9 @@ const DIALOG_VARIANTS_ANDROID: UsageVariant[] = [
 export default function DialogScreen() {
   return (
     <UsageVariantFlatList
-      data={Platform.OS === "ios" ? DIALOG_VARIANTS_IOS : DIALOG_VARIANTS_ANDROID}
+      data={
+        Platform.OS === 'ios' ? DIALOG_VARIANTS_IOS : DIALOG_VARIANTS_ANDROID
+      }
     />
   );
 }

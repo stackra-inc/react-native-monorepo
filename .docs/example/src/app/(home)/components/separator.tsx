@@ -1,14 +1,17 @@
-import { Separator, Surface } from "heroui-native";
-import { View } from "react-native";
-import { AppText } from "../../../components/app-text";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
+import { Separator, Surface } from 'heroui-native';
+import { View } from 'react-native';
+import { AppText } from '../../../components/app-text';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
 
 const SeparatorInActionContent = () => {
   return (
     <View className="flex-1 items-center justify-center px-5">
       <Surface variant="secondary" className="px-6 py-7">
-        <AppText className="text-base font-medium text-foreground" maxFontSizeMultiplier={1.4}>
+        <AppText
+          className="text-base font-medium text-foreground"
+          maxFontSizeMultiplier={1.4}
+        >
           HeroUI Native
         </AppText>
         <AppText className="text-sm text-muted" maxFontSizeMultiplier={1.4}>
@@ -16,15 +19,24 @@ const SeparatorInActionContent = () => {
         </AppText>
         <Separator className="my-4" />
         <View className="flex-row items-center h-5">
-          <AppText className="text-sm text-foreground" maxFontSizeMultiplier={1.2}>
+          <AppText
+            className="text-sm text-foreground"
+            maxFontSizeMultiplier={1.2}
+          >
             Components
           </AppText>
           <Separator orientation="vertical" className="mx-3" />
-          <AppText className="text-sm text-foreground" maxFontSizeMultiplier={1.2}>
+          <AppText
+            className="text-sm text-foreground"
+            maxFontSizeMultiplier={1.2}
+          >
             Themes
           </AppText>
           <Separator orientation="vertical" className="mx-3" />
-          <AppText className="text-sm text-foreground" maxFontSizeMultiplier={1.2}>
+          <AppText
+            className="text-sm text-foreground"
+            maxFontSizeMultiplier={1.2}
+          >
             Examples
           </AppText>
         </View>
@@ -60,7 +72,9 @@ const OrientationContent = () => {
     <View className="flex-1 items-center justify-center px-5">
       <View className="gap-8 w-full">
         <View>
-          <AppText className="text-sm text-muted mb-2">Horizontal (default)</AppText>
+          <AppText className="text-sm text-muted mb-2">
+            Horizontal (default)
+          </AppText>
           <Separator />
         </View>
 
@@ -82,7 +96,9 @@ const CustomThicknessContent = () => {
     <View className="flex-1 items-center justify-center px-5">
       <View className="gap-8 w-full">
         <View>
-          <AppText className="text-sm text-muted mb-2">Default (hairline width)</AppText>
+          <AppText className="text-sm text-muted mb-2">
+            Default (hairline width)
+          </AppText>
           <Separator />
         </View>
 
@@ -117,7 +133,9 @@ const CustomColorsContent = () => {
     <View className="flex-1 items-center justify-center px-5">
       <View className="gap-8 w-full">
         <View>
-          <AppText className="text-sm text-muted mb-2">Custom Background Color</AppText>
+          <AppText className="text-sm text-muted mb-2">
+            Custom Background Color
+          </AppText>
           <Separator className="bg-accent" thickness={2} />
         </View>
 
@@ -144,28 +162,28 @@ const CustomColorsContent = () => {
 
 const SEPARATOR_VARIANTS: UsageVariant[] = [
   {
-    value: "separator-in-action",
-    label: "Separator in action",
+    value: 'separator-in-action',
+    label: 'Separator in action',
     content: <SeparatorInActionContent />,
   },
   {
-    value: "variants",
-    label: "Variants",
+    value: 'variants',
+    label: 'Variants',
     content: <VariantsContent />,
   },
   {
-    value: "orientation",
-    label: "Orientation",
+    value: 'orientation',
+    label: 'Orientation',
     content: <OrientationContent />,
   },
   {
-    value: "custom-thickness",
-    label: "Custom thickness",
+    value: 'custom-thickness',
+    label: 'Custom thickness',
     content: <CustomThicknessContent />,
   },
   {
-    value: "custom-colors",
-    label: "Custom colors",
+    value: 'custom-colors',
+    label: 'Custom colors',
     content: <CustomColorsContent />,
   },
 ];

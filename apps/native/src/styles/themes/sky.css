@@ -1,3 +1,33 @@
+/**
+ * Sky Theme — Serene Azure-Blue Palette
+ *
+ * A clean, professional theme with airy blue tones. Uses the Space Grotesk
+ * font family and oklch colours anchored at hue 225 (azure/sky blue).
+ *
+ * ## Variants
+ *
+ * | Variant     | Background         | Accent              | Radius  |
+ * |-------------|--------------------|---------------------|---------|
+ * | `sky-light` | Airy sky-blue wash | Bright azure blue   | 0.1rem  |
+ * | `sky-dark`  | Deep twilight blue | Electric cyan-blue  | 0.1rem  |
+ *
+ * ## Font Family
+ *
+ * Space Grotesk — must be loaded via `useFonts()` in the root layout when
+ * this theme is active. Font names use hyphenated format
+ * (e.g. `SpaceGrotesk-Regular`).
+ *
+ * ## Colour Strategy
+ *
+ * All colours use oklch() for perceptual uniformity. The hue channel is
+ * fixed at 225 for surfaces and accents, creating a cohesive blue
+ * atmosphere. The minimal border-radius (0.1rem) gives this theme a
+ * crisp, technical aesthetic.
+ *
+ * @see global.css — imports this file
+ * @see https://heroui.com/docs/native/getting-started/theming
+ */
+
 @layer theme {
   :root {
     @variant sky-light {

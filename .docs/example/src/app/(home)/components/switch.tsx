@@ -1,13 +1,24 @@
-import { Ionicons } from "@expo/vector-icons";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import { ControlField, Description, Label, Separator, Surface, Switch } from "heroui-native";
-import React from "react";
-import { View } from "react-native";
-import Animated, { FadeInLeft, FadeInRight, ZoomIn } from "react-native-reanimated";
-import { withUniwind } from "uniwind";
-import { AppText } from "../../../components/app-text";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
+import { Ionicons } from '@expo/vector-icons';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import {
+  ControlField,
+  Description,
+  Label,
+  Separator,
+  Surface,
+  Switch,
+} from 'heroui-native';
+import React from 'react';
+import { View } from 'react-native';
+import Animated, {
+  FadeInLeft,
+  FadeInRight,
+  ZoomIn,
+} from 'react-native-reanimated';
+import { withUniwind } from 'uniwind';
+import { AppText } from '../../../components/app-text';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
 
 const StyledIonicons = withUniwind(Ionicons);
 const StyledFontAwesome6 = withUniwind(FontAwesome6);
@@ -43,18 +54,21 @@ export const DefaultContent = () => {
     autoUpdate: true,
   });
 
-  const fieldConfigs: Record<keyof typeof fields, { title: string; description: string }> = {
+  const fieldConfigs: Record<
+    keyof typeof fields,
+    { title: string; description: string }
+  > = {
     notifications: {
-      title: "Enable notifications",
-      description: "Receive push notifications about your account activity",
+      title: 'Enable notifications',
+      description: 'Receive push notifications about your account activity',
     },
     darkMode: {
-      title: "Dark mode",
-      description: "Switch between light and dark theme",
+      title: 'Dark mode',
+      description: 'Switch between light and dark theme',
     },
     autoUpdate: {
-      title: "Auto-update",
-      description: "Automatically download and install updates",
+      title: 'Auto-update',
+      description: 'Automatically download and install updates',
     },
   };
 
@@ -96,12 +110,12 @@ const StatesContent = () => {
     { title: string; description: string; disabled?: boolean }
   > = {
     emailNotifications: {
-      title: "Email notifications",
-      description: "Receive notifications via email",
+      title: 'Email notifications',
+      description: 'Receive notifications via email',
     },
     pushNotifications: {
-      title: "Push notifications",
-      description: "This feature is currently unavailable",
+      title: 'Push notifications',
+      description: 'This feature is currently unavailable',
       disabled: true,
     },
   };
@@ -125,7 +139,9 @@ const StatesContent = () => {
             >
               <View className="flex-1">
                 <Label>
-                  <Label.Text maxFontSizeMultiplier={1.4}>{fieldConfigs[key].title}</Label.Text>
+                  <Label.Text maxFontSizeMultiplier={1.4}>
+                    {fieldConfigs[key].title}
+                  </Label.Text>
                 </Label>
                 <Description maxFontSizeMultiplier={1.4}>
                   {fieldConfigs[key].description}
@@ -154,7 +170,11 @@ const CustomStylesContent = () => {
           <Switch.Thumb>
             {icon ? (
               <Animated.View key="check" entering={ZoomIn}>
-                <StyledFontAwesome6 name="check" size={12} className="text-accent" />
+                <StyledFontAwesome6
+                  name="check"
+                  size={12}
+                  className="text-accent"
+                />
               </Animated.View>
             ) : (
               <Animated.View key="x" entering={ZoomIn}>
@@ -170,7 +190,7 @@ const CustomStylesContent = () => {
           className="w-[56px] h-[32px]"
           animation={{
             backgroundColor: {
-              value: ["#172554", "#eab308"],
+              value: ['#172554', '#eab308'],
             },
           }}
         >
@@ -190,14 +210,22 @@ const CustomStylesContent = () => {
           <Switch.StartContent className="left-2">
             {contentIcon && (
               <Animated.View key="sun" entering={ZoomIn.springify()}>
-                <StyledIonicons name="sunny" size={16} className="text-[#854d0e]" />
+                <StyledIonicons
+                  name="sunny"
+                  size={16}
+                  className="text-[#854d0e]"
+                />
               </Animated.View>
             )}
           </Switch.StartContent>
           <Switch.EndContent className="right-2">
             {!contentIcon && (
               <Animated.View key="moon" entering={ZoomIn.springify()}>
-                <StyledIonicons name="moon" size={16} className="text-[#dbeafe]" />
+                <StyledIonicons
+                  name="moon"
+                  size={16}
+                  className="text-[#dbeafe]"
+                />
               </Animated.View>
             )}
           </Switch.EndContent>
@@ -209,7 +237,7 @@ const CustomStylesContent = () => {
           className="w-[60px] h-[32px]"
           animation={{
             backgroundColor: {
-              value: ["#71717a", "#16a34a"],
+              value: ['#71717a', '#16a34a'],
             },
           }}
         >
@@ -225,14 +253,20 @@ const CustomStylesContent = () => {
                 },
               },
               backgroundColor: {
-                value: ["#fff", "#fff"],
+                value: ['#fff', '#fff'],
               },
             }}
           />
           <Switch.StartContent className="left-3">
             {contentText && (
-              <Animated.View key="sun" entering={FadeInRight.springify().duration(100)}>
-                <AppText className="text-xs font-bold text-white" maxFontSizeMultiplier={1}>
+              <Animated.View
+                key="sun"
+                entering={FadeInRight.springify().duration(100)}
+              >
+                <AppText
+                  className="text-xs font-bold text-white"
+                  maxFontSizeMultiplier={1}
+                >
                   ON
                 </AppText>
               </Animated.View>
@@ -240,8 +274,14 @@ const CustomStylesContent = () => {
           </Switch.StartContent>
           <Switch.EndContent className="right-2">
             {!contentText && (
-              <Animated.View key="moon" entering={FadeInLeft.springify().duration(100)}>
-                <AppText className="text-xs font-bold text-white" maxFontSizeMultiplier={1}>
+              <Animated.View
+                key="moon"
+                entering={FadeInLeft.springify().duration(100)}
+              >
+                <AppText
+                  className="text-xs font-bold text-white"
+                  maxFontSizeMultiplier={1}
+                >
                   OFF
                 </AppText>
               </Animated.View>
@@ -257,18 +297,18 @@ const CustomStylesContent = () => {
 
 const SWITCH_VARIANTS: UsageVariant[] = [
   {
-    value: "default",
-    label: "Default",
+    value: 'default',
+    label: 'Default',
     content: <DefaultContent />,
   },
   {
-    value: "states",
-    label: "States",
+    value: 'states',
+    label: 'States',
     content: <StatesContent />,
   },
   {
-    value: "custom-styles",
-    label: "Custom styles",
+    value: 'custom-styles',
+    label: 'Custom styles',
     content: <CustomStylesContent />,
   },
 ];

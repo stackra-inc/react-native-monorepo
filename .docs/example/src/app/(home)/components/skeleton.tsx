@@ -9,14 +9,14 @@ import {
   Skeleton,
   SkeletonGroup,
   type SkeletonAnimation,
-} from "heroui-native";
-import { useState } from "react";
-import { Image, Text, View } from "react-native";
-import Animated, { FadeInLeft, FadeOutRight } from "react-native-reanimated";
-import { AppText } from "../../../components/app-text";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
-import { WithStateToggle } from "../../../components/with-state-toggle";
+} from 'heroui-native';
+import { useState } from 'react';
+import { Image, Text, View } from 'react-native';
+import Animated, { FadeInLeft, FadeOutRight } from 'react-native-reanimated';
+import { AppText } from '../../../components/app-text';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { WithStateToggle } from '../../../components/with-state-toggle';
 
 const SkeletonControls = ({
   variant,
@@ -60,7 +60,7 @@ const SkeletonControls = ({
 
 const CardSkeletonContent = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [variant, setVariant] = useState<SkeletonAnimation>("shimmer");
+  const [variant, setVariant] = useState<SkeletonAnimation>('shimmer');
 
   return (
     <WithStateToggle
@@ -71,7 +71,11 @@ const CardSkeletonContent = () => {
     >
       <View className="flex-1">
         <View className="flex-1 justify-center">
-          <SkeletonGroup isLoading={isLoading} variant={variant} className="h-[360px]">
+          <SkeletonGroup
+            isLoading={isLoading}
+            variant={variant}
+            className="h-[360px]"
+          >
             <Card className="p-4">
               <Card.Header>
                 <View className="flex-row items-center gap-3 mb-4">
@@ -79,7 +83,7 @@ const CardSkeletonContent = () => {
                     <Avatar size="sm" alt="Avatar">
                       <Avatar.Image
                         source={{
-                          uri: "https://img.heroui.chat/image/avatar?w=400&h=400&u=4",
+                          uri: 'https://img.heroui.chat/image/avatar?w=400&h=400&u=4',
                         }}
                       />
                       <Avatar.Fallback />
@@ -101,7 +105,10 @@ const CardSkeletonContent = () => {
                         >
                           Sarah Mitchell
                         </AppText>
-                        <AppText className="text-sm text-muted" maxFontSizeMultiplier={1}>
+                        <AppText
+                          className="text-sm text-muted"
+                          maxFontSizeMultiplier={1}
+                        >
                           @mitchell
                         </AppText>
                       </View>
@@ -117,7 +124,10 @@ const CardSkeletonContent = () => {
                     </View>
                   )}
                   {!isLoading && (
-                    <AppText className="text-base text-foreground" maxFontSizeMultiplier={1}>
+                    <AppText
+                      className="text-base text-foreground"
+                      maxFontSizeMultiplier={1}
+                    >
                       Bridging the Future
                     </AppText>
                   )}
@@ -128,7 +138,7 @@ const CardSkeletonContent = () => {
                 <View className="h-48 bg-surface-secondary rounded-2xl overflow-hidden">
                   <Image
                     source={{
-                      uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/robot1.jpeg",
+                      uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/robot1.jpeg',
                     }}
                     className="h-full w-full"
                   />
@@ -152,7 +162,7 @@ const CardSkeletonContent = () => {
 
 const ListSkeletonContent = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [variant, setVariant] = useState<SkeletonAnimation>("shimmer");
+  const [variant, setVariant] = useState<SkeletonAnimation>('shimmer');
 
   return (
     <WithStateToggle
@@ -201,7 +211,7 @@ const ListSkeletonContent = () => {
 
 const TextSkeletonsContent = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [variant, setVariant] = useState<SkeletonAnimation>("shimmer");
+  const [variant, setVariant] = useState<SkeletonAnimation>('shimmer');
 
   return (
     <WithStateToggle
@@ -233,8 +243,9 @@ const TextSkeletonsContent = () => {
                 exiting={FadeOutRight.duration(200)}
               >
                 <AppText className="text-base text-foreground">
-                  The new productivity dashboard makes it easy to track daily tasks and goals. You
-                  can customize widgets and set smart reminders.
+                  The new productivity dashboard makes it easy to track daily
+                  tasks and goals. You can customize widgets and set smart
+                  reminders.
                 </AppText>
               </Animated.View>
             )}
@@ -255,7 +266,7 @@ const TextSkeletonsContent = () => {
 
 const CircularSkeletonsContent = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [variant, setVariant] = useState<SkeletonAnimation>("shimmer");
+  const [variant, setVariant] = useState<SkeletonAnimation>('shimmer');
 
   return (
     <WithStateToggle
@@ -276,7 +287,7 @@ const CircularSkeletonsContent = () => {
                 <Avatar size="sm" alt="Avatar">
                   <Avatar.Image
                     source={{
-                      uri: "https://img.heroui.chat/image/avatar?w=400&h=400&u=3",
+                      uri: 'https://img.heroui.chat/image/avatar?w=400&h=400&u=3',
                     }}
                   />
                   <Avatar.Fallback />
@@ -287,7 +298,7 @@ const CircularSkeletonsContent = () => {
                 <Avatar size="md" alt="Avatar">
                   <Avatar.Image
                     source={{
-                      uri: "https://img.heroui.chat/image/avatar?w=400&h=400&u=5",
+                      uri: 'https://img.heroui.chat/image/avatar?w=400&h=400&u=5',
                     }}
                   />
                   <Avatar.Fallback />
@@ -298,7 +309,7 @@ const CircularSkeletonsContent = () => {
                 <Avatar size="lg" alt="Avatar">
                   <Avatar.Image
                     source={{
-                      uri: "https://img.heroui.chat/image/avatar?w=400&h=400&u=20",
+                      uri: 'https://img.heroui.chat/image/avatar?w=400&h=400&u=20',
                     }}
                   />
                   <Avatar.Fallback />
@@ -339,13 +350,13 @@ const CustomShimmerConfigContent = () => {
             animation={{
               shimmer: {
                 duration: 2000,
-                highlightColor: "rgba(59, 130, 246, 0.3)",
+                highlightColor: 'rgba(59, 130, 246, 0.3)',
               },
             }}
           >
             <View
               className="h-16 bg-blue-500 rounded-2xl items-center justify-center"
-              style={{ borderCurve: "continuous" }}
+              style={{ borderCurve: 'continuous' }}
             >
               <Text className="text-white">Blue Shimmer</Text>
             </View>
@@ -359,13 +370,13 @@ const CustomShimmerConfigContent = () => {
               shimmer: {
                 duration: 1000,
                 speed: 2,
-                highlightColor: "rgba(34, 197, 94, 0.3)",
+                highlightColor: 'rgba(34, 197, 94, 0.3)',
               },
             }}
           >
             <View
               className="h-16 bg-green-500 rounded-2xl items-center justify-center"
-              style={{ borderCurve: "continuous" }}
+              style={{ borderCurve: 'continuous' }}
             >
               <Text className="text-white">Fast Green Shimmer</Text>
             </View>
@@ -404,7 +415,7 @@ const CustomPulseConfigContent = () => {
           >
             <View
               className="h-16 bg-purple-500 rounded-2xl items-center justify-center"
-              style={{ borderCurve: "continuous" }}
+              style={{ borderCurve: 'continuous' }}
             >
               <Text className="text-white">Fast Pulse</Text>
             </View>
@@ -424,7 +435,7 @@ const CustomPulseConfigContent = () => {
           >
             <View
               className="h-16 bg-orange-500 rounded-2xl items-center justify-center"
-              style={{ borderCurve: "continuous" }}
+              style={{ borderCurve: 'continuous' }}
             >
               <Text className="text-white">Slow Subtle Pulse</Text>
             </View>
@@ -439,33 +450,33 @@ const CustomPulseConfigContent = () => {
 
 const SKELETON_VARIANTS: UsageVariant[] = [
   {
-    value: "card-skeleton",
-    label: "Card skeleton",
+    value: 'card-skeleton',
+    label: 'Card skeleton',
     content: <CardSkeletonContent />,
   },
   {
-    value: "list-skeleton",
-    label: "List skeleton",
+    value: 'list-skeleton',
+    label: 'List skeleton',
     content: <ListSkeletonContent />,
   },
   {
-    value: "text-skeletons",
-    label: "Text skeletons",
+    value: 'text-skeletons',
+    label: 'Text skeletons',
     content: <TextSkeletonsContent />,
   },
   {
-    value: "circular-skeletons",
-    label: "Circular skeletons",
+    value: 'circular-skeletons',
+    label: 'Circular skeletons',
     content: <CircularSkeletonsContent />,
   },
   {
-    value: "custom-shimmer-config",
-    label: "Custom shimmer configuration",
+    value: 'custom-shimmer-config',
+    label: 'Custom shimmer configuration',
     content: <CustomShimmerConfigContent />,
   },
   {
-    value: "custom-pulse-config",
-    label: "Custom pulse configuration",
+    value: 'custom-pulse-config',
+    label: 'Custom pulse configuration',
     content: <CustomPulseConfigContent />,
   },
 ];

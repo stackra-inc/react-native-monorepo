@@ -1,14 +1,22 @@
-import Feather from "@expo/vector-icons/Feather";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import * as Haptics from "expo-haptics";
-import { Chip, cn, Dialog, Label, Radio, RadioGroup, useDialog } from "heroui-native";
-import { useState, type FC } from "react";
-import { Platform, View } from "react-native";
-import Animated, { FadeIn } from "react-native-reanimated";
-import { withUniwind } from "uniwind";
-import { useAppTheme } from "../../../../contexts/app-theme-context";
-import { DialogBlurBackdrop } from "../../../dialog-blur-backdrop";
-import { DialogHeader } from "../dialog-header";
+import Feather from '@expo/vector-icons/Feather';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import * as Haptics from 'expo-haptics';
+import {
+  Chip,
+  cn,
+  Dialog,
+  Label,
+  Radio,
+  RadioGroup,
+  useDialog,
+} from 'heroui-native';
+import { useState, type FC } from 'react';
+import { Platform, View } from 'react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
+import { withUniwind } from 'uniwind';
+import { useAppTheme } from '../../../../contexts/app-theme-context';
+import { DialogBlurBackdrop } from '../../../dialog-blur-backdrop';
+import { DialogHeader } from '../dialog-header';
 
 const StyledFeather = withUniwind(Feather);
 const StyledMaterialCommunityIcons = withUniwind(MaterialCommunityIcons);
@@ -31,7 +39,7 @@ const StatusRadioItem: FC<StatusRadioItemProps> = ({ item, value }) => {
     <RadioGroup.Item
       value={item.value}
       onPress={() => {
-        if (Platform.OS === "ios") {
+        if (Platform.OS === 'ios') {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         }
         onOpenChange(false);
@@ -47,7 +55,11 @@ const StatusRadioItem: FC<StatusRadioItemProps> = ({ item, value }) => {
         <Radio.Indicator className="border-none shadow-none bg-transparent">
           {value === item.value && (
             <Animated.View key={item.value} entering={FadeIn.duration(200)}>
-              <StyledFeather name="check" size={18} className="text-foreground" />
+              <StyledFeather
+                name="check"
+                size={18}
+                className="text-foreground"
+              />
             </Animated.View>
           )}
         </Radio.Indicator>
@@ -57,42 +69,58 @@ const StatusRadioItem: FC<StatusRadioItemProps> = ({ item, value }) => {
 };
 
 export const Status: FC = () => {
-  const [value, setValue] = useState("done");
+  const [value, setValue] = useState('done');
 
   const { isDark } = useAppTheme();
 
   const items: StatusItem[] = [
     {
-      value: "backlog",
-      label: "Backlog",
+      value: 'backlog',
+      label: 'Backlog',
       indicator: (
-        <StyledMaterialCommunityIcons name="circle-opacity" size={13} className="text-muted" />
+        <StyledMaterialCommunityIcons
+          name="circle-opacity"
+          size={13}
+          className="text-muted"
+        />
       ),
     },
     {
-      value: "todo",
-      label: "Todo",
+      value: 'todo',
+      label: 'Todo',
       indicator: (
-        <StyledMaterialCommunityIcons name="circle-outline" size={13} className="text-foreground" />
+        <StyledMaterialCommunityIcons
+          name="circle-outline"
+          size={13}
+          className="text-foreground"
+        />
       ),
     },
     {
-      value: "in-progress",
-      label: "In Progress",
+      value: 'in-progress',
+      label: 'In Progress',
       indicator: (
-        <StyledMaterialCommunityIcons name="circle-slice-4" size={13} className="text-warning" />
+        <StyledMaterialCommunityIcons
+          name="circle-slice-4"
+          size={13}
+          className="text-warning"
+        />
       ),
     },
     {
-      value: "in-review",
-      label: "In Review",
+      value: 'in-review',
+      label: 'In Review',
       indicator: (
-        <StyledMaterialCommunityIcons name="circle-slice-6" size={13} className="text-success" />
+        <StyledMaterialCommunityIcons
+          name="circle-slice-6"
+          size={13}
+          className="text-success"
+        />
       ),
     },
     {
-      value: "done",
-      label: "Done",
+      value: 'done',
+      label: 'Done',
       indicator: (
         <StyledMaterialCommunityIcons
           name="checkbox-marked-circle"
@@ -102,17 +130,25 @@ export const Status: FC = () => {
       ),
     },
     {
-      value: "cancelled",
-      label: "Cancelled",
+      value: 'cancelled',
+      label: 'Cancelled',
       indicator: (
-        <StyledMaterialCommunityIcons name="close-circle" size={13} className="text-muted" />
+        <StyledMaterialCommunityIcons
+          name="close-circle"
+          size={13}
+          className="text-muted"
+        />
       ),
     },
     {
-      value: "duplicate",
-      label: "Duplicate",
+      value: 'duplicate',
+      label: 'Duplicate',
       indicator: (
-        <StyledMaterialCommunityIcons name="close-circle" size={13} className="text-muted" />
+        <StyledMaterialCommunityIcons
+          name="close-circle"
+          size={13}
+          className="text-muted"
+        />
       ),
     },
   ];
@@ -121,9 +157,12 @@ export const Status: FC = () => {
     <Dialog>
       <Dialog.Trigger asChild>
         <Chip
-          className={cn("h-7 px-2", isDark ? "bg-neutral-900/50" : "bg-neutral-300/50")}
+          className={cn(
+            'h-7 px-2',
+            isDark ? 'bg-neutral-900/50' : 'bg-neutral-300/50'
+          )}
           onPress={() => {
-            if (Platform.OS === "ios") {
+            if (Platform.OS === 'ios') {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             }
           }}

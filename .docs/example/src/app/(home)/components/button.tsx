@@ -1,18 +1,24 @@
-import { LinearGradient } from "expo-linear-gradient";
-import { Button, cn, PressableFeedback, Spinner, useThemeColor } from "heroui-native";
-import React from "react";
-import { StyleSheet, View } from "react-native";
-import { FadeIn, LinearTransition } from "react-native-reanimated";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
-import { ArrowDownToSquareIcon } from "../../../components/icons/arrow-down-to-square";
-import { CircleInfoFillIcon } from "../../../components/icons/circle-info-fill";
-import { HeartFillIcon } from "../../../components/icons/heart-fill";
-import { PaperClipIcon } from "../../../components/icons/paper-clip";
-import { PlusIcon } from "../../../components/icons/plus";
-import { ShoppingCartIcon } from "../../../components/icons/shopping-cart";
-import { TrashIcon } from "../../../components/icons/trash";
-import { useAppTheme } from "../../../contexts/app-theme-context";
+import { LinearGradient } from 'expo-linear-gradient';
+import {
+  Button,
+  cn,
+  PressableFeedback,
+  Spinner,
+  useThemeColor,
+} from 'heroui-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { FadeIn, LinearTransition } from 'react-native-reanimated';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { ArrowDownToSquareIcon } from '../../../components/icons/arrow-down-to-square';
+import { CircleInfoFillIcon } from '../../../components/icons/circle-info-fill';
+import { HeartFillIcon } from '../../../components/icons/heart-fill';
+import { PaperClipIcon } from '../../../components/icons/paper-clip';
+import { PlusIcon } from '../../../components/icons/plus';
+import { ShoppingCartIcon } from '../../../components/icons/shopping-cart';
+import { TrashIcon } from '../../../components/icons/trash';
+import { useAppTheme } from '../../../contexts/app-theme-context';
 
 const SizesContent = () => {
   return (
@@ -52,8 +58,8 @@ const VariantsContent = () => {
 
 const DisabledStateContent = () => {
   const [themeColorAccent, themeColorAccentForeground] = useThemeColor([
-    "accent",
-    "accent-foreground",
+    'accent',
+    'accent-foreground',
   ]);
 
   return (
@@ -138,7 +144,10 @@ const IconOnlyContent = () => {
       <View className="flex-1 items-center justify-center">
         <View className="flex-row gap-8">
           <Button size="sm" isIconOnly>
-            <PaperClipIcon size={16} colorClassName="accent-accent-foreground" />
+            <PaperClipIcon
+              size={16}
+              colorClassName="accent-accent-foreground"
+            />
           </Button>
           <Button size="md" variant="secondary" isIconOnly>
             <HeartFillIcon size={18} colorClassName="accent-danger" />
@@ -166,7 +175,7 @@ const CustomStylingContent = () => {
             animation={{
               highlight: {
                 backgroundColor: {
-                  value: "#c084fc",
+                  value: '#c084fc',
                 },
                 opacity: {
                   value: [0, 0.5],
@@ -174,19 +183,21 @@ const CustomStylingContent = () => {
               },
             }}
           >
-            <Button.Label className="text-white font-semibold">Custom Purple</Button.Label>
+            <Button.Label className="text-white font-semibold">
+              Custom Purple
+            </Button.Label>
           </Button>
 
           <Button feedbackVariant="scale">
             <LinearGradient
-              colors={["#0d9488", "#ec4899"]}
+              colors={['#0d9488', '#ec4899']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={StyleSheet.absoluteFill}
             />
             <PressableFeedback.Ripple
               animation={{
-                backgroundColor: { value: "white" },
+                backgroundColor: { value: 'white' },
                 opacity: { value: [0, 0.5, 0] },
               }}
             />
@@ -195,14 +206,22 @@ const CustomStylingContent = () => {
             </Button.Label>
           </Button>
           <Button
-            className={cn("bg-neutral-950 rounded-md", isDark && "bg-neutral-50")}
+            className={cn(
+              'bg-neutral-950 rounded-md',
+              isDark && 'bg-neutral-50'
+            )}
             feedbackVariant="scale"
           >
             <ShoppingCartIcon
               size={18}
-              colorClassName={cn("accent-neutral-50", isDark && "accent-neutral-950")}
+              colorClassName={cn(
+                'accent-neutral-50',
+                isDark && 'accent-neutral-950'
+              )}
             />
-            <Button.Label className={cn("text-neutral-50", isDark && "text-neutral-950")}>
+            <Button.Label
+              className={cn('text-neutral-50', isDark && 'text-neutral-950')}
+            >
               Add to Cart
             </Button.Label>
           </Button>
@@ -231,7 +250,11 @@ const LayoutTransitionsContent = () => {
           }}
           isIconOnly={isDownloading}
         >
-          {isDownloading ? <Spinner entering={FadeIn.delay(50)} color="white" /> : "Download now"}
+          {isDownloading ? (
+            <Spinner entering={FadeIn.delay(50)} color="white" />
+          ) : (
+            'Download now'
+          )}
         </Button>
       </View>
     </View>
@@ -242,43 +265,43 @@ const LayoutTransitionsContent = () => {
 
 const BUTTON_VARIANTS: UsageVariant[] = [
   {
-    value: "sizes",
-    label: "Sizes",
+    value: 'sizes',
+    label: 'Sizes',
     content: <SizesContent />,
   },
   {
-    value: "variants",
-    label: "Variants",
+    value: 'variants',
+    label: 'Variants',
     content: <VariantsContent />,
   },
   {
-    value: "disabled-state",
-    label: "Disabled state",
+    value: 'disabled-state',
+    label: 'Disabled state',
     content: <DisabledStateContent />,
   },
   {
-    value: "width-alignment",
-    label: "Width/alignment control",
+    value: 'width-alignment',
+    label: 'Width/alignment control',
     content: <WidthAlignmentContent />,
   },
   {
-    value: "with-icons",
-    label: "With icons",
+    value: 'with-icons',
+    label: 'With icons',
     content: <WithIconsContent />,
   },
   {
-    value: "icon-only",
-    label: "Icon only",
+    value: 'icon-only',
+    label: 'Icon only',
     content: <IconOnlyContent />,
   },
   {
-    value: "custom-styling",
-    label: "Custom styling",
+    value: 'custom-styling',
+    label: 'Custom styling',
     content: <CustomStylingContent />,
   },
   {
-    value: "layout-transitions",
-    label: "Layout transitions demo",
+    value: 'layout-transitions',
+    label: 'Layout transitions demo',
     content: <LayoutTransitionsContent />,
   },
 ];

@@ -1,26 +1,29 @@
-import { Accordion, PressableFeedback, useAccordionItem } from "heroui-native";
-import { View } from "react-native";
+import { Accordion, PressableFeedback, useAccordionItem } from 'heroui-native';
+import { View } from 'react-native';
 import Animated, {
   Easing,
   FadeInLeft,
   FadeInRight,
   ZoomIn,
   ZoomOut,
-} from "react-native-reanimated";
-import { AccordionWithDepthEffect } from "../../../components/accordion/accordion-with-depth-effect";
-import { AppText } from "../../../components/app-text";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
-import { BoxIcon } from "../../../components/icons/box";
-import { MinusIcon } from "../../../components/icons/minus";
-import { PlanetEarthIcon } from "../../../components/icons/planet-earth";
-import { PlusIcon } from "../../../components/icons/plus";
-import { ReceiptIcon } from "../../../components/icons/receipt";
-import { ShoppingBagIcon } from "../../../components/icons/shopping-bag";
+} from 'react-native-reanimated';
+import { AccordionWithDepthEffect } from '../../../components/accordion/accordion-with-depth-effect';
+import { AppText } from '../../../components/app-text';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { BoxIcon } from '../../../components/icons/box';
+import { MinusIcon } from '../../../components/icons/minus';
+import { PlanetEarthIcon } from '../../../components/icons/planet-earth';
+import { PlusIcon } from '../../../components/icons/plus';
+import { ReceiptIcon } from '../../../components/icons/receipt';
+import { ShoppingBagIcon } from '../../../components/icons/shopping-bag';
 
 const TriggerTitle = ({ title }: { title: string }) => {
   return (
-    <AppText className="text-foreground text-base flex-1" maxFontSizeMultiplier={1}>
+    <AppText
+      className="text-foreground text-base flex-1"
+      maxFontSizeMultiplier={1}
+    >
       {title}
     </AppText>
   );
@@ -28,7 +31,10 @@ const TriggerTitle = ({ title }: { title: string }) => {
 
 const ContentText = ({ text }: { text: string }) => {
   return (
-    <AppText className="text-muted text-base/relaxed px-[28px]" maxFontSizeMultiplier={1}>
+    <AppText
+      className="text-muted text-base/relaxed px-[28px]"
+      maxFontSizeMultiplier={1}
+    >
       {text}
     </AppText>
   );
@@ -38,8 +44,12 @@ const ContentText = ({ text }: { text: string }) => {
 
 const ICON_SIZE = 16;
 
-const CUSTOM_INDICATOR_ENTERING = ZoomIn.duration(200).easing(Easing.inOut(Easing.ease));
-const CUSTOM_INDICATOR_EXITING = ZoomOut.duration(200).easing(Easing.inOut(Easing.ease));
+const CUSTOM_INDICATOR_ENTERING = ZoomIn.duration(200).easing(
+  Easing.inOut(Easing.ease)
+);
+const CUSTOM_INDICATOR_EXITING = ZoomOut.duration(200).easing(
+  Easing.inOut(Easing.ease)
+);
 
 const CustomIndicator = () => {
   const { isExpanded } = useAccordionItem();
@@ -71,38 +81,39 @@ const CustomIndicator = () => {
 
 const accordionData = [
   {
-    id: "1",
-    title: "How do I place an order?",
+    id: '1',
+    title: 'How do I place an order?',
     icon: <ShoppingBagIcon size={ICON_SIZE} colorClassName="accent-muted" />,
     content:
-      "Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl.",
+      'Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl.',
   },
   {
-    id: "2",
-    title: "Can I modify or cancel my order?",
+    id: '2',
+    title: 'Can I modify or cancel my order?',
     icon: <ReceiptIcon size={ICON_SIZE} colorClassName="accent-muted" />,
     content:
-      "Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl. Ornare imperdiet amet lorem adipiscing.",
+      'Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl. Ornare imperdiet amet lorem adipiscing.',
   },
   {
-    id: "3",
-    title: "How much does shipping cost?",
+    id: '3',
+    title: 'How much does shipping cost?',
     icon: <BoxIcon size={ICON_SIZE} colorClassName="accent-muted" />,
-    content: "Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat.",
+    content:
+      'Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat.',
   },
   {
-    id: "4",
-    title: "Do you ship internationally?",
+    id: '4',
+    title: 'Do you ship internationally?',
     icon: <PlanetEarthIcon size={ICON_SIZE} colorClassName="accent-muted" />,
     content:
-      "Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl. Ornare imperdiet amet lorem adipiscing.",
+      'Lorem ipsum dolor sit amet consectetur. Netus nunc mauris risus consequat. Libero placerat dignissim consectetur nisl. Ornare imperdiet amet lorem adipiscing.',
   },
 ];
 
 // ------------------------------------------------------------------------------
 
 const classNames = {
-  triggerContentContainer: "flex-row items-center flex-1 gap-3",
+  triggerContentContainer: 'flex-row items-center flex-1 gap-3',
 };
 
 // ------------------------------------------------------------------------------
@@ -115,12 +126,16 @@ const DefaultVariantContent = () => {
           <Accordion.Item key={item.id} value={item.id}>
             <Accordion.Trigger asChild>
               <PressableFeedback animation={{ scale: false }}>
-                <PressableFeedback.Scale className={classNames.triggerContentContainer}>
+                <PressableFeedback.Scale
+                  className={classNames.triggerContentContainer}
+                >
                   {item.icon}
                   <TriggerTitle title={item.title} />
                 </PressableFeedback.Scale>
                 <Accordion.Indicator />
-                <PressableFeedback.Highlight animation={{ opacity: { value: [0, 0.05] } }} />
+                <PressableFeedback.Highlight
+                  animation={{ opacity: { value: [0, 0.05] } }}
+                />
               </PressableFeedback>
             </Accordion.Trigger>
             <Accordion.Content>
@@ -166,7 +181,7 @@ const MultipleSelectionContent = () => {
       <Accordion
         selectionMode="multiple"
         variant="surface"
-        defaultValue={["1", "3"]}
+        defaultValue={['1', '3']}
         className="w-full"
       >
         {accordionData.slice(0, 3).map((item) => (
@@ -295,38 +310,38 @@ const WithDepthEffectContent = () => {
 
 const ACCORDION_VARIANTS: UsageVariant[] = [
   {
-    value: "default-variant",
-    label: "Default variant",
+    value: 'default-variant',
+    label: 'Default variant',
     content: <DefaultVariantContent />,
   },
   {
-    value: "surface-variant",
-    label: "Surface variant",
+    value: 'surface-variant',
+    label: 'Surface variant',
     content: <SurfaceVariantContent />,
   },
   {
-    value: "multiple-selection",
-    label: "Multiple selection",
+    value: 'multiple-selection',
+    label: 'Multiple selection',
     content: <MultipleSelectionContent />,
   },
   {
-    value: "without-separators",
-    label: "Without separators",
+    value: 'without-separators',
+    label: 'Without separators',
     content: <WithoutSeparatorsContent />,
   },
   {
-    value: "custom-indicator",
-    label: "Custom indicator",
+    value: 'custom-indicator',
+    label: 'Custom indicator',
     content: <CustomIndicatorContent />,
   },
   {
-    value: "custom-entering-animation",
-    label: "Custom entering animation",
+    value: 'custom-entering-animation',
+    label: 'Custom entering animation',
     content: <CustomEnteringAnimationContent />,
   },
   {
-    value: "with-depth-effect",
-    label: "With depth effect",
+    value: 'with-depth-effect',
+    label: 'With depth effect',
     content: <WithDepthEffectContent />,
   },
 ];

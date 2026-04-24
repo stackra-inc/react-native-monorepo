@@ -1,14 +1,14 @@
-import { FieldError, Input, Label, TextField } from "heroui-native";
-import { useState } from "react";
-import { View } from "react-native";
-import { FadeInDown } from "react-native-reanimated";
-import { AppText } from "../../../components/app-text";
-import type { UsageVariant } from "../../../components/component-presentation/types";
-import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
-import { CircleInfoFillIcon } from "../../../components/icons/circle-info-fill";
-import { DiamondExclamationFillIcon } from "../../../components/icons/diamond-exclamation-fill";
-import { XMarkFillIcon } from "../../../components/icons/x-mark-fill";
-import { WithStateToggle } from "../../../components/with-state-toggle";
+import { FieldError, Input, Label, TextField } from 'heroui-native';
+import { useState } from 'react';
+import { View } from 'react-native';
+import { FadeInDown } from 'react-native-reanimated';
+import { AppText } from '../../../components/app-text';
+import type { UsageVariant } from '../../../components/component-presentation/types';
+import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { CircleInfoFillIcon } from '../../../components/icons/circle-info-fill';
+import { DiamondExclamationFillIcon } from '../../../components/icons/diamond-exclamation-fill';
+import { XMarkFillIcon } from '../../../components/icons/x-mark-fill';
+import { WithStateToggle } from '../../../components/with-state-toggle';
 
 const BasicFieldErrorContent = () => {
   const [slideError, setSlideError] = useState(false);
@@ -23,7 +23,11 @@ const BasicFieldErrorContent = () => {
       <View className="flex-1 pt-[55%]">
         <TextField isInvalid={slideError} isRequired>
           <Label isInvalid={false}>Username</Label>
-          <Input placeholder="Enter username" editable={false} isInvalid={false} />
+          <Input
+            placeholder="Enter username"
+            editable={false}
+            isInvalid={false}
+          />
           <FieldError>Username is already taken</FieldError>
         </TextField>
       </View>
@@ -45,11 +49,18 @@ const MultipleErrorsContent = () => {
         <View className="gap-2">
           <TextField>
             <Label>Create Password</Label>
-            <Input placeholder="Enter your password" secureTextEntry editable={false} />
+            <Input
+              placeholder="Enter your password"
+              secureTextEntry
+              editable={false}
+            />
           </TextField>
 
           <View className="gap-2 ml-1">
-            <FieldError isInvalid={showMultipleErrors} textProps={{ maxFontSizeMultiplier: 1 }}>
+            <FieldError
+              isInvalid={showMultipleErrors}
+              textProps={{ maxFontSizeMultiplier: 1 }}
+            >
               • At least 8 characters long
             </FieldError>
             <FieldError
@@ -114,7 +125,12 @@ const InlineErrorMessagesContent = () => {
         <TextField>
           <Label>Phone Number</Label>
           <View className="flex-row items-center gap-2">
-            <Input placeholder="+1 (555) 000-0000" value="" editable={false} className="flex-1" />
+            <Input
+              placeholder="+1 (555) 000-0000"
+              value=""
+              editable={false}
+              className="flex-1"
+            />
             <FieldError isInvalid={true}>
               <View className="flex-row items-center gap-1">
                 <CircleInfoFillIcon size={14} colorClassName="accent-danger" />
@@ -136,7 +152,7 @@ const CustomStylingContent = () => {
           isInvalid={true}
           className="bg-danger/10 p-3 rounded-xl border border-danger/20"
           classNames={{
-            text: "text-danger font-semibold text-sm",
+            text: 'text-danger font-semibold text-sm',
           }}
         >
           Server connection failed. Please try again.
@@ -146,7 +162,7 @@ const CustomStylingContent = () => {
           isInvalid={true}
           className="bg-amber-500/10 p-2 rounded"
           classNames={{
-            text: "text-amber-600 text-xs italic",
+            text: 'text-amber-600 text-xs italic',
           }}
         >
           Session will expire in 5 minutes
@@ -156,7 +172,7 @@ const CustomStylingContent = () => {
           isInvalid={true}
           className="border-l-4 border-danger pl-2"
           classNames={{
-            text: "text-danger text-sm",
+            text: 'text-danger text-sm',
           }}
         >
           Invalid credentials provided
@@ -173,21 +189,30 @@ const CustomTextWithIconsContent = () => {
         <FieldError isInvalid={true}>
           <View className="flex-row items-center gap-2">
             <XMarkFillIcon size={16} colorClassName="accent-danger" />
-            <AppText className="text-danger text-sm">Payment method declined</AppText>
+            <AppText className="text-danger text-sm">
+              Payment method declined
+            </AppText>
           </View>
         </FieldError>
 
         <FieldError isInvalid={true}>
           <View className="flex-row items-center gap-2">
-            <DiamondExclamationFillIcon size={16} colorClassName="accent-warning" />
-            <AppText className="text-warning text-sm">Account verification pending</AppText>
+            <DiamondExclamationFillIcon
+              size={16}
+              colorClassName="accent-warning"
+            />
+            <AppText className="text-warning text-sm">
+              Account verification pending
+            </AppText>
           </View>
         </FieldError>
 
         <FieldError isInvalid={true}>
           <View className="flex-row items-center gap-2">
             <CircleInfoFillIcon size={16} colorClassName="accent-foreground" />
-            <AppText className="text-foreground text-sm">Profile completion required</AppText>
+            <AppText className="text-foreground text-sm">
+              Profile completion required
+            </AppText>
           </View>
         </FieldError>
       </View>
@@ -197,28 +222,28 @@ const CustomTextWithIconsContent = () => {
 
 const FIELD_ERROR_VARIANTS: UsageVariant[] = [
   {
-    value: "basic-field-error",
-    label: "Basic FieldError",
+    value: 'basic-field-error',
+    label: 'Basic FieldError',
     content: <BasicFieldErrorContent />,
   },
   {
-    value: "multiple-errors",
-    label: "Multiple errors",
+    value: 'multiple-errors',
+    label: 'Multiple errors',
     content: <MultipleErrorsContent />,
   },
   {
-    value: "inline-error-messages",
-    label: "Inline error messages",
+    value: 'inline-error-messages',
+    label: 'Inline error messages',
     content: <InlineErrorMessagesContent />,
   },
   {
-    value: "custom-styling",
-    label: "Custom styling",
+    value: 'custom-styling',
+    label: 'Custom styling',
     content: <CustomStylingContent />,
   },
   {
-    value: "custom-text-with-icons",
-    label: "Custom text with icons",
+    value: 'custom-text-with-icons',
+    label: 'Custom text with icons',
     content: <CustomTextWithIconsContent />,
   },
 ];

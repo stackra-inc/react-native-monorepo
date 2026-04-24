@@ -1,4 +1,4 @@
-import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import {
   Avatar,
   BottomSheet,
@@ -9,17 +9,17 @@ import {
   useBottomSheetAwareHandlers,
   useToast,
   type InputOTPRef,
-} from "heroui-native";
-import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { View } from "react-native";
-import { KeyboardController } from "react-native-keyboard-controller";
-import { AppText } from "../app-text";
+} from 'heroui-native';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { View } from 'react-native';
+import { KeyboardController } from 'react-native-keyboard-controller';
+import { AppText } from '../app-text';
 
 /**
  * Formats a phone number for display
  */
 const formatPhoneNumber = (phone: string): string => {
-  const cleaned = phone.replace(/\D/g, "");
+  const cleaned = phone.replace(/\D/g, '');
   const match = cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/);
   if (match) {
     return `+${match[1]} ${match[2]} ${match[3]} ${match[4]}`;
@@ -53,12 +53,16 @@ const BottomSheetInputOTP = memo(
       <View className="gap-6 items-center">
         <Avatar size="lg" color="accent" variant="soft" alt="Verification icon">
           <Avatar.Fallback>
-            <AppText className="text-2xl text-foreground font-semibold">✓</AppText>
+            <AppText className="text-2xl text-foreground font-semibold">
+              ✓
+            </AppText>
           </Avatar.Fallback>
         </Avatar>
 
         <View className="gap-1 items-center px-2">
-          <Label className="text-2xl font-semibold text-center">Verify your phone number</Label>
+          <Label className="text-2xl font-semibold text-center">
+            Verify your phone number
+          </Label>
           <Description className="text-base text-center text-muted">
             We sent a verification code to
           </Description>
@@ -93,7 +97,7 @@ const BottomSheetInputOTP = memo(
         </View>
       </View>
     );
-  },
+  }
 );
 
 /**
@@ -102,12 +106,12 @@ const BottomSheetInputOTP = memo(
  */
 const OTPBottomSheetContent = () => {
   const otpRef = useRef<InputOTPRef>(null);
-  const [otpValue, setOtpValue] = useState("");
+  const [otpValue, setOtpValue] = useState('');
   const [isVerifying, setIsVerifying] = useState(false);
   const [resendTimer, setResendTimer] = useState(0);
   const { toast } = useToast();
 
-  const phoneNumber = "+12345678900";
+  const phoneNumber = '+12345678900';
 
   /**
    * Starts the resend timer countdown
@@ -134,17 +138,17 @@ const OTPBottomSheetContent = () => {
 
       setIsVerifying(false);
       toast.show({
-        variant: "success",
-        label: "Phone verified",
-        description: "Your phone number has been successfully verified.",
+        variant: 'success',
+        label: 'Phone verified',
+        description: 'Your phone number has been successfully verified.',
       });
 
       setTimeout(() => {
-        setOtpValue("");
+        setOtpValue('');
         otpRef.current?.clear();
       }, 2000);
     },
-    [toast],
+    [toast]
   );
 
   /**
@@ -154,12 +158,12 @@ const OTPBottomSheetContent = () => {
     if (resendTimer > 0) return;
 
     setResendTimer(60);
-    setOtpValue("");
+    setOtpValue('');
     otpRef.current?.clear();
     toast.show({
-      variant: "success",
-      label: "Code sent",
-      description: "A new verification code has been sent to your phone.",
+      variant: 'success',
+      label: 'Code sent',
+      description: 'A new verification code has been sent to your phone.',
     });
   }, [resendTimer, toast]);
 
@@ -171,9 +175,9 @@ const OTPBottomSheetContent = () => {
       handleComplete(otpValue);
     } else {
       toast.show({
-        variant: "warning",
-        label: "Incomplete code",
-        description: "Please enter all 6 digits to continue.",
+        variant: 'warning',
+        label: 'Incomplete code',
+        description: 'Please enter all 6 digits to continue.',
       });
     }
   }, [otpValue, handleComplete, toast]);
@@ -182,7 +186,7 @@ const OTPBottomSheetContent = () => {
     <BottomSheet.Content
       onClose={() => {
         KeyboardController.dismiss();
-        setOtpValue("");
+        setOtpValue('');
         setResendTimer(0);
       }}
     >
@@ -205,20 +209,27 @@ const OTPBottomSheetContent = () => {
             onPress={handleVerify}
             isDisabled={isVerifying || otpValue.length !== 6}
           >
-            {isVerifying ? "Verifying..." : "Verify Code"}
+            {isVerifying ? 'Verifying...' : 'Verify Code'}
           </Button>
 
           <View className="flex-row items-center justify-center mt-2">
-            <AppText className="text-sm text-muted text-center">Didn't receive the code?</AppText>
-            <Button variant="ghost" size="sm" onPress={handleResend} isDisabled={resendTimer > 0}>
-              {resendTimer > 0 ? `Resend in ${resendTimer}s` : "Resend"}
+            <AppText className="text-sm text-muted text-center">
+              Didn't receive the code?
+            </AppText>
+            <Button
+              variant="ghost"
+              size="sm"
+              onPress={handleResend}
+              isDisabled={resendTimer > 0}
+            >
+              {resendTimer > 0 ? `Resend in ${resendTimer}s` : 'Resend'}
             </Button>
           </View>
         </View>
         <View className="mt-8 px-2">
           <AppText className="text-xs text-muted text-center leading-5">
-            By continuing, you agree to receive SMS messages for verification. Message and data
-            rates may apply.
+            By continuing, you agree to receive SMS messages for verification.
+            Message and data rates may apply.
           </AppText>
         </View>
       </BottomSheetScrollView>
@@ -240,7 +251,9 @@ export const WithOTPInputContent = () => {
           </BottomSheet.Trigger>
           <BottomSheet.Portal>
             <BottomSheet.Overlay onPress={() => KeyboardController.dismiss()} />
-            <BottomSheet.Title className="sr-only">Phone Number Verification</BottomSheet.Title>
+            <BottomSheet.Title className="sr-only">
+              Phone Number Verification
+            </BottomSheet.Title>
             <OTPBottomSheetContent />
           </BottomSheet.Portal>
         </BottomSheet>
