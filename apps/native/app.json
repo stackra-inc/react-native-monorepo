@@ -9,6 +9,8 @@
     "newArchEnabled": true,
     "platforms": ["ios", "android"],
 
+    "icon": "./assets/ios-icon-light.png",
+
     "ios": {
       "icon": {
         "dark": "./assets/ios-icon-dark.png",

@@ -44,10 +44,21 @@
 /* ── Source Scanning ─────────────────────────────────────────────────────── */
 
 /*
- * Tell Tailwind to scan the compiled HeroUI library for class names.
- * Without this directive HeroUI's internal utility classes would be
- * purged during the build and components would render unstyled.
+ * Tell Tailwind where to scan for class names. Since global.css lives in
+ * `src/styles/`, Tailwind only auto-scans from this directory. We must
+ * explicitly include all directories that contain className usage:
+ *
+ * 1. App source — screens, components, layouts in `src/app/` and `src/`
+ * 2. @repo/ui   — shared UI package with HeroUI wrappers
+ * 3. heroui-native/lib — compiled HeroUI component library
+ *
+ * Without these directives, Tailwind purges all classes it can't find
+ * and components render completely unstyled.
  */
+@source "../app";
+@source "../screens";
+@source "../components";
+@source "../../../../packages/ui/src";
 @source "../../node_modules/heroui-native/lib";
 
 /* ── Default Theme (light / dark) ────────────────────────────────────────── */

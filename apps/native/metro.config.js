@@ -66,6 +66,21 @@ const config = {
     ],
 
     /**
+     * Force Metro to resolve all packages from the workspace root.
+     * Prevents "Unexpectedly escaped traversal" errors when pnpm's
+     * .pnpm store resolves transitive deps outside the project root.
+     */
+    extraNodeModules: new Proxy(
+      {},
+      {
+        get: (_target, name) => {
+          if (typeof name !== "string") return undefined;
+          return path.join(workspaceRoot, "node_modules", name);
+        },
+      },
+    ),
+
+    /**
      * Register additional asset extensions for fonts and vector graphics.
      * Metro needs these to bundle font files and SVGs as assets.
      */
@@ -85,6 +100,9 @@ module.exports = withUniwindConfig(wrapWithReanimatedMetroConfig(config), {
 
   /** Path where Uniwind generates TypeScript theme type declarations */
   dtsFile: "./src/types/uniwind.d.ts",
+
+  /** Enable debug mode to identify CSS processing issues */
+  debug: true,
 
   /**
    * Custom theme variants registered with Uniwind.
