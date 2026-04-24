@@ -25,8 +25,8 @@
  */
 
 import React from "react";
-import { HeroUINativeProvider } from "heroui-native";
-import type { HeroUINativeConfig } from "heroui-native";
+import { HeroUINativeProvider } from "./hero-ui-native";
+import type { HeroUINativeConfig } from "./hero-ui-native";
 import { ThemeProvider } from "./theme-provider";
 
 /**

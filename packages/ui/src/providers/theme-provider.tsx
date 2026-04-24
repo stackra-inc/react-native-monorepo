@@ -89,6 +89,7 @@ export function ThemeProvider({ children }: ThemeProviderProps): React.JSX.Eleme
    * via ThemeService.
    */
   const toggleTheme = useCallback((): void => {
+    console.log("[ThemeProvider] toggleTheme called");
     ThemeFacade.toggleTheme(ThemeTransitionPreset.Fade);
   }, []);
 

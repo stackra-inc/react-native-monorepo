@@ -45,7 +45,14 @@ export function ThemeSwitcher(): React.JSX.Element {
 
   // Read all registered themes from the registry via ThemeFacade
   const themes: ThemeDefinition[] = useMemo(() => {
-    return ThemeFacade.getRegisteredThemes();
+    try {
+      const result = ThemeFacade.getRegisteredThemes();
+      console.log("[ThemeSwitcher] getRegisteredThemes:", result?.length, "themes");
+      return result;
+    } catch (e) {
+      console.log("[ThemeSwitcher] getRegisteredThemes FAILED:", e);
+      return [];
+    }
   }, [currentTheme]);
 
   /**
