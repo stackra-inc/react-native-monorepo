@@ -103,13 +103,13 @@ All file names use **lower-kebab-case** with a mandatory suffix:
 - Never use `import type` for values used as injection tokens
 
 ```typescript
-import 'reflect-metadata';
-import axios from 'axios';
-import { Str } from '@stackra/ts-support';
-import { Injectable, Inject } from '@stackra/ts-container';
-import type { InjectionToken, Type } from '@/interfaces';
-import { CACHE_CONFIG } from '@/constants';
-import { InstanceWrapper } from './instance-wrapper';
+import "reflect-metadata";
+import axios from "axios";
+import { Str } from "@stackra/ts-support";
+import { Injectable, Inject } from "@stackra/ts-container";
+import type { InjectionToken, Type } from "@/interfaces";
+import { CACHE_CONFIG } from "@/constants";
+import { InstanceWrapper } from "./instance-wrapper";
 ```
 
 ---
@@ -140,7 +140,7 @@ name.charAt(0).toUpperCase() + name.slice(1);
 
 ```typescript
 // ✅ Correct
-import { defineMetadata, getMetadata } from '@vivtel/metadata';
+import { defineMetadata, getMetadata } from "@vivtel/metadata";
 defineMetadata(KEY, value, target);
 
 // ❌ Forbidden
@@ -218,10 +218,10 @@ Every folder with multiple files must have an `index.ts` barrel:
 
 ```typescript
 // Use `export type` for interfaces and types
-export type { ClassProvider } from './class-provider.interface';
+export type { ClassProvider } from "./class-provider.interface";
 
 // Use `export` for classes, functions, enums, constants
-export { Scope } from './scope.enum';
+export { Scope } from "./scope.enum";
 ```
 
 Root `src/index.ts` uses section headers:
@@ -230,12 +230,12 @@ Root `src/index.ts` uses section headers:
 // ============================================================================
 // Core Services
 // ============================================================================
-export { CacheManager } from './services/cache-manager.service';
+export { CacheManager } from "./services/cache-manager.service";
 
 // ============================================================================
 // Facades
 // ============================================================================
-export { CacheFacade } from './facades';
+export { CacheFacade } from "./facades";
 ```
 
 ---
