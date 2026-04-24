@@ -40,3 +40,4 @@ allowBuilds:
   esbuild: true # JavaScript bundler (used by tsup, Vite)
   sharp: true # Image processing (used by expo-image)
   unrs-resolver: true # Module resolver (used by eslint)
+  uniwind-pro: true # Uniwind Pro native C++ engine

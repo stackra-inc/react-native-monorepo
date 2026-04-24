@@ -30,7 +30,7 @@ import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardAvoidingView, KeyboardProvider } from "react-native-keyboard-controller";
 
-import "../../global.css";
+import "@/styles/global.css";
 import { bootstrap } from "@/bootstrap";
 
 // ── Splash Screen ───────────────────────────────────────────────────────────

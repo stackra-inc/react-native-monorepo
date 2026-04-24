@@ -92,7 +92,14 @@
       "tailwind-variants": "3.2.2",
       "tailwind-merge": "3.4.0",
       "typescript": "5.9.2"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@zowe/secrets-for-zowe-sdk",
+      "esbuild",
+      "sharp",
+      "uniwind-pro",
+      "unrs-resolver"
+    ]
   },
   "dependencies": {
     "expo": "~55.0.17",
