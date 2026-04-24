@@ -827,3 +827,56 @@ class HttpModule {}
 
 All features are **production-ready** and follow NestJS patterns for
 familiarity.
+
+---
+
+## Critical: Babel Metadata Plugin (React Native)
+
+In React Native projects using Metro/Babel (not `tsc`), the
+`babel-plugin-transform-typescript-metadata` plugin is **REQUIRED** for
+constructor injection to work. Without it, Babel strips TypeScript type
+information and the container receives `undefined` for constructor parameters.
+
+### babel.config.js — Required Plugin Order
+
+```javascript
+plugins: [
+  "babel-plugin-transform-typescript-metadata", // MUST be first
+  ["@babel/plugin-proposal-decorators", { legacy: true }], // decorators second
+  // ... other plugins (module-resolver, worklets, etc.)
+];
+```
+
+### Why This Is Needed
+
+TypeScript's `emitDecoratorMetadata` compiler option only works with `tsc`.
+Metro uses Babel to compile TypeScript, which does NOT emit
+`Reflect.defineMetadata("design:paramtypes", ...)` calls by default. The
+`babel-plugin-transform-typescript-metadata` plugin bridges this gap.
+
+**Without the plugin:**
+
+```typescript
+@Injectable()
+class ThemeService {
+  constructor(private readonly _registry: ThemeRegistry) {}
+  // _registry will be undefined — container can't determine the type
+}
+```
+
+**With the plugin:**
+
+```typescript
+@Injectable()
+class ThemeService {
+  constructor(private readonly _registry: ThemeRegistry) {}
+  // _registry correctly injected — Babel emits design:paramtypes metadata
+}
+```
+
+### Symptoms of Missing Plugin
+
+- `Cannot read property 'getAll' of undefined` on registry access
+- `Cannot read property 'findByVariant' of undefined` on service methods
+- Constructor parameters are `undefined` despite `@Injectable()` decorator
+- DI container creates instances but doesn't inject dependencies

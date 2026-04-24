@@ -1,57 +1,66 @@
 ---
-title: Testing Standards
-inclusion: auto
+inclusion: fileMatch
+fileMatchPattern: "**/*.test.ts,**/*.test.tsx,**/jest.config.*"
 ---
 
 # Testing Standards
 
-## File Location
+## Test Runner
 
-- Tests live in `__tests__/` directory at the package root
-- Test files use `.test.ts` or `.test.tsx` extension (NOT `.spec.ts`)
-- Setup file: `__tests__/vitest.setup.ts`
-- Type declarations: `__tests__/setup.d.ts`
+- **Jest** for unit and integration tests
+- **jest-expo** preset for React Native compatibility
+- **@testing-library/react-native** for component tests
 
-## Vitest Configuration
+## Running Tests
 
-Every package MUST have a `vitest.config.ts` with:
+```bash
+# All tests
+npm test
 
-- `globals: true` — no need to import describe/it/expect
-- `environment: 'jsdom'` — for React and DOM-dependent code
-- `passWithNoTests: true` — CI won't fail during initial development
-- `setupFiles` pointing to the setup file
-- Path alias `@` → `./src`
+# Watch mode
+npm run test:watch
+
+# Coverage
+npm run test:coverage
+
+# Single package
+npx turbo run test --filter=@repo/ui
+```
+
+## File Naming
+
+- Test files: `*.test.ts` or `*.test.tsx`
+- Co-located with source: `button.test.tsx` next to `button.tsx`
+- Or in `__tests__/` directory
 
 ## Test Structure
 
 ```typescript
-describe("ServiceName", () => {
-  describe("methodName", () => {
-    it("should do X when Y", () => {
-      // Arrange
-      // Act
-      // Assert
-    });
+describe("ThemeService", () => {
+  let service: ThemeService;
+
+  beforeEach(() => {
+    service = new ThemeService(mockRegistry);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("should initialize with light theme by default", async () => {
+    await service.initialize();
+    expect(service.currentTheme).toBe("light");
   });
 });
 ```
 
-## DI Mocking
-
-The setup file MUST mock `@stackra/ts-container` decorators:
+## Mocking DI Services
 
 ```typescript
-vi.mock("@stackra/ts-container", async () => {
-  const actual = await vi.importActual("@stackra/ts-container");
-  return {
-    ...actual,
-    Injectable: () => (target: any) => target,
-    Inject: () => () => {},
-    Module: () => (target: any) => target,
-  };
+import { clearMetadata } from "@vivtel/metadata";
+
+afterEach(() => {
+  clearMetadata(undefined, TestService);
+  Facade.clearResolvedInstances();
 });
 ```
-
-## Coverage
-
-Target: 80%+ line coverage. Use `pnpm test:coverage` to check.
