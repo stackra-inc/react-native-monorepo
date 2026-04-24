@@ -104,8 +104,6 @@ process_package() {
   apply_template "$pkg_dir" "eslint.config.ts"           "eslint.config.ts"           "$pkg_name"
   apply_template "$pkg_dir" "vitest.config.ts"           "vitest.config.ts"           "$pkg_name"
   apply_template "$pkg_dir" ".gitignore"                 ".gitignore"                 "$pkg_name"
-  apply_template "$pkg_dir" "__tests__/setup.d.ts"       "__tests__/setup.d.ts"       "$pkg_name"
-  apply_template "$pkg_dir" "__tests__/vitest.setup.ts"  "__tests__/vitest.setup.ts"  "$pkg_name"
 
   # Clean up old config file formats
   rm -f "$pkg_dir/.prettierrc.js" 2>/dev/null
