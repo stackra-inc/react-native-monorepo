@@ -30,7 +30,6 @@ import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardAvoidingView, KeyboardProvider } from "react-native-keyboard-controller";
 
-import { ThemeProvider } from "@repo/ui";
 import "../styles/global.css";
 import { bootstrap } from "@/bootstrap";
 
@@ -101,9 +100,7 @@ function AppContent() {
   return (
     <ContainerProvider>
       <HeroUINativeProvider config={config}>
-        <ThemeProvider>
-          <Slot />
-        </ThemeProvider>
+        <Slot />
       </HeroUINativeProvider>
     </ContainerProvider>
   );

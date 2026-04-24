@@ -1,9 +1,10 @@
 /**
  * UIProvider — Root provider for the shared UI layer.
  *
- * Wraps `HeroUINativeProvider` with sensible defaults for the monorepo.
- * Every app should render a single `<UIProvider>` at its root layout,
- * inside a `<GestureHandlerRootView>`.
+ * Wraps `HeroUINativeProvider` and `ThemeProvider` with sensible
+ * defaults for the monorepo. Every app should render a single
+ * `<UIProvider>` at its root layout, inside a
+ * `<GestureHandlerRootView>`.
  *
  * ## Architecture
  *
@@ -15,7 +16,9 @@
  *               ├── GlobalAnimationSettingsProvider
  *               ├── TextComponentProvider
  *               ├── ToastProvider
- *               └── PortalHost
+ *               ├── PortalHost
+ *               └── ThemeProvider
+ *                     └── children
  * ```
  *
  * @module providers/ui-provider
@@ -24,6 +27,7 @@
 import React from "react";
 import { HeroUINativeProvider } from "heroui-native";
 import type { HeroUINativeConfig } from "heroui-native";
+import { ThemeProvider } from "./theme-provider";
 
 /**
  * Props accepted by {@link UIProvider}.
@@ -93,5 +97,9 @@ const DEFAULT_CONFIG: HeroUINativeConfig = {
 export function UIProvider({ children, config }: UIProviderProps): React.JSX.Element {
   const mergedConfig = config ?? DEFAULT_CONFIG;
 
-  return <HeroUINativeProvider config={mergedConfig}>{children}</HeroUINativeProvider>;
+  return (
+    <HeroUINativeProvider config={mergedConfig}>
+      <ThemeProvider>{children}</ThemeProvider>
+    </HeroUINativeProvider>
+  );
 }
