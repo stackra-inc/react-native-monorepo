@@ -1,15 +1,15 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Toast, useThemeColor, type ToastComponentProps } from 'heroui-native';
-import { useEffect } from 'react';
-import { View } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
+import { Toast, useThemeColor, type ToastComponentProps } from "heroui-native";
+import { useEffect } from "react";
+import { View } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withRepeat,
   withSequence,
   withTiming,
-} from 'react-native-reanimated';
-import { withUniwind } from 'uniwind';
+} from "react-native-reanimated";
+import { withUniwind } from "uniwind";
 
 const StyleAnimatedView = withUniwind(Animated.View);
 const StyledIonicons = withUniwind(Ionicons);
@@ -21,7 +21,7 @@ const StyledIonicons = withUniwind(Ionicons);
 export const AchievementToast = (props: ToastComponentProps) => {
   const { id, hide } = props;
 
-  const themeColorWarning = useThemeColor('warning');
+  const themeColorWarning = useThemeColor("warning");
 
   /**
    * Auto-hide toast after 5 seconds
@@ -49,36 +49,24 @@ export const AchievementToast = (props: ToastComponentProps) => {
    */
   useEffect(() => {
     confetti1.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 800 }),
-        withTiming(0, { duration: 800 })
-      ),
+      withSequence(withTiming(1, { duration: 800 }), withTiming(0, { duration: 800 })),
       -1,
-      false
+      false,
     );
     confetti2.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 1000 }),
-        withTiming(0, { duration: 1000 })
-      ),
+      withSequence(withTiming(1, { duration: 1000 }), withTiming(0, { duration: 1000 })),
       -1,
-      false
+      false,
     );
     confetti3.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 1200 }),
-        withTiming(0, { duration: 1200 })
-      ),
+      withSequence(withTiming(1, { duration: 1200 }), withTiming(0, { duration: 1200 })),
       -1,
-      false
+      false,
     );
     confetti4.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 900 }),
-        withTiming(0, { duration: 900 })
-      ),
+      withSequence(withTiming(1, { duration: 900 }), withTiming(0, { duration: 900 })),
       -1,
-      false
+      false,
     );
   }, [confetti1, confetti2, confetti3, confetti4]);
 
@@ -159,33 +147,22 @@ export const AchievementToast = (props: ToastComponentProps) => {
           <StyledIonicons name="flame" size={48} className="text-orange-500" />
           <View className="absolute -right-1 -top-1 size-6 items-center justify-center rounded-full bg-yellow-400">
             <View className="size-5 items-center justify-center">
-              <StyledIonicons
-                name="star"
-                size={16}
-                className="text-yellow-600"
-              />
+              <StyledIonicons name="star" size={16} className="text-yellow-600" />
             </View>
           </View>
         </View>
 
         {/* Text content */}
         <View className="flex-1 flex-col gap-1">
-          <Toast.Title className="text-xs font-medium text-[#2D3748]">
-            New achievement!
-          </Toast.Title>
+          <Toast.Title className="text-xs font-medium text-[#2D3748]">New achievement!</Toast.Title>
           <Toast.Title className="text-base font-bold text-[#2D3748]">
             You're on a 1-day
           </Toast.Title>
-          <Toast.Title className="text-base font-bold text-[#2D3748]">
-            study streak
-          </Toast.Title>
+          <Toast.Title className="text-base font-bold text-[#2D3748]">study streak</Toast.Title>
         </View>
 
         {/* Close button */}
-        <Toast.Close
-          className="absolute right-0 top-0"
-          iconProps={{ color: themeColorWarning }}
-        />
+        <Toast.Close className="absolute right-0 top-0" iconProps={{ color: themeColorWarning }} />
       </View>
     </Toast>
   );

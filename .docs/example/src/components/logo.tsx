@@ -1,5 +1,5 @@
-import React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import React from "react";
+import Svg, { Path } from "react-native-svg";
 
 interface LogoProps {
   /**
@@ -23,11 +23,7 @@ interface LogoProps {
  * Logo component - HeroUI logo SVG
  * Accepts themeColorForeground prop to dynamically color the logo based on theme
  */
-export const Logo: React.FC<LogoProps> = ({
-  themeColorForeground,
-  width = 156,
-  height = 216,
-}) => {
+export const Logo: React.FC<LogoProps> = ({ themeColorForeground, width = 156, height = 216 }) => {
   return (
     <Svg width={width} height={height} viewBox="0 0 156 216" fill="none">
       <Path

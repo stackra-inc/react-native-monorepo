@@ -1,20 +1,13 @@
-import { Description, FieldError, Label, SearchField } from 'heroui-native';
-import { useState } from 'react';
-import { Text, useWindowDimensions, View } from 'react-native';
-import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
-import Animated, {
-  useAnimatedStyle,
-  withTiming,
-} from 'react-native-reanimated';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
-import { WithStateToggle } from '../../../components/with-state-toggle';
+import { Description, FieldError, Label, SearchField } from "heroui-native";
+import { useState } from "react";
+import { Text, useWindowDimensions, View } from "react-native";
+import { useReanimatedKeyboardAnimation } from "react-native-keyboard-controller";
+import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
+import { WithStateToggle } from "../../../components/with-state-toggle";
 
-const KeyboardAvoidingContainer = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+const KeyboardAvoidingContainer = ({ children }: { children: React.ReactNode }) => {
   const { height } = useWindowDimensions();
 
   const { progress } = useReanimatedKeyboardAnimation();
@@ -37,7 +30,7 @@ const KeyboardAvoidingContainer = ({
 // ------------------------------------------------------------------------------
 
 const BasicSearchFieldContent = () => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
 
   return (
     <View className="flex-1 justify-center px-5">
@@ -57,7 +50,7 @@ const BasicSearchFieldContent = () => {
 // ------------------------------------------------------------------------------
 
 const WithDescriptionContent = () => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
 
   return (
     <View className="flex-1 justify-center px-5">
@@ -80,7 +73,7 @@ const WithDescriptionContent = () => {
 
 const WithValidationContent = () => {
   const [isInvalid, setIsInvalid] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
 
   return (
     <WithStateToggle
@@ -103,12 +96,8 @@ const WithValidationContent = () => {
               <SearchField.Input />
               <SearchField.ClearButton />
             </SearchField.Group>
-            <Description hideOnInvalid>
-              Enter at least 3 characters to search
-            </Description>
-            <FieldError>
-              No results found. Please try a different search term.
-            </FieldError>
+            <Description hideOnInvalid>Enter at least 3 characters to search</Description>
+            <FieldError>No results found. Please try a different search term.</FieldError>
           </SearchField>
         </KeyboardAvoidingContainer>
       </View>
@@ -119,7 +108,7 @@ const WithValidationContent = () => {
 // ------------------------------------------------------------------------------
 
 const CustomSearchIconContent = () => {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
 
   return (
     <View className="flex-1 justify-center px-5">
@@ -145,7 +134,7 @@ const CustomSearchIconContent = () => {
 // ------------------------------------------------------------------------------
 
 const DisabledContent = () => {
-  const [activeValue, setActiveValue] = useState('');
+  const [activeValue, setActiveValue] = useState("");
 
   return (
     <View className="flex-1 justify-center px-5">
@@ -179,28 +168,28 @@ const DisabledContent = () => {
 
 const SEARCH_FIELD_VARIANTS: UsageVariant[] = [
   {
-    value: 'basic-search-field',
-    label: 'Basic search field',
+    value: "basic-search-field",
+    label: "Basic search field",
     content: <BasicSearchFieldContent />,
   },
   {
-    value: 'with-label-and-description',
-    label: 'With label & description',
+    value: "with-label-and-description",
+    label: "With label & description",
     content: <WithDescriptionContent />,
   },
   {
-    value: 'with-validation',
-    label: 'With validation',
+    value: "with-validation",
+    label: "With validation",
     content: <WithValidationContent />,
   },
   {
-    value: 'custom-search-icon',
-    label: 'Custom search icon',
+    value: "custom-search-icon",
+    label: "Custom search icon",
     content: <CustomSearchIconContent />,
   },
   {
-    value: 'disabled',
-    label: 'Disabled',
+    value: "disabled",
+    label: "Disabled",
     content: <DisabledContent />,
   },
 ];

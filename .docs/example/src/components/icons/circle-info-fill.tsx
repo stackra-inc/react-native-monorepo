@@ -1,7 +1,7 @@
-import React from 'react';
-import Svg, { Path, Rect } from 'react-native-svg';
-import { withUniwind } from 'uniwind';
-import type { IconProps } from '../../helpers/types/icons';
+import React from "react";
+import Svg, { Path, Rect } from "react-native-svg";
+import { withUniwind } from "uniwind";
+import type { IconProps } from "../../helpers/types/icons";
 
 /**
  * CircleInfoFill icon component - React Native SVG implementation
@@ -9,7 +9,7 @@ import type { IconProps } from '../../helpers/types/icons';
  */
 const CircleInfoFillIconComponent: React.FC<IconProps> = ({
   size = 20,
-  color = 'currentColor',
+  color = "currentColor",
 }) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16">
@@ -38,7 +38,7 @@ const CircleInfoFillIconComponent: React.FC<IconProps> = ({
  */
 export const CircleInfoFillIcon = withUniwind(CircleInfoFillIconComponent, {
   color: {
-    fromClassName: 'colorClassName',
-    styleProperty: 'accentColor',
+    fromClassName: "colorClassName",
+    styleProperty: "accentColor",
   },
 });

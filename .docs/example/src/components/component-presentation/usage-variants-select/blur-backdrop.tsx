@@ -1,14 +1,9 @@
-import { useSelect } from 'heroui-native';
-import { useEffect } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
-import {
-  interpolate,
-  useDerivedValue,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
-import { useAppTheme } from '../../../contexts/app-theme-context';
-import { AnimatedBlurView } from '../../animated-blur-view';
+import { useSelect } from "heroui-native";
+import { useEffect } from "react";
+import { Pressable, StyleSheet } from "react-native";
+import { interpolate, useDerivedValue, useSharedValue, withTiming } from "react-native-reanimated";
+import { useAppTheme } from "../../../contexts/app-theme-context";
+import { AnimatedBlurView } from "../../animated-blur-view";
 
 type Props = {
   maxIntensity?: number;
@@ -24,7 +19,7 @@ export const BlurBackdrop = ({ maxIntensity }: Props) => {
     progress.set(
       withTiming(isOpen ? 1 : 0, {
         duration: 200,
-      })
+      }),
     );
   }, [isOpen, progress]);
 
@@ -36,13 +31,10 @@ export const BlurBackdrop = ({ maxIntensity }: Props) => {
   });
 
   return (
-    <Pressable
-      style={StyleSheet.absoluteFill}
-      onPress={() => onOpenChange(false)}
-    >
+    <Pressable style={StyleSheet.absoluteFill} onPress={() => onOpenChange(false)}>
       <AnimatedBlurView
         blurIntensity={blurIntensity}
-        tint={isDark ? 'dark' : 'light'}
+        tint={isDark ? "dark" : "light"}
         style={StyleSheet.absoluteFill}
       />
     </Pressable>

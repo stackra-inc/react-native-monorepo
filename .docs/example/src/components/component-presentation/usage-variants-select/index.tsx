@@ -1,23 +1,17 @@
-import * as Haptics from 'expo-haptics';
-import { LinearGradient } from 'expo-linear-gradient';
-import { colorKit, Select, useThemeColor } from 'heroui-native';
-import {
-  FlatList,
-  Platform,
-  StyleSheet,
-  useWindowDimensions,
-  View,
-} from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import Animated, { SlideInDown } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { withUniwind } from 'uniwind';
-import type { UsageVariant } from '../types';
-import { BlurBackdrop } from './blur-backdrop';
-import { CloseButton } from './close-button';
-import { SelectContentContainer } from './select-content-container';
-import { SelectItem } from './select-item';
-import { TriggerButton } from './trigger-button';
+import * as Haptics from "expo-haptics";
+import { LinearGradient } from "expo-linear-gradient";
+import { colorKit, Select, useThemeColor } from "heroui-native";
+import { FlatList, Platform, StyleSheet, useWindowDimensions, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import Animated, { SlideInDown } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { withUniwind } from "uniwind";
+import type { UsageVariant } from "../types";
+import { BlurBackdrop } from "./blur-backdrop";
+import { CloseButton } from "./close-button";
+import { SelectContentContainer } from "./select-content-container";
+import { SelectItem } from "./select-item";
+import { TriggerButton } from "./trigger-button";
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 const StyledAnimatedScrollView = withUniwind(AnimatedScrollView);
@@ -29,16 +23,11 @@ type Props = {
   listRef: React.RefObject<FlatList<UsageVariant> | null>;
 };
 
-export const UsageVariantsSelect = ({
-  data,
-  variant,
-  setVariant,
-  listRef,
-}: Props) => {
+export const UsageVariantsSelect = ({ data, variant, setVariant, listRef }: Props) => {
   const insets = useSafeAreaInsets();
   const { height: screenHeight } = useWindowDimensions();
 
-  const themeColorSurface = useThemeColor('surface');
+  const themeColorSurface = useThemeColor("surface");
 
   return (
     <Select
@@ -61,7 +50,7 @@ export const UsageVariantsSelect = ({
         isDisabled={data.length === 1}
         hitSlop={12}
         onPress={() => {
-          if (Platform.OS === 'ios') {
+          if (Platform.OS === "ios") {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           }
         }}
@@ -69,7 +58,7 @@ export const UsageVariantsSelect = ({
         <TriggerButton />
       </Select.Trigger>
       <Select.Portal>
-        {Platform.OS === 'android' ? (
+        {Platform.OS === "android" ? (
           <Select.Overlay className="bg-background" />
         ) : (
           <BlurBackdrop />
@@ -87,10 +76,7 @@ export const UsageVariantsSelect = ({
             contentContainerClassName="gap-2 px-4"
             contentContainerStyle={{ paddingBottom: insets.bottom + 80 }}
           >
-            <Select.Close
-              className="h-auto w-auto bg-transparent"
-              animation={{ highlight: false }}
-            >
+            <Select.Close className="h-auto w-auto bg-transparent" animation={{ highlight: false }}>
               <View style={{ height: insets.top + screenHeight * 0.25 }} />
             </Select.Close>
             {data.map((m) => (
@@ -98,17 +84,11 @@ export const UsageVariantsSelect = ({
             ))}
           </StyledAnimatedScrollView>
           <LinearGradient
-            colors={[
-              themeColorSurface,
-              colorKit.setAlpha(themeColorSurface, 0).hex(),
-            ]}
+            colors={[themeColorSurface, colorKit.setAlpha(themeColorSurface, 0).hex()]}
             style={[styles.topGradient, { height: insets.top + 100 }]}
           />
           <LinearGradient
-            colors={[
-              colorKit.setAlpha(themeColorSurface, 0).hex(),
-              themeColorSurface,
-            ]}
+            colors={[colorKit.setAlpha(themeColorSurface, 0).hex(), themeColorSurface]}
             style={[styles.bottomGradient, { height: insets.bottom + 100 }]}
           />
           <CloseButton />
@@ -120,17 +100,17 @@ export const UsageVariantsSelect = ({
 
 const styles = StyleSheet.create({
   topGradient: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
-    pointerEvents: 'none',
+    pointerEvents: "none",
   },
   bottomGradient: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
-    pointerEvents: 'none',
+    pointerEvents: "none",
   },
 });

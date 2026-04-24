@@ -1,8 +1,8 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { BottomSheet, Button } from 'heroui-native';
-import { useState } from 'react';
-import { View } from 'react-native';
-import { withUniwind } from 'uniwind';
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { BottomSheet, Button } from "heroui-native";
+import { useState } from "react";
+import { View } from "react-native";
+import { withUniwind } from "uniwind";
 
 const StyledIonicons = withUniwind(Ionicons);
 
@@ -23,20 +23,13 @@ export const BasicBottomSheetContent = () => {
             <BottomSheet.Content>
               <View className="items-center mb-5">
                 <View className="size-20 items-center justify-center rounded-full bg-green-500/10">
-                  <StyledIonicons
-                    name="shield-checkmark"
-                    size={40}
-                    className="text-green-500"
-                  />
+                  <StyledIonicons name="shield-checkmark" size={40} className="text-green-500" />
                 </View>
               </View>
               <View className="mb-8 gap-2 items-center">
-                <BottomSheet.Title className="text-center">
-                  Keep yourself safe
-                </BottomSheet.Title>
+                <BottomSheet.Title className="text-center">Keep yourself safe</BottomSheet.Title>
                 <BottomSheet.Description className="text-center">
-                  Update your software to the latest version for better security
-                  and performance.
+                  Update your software to the latest version for better security and performance.
                 </BottomSheet.Description>
               </View>
               <View className="gap-3">

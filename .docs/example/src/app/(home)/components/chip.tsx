@@ -1,12 +1,12 @@
-import { LinearGradient } from 'expo-linear-gradient';
-import { Chip } from 'heroui-native';
-import { StyleSheet, View } from 'react-native';
-import { AppText } from '../../../components/app-text';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
-import { PlusIcon } from '../../../components/icons/plus';
-import { StarFillIcon } from '../../../components/icons/star-fill';
-import { XMarkIcon } from '../../../components/icons/x-mark';
+import { LinearGradient } from "expo-linear-gradient";
+import { Chip } from "heroui-native";
+import { StyleSheet, View } from "react-native";
+import { AppText } from "../../../components/app-text";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
+import { PlusIcon } from "../../../components/icons/plus";
+import { StarFillIcon } from "../../../components/icons/star-fill";
+import { XMarkIcon } from "../../../components/icons/x-mark";
 
 const SizesContent = () => {
   return (
@@ -231,12 +231,7 @@ const WithEndContentContent = () => {
           <Chip.Label>Remove</Chip.Label>
           <XMarkIcon size={14} colorClassName="accent-danger-foreground" />
         </Chip>
-        <Chip
-          size="lg"
-          variant="secondary"
-          color="default"
-          className="pr-1.5 p-0.5 pl-2 gap-2"
-        >
+        <Chip size="lg" variant="secondary" color="default" className="pr-1.5 p-0.5 pl-2 gap-2">
           <Chip.Label className="text-muted">Clear</Chip.Label>
           <View className="rounded-full p-1 bg-muted/20">
             <XMarkIcon size={12} colorClassName="accent-muted" />
@@ -256,16 +251,13 @@ const CustomStylingContent = () => {
         <Chip className="bg-purple-600 px-6">
           <Chip.Label className="text-background text-base">Custom</Chip.Label>
         </Chip>
-        <Chip
-          variant="secondary"
-          className="border-purple-600 bg-purple-100 rounded-sm"
-        >
+        <Chip variant="secondary" className="border-purple-600 bg-purple-100 rounded-sm">
           <Chip.Label className="text-purple-800">Purple</Chip.Label>
         </Chip>
 
         <Chip>
           <LinearGradient
-            colors={['#ec4899', '#8b5cf6']}
+            colors={["#ec4899", "#8b5cf6"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={StyleSheet.absoluteFill}
@@ -275,7 +267,7 @@ const CustomStylingContent = () => {
 
         <Chip size="lg">
           <LinearGradient
-            colors={['#10b981', '#3b82f6']}
+            colors={["#10b981", "#3b82f6"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={StyleSheet.absoluteFill}
@@ -285,7 +277,7 @@ const CustomStylingContent = () => {
 
         <Chip>
           <LinearGradient
-            colors={['#f59e0b', '#ef4444']}
+            colors={["#f59e0b", "#ef4444"]}
             start={{ x: 0, y: 0.5 }}
             end={{ x: 1, y: 0.5 }}
             style={StyleSheet.absoluteFill}
@@ -301,48 +293,48 @@ const CustomStylingContent = () => {
 
 const CHIP_VARIANTS: UsageVariant[] = [
   {
-    value: 'sizes',
-    label: 'Sizes',
+    value: "sizes",
+    label: "Sizes",
     content: <SizesContent />,
   },
   {
-    value: 'variants',
-    label: 'Variants',
+    value: "variants",
+    label: "Variants",
     content: <VariantsContent />,
   },
   {
-    value: 'primary-variant-colors',
-    label: 'Primary variant colors',
+    value: "primary-variant-colors",
+    label: "Primary variant colors",
     content: <PrimaryVariantColorsContent />,
   },
   {
-    value: 'secondary-variant-colors',
-    label: 'Secondary variant colors',
+    value: "secondary-variant-colors",
+    label: "Secondary variant colors",
     content: <SecondaryVariantColorsContent />,
   },
   {
-    value: 'tertiary-variant-colors',
-    label: 'Tertiary variant colors',
+    value: "tertiary-variant-colors",
+    label: "Tertiary variant colors",
     content: <TertiaryVariantColorsContent />,
   },
   {
-    value: 'soft-variant-colors',
-    label: 'Soft variant colors',
+    value: "soft-variant-colors",
+    label: "Soft variant colors",
     content: <SoftVariantColorsContent />,
   },
   {
-    value: 'with-start-content',
-    label: 'With start content',
+    value: "with-start-content",
+    label: "With start content",
     content: <WithStartContentContent />,
   },
   {
-    value: 'with-end-content',
-    label: 'With end content',
+    value: "with-end-content",
+    label: "With end content",
     content: <WithEndContentContent />,
   },
   {
-    value: 'custom-styling',
-    label: 'Custom styling',
+    value: "custom-styling",
+    label: "Custom styling",
     content: <CustomStylingContent />,
   },
 ];

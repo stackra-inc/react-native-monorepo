@@ -1,18 +1,18 @@
-import Feather from '@expo/vector-icons/Feather';
-import * as Haptics from 'expo-haptics';
-import { Checkbox, Chip, cn, ControlField, Dialog, Label } from 'heroui-native';
-import { useMemo, useState, type FC } from 'react';
-import { Platform, useWindowDimensions, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
-import Animated, { FadeIn } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { withUniwind } from 'uniwind';
-import { useAppTheme } from '../../../../contexts/app-theme-context';
-import { AppText } from '../../../app-text';
-import { DialogBlurBackdrop } from '../../../dialog-blur-backdrop';
-import { DialogHeader } from '../dialog-header';
-import { SearchBar } from '../search-bar';
+import Feather from "@expo/vector-icons/Feather";
+import * as Haptics from "expo-haptics";
+import { Checkbox, Chip, cn, ControlField, Dialog, Label } from "heroui-native";
+import { useMemo, useState, type FC } from "react";
+import { Platform, useWindowDimensions, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { KeyboardAvoidingView } from "react-native-keyboard-controller";
+import Animated, { FadeIn } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { withUniwind } from "uniwind";
+import { useAppTheme } from "../../../../contexts/app-theme-context";
+import { AppText } from "../../../app-text";
+import { DialogBlurBackdrop } from "../../../dialog-blur-backdrop";
+import { DialogHeader } from "../dialog-header";
+import { SearchBar } from "../search-bar";
 
 const StyledFeather = withUniwind(Feather);
 const StyledScrollView = withUniwind(ScrollView);
@@ -24,10 +24,8 @@ type LabelItem = {
 };
 
 export const Labels: FC = () => {
-  const [selectedValues, setSelectedValues] = useState<Set<string>>(
-    new Set(['feature'])
-  );
-  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedValues, setSelectedValues] = useState<Set<string>>(new Set(["feature"]));
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
@@ -39,39 +37,37 @@ export const Labels: FC = () => {
   const items: LabelItem[] = useMemo(
     () => [
       {
-        value: 'feature',
-        label: 'Feature',
+        value: "feature",
+        label: "Feature",
         indicator: <View className="size-2.5 rounded-full bg-purple-400" />,
       },
       {
-        value: 'bug',
-        label: 'Bug',
+        value: "bug",
+        label: "Bug",
         indicator: <View className="size-2.5 rounded-full bg-red-400" />,
       },
       {
-        value: 'chore',
-        label: 'Chore',
+        value: "chore",
+        label: "Chore",
         indicator: <View className="size-2.5 rounded-full bg-orange-200" />,
       },
       {
-        value: 'improvement',
-        label: 'Improvement',
+        value: "improvement",
+        label: "Improvement",
         indicator: <View className="size-2.5 rounded-full bg-blue-400" />,
       },
       {
-        value: 'refactor',
-        label: 'Refactor',
+        value: "refactor",
+        label: "Refactor",
         indicator: <View className="size-2.5 rounded-full bg-cyan-400" />,
       },
     ],
-    []
+    [],
   );
 
   const filteredItems = useMemo(() => {
     if (!searchQuery) return items;
-    return items.filter((item) =>
-      item.label.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    return items.filter((item) => item.label.toLowerCase().includes(searchQuery.toLowerCase()));
   }, [searchQuery, items]);
 
   const selectedItems = useMemo(() => {
@@ -89,7 +85,7 @@ export const Labels: FC = () => {
       return newSet;
     });
 
-    if (Platform.OS === 'ios') {
+    if (Platform.OS === "ios") {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
   };
@@ -121,9 +117,9 @@ export const Labels: FC = () => {
 
   const getChipLabel = () => {
     if (selectedItems.length === 0) {
-      return 'No labels';
+      return "No labels";
     } else if (selectedItems.length === 1) {
-      return selectedItems[0]?.label ?? 'No labels';
+      return selectedItems[0]?.label ?? "No labels";
     } else {
       return `${selectedItems.length} labels`;
     }
@@ -133,28 +129,21 @@ export const Labels: FC = () => {
     <Dialog>
       <Dialog.Trigger asChild>
         <Chip
-          className={cn(
-            'h-7 px-2',
-            isDark ? 'bg-neutral-900/50' : 'bg-neutral-300/50'
-          )}
+          className={cn("h-7 px-2", isDark ? "bg-neutral-900/50" : "bg-neutral-300/50")}
           onPress={() => {
-            if (Platform.OS === 'ios') {
+            if (Platform.OS === "ios") {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             }
           }}
         >
           {renderStackedIndicators()}
-          <Chip.Label className="text-foreground font-medium">
-            {getChipLabel()}
-          </Chip.Label>
+          <Chip.Label className="text-foreground font-medium">{getChipLabel()}</Chip.Label>
         </Chip>
       </Dialog.Trigger>
       <Dialog.Portal>
         <DialogBlurBackdrop />
         <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={24}>
-          <Dialog.Content
-            style={{ marginTop: insetTop, height: dialogContentHeight }}
-          >
+          <Dialog.Content style={{ marginTop: insetTop, height: dialogContentHeight }}>
             <DialogHeader>Labels</DialogHeader>
             <SearchBar
               value={searchQuery}
@@ -163,9 +152,7 @@ export const Labels: FC = () => {
             />
             {filteredItems.length === 0 && (
               <View className="flex-1 items-center justify-center">
-                <AppText className="text-base font-medium text-muted">
-                  No results
-                </AppText>
+                <AppText className="text-base font-medium text-muted">No results</AppText>
               </View>
             )}
             {filteredItems.length > 0 && (
@@ -182,9 +169,7 @@ export const Labels: FC = () => {
                       <ControlField
                         key={item.value}
                         isSelected={isSelected}
-                        onSelectedChange={(selected) =>
-                          handleSelectionChange(item.value, selected)
-                        }
+                        onSelectedChange={(selected) => handleSelectionChange(item.value, selected)}
                       >
                         <View className="flex-row items-center gap-2 flex-1">
                           <View className="w-5 pl-0.5 justify-center">

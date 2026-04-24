@@ -1,20 +1,14 @@
-import Feather from '@expo/vector-icons/Feather';
-import {
-  cn,
-  Spinner,
-  Toast,
-  useThemeColor,
-  type ToastComponentProps,
-} from 'heroui-native';
-import { useEffect } from 'react';
-import { View } from 'react-native';
-import { LinearTransition } from 'react-native-reanimated';
-import { withUniwind } from 'uniwind';
-import { useSharedState } from './use-shared-state';
+import Feather from "@expo/vector-icons/Feather";
+import { cn, Spinner, Toast, useThemeColor, type ToastComponentProps } from "heroui-native";
+import { useEffect } from "react";
+import { View } from "react-native";
+import { LinearTransition } from "react-native-reanimated";
+import { withUniwind } from "uniwind";
+import { useSharedState } from "./use-shared-state";
 
 const StyledFeather = withUniwind(Feather);
 
-const LOADING_STATE_KEY = 'loading-toast-state';
+const LOADING_STATE_KEY = "loading-toast-state";
 
 /**
  * Hook to access and update shared loading state
@@ -26,7 +20,7 @@ const LOADING_STATE_KEY = 'loading-toast-state';
 export const useLoadingState = () => {
   const { state: isLoading, setState: setIsLoading } = useSharedState<boolean>(
     LOADING_STATE_KEY,
-    false
+    false,
   );
 
   return { isLoading, setIsLoading };
@@ -41,7 +35,7 @@ export const LoadingToast = (props: ToastComponentProps) => {
   const { id, hide } = props;
   const { isLoading } = useLoadingState();
 
-  const themeColorMuted = useThemeColor('muted');
+  const themeColorMuted = useThemeColor("muted");
 
   useEffect(() => {
     if (!isLoading) {
@@ -56,8 +50,8 @@ export const LoadingToast = (props: ToastComponentProps) => {
       // @ts-ignore
       layout={LinearTransition.springify().mass(2)}
       className={cn(
-        'mx-auto flex-row gap-3 rounded-full p-2',
-        isLoading ? 'w-[130px]' : 'w-[200px]'
+        "mx-auto flex-row gap-3 rounded-full p-2",
+        isLoading ? "w-[130px]" : "w-[200px]",
       )}
       isSwipeable={false}
       {...props}
@@ -65,8 +59,8 @@ export const LoadingToast = (props: ToastComponentProps) => {
       <View className="flex-1 flex-row items-center gap-2">
         <View
           className={cn(
-            'size-7 items-center justify-center rounded-full',
-            isLoading ? 'bg-muted/10' : 'bg-success/10'
+            "size-7 items-center justify-center rounded-full",
+            isLoading ? "bg-muted/10" : "bg-success/10",
           )}
         >
           {isLoading ? (
@@ -76,13 +70,10 @@ export const LoadingToast = (props: ToastComponentProps) => {
           )}
         </View>
         <Toast.Title
-          className={cn(
-            'text-sm',
-            isLoading ? 'text-muted/75' : 'text-success'
-          )}
+          className={cn("text-sm", isLoading ? "text-muted/75" : "text-success")}
           maxFontSizeMultiplier={1}
         >
-          {isLoading ? 'Loading...' : 'Loaded successfully'}
+          {isLoading ? "Loading..." : "Loaded successfully"}
         </Toast.Title>
       </View>
     </Toast>

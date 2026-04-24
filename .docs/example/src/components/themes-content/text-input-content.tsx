@@ -1,22 +1,15 @@
-import {
-  Button,
-  Description,
-  FieldError,
-  Input,
-  Label,
-  TextField,
-} from 'heroui-native';
-import { useState } from 'react';
-import { Pressable, View } from 'react-native';
-import { EyeIcon } from '../icons/eye';
-import { EyeSlashIcon } from '../icons/eye-slash';
-import { LockIcon } from '../icons/lock';
-import { DialogContent } from './dialog-content';
+import { Button, Description, FieldError, Input, Label, TextField } from "heroui-native";
+import { useState } from "react";
+import { Pressable, View } from "react-native";
+import { EyeIcon } from "../icons/eye";
+import { EyeSlashIcon } from "../icons/eye-slash";
+import { LockIcon } from "../icons/lock";
+import { DialogContent } from "./dialog-content";
 
 export const TextInputContent = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
@@ -34,7 +27,7 @@ export const TextInputContent = () => {
 
     if (isEmailValid && isPasswordValid) {
       // Form is valid
-      console.log('Form submitted successfully');
+      console.log("Form submitted successfully");
     }
   };
 
@@ -53,9 +46,7 @@ export const TextInputContent = () => {
             if (emailError) setEmailError(false);
           }}
         />
-        <Description hideOnInvalid>
-          We'll never share your email with anyone else.
-        </Description>
+        <Description hideOnInvalid>We'll never share your email with anyone else.</Description>
         <FieldError>Please enter a valid email address</FieldError>
       </TextField>
 
@@ -81,18 +72,13 @@ export const TextInputContent = () => {
             onPress={() => setIsPasswordVisible(!isPasswordVisible)}
           >
             {isPasswordVisible ? (
-              <EyeSlashIcon
-                size={16}
-                colorClassName="accent-field-placeholder"
-              />
+              <EyeSlashIcon size={16} colorClassName="accent-field-placeholder" />
             ) : (
               <EyeIcon size={16} colorClassName="accent-field-placeholder" />
             )}
           </Pressable>
         </View>
-        <Description hideOnInvalid>
-          Password must be at least 6 characters
-        </Description>
+        <Description hideOnInvalid>Password must be at least 6 characters</Description>
         <FieldError>Password must be at least 6 characters long</FieldError>
       </TextField>
 

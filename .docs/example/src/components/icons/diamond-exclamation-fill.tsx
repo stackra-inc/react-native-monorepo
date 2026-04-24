@@ -1,7 +1,7 @@
-import React from 'react';
-import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
-import { withUniwind } from 'uniwind';
-import type { IconProps } from '../../helpers/types/icons';
+import React from "react";
+import Svg, { ClipPath, Defs, G, Path, Rect } from "react-native-svg";
+import { withUniwind } from "uniwind";
+import type { IconProps } from "../../helpers/types/icons";
 
 /**
  * DiamondExclamationFill icon component - React Native SVG implementation
@@ -9,9 +9,9 @@ import type { IconProps } from '../../helpers/types/icons';
  */
 const DiamondExclamationFillIconComponent: React.FC<IconProps> = ({
   size = 20,
-  color = 'currentColor',
+  color = "currentColor",
 }) => {
-  const clipPathId = 'SVGFd4lJeyK';
+  const clipPathId = "SVGFd4lJeyK";
 
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16">
@@ -47,12 +47,9 @@ const DiamondExclamationFillIconComponent: React.FC<IconProps> = ({
  * <DiamondExclamationFillIcon size={48} color="#3b82f6" />
  * ```
  */
-export const DiamondExclamationFillIcon = withUniwind(
-  DiamondExclamationFillIconComponent,
-  {
-    color: {
-      fromClassName: 'colorClassName',
-      styleProperty: 'accentColor',
-    },
-  }
-);
+export const DiamondExclamationFillIcon = withUniwind(DiamondExclamationFillIconComponent, {
+  color: {
+    fromClassName: "colorClassName",
+    styleProperty: "accentColor",
+  },
+});

@@ -1,12 +1,6 @@
-import {
-  ControlField,
-  Description,
-  Label,
-  Separator,
-  Surface,
-} from 'heroui-native';
-import React from 'react';
-import { View } from 'react-native';
+import { ControlField, Description, Label, Separator, Surface } from "heroui-native";
+import React from "react";
+import { View } from "react-native";
 
 interface SwitchFieldProps {
   isSelected: boolean;

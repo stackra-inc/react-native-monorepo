@@ -1,7 +1,7 @@
-import { Alert, Button, CloseButton, Spinner } from 'heroui-native';
-import { View } from 'react-native';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { Alert, Button, CloseButton, Spinner } from "heroui-native";
+import { View } from "react-native";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
 
 const DefaultAndAccentContent = () => {
   return (
@@ -10,24 +10,20 @@ const DefaultAndAccentContent = () => {
         <Alert>
           <Alert.Indicator />
           <Alert.Content>
-            <Alert.Title maxFontSizeMultiplier={1.4}>
-              New features available
-            </Alert.Title>
+            <Alert.Title maxFontSizeMultiplier={1.4}>New features available</Alert.Title>
             <Alert.Description maxFontSizeMultiplier={1.4}>
-              Check out our latest updates including dark mode support and
-              improved accessibility features.
+              Check out our latest updates including dark mode support and improved accessibility
+              features.
             </Alert.Description>
           </Alert.Content>
         </Alert>
         <Alert status="accent">
           <Alert.Indicator />
           <Alert.Content>
-            <Alert.Title maxFontSizeMultiplier={1.4}>
-              Update available
-            </Alert.Title>
+            <Alert.Title maxFontSizeMultiplier={1.4}>Update available</Alert.Title>
             <Alert.Description maxFontSizeMultiplier={1.4}>
-              A new version of the application is available. Please refresh to
-              get the latest features and bug fixes.
+              A new version of the application is available. Please refresh to get the latest
+              features and bug fixes.
             </Alert.Description>
           </Alert.Content>
         </Alert>
@@ -47,20 +43,18 @@ const SuccessWarningDangerContent = () => {
           <Alert.Content>
             <Alert.Title maxFontSizeMultiplier={1}>Success</Alert.Title>
             <Alert.Description maxFontSizeMultiplier={1}>
-              Your profile information has been updated. Review the changes in
-              your account settings.
+              Your profile information has been updated. Review the changes in your account
+              settings.
             </Alert.Description>
           </Alert.Content>
         </Alert>
         <Alert status="warning">
           <Alert.Indicator />
           <Alert.Content>
-            <Alert.Title maxFontSizeMultiplier={1}>
-              Scheduled maintenance
-            </Alert.Title>
+            <Alert.Title maxFontSizeMultiplier={1}>Scheduled maintenance</Alert.Title>
             <Alert.Description maxFontSizeMultiplier={1}>
-              Our services will be unavailable on Sunday, March 15th from 2:00
-              AM to 6:00 AM UTC for scheduled maintenance.
+              Our services will be unavailable on Sunday, March 15th from 2:00 AM to 6:00 AM UTC for
+              scheduled maintenance.
             </Alert.Description>
           </Alert.Content>
         </Alert>
@@ -68,12 +62,9 @@ const SuccessWarningDangerContent = () => {
         <Alert status="danger">
           <Alert.Indicator />
           <Alert.Content>
-            <Alert.Title maxFontSizeMultiplier={1}>
-              Unable to connect to server
-            </Alert.Title>
+            <Alert.Title maxFontSizeMultiplier={1}>Unable to connect to server</Alert.Title>
             <Alert.Description maxFontSizeMultiplier={1}>
-              Unable to connect to the server. Check your internet connection
-              and try again.
+              Unable to connect to the server. Check your internet connection and try again.
             </Alert.Description>
           </Alert.Content>
         </Alert>
@@ -91,12 +82,10 @@ const WithButtonsContent = () => {
         <Alert status="accent">
           <Alert.Indicator />
           <Alert.Content>
-            <Alert.Title maxFontSizeMultiplier={1}>
-              Update available
-            </Alert.Title>
+            <Alert.Title maxFontSizeMultiplier={1}>Update available</Alert.Title>
             <Alert.Description maxFontSizeMultiplier={1}>
-              A new version of the application is available. Please refresh to
-              get the latest features and bug fixes.
+              A new version of the application is available. Please refresh to get the latest
+              features and bug fixes.
             </Alert.Description>
           </Alert.Content>
           <Button size="sm" variant="primary">
@@ -107,12 +96,9 @@ const WithButtonsContent = () => {
         <Alert status="danger">
           <Alert.Indicator />
           <Alert.Content>
-            <Alert.Title maxFontSizeMultiplier={1}>
-              Unable to connect to server
-            </Alert.Title>
+            <Alert.Title maxFontSizeMultiplier={1}>Unable to connect to server</Alert.Title>
             <Alert.Description maxFontSizeMultiplier={1}>
-              Unable to connect to the server. Check your internet connection
-              and try again.
+              Unable to connect to the server. Check your internet connection and try again.
             </Alert.Description>
           </Alert.Content>
           <Button size="sm" variant="danger">
@@ -123,9 +109,7 @@ const WithButtonsContent = () => {
         <Alert status="success" className="items-center">
           <Alert.Indicator className="pt-0" />
           <Alert.Content>
-            <Alert.Title maxFontSizeMultiplier={1}>
-              Profile updated successfully
-            </Alert.Title>
+            <Alert.Title maxFontSizeMultiplier={1}>Profile updated successfully</Alert.Title>
           </Alert.Content>
           <CloseButton />
         </Alert>
@@ -162,23 +146,23 @@ const WithCustomIndicatorContent = () => {
 
 const ALERT_VARIANTS: UsageVariant[] = [
   {
-    value: 'default',
-    label: 'Default & Accent',
+    value: "default",
+    label: "Default & Accent",
     content: <DefaultAndAccentContent />,
   },
   {
-    value: 'success-warning-danger',
-    label: 'Success, Warning, Danger',
+    value: "success-warning-danger",
+    label: "Success, Warning, Danger",
     content: <SuccessWarningDangerContent />,
   },
   {
-    value: 'title-only',
-    label: 'With buttons',
+    value: "title-only",
+    label: "With buttons",
     content: <WithButtonsContent />,
   },
   {
-    value: 'with-custom-indicator',
-    label: 'With custom indicator',
+    value: "with-custom-indicator",
+    label: "With custom indicator",
     content: <WithCustomIndicatorContent />,
   },
 ];

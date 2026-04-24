@@ -1,24 +1,13 @@
-import {
-  Description,
-  Label,
-  Radio,
-  RadioGroup,
-  Separator,
-  Surface,
-} from 'heroui-native';
-import React from 'react';
-import { View } from 'react-native';
+import { Description, Label, Radio, RadioGroup, Separator, Surface } from "heroui-native";
+import React from "react";
+import { View } from "react-native";
 
 export const RadioGroupContent = () => {
-  const [frequency, setFrequency] = React.useState('daily');
+  const [frequency, setFrequency] = React.useState("daily");
 
   return (
     <Surface className="py-5">
-      <RadioGroup
-        value={frequency}
-        onValueChange={setFrequency}
-        className="gap-0"
-      >
+      <RadioGroup value={frequency} onValueChange={setFrequency} className="gap-0">
         <RadioGroup.Item value="instant">
           <Radio />
           <View className="flex-1">

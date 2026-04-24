@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
-import { BottomSheet, Button, Label, Slider } from 'heroui-native';
-import { useState } from 'react';
-import { View } from 'react-native';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { BottomSheet, Button, Label, Slider } from "heroui-native";
+import { useState } from "react";
+import { View } from "react-native";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
 
 // ==============================================================================
 // Basic
@@ -75,7 +75,7 @@ const RangeContent = () => {
           minValue={0}
           maxValue={1}
           step={0.01}
-          formatOptions={{ style: 'percent' }}
+          formatOptions={{ style: "percent" }}
         >
           <View className="flex-row items-center justify-between mb-1">
             <Label>
@@ -101,7 +101,7 @@ const RangeContent = () => {
           minValue={0}
           maxValue={1000}
           step={10}
-          formatOptions={{ style: 'currency', currency: 'USD' }}
+          formatOptions={{ style: "currency", currency: "USD" }}
         >
           <View className="flex-row items-center justify-between mb-1">
             <Label>
@@ -128,8 +128,8 @@ const RangeContent = () => {
           maxValue={35}
           step={1}
           formatOptions={{
-            style: 'unit',
-            unit: 'celsius',
+            style: "unit",
+            unit: "celsius",
             maximumFractionDigits: 1,
           }}
         >
@@ -194,13 +194,13 @@ const CustomStylesContent = () => {
               className="rounded-full"
               style={{
                 experimental_backgroundImage:
-                  'linear-gradient(to right, #f87171, #facc15, #4ade80)',
+                  "linear-gradient(to right, #f87171, #facc15, #4ade80)",
               }}
             />
             <Slider.Thumb
               classNames={{
-                thumbContainer: 'size-6 rounded-full bg-success',
-                thumbKnob: 'bg-success-foreground rounded-full',
+                thumbContainer: "size-6 rounded-full bg-success",
+                thumbKnob: "bg-success-foreground rounded-full",
               }}
               animation={{
                 scale: { value: [1, 0.7] },
@@ -219,8 +219,8 @@ const CustomStylesContent = () => {
             <Slider.Fill className="bg-warning rounded-full" />
             <Slider.Thumb
               classNames={{
-                thumbContainer: 'size-5 rounded-sm bg-warning',
-                thumbKnob: 'bg-amber-900 border border-warning rounded-sm',
+                thumbContainer: "size-5 rounded-sm bg-warning",
+                thumbKnob: "bg-amber-900 border border-warning rounded-sm",
               }}
               animation={{
                 scale: { value: [1, 1.5] },
@@ -240,13 +240,13 @@ const CustomStylesContent = () => {
               className="rounded-2xl"
               style={{
                 experimental_backgroundImage:
-                  'linear-gradient(to right, #a78bfa, #7dd3fc, #6ee7b7)',
+                  "linear-gradient(to right, #a78bfa, #7dd3fc, #6ee7b7)",
               }}
             />
             <Slider.Thumb
               classNames={{
-                thumbContainer: 'w-5 h-7 rounded-xl bg-teal-200',
-                thumbKnob: 'bg-white rounded-xl',
+                thumbContainer: "w-5 h-7 rounded-xl bg-teal-200",
+                thumbKnob: "bg-white rounded-xl",
               }}
               animation={{
                 scale: { value: [1, 1.25] },
@@ -325,28 +325,28 @@ const InsideBottomSheetContent = () => {
 
 const SLIDER_VARIANTS: UsageVariant[] = [
   {
-    value: 'basic',
-    label: 'Basic',
+    value: "basic",
+    label: "Basic",
     content: <BasicContent />,
   },
   {
-    value: 'vertical',
-    label: 'Vertical',
+    value: "vertical",
+    label: "Vertical",
     content: <VerticalContent />,
   },
   {
-    value: 'range',
-    label: 'Range',
+    value: "range",
+    label: "Range",
     content: <RangeContent />,
   },
   {
-    value: 'custom-styles',
-    label: 'Custom styles',
+    value: "custom-styles",
+    label: "Custom styles",
     content: <CustomStylesContent />,
   },
   {
-    value: 'inside-bottom-sheet',
-    label: 'Inside bottom sheet',
+    value: "inside-bottom-sheet",
+    label: "Inside bottom sheet",
     content: <InsideBottomSheetContent />,
   },
 ];

@@ -1,28 +1,20 @@
-import { cn, Surface, type SurfaceRootProps } from 'heroui-native';
-import { View } from 'react-native';
-import { AppText } from '../../../components/app-text';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { cn, Surface, type SurfaceRootProps } from "heroui-native";
+import { View } from "react-native";
+import { AppText } from "../../../components/app-text";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
 
 type SurfaceItemProps = {
-  variant: SurfaceRootProps['variant'];
+  variant: SurfaceRootProps["variant"];
   title: string;
   description: string;
   className?: string;
 };
 
-const SurfaceItem = ({
-  variant,
-  title,
-  description,
-  className,
-}: SurfaceItemProps) => {
+const SurfaceItem = ({ variant, title, description, className }: SurfaceItemProps) => {
   return (
-    <Surface variant={variant} className={cn('gap-2', className)}>
-      <AppText
-        className="text-foreground font-medium"
-        maxFontSizeMultiplier={1.2}
-      >
+    <Surface variant={variant} className={cn("gap-2", className)}>
+      <AppText className="text-foreground font-medium" maxFontSizeMultiplier={1.2}>
         {title}
       </AppText>
       <AppText className="text-muted" maxFontSizeMultiplier={1.2}>
@@ -66,8 +58,8 @@ const VariantsContent = () => {
 
 const SURFACE_VARIANTS: UsageVariant[] = [
   {
-    value: 'variants',
-    label: 'Variants',
+    value: "variants",
+    label: "Variants",
     content: <VariantsContent />,
   },
 ];

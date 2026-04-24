@@ -1,14 +1,12 @@
-const path = require('path');
-const exampleNodeModules = path.join(__dirname, 'node_modules'); // Example's node_modules
-const escape = require('escape-string-regexp');
-const rootPkg = require('../package.json');
-const { withUniwindConfig } = require('uniwind/metro');
-const { getDefaultConfig } = require('@expo/metro-config');
-const {
-  wrapWithReanimatedMetroConfig,
-} = require('react-native-reanimated/metro-config');
+const path = require("path");
+const exampleNodeModules = path.join(__dirname, "node_modules"); // Example's node_modules
+const escape = require("escape-string-regexp");
+const rootPkg = require("../package.json");
+const { withUniwindConfig } = require("uniwind/metro");
+const { getDefaultConfig } = require("@expo/metro-config");
+const { wrapWithReanimatedMetroConfig } = require("react-native-reanimated/metro-config");
 
-const root = path.resolve(__dirname, '..');
+const root = path.resolve(__dirname, "..");
 const peerDependencies = Object.keys({
   ...rootPkg.peerDependencies,
 });
@@ -31,10 +29,10 @@ const configObj = {
   resolver: {
     ...defaultConfig.resolver,
     disableHierarchicalLookup: true,
-    nodeModulesPaths: [exampleNodeModules, path.resolve(root, 'node_modules')],
+    nodeModulesPaths: [exampleNodeModules, path.resolve(root, "node_modules")],
 
     blockList: peerDependencies.map(
-      (m) => new RegExp(`^${escape(path.join(root, 'node_modules', m))}/.*$`) // Exclude root's node_modules
+      (m) => new RegExp(`^${escape(path.join(root, "node_modules", m))}/.*$`), // Exclude root's node_modules
     ),
     extraNodeModules: {
       ...peerDependencies.reduce((acc, name) => {
@@ -52,14 +50,14 @@ const config = {
 };
 
 module.exports = withUniwindConfig(wrapWithReanimatedMetroConfig(config), {
-  cssEntryFile: './global.css',
-  dtsFile: './src/uniwind.d.ts',
+  cssEntryFile: "./global.css",
+  dtsFile: "./src/uniwind.d.ts",
   extraThemes: [
-    'lavender-light',
-    'lavender-dark',
-    'mint-light',
-    'mint-dark',
-    'sky-light',
-    'sky-dark',
+    "lavender-light",
+    "lavender-dark",
+    "mint-light",
+    "mint-dark",
+    "sky-light",
+    "sky-dark",
   ],
 });

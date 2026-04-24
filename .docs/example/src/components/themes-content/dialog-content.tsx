@@ -1,8 +1,8 @@
-import { Button, Dialog } from 'heroui-native';
-import { useState } from 'react';
-import { View } from 'react-native';
-import { DialogBlurBackdrop } from '../dialog-blur-backdrop';
-import { TrashIcon } from '../icons/trash';
+import { Button, Dialog } from "heroui-native";
+import { useState } from "react";
+import { View } from "react-native";
+import { DialogBlurBackdrop } from "../dialog-blur-backdrop";
+import { TrashIcon } from "../icons/trash";
 
 export const DialogContent = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -21,8 +21,8 @@ export const DialogContent = () => {
           <View className="mb-8 gap-1">
             <Dialog.Title>Delete Account</Dialog.Title>
             <Dialog.Description maxFontSizeMultiplier={1.6}>
-              Are you sure you want to delete your account? This action cannot
-              be undone and all your data will be permanently removed.
+              Are you sure you want to delete your account? This action cannot be undone and all
+              your data will be permanently removed.
             </Dialog.Description>
           </View>
           <View className="gap-3">
@@ -30,7 +30,7 @@ export const DialogContent = () => {
               variant="danger"
               onPress={() => {
                 setDialogOpen(false);
-                console.log('Account deleted');
+                console.log("Account deleted");
               }}
             >
               Delete Account

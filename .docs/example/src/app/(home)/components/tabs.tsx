@@ -10,28 +10,20 @@ import {
   RadioGroup,
   Tabs,
   TextField,
-} from 'heroui-native';
-import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import Animated, {
-  FadeIn,
-  FadeOut,
-  LinearTransition,
-} from 'react-native-reanimated';
-import { withUniwind } from 'uniwind';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
-import useHeaderHeight from '../../../helpers/hooks/use-header-height';
+} from "heroui-native";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
+import Animated, { FadeIn, FadeOut, LinearTransition } from "react-native-reanimated";
+import { withUniwind } from "uniwind";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
+import useHeaderHeight from "../../../helpers/hooks/use-header-height";
 
 const StyleAnimatedView = withUniwind(Animated.View);
 
 const DURATION = 200;
 
-const AnimatedContentContainer = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => (
+const AnimatedContentContainer = ({ children }: { children: React.ReactNode }) => (
   <StyleAnimatedView
     entering={FadeIn.duration(DURATION)}
     exiting={FadeOut.duration(DURATION)}
@@ -47,7 +39,7 @@ interface FormErrors {
 }
 
 interface TabsContentProps {
-  variant: 'primary' | 'secondary';
+  variant: "primary" | "secondary";
 }
 
 interface TabTriggerProps {
@@ -64,36 +56,35 @@ const TabTrigger = ({ value, label }: TabTriggerProps) => {
 };
 
 const TabsContent = ({ variant }: TabsContentProps) => {
-  const [activeTab, setActiveTab] = useState('general');
+  const [activeTab, setActiveTab] = useState("general");
 
-  const [homepage] = useState('heroui.com');
+  const [homepage] = useState("heroui.com");
   const [showSidebar, setShowSidebar] = useState(true);
   const [showStatusBar, setShowStatusBar] = useState(false);
 
-  const [theme, setTheme] = useState('auto');
-  const [fontSize, setFontSize] = useState('medium');
+  const [theme, setTheme] = useState("auto");
+  const [fontSize, setFontSize] = useState("medium");
 
   const [accountActivity, setAccountActivity] = useState(true);
   const [mentions, setMentions] = useState(true);
   const [directMessages, setDirectMessages] = useState(false);
   const [marketingEmail, setMarketingEmail] = useState(false);
 
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
 
   const validateProfile = (): boolean => {
     const newErrors: FormErrors = {};
 
     if (!name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     }
 
     if (!username.trim()) {
-      newErrors.username = 'Username is required';
+      newErrors.username = "Username is required";
     } else if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) {
-      newErrors.username =
-        'Username must be 3-20 characters (letters, numbers, underscore only)';
+      newErrors.username = "Username must be 3-20 characters (letters, numbers, underscore only)";
     }
 
     setErrors(newErrors);
@@ -102,7 +93,7 @@ const TabsContent = ({ variant }: TabsContentProps) => {
 
   const handleUpdateProfile = () => {
     if (validateProfile()) {
-      console.log('Profile updated:', { name, username });
+      console.log("Profile updated:", { name, username });
     }
   };
 
@@ -111,11 +102,9 @@ const TabsContent = ({ variant }: TabsContentProps) => {
       variant={variant}
       value={activeTab}
       onValueChange={setActiveTab}
-      className={cn('gap-1.5', variant === 'secondary' && 'gap-0')}
+      className={cn("gap-1.5", variant === "secondary" && "gap-0")}
     >
-      <Tabs.List
-        className={cn('border-b-0', variant === 'secondary' && 'mx-4')}
-      >
+      <Tabs.List className={cn("border-b-0", variant === "secondary" && "mx-4")}>
         <Tabs.ScrollView contentContainerClassName="gap-1">
           <Tabs.Indicator />
           <TabTrigger value="general" label="General" />
@@ -127,9 +116,8 @@ const TabsContent = ({ variant }: TabsContentProps) => {
       <StyleAnimatedView
         layout={LinearTransition.duration(DURATION)}
         className={cn(
-          'px-2 py-6',
-          variant === 'secondary' &&
-            'px-5 border border-foreground/10 rounded-2xl'
+          "px-2 py-6",
+          variant === "secondary" && "px-5 border border-foreground/10 rounded-2xl",
         )}
         style={styles.borderCurve}
       >
@@ -142,16 +130,11 @@ const TabsContent = ({ variant }: TabsContentProps) => {
               <Input value={homepage} maxFontSizeMultiplier={1.4} />
             </TextField>
 
-            <ControlField
-              isSelected={showSidebar}
-              onSelectedChange={setShowSidebar}
-            >
+            <ControlField isSelected={showSidebar} onSelectedChange={setShowSidebar}>
               <ControlField.Indicator variant="checkbox" />
               <View className="flex-1">
                 <Label>
-                  <Label.Text maxFontSizeMultiplier={1.4}>
-                    Show sidebar
-                  </Label.Text>
+                  <Label.Text maxFontSizeMultiplier={1.4}>Show sidebar</Label.Text>
                 </Label>
                 <Description maxFontSizeMultiplier={1.4}>
                   Display the sidebar navigation panel
@@ -160,16 +143,11 @@ const TabsContent = ({ variant }: TabsContentProps) => {
             </ControlField>
 
             {/* Show Status Bar Checkbox */}
-            <ControlField
-              isSelected={showStatusBar}
-              onSelectedChange={setShowStatusBar}
-            >
+            <ControlField isSelected={showStatusBar} onSelectedChange={setShowStatusBar}>
               <ControlField.Indicator variant="checkbox" />
               <View className="flex-1">
                 <Label>
-                  <Label.Text maxFontSizeMultiplier={1.4}>
-                    Show status bar
-                  </Label.Text>
+                  <Label.Text maxFontSizeMultiplier={1.4}>Show status bar</Label.Text>
                 </Label>
                 <Description maxFontSizeMultiplier={1.4}>
                   Display the status bar at the bottom
@@ -247,16 +225,11 @@ const TabsContent = ({ variant }: TabsContentProps) => {
 
         <Tabs.Content value="notifications">
           <AnimatedContentContainer>
-            <ControlField
-              isSelected={accountActivity}
-              onSelectedChange={setAccountActivity}
-            >
+            <ControlField isSelected={accountActivity} onSelectedChange={setAccountActivity}>
               <ControlField.Indicator variant="checkbox" />
               <View className="flex-1">
                 <Label>
-                  <Label.Text maxFontSizeMultiplier={1.4}>
-                    Account activity
-                  </Label.Text>
+                  <Label.Text maxFontSizeMultiplier={1.4}>Account activity</Label.Text>
                 </Label>
                 <Description maxFontSizeMultiplier={1.4}>
                   Notifications about your account activity
@@ -276,16 +249,11 @@ const TabsContent = ({ variant }: TabsContentProps) => {
               </View>
             </ControlField>
 
-            <ControlField
-              isSelected={directMessages}
-              onSelectedChange={setDirectMessages}
-            >
+            <ControlField isSelected={directMessages} onSelectedChange={setDirectMessages}>
               <ControlField.Indicator variant="checkbox" />
               <View className="flex-1">
                 <Label>
-                  <Label.Text maxFontSizeMultiplier={1.4}>
-                    Direct messages
-                  </Label.Text>
+                  <Label.Text maxFontSizeMultiplier={1.4}>Direct messages</Label.Text>
                 </Label>
                 <Description maxFontSizeMultiplier={1.4}>
                   Notifications for new direct messages
@@ -293,16 +261,11 @@ const TabsContent = ({ variant }: TabsContentProps) => {
               </View>
             </ControlField>
 
-            <ControlField
-              isSelected={marketingEmail}
-              onSelectedChange={setMarketingEmail}
-            >
+            <ControlField isSelected={marketingEmail} onSelectedChange={setMarketingEmail}>
               <ControlField.Indicator variant="checkbox" />
               <View className="flex-1">
                 <Label>
-                  <Label.Text maxFontSizeMultiplier={1.4}>
-                    Marketing email
-                  </Label.Text>
+                  <Label.Text maxFontSizeMultiplier={1.4}>Marketing email</Label.Text>
                 </Label>
                 <Description maxFontSizeMultiplier={1.4}>
                   Receive emails about new features and updates
@@ -395,13 +358,13 @@ const LineVariantContent = () => {
 
 const TABS_VARIANTS: UsageVariant[] = [
   {
-    value: 'primary-variant',
-    label: 'Primary variant',
+    value: "primary-variant",
+    label: "Primary variant",
     content: <PillVariantContent />,
   },
   {
-    value: 'secondary-variant',
-    label: 'Secondary variant',
+    value: "secondary-variant",
+    label: "Secondary variant",
     content: <LineVariantContent />,
   },
 ];
@@ -412,6 +375,6 @@ export default function TabsScreen() {
 
 const styles = StyleSheet.create({
   borderCurve: {
-    borderCurve: 'continuous',
+    borderCurve: "continuous",
   },
 });

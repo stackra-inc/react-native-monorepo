@@ -1,12 +1,12 @@
-import { View } from 'react-native';
+import { View } from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
   type SharedValue,
   useAnimatedStyle,
-} from 'react-native-reanimated';
-import { withUniwind } from 'uniwind';
-import { AppText } from '../app-text';
+} from "react-native-reanimated";
+import { withUniwind } from "uniwind";
+import { AppText } from "../app-text";
 
 const StyleAnimatedView = withUniwind(Animated.View);
 
@@ -17,19 +17,14 @@ export type PaginationIndicatorProps = {
   itemSize: number;
 };
 
-export function PaginationIndicator({
-  index,
-  scrollY,
-  itemSize,
-  label,
-}: PaginationIndicatorProps) {
+export function PaginationIndicator({ index, scrollY, itemSize, label }: PaginationIndicatorProps) {
   const rBarStyle = useAnimatedStyle(() => {
     return {
       opacity: interpolate(
         scrollY.get() / itemSize,
         [index - 2, index - 1, index, index + 1, index + 2],
         [0.2, 0.5, 1, 0.5, 0.2],
-        Extrapolation.CLAMP
+        Extrapolation.CLAMP,
       ),
       transform: [
         {
@@ -37,7 +32,7 @@ export function PaginationIndicator({
             scrollY.get() / itemSize,
             [index - 2, index - 1, index, index + 1, index + 2],
             [1, 1.4, 2, 1.4, 1],
-            Extrapolation.CLAMP
+            Extrapolation.CLAMP,
           ),
         },
       ],
@@ -50,7 +45,7 @@ export function PaginationIndicator({
         scrollY.get() / itemSize,
         [index - 0.5, index, index + 0.5],
         [0, 1, 0],
-        Extrapolation.CLAMP
+        Extrapolation.CLAMP,
       ),
       transform: [
         {
@@ -58,7 +53,7 @@ export function PaginationIndicator({
             scrollY.get() / itemSize,
             [index - 2, index - 1, index, index + 1, index + 2],
             [1, 1.4, 2, 1.4, 1],
-            Extrapolation.CLAMP
+            Extrapolation.CLAMP,
           ),
         },
       ],
@@ -71,15 +66,12 @@ export function PaginationIndicator({
         className="w-3 h-[2px] bg-foreground"
         style={[
           {
-            transformOrigin: ['0%', '50%', 0],
+            transformOrigin: ["0%", "50%", 0],
           },
           rBarStyle,
         ]}
       />
-      <StyleAnimatedView
-        className="absolute left-8 right-0"
-        style={rLabelStyle}
-      >
+      <StyleAnimatedView className="absolute left-8 right-0" style={rLabelStyle}>
         <AppText
           className="text-foreground text-lg font-normal"
           maxFontSizeMultiplier={1.2}

@@ -1,24 +1,11 @@
-import {
-  Description,
-  FieldError,
-  Label,
-  TextArea,
-  TextField,
-} from 'heroui-native';
-import { useWindowDimensions, View } from 'react-native';
-import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
-import Animated, {
-  useAnimatedStyle,
-  withTiming,
-} from 'react-native-reanimated';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { Description, FieldError, Label, TextArea, TextField } from "heroui-native";
+import { useWindowDimensions, View } from "react-native";
+import { useReanimatedKeyboardAnimation } from "react-native-keyboard-controller";
+import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
 
-const KeyboardAvoidingContainer = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+const KeyboardAvoidingContainer = ({ children }: { children: React.ReactNode }) => {
   const { height } = useWindowDimensions();
 
   const { progress } = useReanimatedKeyboardAnimation();
@@ -69,9 +56,7 @@ const TextAreaVariantsContent = () => {
         <View className="gap-8">
           <TextField>
             <Label>
-              <Label.Text maxFontSizeMultiplier={1.4}>
-                Primary Variant
-              </Label.Text>
+              <Label.Text maxFontSizeMultiplier={1.4}>Primary Variant</Label.Text>
             </Label>
             <TextArea
               placeholder="Primary style text area"
@@ -85,18 +70,14 @@ const TextAreaVariantsContent = () => {
 
           <TextField>
             <Label>
-              <Label.Text maxFontSizeMultiplier={1.4}>
-                Secondary Variant
-              </Label.Text>
+              <Label.Text maxFontSizeMultiplier={1.4}>Secondary Variant</Label.Text>
             </Label>
             <TextArea
               placeholder="Secondary style text area"
               variant="secondary"
               maxFontSizeMultiplier={1.4}
             />
-            <Description maxFontSizeMultiplier={1.4}>
-              Secondary variant for surfaces
-            </Description>
+            <Description maxFontSizeMultiplier={1.4}>Secondary variant for surfaces</Description>
           </TextField>
         </View>
       </KeyboardAvoidingContainer>
@@ -111,9 +92,7 @@ const TextAreaStatesContent = () => {
         <View className="gap-8">
           <TextField isDisabled>
             <Label>
-              <Label.Text maxFontSizeMultiplier={1.4}>
-                Disabled State
-              </Label.Text>
+              <Label.Text maxFontSizeMultiplier={1.4}>Disabled State</Label.Text>
             </Label>
             <TextArea
               placeholder="Cannot edit"
@@ -129,10 +108,7 @@ const TextAreaStatesContent = () => {
             <Label>
               <Label.Text maxFontSizeMultiplier={1.4}>Invalid State</Label.Text>
             </Label>
-            <TextArea
-              placeholder="Enter your message"
-              maxFontSizeMultiplier={1.4}
-            />
+            <TextArea placeholder="Enter your message" maxFontSizeMultiplier={1.4} />
             <FieldError textProps={{ maxFontSizeMultiplier: 1.4 }}>
               Please enter a valid message
             </FieldError>
@@ -147,23 +123,23 @@ const TextAreaStatesContent = () => {
 
 const TEXT_AREA_VARIANTS: UsageVariant[] = [
   {
-    value: 'basic-text-area',
-    label: 'Basic TextArea',
+    value: "basic-text-area",
+    label: "Basic TextArea",
     content: <BasicTextAreaContent />,
   },
   {
-    value: 'text-area-with-label-description',
-    label: 'With Label & Description',
+    value: "text-area-with-label-description",
+    label: "With Label & Description",
     content: <TextAreaWithLabelAndDescriptionContent />,
   },
   {
-    value: 'text-area-variants',
-    label: 'Variants',
+    value: "text-area-variants",
+    label: "Variants",
     content: <TextAreaVariantsContent />,
   },
   {
-    value: 'text-area-states',
-    label: 'States',
+    value: "text-area-states",
+    label: "States",
     content: <TextAreaStatesContent />,
   },
 ];

@@ -1,8 +1,8 @@
-import { Select, useSelect } from 'heroui-native';
-import { type FC } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { AppText } from '../../app-text';
-import type { UsageVariant } from '../types';
+import { Select, useSelect } from "heroui-native";
+import { type FC } from "react";
+import { StyleSheet, View } from "react-native";
+import { AppText } from "../../app-text";
+import type { UsageVariant } from "../types";
 
 type Props = {
   data: UsageVariant;
@@ -11,8 +11,7 @@ type Props = {
 export const SelectItem: FC<Props> = ({ data }) => {
   const { value: selectedValue } = useSelect();
 
-  const isSelected =
-    !Array.isArray(selectedValue) && selectedValue?.value === data.value;
+  const isSelected = !Array.isArray(selectedValue) && selectedValue?.value === data.value;
 
   return (
     <Select.Item
@@ -37,6 +36,6 @@ export const SelectItem: FC<Props> = ({ data }) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderCurve: 'continuous',
+    borderCurve: "continuous",
   },
 });

@@ -1,12 +1,12 @@
-import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Button, Card, PressableFeedback } from 'heroui-native';
-import { StyleSheet, View } from 'react-native';
-import { withUniwind } from 'uniwind';
-import { AppText } from '../../../components/app-text';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
-import { simulatePress } from '../../../helpers/utils/simulate-press';
+import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
+import { Button, Card, PressableFeedback } from "heroui-native";
+import { StyleSheet, View } from "react-native";
+import { withUniwind } from "uniwind";
+import { AppText } from "../../../components/app-text";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
+import { simulatePress } from "../../../helpers/utils/simulate-press";
 
 const StyledImage = withUniwind(Image);
 
@@ -20,18 +20,18 @@ const BackgroundImageCardContent = () => {
         <Card className="flex-1">
           <Image
             source={{
-              uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/neo2.jpeg',
+              uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/neo2.jpeg",
             }}
             style={StyleSheet.absoluteFill}
             contentFit="cover"
           />
           <LinearGradient
-            colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0.4)']}
+            colors={["rgba(0,0,0,0.1)", "rgba(0,0,0,0.4)"]}
             style={StyleSheet.absoluteFill}
           />
           <PressableFeedback.Ripple
             animation={{
-              backgroundColor: { value: 'white' },
+              backgroundColor: { value: "white" },
               opacity: { value: [0, 0.3, 0] },
             }}
           />
@@ -53,16 +53,10 @@ const BackgroundImageCardContent = () => {
             <Card.Footer className="gap-3">
               <View className="flex-row items-center justify-between">
                 <View pointerEvents="none">
-                  <AppText
-                    maxFontSizeMultiplier={1.4}
-                    className="text-base text-white"
-                  >
+                  <AppText maxFontSizeMultiplier={1.4} className="text-base text-white">
                     Available soon
                   </AppText>
-                  <AppText
-                    maxFontSizeMultiplier={1.4}
-                    className="text-base text-zinc-300"
-                  >
+                  <AppText maxFontSizeMultiplier={1.4} className="text-base text-zinc-300">
                     Get notified
                   </AppText>
                 </View>
@@ -73,10 +67,7 @@ const BackgroundImageCardContent = () => {
                   feedbackVariant="scale"
                   onPress={simulatePress}
                 >
-                  <Button.Label
-                    maxFontSizeMultiplier={1.4}
-                    className="text-black"
-                  >
+                  <Button.Label maxFontSizeMultiplier={1.4} className="text-black">
                     Notify me
                   </Button.Label>
                 </Button>
@@ -104,7 +95,7 @@ const CardWithImageContent = () => {
               <Card.Header>
                 <StyledImage
                   source={{
-                    uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo1.jpg',
+                    uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo1.jpg",
                   }}
                   className="h-16 aspect-square rounded-xl"
                 />
@@ -113,11 +104,7 @@ const CardWithImageContent = () => {
                 <Card.Title maxFontSizeMultiplier={1.2} numberOfLines={1}>
                   Indie Hackers
                 </Card.Title>
-                <Card.Description
-                  className="text-sm"
-                  maxFontSizeMultiplier={1.2}
-                  numberOfLines={1}
-                >
+                <Card.Description className="text-sm" maxFontSizeMultiplier={1.2} numberOfLines={1}>
                   148 members
                 </Card.Description>
               </Card.Body>
@@ -134,7 +121,7 @@ const CardWithImageContent = () => {
             </View>
             <PressableFeedback.Ripple
               animation={{
-                backgroundColor: { value: '#fecdd3' },
+                backgroundColor: { value: "#fecdd3" },
                 opacity: { value: [0, 0.2, 0] },
               }}
             />
@@ -149,7 +136,7 @@ const CardWithImageContent = () => {
               <Card.Header>
                 <StyledImage
                   source={{
-                    uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo2.jpg',
+                    uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo2.jpg",
                   }}
                   className="h-16 aspect-square rounded-xl"
                 />
@@ -158,11 +145,7 @@ const CardWithImageContent = () => {
                 <Card.Title maxFontSizeMultiplier={1.2} numberOfLines={1}>
                   AI Builders
                 </Card.Title>
-                <Card.Description
-                  className="text-sm"
-                  maxFontSizeMultiplier={1.2}
-                  numberOfLines={1}
-                >
+                <Card.Description className="text-sm" maxFontSizeMultiplier={1.2} numberOfLines={1}>
                   362 members
                 </Card.Description>
               </Card.Body>
@@ -179,7 +162,7 @@ const CardWithImageContent = () => {
             </View>
             <PressableFeedback.Ripple
               animation={{
-                backgroundColor: { value: '#67e8f9' },
+                backgroundColor: { value: "#67e8f9" },
               }}
             />
           </Card>
@@ -209,18 +192,18 @@ const ButtonHighlightContent = () => {
 
 const PRESSABLE_FEEDBACK_VARIANTS: UsageVariant[] = [
   {
-    value: 'background-image-card',
-    label: 'Background image card',
+    value: "background-image-card",
+    label: "Background image card",
     content: <BackgroundImageCardContent />,
   },
   {
-    value: 'card-with-image',
-    label: 'Card with image',
+    value: "card-with-image",
+    label: "Card with image",
     content: <CardWithImageContent />,
   },
   {
-    value: 'button-highlight',
-    label: 'Button highlight',
+    value: "button-highlight",
+    label: "Button highlight",
     content: <ButtonHighlightContent />,
   },
 ];

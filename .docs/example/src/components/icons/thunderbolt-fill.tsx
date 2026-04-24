@@ -1,7 +1,7 @@
-import React from 'react';
-import Svg, { Path, Rect } from 'react-native-svg';
-import { withUniwind } from 'uniwind';
-import type { IconProps } from '../../helpers/types/icons';
+import React from "react";
+import Svg, { Path, Rect } from "react-native-svg";
+import { withUniwind } from "uniwind";
+import type { IconProps } from "../../helpers/types/icons";
 
 /**
  * ThunderboltFill icon component - React Native SVG implementation
@@ -9,7 +9,7 @@ import type { IconProps } from '../../helpers/types/icons';
  */
 const ThunderboltFillIconComponent: React.FC<IconProps> = ({
   size = 20,
-  color = 'currentColor',
+  color = "currentColor",
 }) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16">
@@ -36,7 +36,7 @@ const ThunderboltFillIconComponent: React.FC<IconProps> = ({
  */
 export const ThunderboltFillIcon = withUniwind(ThunderboltFillIconComponent, {
   color: {
-    fromClassName: 'colorClassName',
-    styleProperty: 'accentColor',
+    fromClassName: "colorClassName",
+    styleProperty: "accentColor",
   },
 });

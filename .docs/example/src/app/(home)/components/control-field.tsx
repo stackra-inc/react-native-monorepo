@@ -6,13 +6,13 @@ import {
   Label,
   Separator,
   Surface,
-} from 'heroui-native';
-import React from 'react';
-import { View } from 'react-native';
-import Animated, { LinearTransition } from 'react-native-reanimated';
-import { withUniwind } from 'uniwind';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+} from "heroui-native";
+import React from "react";
+import { View } from "react-native";
+import Animated, { LinearTransition } from "react-native-reanimated";
+import { withUniwind } from "uniwind";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
 
 const StyleAnimatedView = withUniwind(Animated.View);
 interface SwitchFieldProps {
@@ -46,21 +46,18 @@ const SwitchFormFieldSetContent = () => {
     autoUpdate: true,
   });
 
-  const fieldConfigs: Record<
-    keyof typeof fields,
-    { title: string; description: string }
-  > = {
+  const fieldConfigs: Record<keyof typeof fields, { title: string; description: string }> = {
     notifications: {
-      title: 'Enable notifications',
-      description: 'Receive push notifications about your account activity',
+      title: "Enable notifications",
+      description: "Receive push notifications about your account activity",
     },
     darkMode: {
-      title: 'Dark mode',
-      description: 'Switch between light and dark theme',
+      title: "Dark mode",
+      description: "Switch between light and dark theme",
     },
     autoUpdate: {
-      title: 'Auto-update',
-      description: 'Automatically download and install updates',
+      title: "Auto-update",
+      description: "Automatically download and install updates",
     },
   };
 
@@ -131,21 +128,18 @@ const CheckboxFormFieldSetContent = () => {
     terms: false,
   });
 
-  const fieldConfigs: Record<
-    keyof typeof fields,
-    { title: string; description: string }
-  > = {
+  const fieldConfigs: Record<keyof typeof fields, { title: string; description: string }> = {
     newsletter: {
-      title: 'Subscribe to newsletter',
-      description: 'Get weekly updates about new features and tips',
+      title: "Subscribe to newsletter",
+      description: "Get weekly updates about new features and tips",
     },
     marketing: {
-      title: 'Marketing communications',
-      description: 'Receive promotional emails and special offers',
+      title: "Marketing communications",
+      description: "Receive promotional emails and special offers",
     },
     terms: {
-      title: 'Accept terms and conditions',
-      description: 'Agree to our Terms of Service and Privacy Policy',
+      title: "Accept terms and conditions",
+      description: "Agree to our Terms of Service and Privacy Policy",
     },
   };
 
@@ -181,16 +175,8 @@ interface InlineFilterProps {
   label: string;
 }
 
-const InlineFilter: React.FC<InlineFilterProps> = ({
-  isSelected,
-  onSelectedChange,
-  label,
-}) => (
-  <ControlField
-    isSelected={isSelected}
-    onSelectedChange={onSelectedChange}
-    className="gap-2"
-  >
+const InlineFilter: React.FC<InlineFilterProps> = ({ isSelected, onSelectedChange, label }) => (
+  <ControlField isSelected={isSelected} onSelectedChange={onSelectedChange} className="gap-2">
     <ControlField.Indicator>
       <Checkbox className="size-5 rounded-md" />
     </ControlField.Indicator>
@@ -211,20 +197,19 @@ const InlineLayoutCompactContent = () => {
   });
 
   const filterLabels: Record<keyof typeof filters, string> = {
-    freeShipping: 'Free Shipping',
-    inStock: 'In Stock',
-    onSale: 'On Sale',
-    newArrivals: 'New Arrivals',
-    featured: 'Featured',
-    topRated: 'Top Rated',
-    clearance: 'Clearance',
-    bestSeller: 'Best Seller',
+    freeShipping: "Free Shipping",
+    inStock: "In Stock",
+    onSale: "On Sale",
+    newArrivals: "New Arrivals",
+    featured: "Featured",
+    topRated: "Top Rated",
+    clearance: "Clearance",
+    bestSeller: "Best Seller",
   };
 
-  const handleFilterChange =
-    (key: keyof typeof filters) => (value: boolean) => {
-      setFilters((prev) => ({ ...prev, [key]: value }));
-    };
+  const handleFilterChange = (key: keyof typeof filters) => (value: boolean) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  };
 
   return (
     <View className="flex-1 items-center justify-center px-5">
@@ -251,29 +236,18 @@ const DisabledStateContent = () => {
   return (
     <View className="flex-1 items-center justify-center px-5">
       <View className="gap-8 w-full">
-        <ControlField
-          isSelected={activeSwitch}
-          onSelectedChange={setActiveSwitch}
-        >
+        <ControlField isSelected={activeSwitch} onSelectedChange={setActiveSwitch}>
           <View className="flex-1">
             <Label>Two-factor authentication</Label>
-            <Description>
-              Add an extra layer of security to your account
-            </Description>
+            <Description>Add an extra layer of security to your account</Description>
           </View>
           <ControlField.Indicator />
         </ControlField>
 
-        <ControlField
-          isSelected={disabledSwitch}
-          onSelectedChange={setDisabledSwitch}
-          isDisabled
-        >
+        <ControlField isSelected={disabledSwitch} onSelectedChange={setDisabledSwitch} isDisabled>
           <View className="flex-1">
             <Label>Biometric authentication</Label>
-            <Description>
-              Requires device with fingerprint or face recognition support
-            </Description>
+            <Description>Requires device with fingerprint or face recognition support</Description>
           </View>
           <ControlField.Indicator />
         </ControlField>
@@ -291,10 +265,7 @@ const ValidationErrorStatesContent = () => {
 
   return (
     <View className="flex-1 items-center justify-center px-5">
-      <StyleAnimatedView
-        className="gap-8 w-full h-[350px]"
-        layout={LinearTransition}
-      >
+      <StyleAnimatedView className="gap-8 w-full h-[350px]" layout={LinearTransition}>
         <Animated.View layout={LinearTransition}>
           <ControlField
             isSelected={terms}
@@ -309,8 +280,7 @@ const ValidationErrorStatesContent = () => {
                 </Label.Text>
               </Label>
               <Description isInvalid={false} maxFontSizeMultiplier={1.2}>
-                By checking this box, you agree to our Terms of Service and
-                Privacy Policy
+                By checking this box, you agree to our Terms of Service and Privacy Policy
               </Description>
             </View>
             <ControlField.Indicator variant="checkbox" />
@@ -325,9 +295,7 @@ const ValidationErrorStatesContent = () => {
           >
             <View className="flex-1">
               <Label isInvalid={false}>
-                <Label.Text maxFontSizeMultiplier={1.2}>
-                  Accept Privacy Policy
-                </Label.Text>
+                <Label.Text maxFontSizeMultiplier={1.2}>Accept Privacy Policy</Label.Text>
               </Label>
               <Description hideOnInvalid maxFontSizeMultiplier={1.2}>
                 The privacy policy has been accepted
@@ -352,13 +320,11 @@ const ValidationErrorStatesContent = () => {
             <View className="flex-row items-center gap-2">
               <View className="flex-1">
                 <Label isInvalid={false}>
-                  <Label.Text maxFontSizeMultiplier={1.2}>
-                    Share usage data
-                  </Label.Text>
+                  <Label.Text maxFontSizeMultiplier={1.2}>Share usage data</Label.Text>
                 </Label>
                 <Description isInvalid={false} maxFontSizeMultiplier={1.2}>
-                  Help improve our product by sharing anonymous usage data and
-                  improving our products.
+                  Help improve our product by sharing anonymous usage data and improving our
+                  products.
                 </Description>
               </View>
               <ControlField.Indicator />
@@ -377,28 +343,28 @@ const ValidationErrorStatesContent = () => {
 
 const CONTROL_FIELD_VARIANTS: UsageVariant[] = [
   {
-    value: 'switch-control-field-set',
-    label: 'Switch ControlField set',
+    value: "switch-control-field-set",
+    label: "Switch ControlField set",
     content: <SwitchFormFieldSetContent />,
   },
   {
-    value: 'checkbox-control-field-set',
-    label: 'Checkbox ControlField set',
+    value: "checkbox-control-field-set",
+    label: "Checkbox ControlField set",
     content: <CheckboxFormFieldSetContent />,
   },
   {
-    value: 'inline-layout-compact',
-    label: 'Inline compact layout',
+    value: "inline-layout-compact",
+    label: "Inline compact layout",
     content: <InlineLayoutCompactContent />,
   },
   {
-    value: 'disabled-state',
-    label: 'Disabled state',
+    value: "disabled-state",
+    label: "Disabled state",
     content: <DisabledStateContent />,
   },
   {
-    value: 'validation-error-states',
-    label: 'Validation & error states',
+    value: "validation-error-states",
+    label: "Validation & error states",
     content: <ValidationErrorStatesContent />,
   },
 ];

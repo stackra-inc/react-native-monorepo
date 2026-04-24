@@ -1,7 +1,7 @@
-import React from 'react';
-import Svg, { Path, Rect } from 'react-native-svg';
-import { withUniwind } from 'uniwind';
-import type { IconProps } from '../../helpers/types/icons';
+import React from "react";
+import Svg, { Path, Rect } from "react-native-svg";
+import { withUniwind } from "uniwind";
+import type { IconProps } from "../../helpers/types/icons";
 
 /**
  * ArrowDownToSquare icon component - React Native SVG implementation
@@ -9,7 +9,7 @@ import type { IconProps } from '../../helpers/types/icons';
  */
 const ArrowDownToSquareIconComponent: React.FC<IconProps> = ({
   size = 20,
-  color = 'currentColor',
+  color = "currentColor",
 }) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16">
@@ -36,12 +36,9 @@ const ArrowDownToSquareIconComponent: React.FC<IconProps> = ({
  * <ArrowDownToSquareIcon size={48} color="#3b82f6" />
  * ```
  */
-export const ArrowDownToSquareIcon = withUniwind(
-  ArrowDownToSquareIconComponent,
-  {
-    color: {
-      fromClassName: 'colorClassName',
-      styleProperty: 'accentColor',
-    },
-  }
-);
+export const ArrowDownToSquareIcon = withUniwind(ArrowDownToSquareIconComponent, {
+  color: {
+    fromClassName: "colorClassName",
+    styleProperty: "accentColor",
+  },
+});

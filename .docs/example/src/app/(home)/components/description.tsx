@@ -1,18 +1,14 @@
-import { Description, Input, Label, TextField } from 'heroui-native';
-import { View } from 'react-native';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { Description, Input, Label, TextField } from "heroui-native";
+import { View } from "react-native";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
 
 const BasicContent = () => {
   return (
     <View className="flex-1 justify-center px-5 gap-8">
       <TextField>
         <Label>Email address</Label>
-        <Input
-          placeholder="Enter your email"
-          keyboardType="email-address"
-          autoCapitalize="none"
-        />
+        <Input placeholder="Enter your email" keyboardType="email-address" autoCapitalize="none" />
         <Description nativeID="email-desc">
           We'll never share your email with anyone else.
         </Description>
@@ -32,8 +28,8 @@ const BasicContent = () => {
 
 const DESCRIPTION_VARIANTS: UsageVariant[] = [
   {
-    value: 'basic',
-    label: 'Basic',
+    value: "basic",
+    label: "Basic",
     content: <BasicContent />,
   },
 ];

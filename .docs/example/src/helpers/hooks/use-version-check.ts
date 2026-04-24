@@ -1,9 +1,6 @@
-import Constants from 'expo-constants';
-import { useEffect } from 'react';
-import {
-  getAppInfoFromTheStore,
-  shouldUpdateApp,
-} from '../utils/version-check';
+import Constants from "expo-constants";
+import { useEffect } from "react";
+import { getAppInfoFromTheStore, shouldUpdateApp } from "../utils/version-check";
 
 type UseVersionCheckOptions = {
   /**
@@ -35,17 +32,13 @@ export function useVersionCheck({ onVersionChecked }: UseVersionCheckOptions) {
           return;
         }
 
-        if (
-          installedVersion &&
-          newestVersion &&
-          shouldUpdateApp(installedVersion, newestVersion)
-        ) {
+        if (installedVersion && newestVersion && shouldUpdateApp(installedVersion, newestVersion)) {
           onVersionChecked(true);
         } else {
           onVersionChecked(false);
         }
       } catch (error) {
-        console.log('[useVersionCheck] Failed to check for updates:', error);
+        console.log("[useVersionCheck] Failed to check for updates:", error);
 
         if (!cancelled) {
           onVersionChecked(false);

@@ -1,12 +1,12 @@
-import type { BottomSheetFooterProps } from '@gorhom/bottom-sheet';
-import { useRouter } from 'expo-router';
-import { BottomSheet } from 'heroui-native';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { View } from 'react-native';
+import type { BottomSheetFooterProps } from "@gorhom/bottom-sheet";
+import { useRouter } from "expo-router";
+import { BottomSheet } from "heroui-native";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { View } from "react-native";
 import {
   PaywallFooter,
   SuperAppPaywallContent,
-} from '../../../components/showcases/super-app-paywall/paywall-content';
+} from "../../../components/showcases/super-app-paywall/paywall-content";
 
 export default function SuperAppPaywall() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function SuperAppPaywall() {
 
   const renderFooter = useCallback(
     (props: BottomSheetFooterProps) => <PaywallFooter {...props} />,
-    []
+    [],
   );
 
   return (
@@ -41,7 +41,7 @@ export default function SuperAppPaywall() {
         <BottomSheet.Portal>
           <BottomSheet.Overlay />
           <BottomSheet.Content
-            snapPoints={['90%']}
+            snapPoints={["90%"]}
             enableDynamicSizing={false}
             enableOverDrag={false}
             handleClassName="hidden"

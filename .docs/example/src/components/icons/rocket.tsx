@@ -1,18 +1,15 @@
-import React from 'react';
-import Svg, { ClipPath, Defs, G, Path, Rect } from 'react-native-svg';
-import { withUniwind } from 'uniwind';
-import type { IconProps } from '../../helpers/types/icons';
+import React from "react";
+import Svg, { ClipPath, Defs, G, Path, Rect } from "react-native-svg";
+import { withUniwind } from "uniwind";
+import type { IconProps } from "../../helpers/types/icons";
 
-const ROCKET_CLIP_PATH_ID = 'rocket-clip';
+const ROCKET_CLIP_PATH_ID = "rocket-clip";
 
 /**
  * Rocket icon component - React Native SVG implementation
  * Wrapped with withUniwind to enable className-based styling
  */
-const RocketIconComponent: React.FC<IconProps> = ({
-  size = 20,
-  color = 'currentColor',
-}) => {
+const RocketIconComponent: React.FC<IconProps> = ({ size = 20, color = "currentColor" }) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 16 16">
       <Rect width={16} height={16} fill="none" />
@@ -49,7 +46,7 @@ const RocketIconComponent: React.FC<IconProps> = ({
  */
 export const RocketIcon = withUniwind(RocketIconComponent, {
   color: {
-    fromClassName: 'colorClassName',
-    styleProperty: 'accentColor',
+    fromClassName: "colorClassName",
+    styleProperty: "accentColor",
   },
 });

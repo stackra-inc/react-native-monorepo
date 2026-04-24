@@ -1,24 +1,11 @@
-import {
-  Description,
-  FieldError,
-  Input,
-  Label,
-  TextField,
-} from 'heroui-native';
-import { useWindowDimensions, View } from 'react-native';
-import { useReanimatedKeyboardAnimation } from 'react-native-keyboard-controller';
-import Animated, {
-  useAnimatedStyle,
-  withTiming,
-} from 'react-native-reanimated';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { Description, FieldError, Input, Label, TextField } from "heroui-native";
+import { useWindowDimensions, View } from "react-native";
+import { useReanimatedKeyboardAnimation } from "react-native-keyboard-controller";
+import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
 
-const KeyboardAvoidingContainer = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+const KeyboardAvoidingContainer = ({ children }: { children: React.ReactNode }) => {
   const { height } = useWindowDimensions();
 
   const { progress } = useReanimatedKeyboardAnimation();
@@ -59,9 +46,7 @@ const InputWithLabelAndDescriptionContent = () => {
             keyboardType="email-address"
             autoCapitalize="none"
           />
-          <Description>
-            We'll never share your email with anyone else.
-          </Description>
+          <Description>We'll never share your email with anyone else.</Description>
         </TextField>
       </KeyboardAvoidingContainer>
     </View>
@@ -99,20 +84,13 @@ const InputStatesContent = () => {
             <Label>
               <Label.Text maxFontSizeMultiplier={1.4}>Default State</Label.Text>
             </Label>
-            <Input
-              placeholder="Enter your email"
-              keyboardType="email-address"
-            />
-            <Description maxFontSizeMultiplier={1.4}>
-              Normal input state
-            </Description>
+            <Input placeholder="Enter your email" keyboardType="email-address" />
+            <Description maxFontSizeMultiplier={1.4}>Normal input state</Description>
           </TextField>
 
           <TextField isDisabled>
             <Label>
-              <Label.Text maxFontSizeMultiplier={1.4}>
-                Disabled State
-              </Label.Text>
+              <Label.Text maxFontSizeMultiplier={1.4}>Disabled State</Label.Text>
             </Label>
             <Input placeholder="Cannot edit" value="Read only value" />
             <Description maxFontSizeMultiplier={1.4}>
@@ -124,10 +102,7 @@ const InputStatesContent = () => {
             <Label>
               <Label.Text maxFontSizeMultiplier={1.4}>Invalid State</Label.Text>
             </Label>
-            <Input
-              placeholder="Enter your email"
-              keyboardType="email-address"
-            />
+            <Input placeholder="Enter your email" keyboardType="email-address" />
             <FieldError textProps={{ maxFontSizeMultiplier: 1.4 }}>
               Please enter a valid email address
             </FieldError>
@@ -140,23 +115,23 @@ const InputStatesContent = () => {
 
 const INPUT_VARIANTS: UsageVariant[] = [
   {
-    value: 'basic-input',
-    label: 'Basic Input',
+    value: "basic-input",
+    label: "Basic Input",
     content: <BasicInputContent />,
   },
   {
-    value: 'input-with-label-description',
-    label: 'With Label & Description',
+    value: "input-with-label-description",
+    label: "With Label & Description",
     content: <InputWithLabelAndDescriptionContent />,
   },
   {
-    value: 'input-variants',
-    label: 'Variants',
+    value: "input-variants",
+    label: "Variants",
     content: <InputVariantsContent />,
   },
   {
-    value: 'input-states',
-    label: 'States',
+    value: "input-states",
+    label: "States",
     content: <InputStatesContent />,
   },
 ];

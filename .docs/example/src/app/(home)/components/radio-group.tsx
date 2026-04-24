@@ -7,44 +7,33 @@ import {
   RadioGroup,
   Separator,
   Surface,
-} from 'heroui-native';
-import React from 'react';
-import { View } from 'react-native';
-import Animated, {
-  FadeInUp,
-  LinearTransition,
-  ZoomIn,
-} from 'react-native-reanimated';
-import { withUniwind } from 'uniwind';
-import { AppText } from '../../../components/app-text';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
-import { BellFillIcon } from '../../../components/icons/bell-fill';
-import { ThunderboltFillIcon } from '../../../components/icons/thunderbolt-fill';
+} from "heroui-native";
+import React from "react";
+import { View } from "react-native";
+import Animated, { FadeInUp, LinearTransition, ZoomIn } from "react-native-reanimated";
+import { withUniwind } from "uniwind";
+import { AppText } from "../../../components/app-text";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
+import { BellFillIcon } from "../../../components/icons/bell-fill";
+import { ThunderboltFillIcon } from "../../../components/icons/thunderbolt-fill";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 const StyleAnimatedView = withUniwind(Animated.View);
 
 const BasicRadioGroupContent = () => {
-  const [withDescSelection, setWithDescSelection] = React.useState('desc1');
+  const [withDescSelection, setWithDescSelection] = React.useState("desc1");
 
   return (
     <View className="flex-1 px-5 items-center justify-center">
       <Surface className="w-full">
-        <RadioGroup
-          value={withDescSelection}
-          onValueChange={setWithDescSelection}
-        >
+        <RadioGroup value={withDescSelection} onValueChange={setWithDescSelection}>
           <RadioGroup.Item value="desc1">
             <View className="flex-1">
               <Label>
-                <Label.Text maxFontSizeMultiplier={1.4}>
-                  Standard Shipping
-                </Label.Text>
+                <Label.Text maxFontSizeMultiplier={1.4}>Standard Shipping</Label.Text>
               </Label>
-              <Description maxFontSizeMultiplier={1.4}>
-                Delivered in 5-7 business days
-              </Description>
+              <Description maxFontSizeMultiplier={1.4}>Delivered in 5-7 business days</Description>
             </View>
             <Radio />
           </RadioGroup.Item>
@@ -52,13 +41,9 @@ const BasicRadioGroupContent = () => {
           <RadioGroup.Item value="desc2">
             <View className="flex-1">
               <Label>
-                <Label.Text maxFontSizeMultiplier={1.4}>
-                  Express Shipping
-                </Label.Text>
+                <Label.Text maxFontSizeMultiplier={1.4}>Express Shipping</Label.Text>
               </Label>
-              <Description maxFontSizeMultiplier={1.4}>
-                Delivered in 2-3 business days
-              </Description>
+              <Description maxFontSizeMultiplier={1.4}>Delivered in 2-3 business days</Description>
             </View>
             <Radio />
           </RadioGroup.Item>
@@ -66,13 +51,9 @@ const BasicRadioGroupContent = () => {
           <RadioGroup.Item value="desc3">
             <View className="flex-1">
               <Label>
-                <Label.Text maxFontSizeMultiplier={1.4}>
-                  Overnight Shipping
-                </Label.Text>
+                <Label.Text maxFontSizeMultiplier={1.4}>Overnight Shipping</Label.Text>
               </Label>
-              <Description maxFontSizeMultiplier={1.4}>
-                Delivered next business day
-              </Description>
+              <Description maxFontSizeMultiplier={1.4}>Delivered next business day</Description>
             </View>
             <Radio />
           </RadioGroup.Item>
@@ -119,17 +100,14 @@ const ShippingOptionItem = ({
       {({ isSelected }) => (
         <View
           className={cn(
-            'flex-row items-center justify-between gap-3 p-3 rounded-2xl bg-transparent',
-            isSelected && 'bg-surface shadow-surface',
-            containerClassName
+            "flex-row items-center justify-between gap-3 p-3 rounded-2xl bg-transparent",
+            isSelected && "bg-surface shadow-surface",
+            containerClassName,
           )}
         >
           <Radio>
             <Radio.Indicator
-              className={cn(
-                !isSelected && 'border border-muted/10',
-                indicatorClassName
-              )}
+              className={cn(!isSelected && "border border-muted/10", indicatorClassName)}
             />
           </Radio>
           <View className="flex-1">
@@ -140,9 +118,9 @@ const ShippingOptionItem = ({
           </View>
           <AppText
             className={cn(
-              'text-foreground font-semibold',
-              isSelected && 'text-accent',
-              priceClassName
+              "text-foreground font-semibold",
+              isSelected && "text-accent",
+              priceClassName,
             )}
           >
             {price}
@@ -154,7 +132,7 @@ const ShippingOptionItem = ({
 };
 
 const StartIndicatorAlignmentContent = () => {
-  const [shippingSpeed, setShippingSpeed] = React.useState('standard');
+  const [shippingSpeed, setShippingSpeed] = React.useState("standard");
 
   return (
     <View className="flex-1 px-5 items-center justify-center">
@@ -190,39 +168,25 @@ const StartIndicatorAlignmentContent = () => {
 // ------------------------------------------------------------------------------
 
 const InlineRadioOptionsContent = () => {
-  const [size, setSize] = React.useState('M');
-  const sizes = ['XS', 'S', 'M', 'L'];
+  const [size, setSize] = React.useState("M");
+  const sizes = ["XS", "S", "M", "L"];
 
   return (
     <View className="flex-1 px-5 items-center justify-center">
       <Surface className="w-full gap-6">
         <View>
-          <AppText className="text-foreground font-semibold text-base">
-            Select Size
-          </AppText>
-          <AppText className="text-muted text-sm">
-            Classic Cotton T-Shirt
-          </AppText>
+          <AppText className="text-foreground font-semibold text-base">Select Size</AppText>
+          <AppText className="text-muted text-sm">Classic Cotton T-Shirt</AppText>
         </View>
-        <RadioGroup
-          value={size}
-          onValueChange={setSize}
-          className="flex-row gap-3"
-        >
+        <RadioGroup value={size} onValueChange={setSize} className="flex-row gap-3">
           {sizes.map((sizeOption) => (
-            <RadioGroup.Item
-              key={sizeOption}
-              value={sizeOption}
-              className="flex-1 gap-1.5"
-            >
+            <RadioGroup.Item key={sizeOption} value={sizeOption} className="flex-1 gap-1.5">
               <Radio />
               <Label className="flex-1">{sizeOption}</Label>
             </RadioGroup.Item>
           ))}
         </RadioGroup>
-        <AppText className="text-muted text-xs">
-          * Size guide available in product details
-        </AppText>
+        <AppText className="text-muted text-xs">* Size guide available in product details</AppText>
       </Surface>
     </View>
   );
@@ -231,34 +195,25 @@ const InlineRadioOptionsContent = () => {
 // ------------------------------------------------------------------------------
 
 const RadioGroupStatesContent = () => {
-  const [plan, setPlan] = React.useState('basic');
+  const [plan, setPlan] = React.useState("basic");
 
   return (
     <View className="flex-1 px-5 items-center justify-center">
       <StyleAnimatedView className="w-full" layout={LinearTransition}>
         <Surface className="gap-6">
           <View>
-            <AppText
-              maxFontSizeMultiplier={1.4}
-              className="text-foreground font-medium text-lg"
-            >
+            <AppText maxFontSizeMultiplier={1.4} className="text-foreground font-medium text-lg">
               Choose Your Plan
             </AppText>
             <AppText maxFontSizeMultiplier={1.4} className="text-muted text-sm">
               Select a subscription plan to continue
             </AppText>
           </View>
-          <RadioGroup
-            value={plan}
-            onValueChange={setPlan}
-            isInvalid={plan === 'enterprise'}
-          >
+          <RadioGroup value={plan} onValueChange={setPlan} isInvalid={plan === "enterprise"}>
             <RadioGroup.Item value="basic" isInvalid={false}>
               <View className="flex-1">
                 <Label>
-                  <Label.Text maxFontSizeMultiplier={1.4}>
-                    Basic Plan
-                  </Label.Text>
+                  <Label.Text maxFontSizeMultiplier={1.4}>Basic Plan</Label.Text>
                 </Label>
                 <Description maxFontSizeMultiplier={1.4}>
                   Perfect for individuals - $9/month
@@ -282,15 +237,10 @@ const RadioGroupStatesContent = () => {
             </RadioGroup.Item>
 
             <Separator />
-            <RadioGroup.Item
-              value="enterprise"
-              isInvalid={plan === 'enterprise'}
-            >
+            <RadioGroup.Item value="enterprise" isInvalid={plan === "enterprise"}>
               <View className="flex-1">
                 <Label>
-                  <Label.Text maxFontSizeMultiplier={1.4}>
-                    Enterprise Plan
-                  </Label.Text>
+                  <Label.Text maxFontSizeMultiplier={1.4}>Enterprise Plan</Label.Text>
                 </Label>
                 <Description maxFontSizeMultiplier={1.4} hideOnInvalid>
                   Not available in your region
@@ -311,16 +261,13 @@ const RadioGroupStatesContent = () => {
 // ------------------------------------------------------------------------------
 
 const CustomIndicatorBackgroundContent = () => {
-  const [priority, setPriority] = React.useState('medium');
+  const [priority, setPriority] = React.useState("medium");
 
   return (
     <View className="flex-1 px-5 items-center justify-center">
       <Surface className="w-full gap-6">
         <View>
-          <AppText
-            maxFontSizeMultiplier={1.4}
-            className="text-foreground font-semibold text-base"
-          >
+          <AppText maxFontSizeMultiplier={1.4} className="text-foreground font-semibold text-base">
             Priority Level
           </AppText>
           <AppText maxFontSizeMultiplier={1.4} className="text-muted text-sm">
@@ -333,9 +280,7 @@ const CustomIndicatorBackgroundContent = () => {
               <>
                 <View className="flex-1">
                   <Label>
-                    <Label.Text maxFontSizeMultiplier={1.4}>
-                      High Priority
-                    </Label.Text>
+                    <Label.Text maxFontSizeMultiplier={1.4}>High Priority</Label.Text>
                   </Label>
                   <Description maxFontSizeMultiplier={1.4}>
                     Urgent - requires immediate attention
@@ -343,10 +288,7 @@ const CustomIndicatorBackgroundContent = () => {
                 </View>
                 <Radio>
                   <Radio.Indicator
-                    className={cn(
-                      'size-8',
-                      isSelected && 'bg-red-500 border-red-400'
-                    )}
+                    className={cn("size-8", isSelected && "bg-red-500 border-red-400")}
                   >
                     <Radio.IndicatorThumb className="size-3.5 bg-red-100" />
                   </Radio.Indicator>
@@ -362,9 +304,7 @@ const CustomIndicatorBackgroundContent = () => {
               <>
                 <View className="flex-1">
                   <Label>
-                    <Label.Text maxFontSizeMultiplier={1.4}>
-                      Medium Priority
-                    </Label.Text>
+                    <Label.Text maxFontSizeMultiplier={1.4}>Medium Priority</Label.Text>
                   </Label>
                   <Description maxFontSizeMultiplier={1.4}>
                     Important - complete within this week
@@ -372,10 +312,7 @@ const CustomIndicatorBackgroundContent = () => {
                 </View>
                 <Radio>
                   <Radio.Indicator
-                    className={cn(
-                      'size-8',
-                      isSelected && 'bg-amber-500 border-amber-400'
-                    )}
+                    className={cn("size-8", isSelected && "bg-amber-500 border-amber-400")}
                   >
                     <Radio.IndicatorThumb className="size-3.5 bg-amber-100" />
                   </Radio.Indicator>
@@ -391,9 +328,7 @@ const CustomIndicatorBackgroundContent = () => {
               <>
                 <View className="flex-1">
                   <Label>
-                    <Label.Text maxFontSizeMultiplier={1.4}>
-                      Low Priority
-                    </Label.Text>
+                    <Label.Text maxFontSizeMultiplier={1.4}>Low Priority</Label.Text>
                   </Label>
                   <Description maxFontSizeMultiplier={1.4}>
                     Standard - complete when possible
@@ -401,10 +336,7 @@ const CustomIndicatorBackgroundContent = () => {
                 </View>
                 <Radio>
                   <Radio.Indicator
-                    className={cn(
-                      'size-8',
-                      isSelected && 'bg-emerald-500 border-emerald-400'
-                    )}
+                    className={cn("size-8", isSelected && "bg-emerald-500 border-emerald-400")}
                   >
                     <Radio.IndicatorThumb className="size-3.5 bg-emerald-100" />
                   </Radio.Indicator>
@@ -421,16 +353,13 @@ const CustomIndicatorBackgroundContent = () => {
 // ------------------------------------------------------------------------------
 
 const CustomIndicatorThumbContent = () => {
-  const [notification, setNotification] = React.useState('email');
+  const [notification, setNotification] = React.useState("email");
 
   return (
     <View className="flex-1 px-5 items-center justify-center">
       <Surface className="w-full gap-6">
         <View>
-          <AppText
-            className="text-foreground font-semibold text-base"
-            maxFontSizeMultiplier={1.4}
-          >
+          <AppText className="text-foreground font-semibold text-base" maxFontSizeMultiplier={1.4}>
             Notification Preferences
           </AppText>
           <AppText className="text-muted text-sm" maxFontSizeMultiplier={1.4}>
@@ -445,23 +374,16 @@ const CustomIndicatorThumbContent = () => {
                   <Radio.Indicator>
                     {isSelected && (
                       <AnimatedView entering={ZoomIn.duration(200)}>
-                        <BellFillIcon
-                          size={14}
-                          colorClassName="accent-accent-foreground"
-                        />
+                        <BellFillIcon size={14} colorClassName="accent-accent-foreground" />
                       </AnimatedView>
                     )}
                   </Radio.Indicator>
                 </Radio>
                 <View className="flex-1">
                   <Label>
-                    <Label.Text maxFontSizeMultiplier={1.4}>
-                      Email Notifications
-                    </Label.Text>
+                    <Label.Text maxFontSizeMultiplier={1.4}>Email Notifications</Label.Text>
                   </Label>
-                  <Description maxFontSizeMultiplier={1.4}>
-                    Get updates via email
-                  </Description>
+                  <Description maxFontSizeMultiplier={1.4}>Get updates via email</Description>
                 </View>
               </>
             )}
@@ -476,23 +398,16 @@ const CustomIndicatorThumbContent = () => {
                   <Radio.Indicator>
                     {isSelected && (
                       <AnimatedView entering={FadeInUp.duration(200)}>
-                        <ThunderboltFillIcon
-                          size={12}
-                          colorClassName="accent-accent-foreground"
-                        />
+                        <ThunderboltFillIcon size={12} colorClassName="accent-accent-foreground" />
                       </AnimatedView>
                     )}
                   </Radio.Indicator>
                 </Radio>
                 <View className="flex-1">
                   <Label>
-                    <Label.Text maxFontSizeMultiplier={1.4}>
-                      Push Notifications
-                    </Label.Text>
+                    <Label.Text maxFontSizeMultiplier={1.4}>Push Notifications</Label.Text>
                   </Label>
-                  <Description maxFontSizeMultiplier={1.4}>
-                    Get instant push alerts
-                  </Description>
+                  <Description maxFontSizeMultiplier={1.4}>Get instant push alerts</Description>
                 </View>
               </>
             )}
@@ -516,13 +431,9 @@ const CustomIndicatorThumbContent = () => {
                 </Radio>
                 <View className="flex-1">
                   <Label>
-                    <Label.Text maxFontSizeMultiplier={1.4}>
-                      No Notifications
-                    </Label.Text>
+                    <Label.Text maxFontSizeMultiplier={1.4}>No Notifications</Label.Text>
                   </Label>
-                  <Description maxFontSizeMultiplier={1.4}>
-                    Only check updates manually
-                  </Description>
+                  <Description maxFontSizeMultiplier={1.4}>Only check updates manually</Description>
                 </View>
               </>
             )}
@@ -537,33 +448,33 @@ const CustomIndicatorThumbContent = () => {
 
 const RADIO_GROUP_VARIANTS: UsageVariant[] = [
   {
-    value: 'basic-radio-group',
-    label: 'Basic RadioGroup',
+    value: "basic-radio-group",
+    label: "Basic RadioGroup",
     content: <BasicRadioGroupContent />,
   },
   {
-    value: 'start-indicator-alignment',
-    label: 'Start indicator alignment',
+    value: "start-indicator-alignment",
+    label: "Start indicator alignment",
     content: <StartIndicatorAlignmentContent />,
   },
   {
-    value: 'inline-radio-options',
-    label: 'Inline Radio Options',
+    value: "inline-radio-options",
+    label: "Inline Radio Options",
     content: <InlineRadioOptionsContent />,
   },
   {
-    value: 'radio-group-states',
-    label: 'RadioGroup States',
+    value: "radio-group-states",
+    label: "RadioGroup States",
     content: <RadioGroupStatesContent />,
   },
   {
-    value: 'custom-indicator-background',
-    label: 'Custom Indicator Background',
+    value: "custom-indicator-background",
+    label: "Custom Indicator Background",
     content: <CustomIndicatorBackgroundContent />,
   },
   {
-    value: 'custom-indicator-thumb',
-    label: 'Custom Indicator Thumb',
+    value: "custom-indicator-thumb",
+    label: "Custom Indicator Thumb",
     content: <CustomIndicatorThumbContent />,
   },
 ];

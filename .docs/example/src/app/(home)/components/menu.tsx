@@ -1,23 +1,23 @@
-import type { MenuKey } from 'heroui-native';
-import { Avatar, Button, cn, Menu, Separator, SubMenu } from 'heroui-native';
-import { useState } from 'react';
-import { View } from 'react-native';
-import { AppText } from '../../../components/app-text';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
-import { BellIcon } from '../../../components/icons/bell';
-import { ChevronRightIcon } from '../../../components/icons/chevron-right';
-import { CopyIcon } from '../../../components/icons/copy';
-import { GlobeIcon } from '../../../components/icons/globe';
-import { LockIcon } from '../../../components/icons/lock';
-import { PaletteIcon } from '../../../components/icons/palette';
-import { PencilIcon } from '../../../components/icons/pencil';
-import { PersonIcon } from '../../../components/icons/person';
-import { PersonFillIcon } from '../../../components/icons/person-fill';
-import { SquarePlusIcon } from '../../../components/icons/square-plus';
-import { StarFillIcon } from '../../../components/icons/star-fill';
-import { TrashIcon } from '../../../components/icons/trash';
-import { WithStateToggle } from '../../../components/with-state-toggle';
+import type { MenuKey } from "heroui-native";
+import { Avatar, Button, cn, Menu, Separator, SubMenu } from "heroui-native";
+import { useState } from "react";
+import { View } from "react-native";
+import { AppText } from "../../../components/app-text";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
+import { BellIcon } from "../../../components/icons/bell";
+import { ChevronRightIcon } from "../../../components/icons/chevron-right";
+import { CopyIcon } from "../../../components/icons/copy";
+import { GlobeIcon } from "../../../components/icons/globe";
+import { LockIcon } from "../../../components/icons/lock";
+import { PaletteIcon } from "../../../components/icons/palette";
+import { PencilIcon } from "../../../components/icons/pencil";
+import { PersonIcon } from "../../../components/icons/person";
+import { PersonFillIcon } from "../../../components/icons/person-fill";
+import { SquarePlusIcon } from "../../../components/icons/square-plus";
+import { StarFillIcon } from "../../../components/icons/star-fill";
+import { TrashIcon } from "../../../components/icons/trash";
+import { WithStateToggle } from "../../../components/with-state-toggle";
 
 const BasicUsageContent = () => {
   const [isBottomSheet, setIsBottomSheet] = useState(false);
@@ -31,27 +31,25 @@ const BasicUsageContent = () => {
     >
       <View className="flex-1 px-5">
         <View className="h-1/2 items-center justify-center">
-          <Menu presentation={isBottomSheet ? 'bottom-sheet' : 'popover'}>
+          <Menu presentation={isBottomSheet ? "bottom-sheet" : "popover"}>
             <Menu.Trigger asChild>
               <Button variant="secondary">Actions</Button>
             </Menu.Trigger>
             <Menu.Portal>
               <Menu.Overlay />
               <Menu.Content
-                presentation={isBottomSheet ? 'bottom-sheet' : 'popover'}
+                presentation={isBottomSheet ? "bottom-sheet" : "popover"}
                 width={isBottomSheet ? undefined : 260}
               >
                 <Menu.Label className="mb-1">Actions</Menu.Label>
-                <View className={cn('gap-1', isBottomSheet && 'gap-2')}>
+                <View className={cn("gap-1", isBottomSheet && "gap-2")}>
                   <Menu.Item className="items-start">
                     <View className="mt-1">
                       <SquarePlusIcon size={16} colorClassName="accent-muted" />
                     </View>
                     <View className="flex-1">
                       <Menu.ItemTitle>New file</Menu.ItemTitle>
-                      <Menu.ItemDescription>
-                        Create a new file
-                      </Menu.ItemDescription>
+                      <Menu.ItemDescription>Create a new file</Menu.ItemDescription>
                     </View>
                   </Menu.Item>
                   <Menu.Item className="items-start">
@@ -60,9 +58,7 @@ const BasicUsageContent = () => {
                     </View>
                     <View className="flex-1">
                       <Menu.ItemTitle>Copy link</Menu.ItemTitle>
-                      <Menu.ItemDescription>
-                        Copy the file link
-                      </Menu.ItemDescription>
+                      <Menu.ItemDescription>Copy the file link</Menu.ItemDescription>
                     </View>
                   </Menu.Item>
                   <Menu.Item className="items-start">
@@ -71,9 +67,7 @@ const BasicUsageContent = () => {
                     </View>
                     <View className="flex-1">
                       <Menu.ItemTitle>Edit file</Menu.ItemTitle>
-                      <Menu.ItemDescription>
-                        Make changes to the file
-                      </Menu.ItemDescription>
+                      <Menu.ItemDescription>Make changes to the file</Menu.ItemDescription>
                     </View>
                   </Menu.Item>
                 </View>
@@ -102,12 +96,8 @@ const BasicUsageContent = () => {
 const SectionsContent = () => {
   const [shouldCloseOnSelect, setShouldCloseOnSelect] = useState(false);
 
-  const [textStyles, setTextStyles] = useState<Set<MenuKey>>(
-    () => new Set(['bold', 'italic'])
-  );
-  const [alignment, setAlignment] = useState<Set<MenuKey>>(
-    () => new Set(['left'])
-  );
+  const [textStyles, setTextStyles] = useState<Set<MenuKey>>(() => new Set(["bold", "italic"]));
+  const [alignment, setAlignment] = useState<Set<MenuKey>>(() => new Set(["left"]));
 
   return (
     <WithStateToggle
@@ -185,10 +175,8 @@ const SectionsContent = () => {
 // ------------------------------------------------------------------------------
 
 const PlacementsContent = () => {
-  const [channels, setChannels] = useState<Set<MenuKey>>(
-    () => new Set(['email', 'push'])
-  );
-  const [theme, setTheme] = useState<Set<MenuKey>>(() => new Set(['system']));
+  const [channels, setChannels] = useState<Set<MenuKey>>(() => new Set(["email", "push"]));
+  const [theme, setTheme] = useState<Set<MenuKey>>(() => new Set(["system"]));
 
   return (
     <View className="flex-1">
@@ -206,18 +194,14 @@ const PlacementsContent = () => {
                 <Avatar size="sm" alt="Emily Chen">
                   <Avatar.Image
                     source={{
-                      uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg',
+                      uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/avatars/blue.jpg",
                     }}
                   />
                   <Avatar.Fallback>EC</Avatar.Fallback>
                 </Avatar>
                 <View>
-                  <AppText className="text-sm font-semibold text-foreground">
-                    Emily Chen
-                  </AppText>
-                  <AppText className="text-xs text-muted">
-                    emily@acme.co
-                  </AppText>
+                  <AppText className="text-sm font-semibold text-foreground">Emily Chen</AppText>
+                  <AppText className="text-xs text-muted">emily@acme.co</AppText>
                 </View>
               </View>
               <Separator className="mx-2 my-1 opacity-75" />
@@ -248,11 +232,7 @@ const PlacementsContent = () => {
             </Menu.Trigger>
             <Menu.Portal>
               <Menu.Overlay />
-              <Menu.Content
-                presentation="popover"
-                placement="right"
-                width={180}
-              >
+              <Menu.Content presentation="popover" placement="right" width={180}>
                 <Menu.Label className="mb-1">Appearance</Menu.Label>
                 <Menu.Group
                   selectionMode="single"
@@ -291,20 +271,13 @@ const PlacementsContent = () => {
             </Menu.Trigger>
             <Menu.Portal>
               <Menu.Overlay />
-              <Menu.Content
-                presentation="popover"
-                placement="left"
-                width={300}
-                className="gap-2"
-              >
+              <Menu.Content presentation="popover" placement="left" width={300} className="gap-2">
                 <Menu.Label>Browse</Menu.Label>
                 <Menu.Item>
                   <AppText className="text-xl">🎵</AppText>
                   <View className="flex-1">
                     <Menu.ItemTitle>Music</Menu.ItemTitle>
-                    <Menu.ItemDescription>
-                      Songs, albums & playlists
-                    </Menu.ItemDescription>
+                    <Menu.ItemDescription>Songs, albums & playlists</Menu.ItemDescription>
                   </View>
                   <ChevronRightIcon size={16} colorClassName="accent-muted" />
                 </Menu.Item>
@@ -312,9 +285,7 @@ const PlacementsContent = () => {
                   <AppText className="text-xl">🎬</AppText>
                   <View className="flex-1">
                     <Menu.ItemTitle>Movies</Menu.ItemTitle>
-                    <Menu.ItemDescription>
-                      Trending & new releases
-                    </Menu.ItemDescription>
+                    <Menu.ItemDescription>Trending & new releases</Menu.ItemDescription>
                   </View>
                   <ChevronRightIcon size={16} colorClassName="accent-muted" />
                 </Menu.Item>
@@ -322,9 +293,7 @@ const PlacementsContent = () => {
                   <AppText className="text-xl">📚</AppText>
                   <View className="flex-1">
                     <Menu.ItemTitle>Books</Menu.ItemTitle>
-                    <Menu.ItemDescription>
-                      Bestsellers & more
-                    </Menu.ItemDescription>
+                    <Menu.ItemDescription>Bestsellers & more</Menu.ItemDescription>
                   </View>
                   <ChevronRightIcon size={16} colorClassName="accent-muted" />
                 </Menu.Item>
@@ -332,9 +301,7 @@ const PlacementsContent = () => {
                   <AppText className="text-xl">🎮</AppText>
                   <View className="flex-1">
                     <Menu.ItemTitle>Games</Menu.ItemTitle>
-                    <Menu.ItemDescription>
-                      Popular & top rated
-                    </Menu.ItemDescription>
+                    <Menu.ItemDescription>Popular & top rated</Menu.ItemDescription>
                   </View>
                   <ChevronRightIcon size={16} colorClassName="accent-muted" />
                 </Menu.Item>
@@ -355,7 +322,7 @@ const PlacementsContent = () => {
               <Menu.Item
                 animation={{
                   backgroundColor: {
-                    value: 'transparent',
+                    value: "transparent",
                   },
                 }}
               >
@@ -366,16 +333,13 @@ const PlacementsContent = () => {
                 variant="danger"
                 animation={{
                   backgroundColor: {
-                    value: 'transparent',
+                    value: "transparent",
                   },
                 }}
               >
                 <Menu.ItemTitle>Clear all</Menu.ItemTitle>
               </Menu.Item>
-              <Separator
-                variant="thick"
-                className="-mx-[5px] mb-3 opacity-25"
-              />
+              <Separator variant="thick" className="-mx-[5px] mb-3 opacity-25" />
               <Menu.Label className="mb-1">Notify via</Menu.Label>
               <Menu.Group
                 selectionMode="multiple"
@@ -422,16 +386,11 @@ const SubMenuExampleContent = () => {
                 <SquarePlusIcon size={16} colorClassName="accent-muted" />
                 <Menu.ItemTitle>New Space</Menu.ItemTitle>
               </Menu.Item>
-              <Separator
-                variant="thick"
-                className="-mx-[6px] mt-1 opacity-25"
-              />
+              <Separator variant="thick" className="-mx-[6px] mt-1 opacity-25" />
               <SubMenu>
                 <SubMenu.Trigger textValue="Focus">
                   <SubMenu.TriggerIndicator />
-                  <AppText className="flex-1 text-base font-medium text-foreground">
-                    Focus
-                  </AppText>
+                  <AppText className="flex-1 text-base font-medium text-foreground">Focus</AppText>
                 </SubMenu.Trigger>
                 <SubMenu.Content>
                   <Menu.Item>
@@ -448,10 +407,7 @@ const SubMenuExampleContent = () => {
                   </Menu.Item>
                 </SubMenu.Content>
               </SubMenu>
-              <Separator
-                variant="thick"
-                className="-mx-[6px] mb-1 opacity-25"
-              />
+              <Separator variant="thick" className="-mx-[6px] mb-1 opacity-25" />
               <Menu.Item>
                 <PencilIcon size={16} colorClassName="accent-muted" />
                 <Menu.ItemTitle>Heading 1</Menu.ItemTitle>
@@ -485,11 +441,9 @@ const SubMenuExampleContent = () => {
 
 const SubMenuGroupsContent = () => {
   const [notifyChannels, setNotifyChannels] = useState<Set<MenuKey>>(
-    () => new Set(['email', 'push'])
+    () => new Set(["email", "push"]),
   );
-  const [privacy, setPrivacy] = useState<Set<MenuKey>>(
-    () => new Set(['friends'])
-  );
+  const [privacy, setPrivacy] = useState<Set<MenuKey>>(() => new Set(["friends"]));
 
   return (
     <View className="flex-1 px-5">
@@ -509,10 +463,7 @@ const SubMenuGroupsContent = () => {
                 <PaletteIcon size={16} colorClassName="accent-muted" />
                 <Menu.ItemTitle>Appearance</Menu.ItemTitle>
               </Menu.Item>
-              <Separator
-                variant="thick"
-                className="-mx-[6px] mt-1 opacity-25"
-              />
+              <Separator variant="thick" className="-mx-[6px] mt-1 opacity-25" />
               <SubMenu>
                 <SubMenu.Trigger textValue="Notifications">
                   <BellIcon size={16} colorClassName="accent-muted" />
@@ -566,10 +517,7 @@ const SubMenuGroupsContent = () => {
                   </Menu.Group>
                 </SubMenu.Content>
               </SubMenu>
-              <Separator
-                variant="thick"
-                className="-mx-[6px] mb-1 opacity-25"
-              />
+              <Separator variant="thick" className="-mx-[6px] mb-1 opacity-25" />
               <Menu.Item>
                 <LockIcon size={16} colorClassName="accent-muted" />
                 <Menu.ItemTitle>Privacy</Menu.ItemTitle>
@@ -607,16 +555,11 @@ const TwoSubMenusContent = () => {
                 <PencilIcon size={16} colorClassName="accent-muted" />
                 <Menu.ItemTitle>Rename</Menu.ItemTitle>
               </Menu.Item>
-              <Separator
-                variant="thick"
-                className="-mx-[6px] mt-1 opacity-25"
-              />
+              <Separator variant="thick" className="-mx-[6px] mt-1 opacity-25" />
               <SubMenu>
                 <SubMenu.Trigger textValue="Share">
                   <PersonIcon size={16} colorClassName="accent-muted" />
-                  <AppText className="flex-1 text-base font-medium text-foreground">
-                    Share
-                  </AppText>
+                  <AppText className="flex-1 text-base font-medium text-foreground">Share</AppText>
                   <SubMenu.TriggerIndicator />
                 </SubMenu.Trigger>
                 <SubMenu.Content>
@@ -637,9 +580,7 @@ const TwoSubMenusContent = () => {
               <SubMenu>
                 <SubMenu.Trigger textValue="Export">
                   <GlobeIcon size={16} colorClassName="accent-muted" />
-                  <AppText className="flex-1 text-base font-medium text-foreground">
-                    Export
-                  </AppText>
+                  <AppText className="flex-1 text-base font-medium text-foreground">Export</AppText>
                   <SubMenu.TriggerIndicator />
                 </SubMenu.Trigger>
                 <SubMenu.Content>
@@ -657,10 +598,7 @@ const TwoSubMenusContent = () => {
                   </Menu.Item>
                 </SubMenu.Content>
               </SubMenu>
-              <Separator
-                variant="thick"
-                className="-mx-[6px] mb-1 opacity-25"
-              />
+              <Separator variant="thick" className="-mx-[6px] mb-1 opacity-25" />
               <Menu.Item variant="danger">
                 <TrashIcon size={16} colorClassName="accent-danger" />
                 <Menu.ItemTitle>Delete Project</Menu.ItemTitle>
@@ -677,33 +615,33 @@ const TwoSubMenusContent = () => {
 
 const MENU_VARIANTS: UsageVariant[] = [
   {
-    value: 'basic-usage',
-    label: 'Basic usage',
+    value: "basic-usage",
+    label: "Basic usage",
     content: <BasicUsageContent />,
   },
   {
-    value: 'sections',
-    label: 'Sections',
+    value: "sections",
+    label: "Sections",
     content: <SectionsContent />,
   },
   {
-    value: 'sub-menu',
-    label: 'Sub Menu',
+    value: "sub-menu",
+    label: "Sub Menu",
     content: <SubMenuExampleContent />,
   },
   {
-    value: 'two-sub-menus',
-    label: 'Two Sub Menus',
+    value: "two-sub-menus",
+    label: "Two Sub Menus",
     content: <TwoSubMenusContent />,
   },
   {
-    value: 'sub-menu-groups',
-    label: 'Sub Menu Groups',
+    value: "sub-menu-groups",
+    label: "Sub Menu Groups",
     content: <SubMenuGroupsContent />,
   },
   {
-    value: 'placements',
-    label: 'Placements',
+    value: "placements",
+    label: "Placements",
     content: <PlacementsContent />,
   },
 ];

@@ -1,6 +1,6 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { LinearGradient } from 'expo-linear-gradient';
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   Avatar,
   BottomSheet,
@@ -10,12 +10,12 @@ import {
   TextField,
   useBottomSheetAwareHandlers,
   useThemeColor,
-} from 'heroui-native';
-import { useMemo, useState } from 'react';
-import { Pressable, View } from 'react-native';
-import { withUniwind } from 'uniwind';
-import { AppText } from '../app-text';
-import { MagnifierIcon } from '../icons/magnifier';
+} from "heroui-native";
+import { useMemo, useState } from "react";
+import { Pressable, View } from "react-native";
+import { withUniwind } from "uniwind";
+import { AppText } from "../app-text";
+import { MagnifierIcon } from "../icons/magnifier";
 
 const StyledIonicons = withUniwind(Ionicons);
 
@@ -26,20 +26,20 @@ type User = {
 };
 
 const MOCK_USERS: User[] = [
-  { id: '1', name: 'John Doe', email: 'john.doe@example.com' },
-  { id: '2', name: 'Jane Smith', email: 'jane.smith@example.com' },
-  { id: '3', name: 'Alice Johnson', email: 'alice.johnson@example.com' },
-  { id: '4', name: 'Bob Williams', email: 'bob.williams@example.com' },
-  { id: '5', name: 'Charlie Brown', email: 'charlie.brown@example.com' },
-  { id: '6', name: 'Diana Prince', email: 'diana.prince@example.com' },
-  { id: '7', name: 'Edward Norton', email: 'edward.norton@example.com' },
-  { id: '8', name: 'Fiona Apple', email: 'fiona.apple@example.com' },
-  { id: '9', name: 'George Lucas', email: 'george.lucas@example.com' },
-  { id: '10', name: 'Helen Keller', email: 'helen.keller@example.com' },
+  { id: "1", name: "John Doe", email: "john.doe@example.com" },
+  { id: "2", name: "Jane Smith", email: "jane.smith@example.com" },
+  { id: "3", name: "Alice Johnson", email: "alice.johnson@example.com" },
+  { id: "4", name: "Bob Williams", email: "bob.williams@example.com" },
+  { id: "5", name: "Charlie Brown", email: "charlie.brown@example.com" },
+  { id: "6", name: "Diana Prince", email: "diana.prince@example.com" },
+  { id: "7", name: "Edward Norton", email: "edward.norton@example.com" },
+  { id: "8", name: "Fiona Apple", email: "fiona.apple@example.com" },
+  { id: "9", name: "George Lucas", email: "george.lucas@example.com" },
+  { id: "10", name: "Helen Keller", email: "helen.keller@example.com" },
 ];
 
 const getInitials = (name: string): string => {
-  const parts = name.trim().split(' ');
+  const parts = name.trim().split(" ");
   if (parts.length >= 2) {
     const first = parts[0];
     const last = parts[parts.length - 1];
@@ -59,9 +59,7 @@ const UserSearchItem = ({ user }: { user: User }) => {
         <Avatar.Fallback>{initials}</Avatar.Fallback>
       </Avatar>
       <View className="flex-1">
-        <AppText className="text-base font-semibold text-foreground">
-          {user.name}
-        </AppText>
+        <AppText className="text-base font-semibold text-foreground">{user.name}</AppText>
         <AppText className="text-sm text-muted">{user.email}</AppText>
       </View>
     </View>
@@ -103,14 +101,10 @@ const BottomSheetTextInput = ({
         {searchQuery.length > 0 && (
           <Pressable
             className="absolute right-3 p-1"
-            onPress={() => setSearchQuery('')}
+            onPress={() => setSearchQuery("")}
             hitSlop={12}
           >
-            <StyledIonicons
-              name="close-circle"
-              size={20}
-              className="text-muted"
-            />
+            <StyledIonicons name="close-circle" size={20} className="text-muted" />
           </Pressable>
         )}
       </View>
@@ -123,11 +117,11 @@ const BottomSheetTextInput = ({
  * Manages search query state, filtering, and UI rendering.
  */
 const UserSearchBottomSheetContent = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const themeColorOverlay = useThemeColor('overlay');
+  const themeColorOverlay = useThemeColor("overlay");
 
-  const snapPoints = useMemo(() => ['50%', '90%'], []);
+  const snapPoints = useMemo(() => ["50%", "90%"], []);
 
   /**
    * Filters users based on the search query.
@@ -139,9 +133,7 @@ const UserSearchBottomSheetContent = () => {
     }
     const query = searchQuery.toLowerCase();
     return MOCK_USERS.filter(
-      (user) =>
-        user.name.toLowerCase().includes(query) ||
-        user.email.toLowerCase().includes(query)
+      (user) => user.name.toLowerCase().includes(query) || user.email.toLowerCase().includes(query),
     );
   }, [searchQuery]);
 
@@ -153,14 +145,8 @@ const UserSearchBottomSheetContent = () => {
       contentContainerClassName="h-full pt-16 pb-2"
       keyboardBehavior="extend"
     >
-      <BottomSheetTextInput
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
-      <ScrollShadow
-        LinearGradientComponent={LinearGradient}
-        color={themeColorOverlay}
-      >
+      <BottomSheetTextInput searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <ScrollShadow LinearGradientComponent={LinearGradient} color={themeColorOverlay}>
         <BottomSheetScrollView
           showsVerticalScrollIndicator={false}
           contentContainerClassName="pt-3"
@@ -174,15 +160,9 @@ const UserSearchBottomSheetContent = () => {
             </View>
           ) : (
             <View className="items-center justify-center py-8">
-              <StyledIonicons
-                name="search-outline"
-                size={48}
-                className="text-muted mb-3"
-              />
+              <StyledIonicons name="search-outline" size={48} className="text-muted mb-3" />
               <AppText className="text-base text-muted">No users found</AppText>
-              <AppText className="text-sm text-muted mt-1">
-                Try a different search term
-              </AppText>
+              <AppText className="text-sm text-muted mt-1">Try a different search term</AppText>
             </View>
           )}
         </BottomSheetScrollView>

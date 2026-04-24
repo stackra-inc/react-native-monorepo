@@ -1,16 +1,16 @@
-import { Image as ExpoImage } from 'expo-image';
-import { useRouter } from 'expo-router';
-import { Chip, cn, Surface } from 'heroui-native';
-import { Platform, Pressable, StyleSheet, View } from 'react-native';
+import { Image as ExpoImage } from "expo-image";
+import { useRouter } from "expo-router";
+import { Chip, cn, Surface } from "heroui-native";
+import { Platform, Pressable, StyleSheet, View } from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
   type SharedValue,
   useAnimatedStyle,
   useDerivedValue,
-} from 'react-native-reanimated';
-import { useAppTheme } from '../../contexts/app-theme-context';
-import { AppText } from '../app-text';
+} from "react-native-reanimated";
+import { useAppTheme } from "../../contexts/app-theme-context";
+import { AppText } from "../app-text";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -36,12 +36,7 @@ export type ShowcaseItemProps = {
   itemSize: number;
 };
 
-export function ShowcaseItem({
-  item,
-  index,
-  scrollY,
-  itemSize,
-}: ShowcaseItemProps) {
+export function ShowcaseItem({ item, index, scrollY, itemSize }: ShowcaseItemProps) {
   const router = useRouter();
 
   const { isDark } = useAppTheme();
@@ -52,20 +47,16 @@ export function ShowcaseItem({
 
   const rContainerStyle = useAnimatedStyle(() => {
     const translateY =
-      Platform.OS === 'ios'
+      Platform.OS === "ios"
         ? interpolate(
             scrollY.get(),
             [(index - 1) * itemSize, index * itemSize, index * itemSize + 1],
-            [0, 0, 1]
+            [0, 0, 1],
           )
         : 0;
 
     return {
-      opacity: interpolate(
-        animatedIndex.get(),
-        [index - 1, index, index + 1],
-        [0, 1, 0]
-      ),
+      opacity: interpolate(animatedIndex.get(), [index - 1, index, index + 1], [0, 1, 0]),
       transform: [
         {
           translateY,
@@ -77,7 +68,7 @@ export function ShowcaseItem({
             [1.2, 1, 0.5],
             {
               extrapolateRight: Extrapolation.CLAMP,
-            }
+            },
           ),
         },
       ],
@@ -89,14 +80,14 @@ export function ShowcaseItem({
       opacity: interpolate(
         animatedIndex.get(),
         [index - 1, index, index + 1],
-        [0, isDark ? 0.15 : 0.3, 0]
+        [0, isDark ? 0.15 : 0.3, 0],
       ),
       transform: [
         {
           translateY: interpolate(
             scrollY.get(),
             [(index - 1) * itemSize, index * itemSize, index * itemSize + 1],
-            [0, 0, 1]
+            [0, 0, 1],
           ),
         },
         {
@@ -106,7 +97,7 @@ export function ShowcaseItem({
             [5, 1, 1],
             {
               extrapolateRight: Extrapolation.CLAMP,
-            }
+            },
           ),
         },
       ],
@@ -122,20 +113,15 @@ export function ShowcaseItem({
           blurRadius={100}
         />
       </AnimatedView>
-      <AnimatedView
-        className="flex-1 items-center justify-center p-8"
-        style={[rContainerStyle]}
-      >
+      <AnimatedView className="flex-1 items-center justify-center p-8" style={[rContainerStyle]}>
         <Pressable className="mb-5" onPress={() => router.push(item.href)}>
-          <AppText className="text-2xl/7 text-foreground font-semibold">
-            {item.title}
-          </AppText>
+          <AppText className="text-2xl/7 text-foreground font-semibold">{item.title}</AppText>
         </Pressable>
         <AnimatedPressable onPress={() => router.push(item.href)}>
           <Surface
             className={cn(
-              'w-[62%] aspect-[1/2] items-center justify-center rounded-3xl p-0 border border-neutral-100 shadow-2xl shadow-black/5',
-              isDark && 'shadow-none border-neutral-900'
+              "w-[62%] aspect-[1/2] items-center justify-center rounded-3xl p-0 border border-neutral-100 shadow-2xl shadow-black/5",
+              isDark && "shadow-none border-neutral-900",
             )}
           >
             <ExpoImage

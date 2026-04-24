@@ -1,18 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
-import * as Haptics from 'expo-haptics';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useThemeColor } from 'heroui-native';
-import React from 'react';
-import { Platform, Pressable, Text, View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
-import Animated, { FadeIn } from 'react-native-reanimated';
-import { CardContent } from '../../../components/themes-content/card-content';
-import { CheckboxContent } from '../../../components/themes-content/checkbox-content';
-import { RadioGroupContent } from '../../../components/themes-content/radio-group-content';
-import { SwitchContent } from '../../../components/themes-content/switch-content';
-import { TextInputContent } from '../../../components/themes-content/text-input-content';
-import { useAppTheme } from '../../../contexts/app-theme-context';
-import useHeaderHeight from '../../../helpers/hooks/use-header-height';
+import * as Haptics from "expo-haptics";
+import { LinearGradient } from "expo-linear-gradient";
+import { useThemeColor } from "heroui-native";
+import React from "react";
+import { Platform, Pressable, Text, View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
+import Animated, { FadeIn } from "react-native-reanimated";
+import { CardContent } from "../../../components/themes-content/card-content";
+import { CheckboxContent } from "../../../components/themes-content/checkbox-content";
+import { RadioGroupContent } from "../../../components/themes-content/radio-group-content";
+import { SwitchContent } from "../../../components/themes-content/switch-content";
+import { TextInputContent } from "../../../components/themes-content/text-input-content";
+import { useAppTheme } from "../../../contexts/app-theme-context";
+import useHeaderHeight from "../../../helpers/hooks/use-header-height";
 
 type ThemeOption = {
   id: string;
@@ -23,28 +23,28 @@ type ThemeOption = {
 
 const availableThemes: ThemeOption[] = [
   {
-    id: 'default',
-    name: 'Default',
-    lightVariant: 'light',
-    darkVariant: 'dark',
+    id: "default",
+    name: "Default",
+    lightVariant: "light",
+    darkVariant: "dark",
   },
   {
-    id: 'lavender',
-    name: 'Lavender',
-    lightVariant: 'lavender-light',
-    darkVariant: 'lavender-dark',
+    id: "lavender",
+    name: "Lavender",
+    lightVariant: "lavender-light",
+    darkVariant: "lavender-dark",
   },
   {
-    id: 'mint',
-    name: 'Mint',
-    lightVariant: 'mint-light',
-    darkVariant: 'mint-dark',
+    id: "mint",
+    name: "Mint",
+    lightVariant: "mint-light",
+    darkVariant: "mint-dark",
   },
   {
-    id: 'sky',
-    name: 'Sky',
-    lightVariant: 'sky-light',
-    darkVariant: 'sky-dark',
+    id: "sky",
+    name: "Sky",
+    lightVariant: "sky-light",
+    darkVariant: "sky-dark",
   },
 ];
 
@@ -52,10 +52,10 @@ const availableThemes: ThemeOption[] = [
  * Gradient color mapping for each theme
  */
 const themeGradients = {
-  default: ['#5DA2E7', '#0900FF'] as [string, string],
-  lavender: ['#EF84F6', '#7B00FF'] as [string, string],
-  mint: ['#52DEBE', '#208976'] as [string, string],
-  sky: ['#5DD6E7', '#0062FF'] as [string, string],
+  default: ["#5DA2E7", "#0900FF"] as [string, string],
+  lavender: ["#EF84F6", "#7B00FF"] as [string, string],
+  mint: ["#52DEBE", "#208976"] as [string, string],
+  sky: ["#5DD6E7", "#0062FF"] as [string, string],
 } as const satisfies Record<string, [string, string]>;
 
 const ThemeCircle: React.FC<{
@@ -63,20 +63,19 @@ const ThemeCircle: React.FC<{
   isActive: boolean;
   onPress: () => void;
 }> = ({ theme, isActive, onPress }) => {
-  const themeColorAccent = useThemeColor('accent');
+  const themeColorAccent = useThemeColor("accent");
   const gradientColors =
-    themeGradients[theme.id as keyof typeof themeGradients] ??
-    themeGradients.default;
+    themeGradients[theme.id as keyof typeof themeGradients] ?? themeGradients.default;
 
   return (
     <Pressable onPress={onPress} className="items-center">
-      <View style={{ position: 'relative', padding: 4 }}>
+      <View style={{ position: "relative", padding: 4 }}>
         {/* Active ring */}
         {isActive && (
           <Animated.View
             entering={FadeIn.duration(200)}
             style={{
-              position: 'absolute',
+              position: "absolute",
               width: 68,
               height: 68,
               borderRadius: 34,
@@ -93,8 +92,8 @@ const ThemeCircle: React.FC<{
             width: 60,
             height: 60,
             borderRadius: 30,
-            overflow: 'hidden',
-            position: 'relative',
+            overflow: "hidden",
+            position: "relative",
           }}
         >
           <LinearGradient
@@ -102,15 +101,13 @@ const ThemeCircle: React.FC<{
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
-              width: '100%',
-              height: '100%',
+              width: "100%",
+              height: "100%",
             }}
           />
         </View>
       </View>
-      <Text className="text-xs mt-2 text-foreground font-medium">
-        {theme.name}
-      </Text>
+      <Text className="text-xs mt-2 text-foreground font-medium">{theme.name}</Text>
     </Pressable>
   );
 };
@@ -120,17 +117,17 @@ export default function Themes() {
   const headerHeight = useHeaderHeight();
 
   const getCurrentThemeId = () => {
-    if (currentTheme === 'light' || currentTheme === 'dark') return 'default';
-    if (currentTheme.startsWith('lavender')) return 'lavender';
-    if (currentTheme.startsWith('mint')) return 'mint';
-    if (currentTheme.startsWith('sky')) return 'sky';
-    return 'default';
+    if (currentTheme === "light" || currentTheme === "dark") return "default";
+    if (currentTheme.startsWith("lavender")) return "lavender";
+    if (currentTheme.startsWith("mint")) return "mint";
+    if (currentTheme.startsWith("sky")) return "sky";
+    return "default";
   };
 
   const handleThemeSelect = (theme: ThemeOption) => {
     const variant = isLight ? theme.lightVariant : theme.darkVariant;
     setTheme(variant as any);
-    if (Platform.OS === 'ios') {
+    if (Platform.OS === "ios") {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
   };

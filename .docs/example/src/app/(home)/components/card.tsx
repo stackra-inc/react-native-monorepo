@@ -1,11 +1,11 @@
-import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Button, Card, cn, type CardRootProps } from 'heroui-native';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
-import { withUniwind } from 'uniwind';
-import { AppText } from '../../../components/app-text';
-import type { UsageVariant } from '../../../components/component-presentation/types';
-import { UsageVariantFlatList } from '../../../components/component-presentation/usage-variant-flatlist';
+import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+import { Button, Card, cn, type CardRootProps } from "heroui-native";
+import { Image, Pressable, StyleSheet, View } from "react-native";
+import { withUniwind } from "uniwind";
+import { AppText } from "../../../components/app-text";
+import type { UsageVariant } from "../../../components/component-presentation/types";
+import { UsageVariantFlatList } from "../../../components/component-presentation/usage-variant-flatlist";
 
 const StyledImage = withUniwind(Image);
 const StyledIonicons = withUniwind(Ionicons);
@@ -21,19 +21,14 @@ const BasicCardContent = () => {
               <Card.Title>Living room Sofa</Card.Title>
             </View>
             <Card.Description>
-              This sofa is perfect for modern tropical spaces, baroque inspired
-              spaces.
+              This sofa is perfect for modern tropical spaces, baroque inspired spaces.
             </Card.Description>
           </Card.Body>
           <Card.Footer className="gap-3">
             <Button variant="primary">Buy now</Button>
             <Button variant="ghost">
               <Button.Label>Add to cart</Button.Label>
-              <StyledIonicons
-                name="basket-outline"
-                size={16}
-                className="text-muted"
-              />
+              <StyledIonicons name="basket-outline" size={16} className="text-muted" />
             </Button>
           </Card.Footer>
         </View>
@@ -53,7 +48,7 @@ const CardWithImageContent = () => {
             <Card.Header>
               <StyledImage
                 source={{
-                  uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo1.jpg',
+                  uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo1.jpg",
                 }}
                 className="h-16 aspect-square rounded-xl"
               />
@@ -62,11 +57,7 @@ const CardWithImageContent = () => {
               <Card.Title maxFontSizeMultiplier={1.2} numberOfLines={1}>
                 Indie Hackers
               </Card.Title>
-              <Card.Description
-                className="text-sm"
-                maxFontSizeMultiplier={1.2}
-                numberOfLines={1}
-              >
+              <Card.Description className="text-sm" maxFontSizeMultiplier={1.2} numberOfLines={1}>
                 148 members
               </Card.Description>
             </Card.Body>
@@ -87,7 +78,7 @@ const CardWithImageContent = () => {
             <Card.Header>
               <StyledImage
                 source={{
-                  uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo2.jpg',
+                  uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/demo2.jpg",
                 }}
                 className="h-16 aspect-square rounded-xl"
               />
@@ -96,11 +87,7 @@ const CardWithImageContent = () => {
               <Card.Title maxFontSizeMultiplier={1.2} numberOfLines={1}>
                 AI Builders
               </Card.Title>
-              <Card.Description
-                className="text-sm"
-                maxFontSizeMultiplier={1.2}
-                numberOfLines={1}
-              >
+              <Card.Description className="text-sm" maxFontSizeMultiplier={1.2} numberOfLines={1}>
                 362 members
               </Card.Description>
             </Card.Body>
@@ -130,7 +117,7 @@ const HorizontalCardWithImageContent = () => {
         <Card className="flex-row gap-4 p-4" variant="tertiary">
           <StyledImage
             source={{
-              uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/avocado.jpeg',
+              uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/avocado.jpeg",
             }}
             className="h-28 aspect-square rounded-2xl"
             resizeMode="cover"
@@ -140,11 +127,7 @@ const HorizontalCardWithImageContent = () => {
               <Card.Title maxFontSizeMultiplier={1.2} numberOfLines={1}>
                 Avocado Hackathon
               </Card.Title>
-              <Card.Description
-                numberOfLines={2}
-                className="text-sm"
-                maxFontSizeMultiplier={1.2}
-              >
+              <Card.Description numberOfLines={2} className="text-sm" maxFontSizeMultiplier={1.2}>
                 Today, 6:30 PM
               </Card.Description>
             </Card.Body>
@@ -157,11 +140,7 @@ const HorizontalCardWithImageContent = () => {
                 >
                   View Details
                 </AppText>
-                <StyledIonicons
-                  name="open-outline"
-                  size={12}
-                  className="text-accent"
-                />
+                <StyledIonicons name="open-outline" size={12} className="text-accent" />
               </Pressable>
             </Card.Footer>
           </View>
@@ -169,7 +148,7 @@ const HorizontalCardWithImageContent = () => {
         <Card className="flex-row gap-4 p-4" variant="tertiary">
           <StyledImage
             source={{
-              uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/oranges.jpeg',
+              uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/oranges.jpeg",
             }}
             className="h-28 aspect-square rounded-2xl"
             resizeMode="cover"
@@ -179,11 +158,7 @@ const HorizontalCardWithImageContent = () => {
               <Card.Title maxFontSizeMultiplier={1.2} numberOfLines={1}>
                 Sound Electro
               </Card.Title>
-              <Card.Description
-                numberOfLines={2}
-                className="text-sm"
-                maxFontSizeMultiplier={1.2}
-              >
+              <Card.Description numberOfLines={2} className="text-sm" maxFontSizeMultiplier={1.2}>
                 Wed, 4:30 PM
               </Card.Description>
             </Card.Body>
@@ -196,11 +171,7 @@ const HorizontalCardWithImageContent = () => {
                 >
                   View Details
                 </AppText>
-                <StyledIonicons
-                  name="open-outline"
-                  size={12}
-                  className="text-accent"
-                />
+                <StyledIonicons name="open-outline" size={12} className="text-accent" />
               </Pressable>
             </Card.Footer>
           </View>
@@ -218,13 +189,13 @@ const BackgroundImageCardContent = () => {
       <Card className="w-full aspect-square">
         <Image
           source={{
-            uri: 'https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/neo2.jpeg',
+            uri: "https://heroui-assets.nyc3.cdn.digitaloceanspaces.com/docs/neo2.jpeg",
           }}
           className="absolute inset-0"
           resizeMode="cover"
         />
         <LinearGradient
-          colors={['rgba(0,0,0,0.1)', 'rgba(0,0,0,0.5)']}
+          colors={["rgba(0,0,0,0.1)", "rgba(0,0,0,0.5)"]}
           style={StyleSheet.absoluteFill}
         />
         <View className="flex-1 gap-4">
@@ -245,24 +216,15 @@ const BackgroundImageCardContent = () => {
           <Card.Footer className="gap-3">
             <View className="flex-row items-center justify-between">
               <View>
-                <AppText
-                  className="text-base text-white"
-                  maxFontSizeMultiplier={1.2}
-                >
+                <AppText className="text-base text-white" maxFontSizeMultiplier={1.2}>
                   Available soon
                 </AppText>
-                <AppText
-                  className="text-base text-zinc-300"
-                  maxFontSizeMultiplier={1.2}
-                >
+                <AppText className="text-base text-zinc-300" maxFontSizeMultiplier={1.2}>
                   Get notified
                 </AppText>
               </View>
               <Button size="sm" className="bg-white" feedbackVariant="scale">
-                <Button.Label
-                  className="text-black"
-                  maxFontSizeMultiplier={1.2}
-                >
+                <Button.Label className="text-black" maxFontSizeMultiplier={1.2}>
                   Notify me
                 </Button.Label>
               </Button>
@@ -277,24 +239,16 @@ const BackgroundImageCardContent = () => {
 // ------------------------------------------------------------------------------
 
 type CardItemProps = {
-  variant: CardRootProps['variant'];
+  variant: CardRootProps["variant"];
   title: string;
   description: string;
   className?: string;
 };
 
-const CardItem = ({
-  variant,
-  title,
-  description,
-  className,
-}: CardItemProps) => {
+const CardItem = ({ variant, title, description, className }: CardItemProps) => {
   return (
-    <Card variant={variant} className={cn('gap-2', className)}>
-      <AppText
-        className="text-foreground font-medium"
-        maxFontSizeMultiplier={1.3}
-      >
+    <Card variant={variant} className={cn("gap-2", className)}>
+      <AppText className="text-foreground font-medium" maxFontSizeMultiplier={1.3}>
         {title}
       </AppText>
       <AppText className="text-muted" maxFontSizeMultiplier={1.3}>
@@ -338,28 +292,28 @@ const VariantsContent = () => {
 
 const CARD_VARIANTS: UsageVariant[] = [
   {
-    value: 'basic-card',
-    label: 'Basic card',
+    value: "basic-card",
+    label: "Basic card",
     content: <BasicCardContent />,
   },
   {
-    value: 'card-with-image',
-    label: 'Card with image',
+    value: "card-with-image",
+    label: "Card with image",
     content: <CardWithImageContent />,
   },
   {
-    value: 'horizontal-card-with-image',
-    label: 'Horizontal card with image',
+    value: "horizontal-card-with-image",
+    label: "Horizontal card with image",
     content: <HorizontalCardWithImageContent />,
   },
   {
-    value: 'background-image-card',
-    label: 'Background image card',
+    value: "background-image-card",
+    label: "Background image card",
     content: <BackgroundImageCardContent />,
   },
   {
-    value: 'variants',
-    label: 'Variants',
+    value: "variants",
+    label: "Variants",
     content: <VariantsContent />,
   },
 ];
