@@ -105,10 +105,12 @@ clean_deps() {
     fi
 
     # Remove lockfile
-    if [ -f "$ROOT/pnpm-lock.yaml" ]; then
-        rm -f "$ROOT/pnpm-lock.yaml"
-        log "Removed pnpm-lock.yaml"
-    fi
+    for lockfile in "package-lock.json" "yarn.lock" "pnpm-lock.yaml" "bun.lockb" "bun.lock"; do
+        if [ -f "$ROOT/$lockfile" ]; then
+            rm -f "$ROOT/$lockfile"
+            log "Removed $lockfile"
+        fi
+    done
 }
 
 # ── Temp / OS files ───────────────────────────────────────────────────

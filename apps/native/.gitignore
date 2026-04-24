@@ -1,4 +1,10 @@
 node_modules/
+
+# Allow Tailwind to scan heroui-native lib for class detection
+!node_modules/heroui-native/
+!node_modules/heroui-native/lib/
+!node_modules/heroui-native/lib/**
+
 .expo/
 dist/
 npm-debug.*
