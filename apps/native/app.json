@@ -17,9 +17,6 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.herouinative.app",
       "buildNumber": "1",
-      "config": {
-        "usesNonExemptEncryption": false
-      },
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "NSCameraUsageDescription": "This app uses the camera to scan codes and capture photos.",

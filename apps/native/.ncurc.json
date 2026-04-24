@@ -1,0 +1,15 @@
+{
+  "reject": [
+    "react",
+    "react-native",
+    "react-native-reanimated",
+    "react-native-gesture-handler",
+    "react-native-worklets",
+    "react-native-safe-area-context",
+    "react-native-screens",
+    "react-native-svg",
+    "@gorhom/bottom-sheet",
+    "tailwind-variants",
+    "tailwind-merge"
+  ]
+}
