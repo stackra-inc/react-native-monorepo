@@ -8,7 +8,18 @@
     "dev:ios": "expo run:ios",
     "dev:android": "expo run:android",
     "android": "expo run:android",
-    "ios": "expo run:ios"
+    "ios": "expo run:ios",
+    "prebuild": "expo prebuild",
+    "prebuild:clean": "rm -rf ios android && expo prebuild",
+    "clean:native": "rm -rf ios android",
+    "devices": "xcrun simctl list devices available",
+    "devices:booted": "xcrun simctl list devices booted",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
