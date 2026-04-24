@@ -1,11 +1,22 @@
+/**
+ * Home Screen
+ *
+ * Main landing screen showing HeroUI Native component showcase.
+ * Demonstrates Button, Card, Alert, and Chip components with
+ * DI-injected LoggerService and Str utilities.
+ *
+ * @module screens/home
+ */
+
 import { useInject } from "@stackra/ts-container";
 import { Str } from "@stackra/ts-support";
 import { Button, Card, Alert, Chip } from "heroui-native";
 import { View, Text, ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { LoggerService } from "../services/logger.service";
 
-export default function HomeScreen() {
+import { LoggerService } from "@/../services/logger.service";
+
+export function HomeScreen() {
   const logger = useInject(LoggerService);
 
   const appName = Str.title("heroui native");
@@ -15,7 +26,7 @@ export default function HomeScreen() {
     <View className="flex-1 bg-background">
       <StatusBar style="auto" />
       <ScrollView
-        contentContainerClassName="p-4 pt-safe-offset-4 pb-12 gap-6"
+        contentContainerClassName="p-4 pt-safe-offset-4 pb-safe-offset-6 gap-6"
         showsVerticalScrollIndicator={false}
       >
         {/* Header */}
@@ -58,7 +69,7 @@ export default function HomeScreen() {
               <Card.Description>
                 Configured with HeroUI Native, Uniwind (Tailwind v4), Inter
                 fonts, Reanimated, Gesture Handler, Keyboard Controller, DI
-                container, and custom themes — all inside a Turborepo monorepo.
+                container, and custom themes.
               </Card.Description>
             </Card.Body>
             <Card.Footer className="gap-3">

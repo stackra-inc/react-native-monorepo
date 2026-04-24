@@ -1,31 +1,11 @@
 /**
  * Environment type declarations for the native app.
  *
- * Consolidates all ambient type declarations: Uniwind themes,
- * image module declarations, and global type augmentations.
+ * Image module declarations and global type augmentations.
+ * Uniwind theme types are auto-generated in uniwind.d.ts by Metro.
  *
  * @module types/env
  */
-
-// ============================================================================
-// Uniwind Theme Types (auto-generated — do not edit manually)
-// ============================================================================
-/// <reference types="uniwind/types" />
-
-declare module "uniwind" {
-  export interface UniwindConfig {
-    themes: readonly [
-      "light",
-      "dark",
-      "lavender-light",
-      "lavender-dark",
-      "mint-light",
-      "mint-dark",
-      "sky-light",
-      "sky-dark",
-    ];
-  }
-}
 
 // ============================================================================
 // Image Module Declarations

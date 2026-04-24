@@ -1,3 +1,18 @@
+/**
+ * Root Layout
+ *
+ * The top-level layout that wraps the entire application. Responsible for:
+ * - Loading custom fonts (Inter family)
+ * - Bootstrapping the DI container
+ * - Providing GestureHandler, Keyboard, DI, and HeroUI contexts
+ * - Managing the splash screen lifecycle
+ *
+ * This file should stay thin — all provider config is defined as constants
+ * outside the component to avoid re-creation on each render.
+ *
+ * @module app/_layout
+ */
+
 import {
   Inter_400Regular,
   Inter_500Medium,
@@ -17,16 +32,43 @@ import {
   KeyboardAvoidingView,
   KeyboardProvider,
 } from "react-native-keyboard-controller";
+
 import "../styles/global.css";
-import { bootstrap } from "../bootstrap";
+import { bootstrap } from "@/bootstrap";
+
+// ── Splash Screen ───────────────────────────────────────────────────────────
 
 SplashScreen.setOptions({
   duration: 300,
   fade: true,
 });
 
+// ── HeroUI Configuration ────────────────────────────────────────────────────
+
 /**
- * Inner app content wrapped with HeroUI provider and keyboard handling.
+ * Global HeroUI Native provider configuration.
+ *
+ * Defined outside the component to prevent object re-creation on each render.
+ * The `contentWrapper` for toast is created inside AppContent via useCallback
+ * since it uses JSX.
+ */
+const heroUiConfig: Omit<HeroUINativeConfig, "toast"> = {
+  textProps: {
+    allowFontScaling: true,
+    maxFontSizeMultiplier: 2,
+  },
+  devInfo: {
+    stylingPrinciples: false,
+  },
+};
+
+// ── Inner Content ───────────────────────────────────────────────────────────
+
+/**
+ * Inner app content wrapped with DI container and HeroUI provider.
+ *
+ * Separated from RootLayout so the toast contentWrapper can use useCallback
+ * without triggering font/bootstrap re-checks.
  */
 function AppContent() {
   const contentWrapper = useCallback(
@@ -44,10 +86,7 @@ function AppContent() {
   );
 
   const config: HeroUINativeConfig = {
-    textProps: {
-      allowFontScaling: true,
-      maxFontSizeMultiplier: 2,
-    },
+    ...heroUiConfig,
     toast: {
       contentWrapper,
       defaultProps: {
@@ -56,16 +95,8 @@ function AppContent() {
         isSwipeable: true,
         animation: true,
       },
-      insets: {
-        top: 0,
-        bottom: 6,
-        left: 12,
-        right: 12,
-      },
+      insets: { top: 0, bottom: 6, left: 12, right: 12 },
       maxVisibleToasts: 3,
-    },
-    devInfo: {
-      stylingPrinciples: false,
     },
   };
 
@@ -77,6 +108,8 @@ function AppContent() {
     </ContainerProvider>
   );
 }
+
+// ── Root Layout ─────────────────────────────────────────────────────────────
 
 export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
@@ -106,7 +139,5 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
+  root: { flex: 1 },
 });

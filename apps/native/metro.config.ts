@@ -24,13 +24,10 @@
  * @module metro.config
  */
 
-const path = require("path");
-const {
-  wrapWithReanimatedMetroConfig,
-} = require("react-native-reanimated/metro-config");
-const { withUniwindConfig } = require("uniwind/metro");
-const { getDefaultConfig } = require("expo/metro-config");
-
+import path from "path";
+import { wrapWithReanimatedMetroConfig } from "react-native-reanimated/metro-config";
+import { withUniwindConfig } from "uniwind/metro";
+import { getDefaultConfig } from "expo/metro-config";
 // ── Path Constants ──────────────────────────────────────────────────────────
 
 /** Absolute path to the monorepo workspace root (two levels up from apps/native) */
@@ -41,55 +38,58 @@ const projectRoot = __dirname;
 
 // ── Base Configuration ──────────────────────────────────────────────────────
 
-/** @type {import('expo/metro-config').MetroConfig} */
-const config = getDefaultConfig(projectRoot);
+const defaultConfig = getDefaultConfig(projectRoot);
 
 // ── Monorepo Resolution ─────────────────────────────────────────────────────
 
-/**
- * Watch the entire workspace so Metro detects changes in shared packages
- * (e.g., @repo/ui, @stackra/* packages).
- */
-config.watchFolders = [workspaceRoot];
+const config = {
+  ...defaultConfig,
 
-/**
- * Tell Metro where to find node_modules. Order matters:
- * 1. Local node_modules (project-specific symlinks from pnpm)
- * 2. Root node_modules (hoisted packages via shamefully-hoist)
- */
-config.resolver.nodeModulesPaths = [
-  path.resolve(projectRoot, "node_modules"),
-  path.resolve(workspaceRoot, "node_modules"),
-];
+  /**
+   * Watch the entire workspace so Metro detects changes in shared packages
+   * (e.g., @repo/ui, @stackra/* packages).
+   */
+  watchFolders: [workspaceRoot],
 
-// ── Asset Extensions ────────────────────────────────────────────────────────
+  resolver: {
+    ...defaultConfig.resolver,
 
-/**
- * Register additional asset extensions for fonts and vector graphics.
- * Metro needs these to bundle font files and SVGs as assets.
- */
-config.resolver.assetExts = [
-  ...(config.resolver.assetExts ?? []),
-  "ttf",
-  "otf",
-  "woff",
-  "woff2",
-];
+    /**
+     * Tell Metro where to find node_modules. Order matters:
+     * 1. Local node_modules (project-specific symlinks from pnpm)
+     * 2. Root node_modules (hoisted packages via shamefully-hoist)
+     */
+    nodeModulesPaths: [
+      path.resolve(projectRoot, "node_modules"),
+      path.resolve(workspaceRoot, "node_modules"),
+    ],
+
+    /**
+     * Register additional asset extensions for fonts and vector graphics.
+     * Metro needs these to bundle font files and SVGs as assets.
+     */
+    assetExts: [
+      ...(defaultConfig.resolver.assetExts ?? []),
+      "ttf",
+      "otf",
+      "woff",
+      "woff2",
+    ],
+  },
+};
 
 // ── Export ───────────────────────────────────────────────────────────────────
 
 /**
  * Final config with Uniwind as the outermost wrapper (required).
  * Reanimated wraps the base config for worklet transformation support.
- *
- * @type {import('expo/metro-config').MetroConfig}
  */
-module.exports = withUniwindConfig(wrapWithReanimatedMetroConfig(config), {
+export default withUniwindConfig(wrapWithReanimatedMetroConfig(config), {
   /** Path to the CSS entry file relative to project root */
   cssEntryFile: "./src/styles/global.css",
 
   /** Path where Uniwind generates TypeScript theme type declarations */
-  dtsFile: "./src/types/env.d.ts",
+  dtsFile: "./src/types/uniwind.d.ts",
 
   /**
    * Custom theme variants registered with Uniwind.
