@@ -1,8 +1,22 @@
 {
-  "extends": "@repo/typescript-config/react-native-library.json",
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules"],
+  "extends": "@nesvel/typescript-config/react-lib",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "esnext",
+    "lib": ["es2022"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["dist", "build", "node_modules"]
 }

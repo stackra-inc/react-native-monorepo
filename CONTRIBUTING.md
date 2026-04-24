@@ -1,4 +1,4 @@
-# Contributing to Frontend Template
+# Contributing to React Native Monorepo
 
 Thank you for your interest in contributing! This document provides guidelines
 and instructions for contributing to this project.
@@ -24,9 +24,10 @@ maintainers.
 
 ### Prerequisites
 
-- Node.js 18.20.0 or higher
-- pnpm 9.0.0 or higher
+- Node.js 18 or higher (24 recommended)
+- pnpm 10 or higher
 - Git
+- Xcode (for iOS builds)
 
 ### Setup
 
@@ -34,8 +35,8 @@ maintainers.
 2. Clone your fork:
 
    ```bash
-   git clone https://github.com/your-username/frontend-template.git
-   cd frontend-template
+   git clone https://github.com/your-username/react-native-monorepo.git
+   cd react-native-monorepo
    ```
 
 3. Install dependencies:
@@ -54,15 +55,14 @@ maintainers.
 ### Running the Project
 
 ```bash
-# Run all apps in development mode
-pnpm dev
-
-# Run specific app
-pnpm dev:web
-pnpm dev:docs
+# Run native app in development mode
+pnpm dev --filter native
 
 # Build all packages and apps
 pnpm build
+
+# Run on iOS simulator
+cd apps/native && npx expo run:ios --device simulator
 
 # Run linter
 pnpm lint
@@ -80,17 +80,13 @@ pnpm format
 ### Project Structure
 
 ```
-frontend-template/
+react-native-monorepo/
 ├── apps/
-│   ├── web/          # Main Next.js application
-│   └── docs/         # Documentation site
+│   └── native/       # Expo + HeroUI Native mobile app
 ├── packages/
-│   ├── ui/           # Shared UI components (HeroUI v3)
-│   ├── logger/       # Logging utilities
-│   ├── tenant/       # Multi-tenancy support
-│   ├── eslint-config/
+│   ├── ui/            # Shared UI components
 │   └── typescript-config/
-└── .github/          # CI/CD workflows
+└── scripts/           # Monorepo utilities
 ```
 
 ## Coding Standards

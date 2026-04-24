@@ -1,8 +1,22 @@
-node_modules
-.next
-.turbo
-dist
-build
-coverage
-*.lock
+# Build outputs
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+# Native builds
+ios/
+android/
+Pods/
+
+# Turbo cache
+.turbo/
+
+# Lock files
 pnpm-lock.yaml
+*.lock
+
+# Generated
+*.tsbuildinfo
+dependency-graph.html
