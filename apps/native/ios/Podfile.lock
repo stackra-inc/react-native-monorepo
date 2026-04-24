@@ -2289,7 +2289,7 @@ DEPENDENCIES:
   - "ExpoLogBox (from `../../../node_modules/.pnpm/@expo+log-box@55.0.11_@expo+dom-webview@55.0.5_expo@55.0.17_react-native@0.83.2_@babel+_67083de006bd2a18ef4d49561c6fb942/node_modules/@expo/log-box`)"
   - "ExpoModulesCore (from `../../../node_modules/.pnpm/expo-modules-core@55.0.23_react-native-worklets@0.7.4_@babel+core@7.29.0_react-native@0_ea5eaa21534dcaaf824086e483600495/node_modules/expo-modules-core`)"
   - "ExpoModulesJSI (from `../../../node_modules/.pnpm/expo-modules-core@55.0.23_react-native-worklets@0.7.4_@babel+core@7.29.0_react-native@0_ea5eaa21534dcaaf824086e483600495/node_modules/expo-modules-core`)"
-  - "ExpoRouter (from `../../../node_modules/.pnpm/expo-router@55.0.13_@expo+log-box@55.0.11_@expo+metro-runtime@55.0.10_@types+react@19.2_2ed9b4047d96763422603899f11f4835/node_modules/expo-router/ios`)"
+  - "ExpoRouter (from `../../../node_modules/.pnpm/expo-router@55.0.13_05c8feed0abfe4d96feedb698fd5a3ae/node_modules/expo-router/ios`)"
   - "ExpoSplashScreen (from `../../../node_modules/.pnpm/expo-splash-screen@55.0.19_expo@55.0.17_typescript@6.0.3/node_modules/expo-splash-screen/ios`)"
   - "ExpoSymbols (from `../../../node_modules/.pnpm/expo-symbols@55.0.7_expo-font@55.0.6_expo@55.0.17_react-native@0.83.2_@babel+core@7.29._b09ef022745de66d4cd8306c3e29a126/node_modules/expo-symbols/ios`)"
   - "ExpoSystemUI (from `../../../node_modules/.pnpm/expo-system-ui@55.0.16_expo@55.0.17_react-native@0.83.2_@babel+core@7.29.0_@types+react@19.2.14_react@19.2.0_/node_modules/expo-system-ui/ios`)"
@@ -2415,7 +2415,7 @@ EXTERNAL SOURCES:
   ExpoModulesJSI:
     :path: "../../../node_modules/.pnpm/expo-modules-core@55.0.23_react-native-worklets@0.7.4_@babel+core@7.29.0_react-native@0_ea5eaa21534dcaaf824086e483600495/node_modules/expo-modules-core"
   ExpoRouter:
-    :path: "../../../node_modules/.pnpm/expo-router@55.0.13_@expo+log-box@55.0.11_@expo+metro-runtime@55.0.10_@types+react@19.2_2ed9b4047d96763422603899f11f4835/node_modules/expo-router/ios"
+    :path: "../../../node_modules/.pnpm/expo-router@55.0.13_05c8feed0abfe4d96feedb698fd5a3ae/node_modules/expo-router/ios"
   ExpoSplashScreen:
     :path: "../../../node_modules/.pnpm/expo-splash-screen@55.0.19_expo@55.0.17_typescript@6.0.3/node_modules/expo-splash-screen/ios"
   ExpoSymbols:
