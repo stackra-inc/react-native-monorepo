@@ -16,7 +16,7 @@ import { Injectable } from "@stackra/ts-container";
 import { Str } from "@stackra/ts-support";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Appearance } from "react-native";
-import { Uniwind } from "uniwind";
+import { Uniwind, ThemeTransitionPreset } from "uniwind";
 import { ThemeRegistry } from "@/registries/theme.registry";
 import type { ThemeDefinition } from "@/types/theme-definition.type";
 import type { ThemeName } from "@/types/theme.type";
@@ -154,19 +154,34 @@ export class ThemeService {
    * Switch to a specific theme variant.
    *
    * Delegates to `Uniwind.setTheme()` to apply the CSS variable
-   * theme at runtime and persists the choice to AsyncStorage.
+   * theme at runtime with an optional animated transition (Uniwind Pro).
+   * Persists the choice to AsyncStorage.
    *
    * @param variantName - The theme variant name to activate (e.g. "lavender-dark")
+   * @param transition - Optional transition preset for animated theme switching.
+   *   Defaults to `ThemeTransitionPreset.None` (instant). Requires Uniwind Pro.
    * @returns void
    *
    * @example
    * ```typescript
+   * // Instant switch
    * themeService.setTheme("lavender-dark");
+   *
+   * // With fade transition (Uniwind Pro)
+   * themeService.setTheme("lavender-dark", ThemeTransitionPreset.Fade);
+   *
+   * // With circle reveal (Uniwind Pro)
+   * themeService.setTheme("mint-light", ThemeTransitionPreset.CircleCenter);
    * ```
    */
-  public setTheme(variantName: ThemeName): void {
+  public setTheme(variantName: ThemeName, transition?: ThemeTransitionPreset): void {
     this._currentTheme = variantName;
-    Uniwind.setTheme(variantName);
+
+    if (transition !== undefined && transition !== ThemeTransitionPreset.None) {
+      Uniwind.setTheme(variantName, { preset: transition });
+    } else {
+      Uniwind.setTheme(variantName);
+    }
 
     // Fire-and-forget persistence
     AsyncStorage.setItem(STORAGE_KEY, variantName).catch((error) => {
@@ -178,30 +193,35 @@ export class ThemeService {
    * Toggle between light and dark variants of the current theme.
    *
    * Looks up the current theme in the registry via `findByVariant`,
-   * then switches to the opposite variant. Falls back to `"dark"`
-   * if the current theme is not found in any registered definition.
+   * then switches to the opposite variant with a Fade transition.
+   * Falls back to `"dark"` if the current theme is not found in
+   * any registered definition.
    *
+   * @param transition - Optional transition preset. Defaults to `Fade`.
    * @returns void
    *
    * @example
    * ```typescript
    * // Current theme: "lavender-light"
    * themeService.toggleTheme();
-   * // Now: "lavender-dark"
+   * // Now: "lavender-dark" (with Fade transition)
+   *
+   * // With custom transition
+   * themeService.toggleTheme(ThemeTransitionPreset.Blur);
    * ```
    */
-  public toggleTheme(): void {
+  public toggleTheme(transition: ThemeTransitionPreset = ThemeTransitionPreset.Fade): void {
     const definition = this._registry.findByVariant(this._currentTheme);
 
     if (!definition) {
-      this.setTheme("dark" as ThemeName);
+      this.setTheme("dark" as ThemeName, transition);
       return;
     }
 
     const [light, dark] = definition.variants;
     const opposite = this._currentTheme === light ? dark : light;
 
-    this.setTheme(opposite as ThemeName);
+    this.setTheme(opposite as ThemeName, transition);
   }
 
   /**

@@ -27,6 +27,7 @@
 import React, { useCallback, useMemo } from "react";
 import { Str } from "@stackra/ts-support";
 import { useUniwind } from "uniwind";
+import { ThemeTransitionPreset } from "uniwind";
 import { AppThemeContext } from "../contexts/theme.context";
 import { ThemeFacade } from "../facades/theme.facade";
 import type { AppThemeContextValue } from "../contexts/theme.context";
@@ -88,7 +89,7 @@ export function ThemeProvider({ children }: ThemeProviderProps): React.JSX.Eleme
    * via ThemeService.
    */
   const toggleTheme = useCallback((): void => {
-    ThemeFacade.toggleTheme();
+    ThemeFacade.toggleTheme(ThemeTransitionPreset.Fade);
   }, []);
 
   const value = useMemo(

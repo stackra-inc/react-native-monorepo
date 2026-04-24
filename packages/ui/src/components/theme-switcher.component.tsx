@@ -12,6 +12,7 @@
 import React, { useCallback, useMemo } from "react";
 import { Pressable, StyleSheet, View, Text } from "react-native";
 import type { TextStyle, ViewStyle } from "react-native";
+import { ThemeTransitionPreset } from "uniwind";
 import { ThemeFacade } from "../facades/theme.facade";
 import { useAppTheme } from "../hooks/use-app-theme.hook";
 import type { ThemeDefinition } from "../types/theme-definition.type";
@@ -58,7 +59,7 @@ export function ThemeSwitcher(): React.JSX.Element {
       const [light, dark] = definition.variants;
       const variant = isLight ? light : dark;
 
-      ThemeFacade.setTheme(variant as ThemeName);
+      ThemeFacade.setTheme(variant as ThemeName, ThemeTransitionPreset.CircleCenter);
     },
     [isLight],
   );

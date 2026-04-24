@@ -75,6 +75,11 @@ export type { ThemeDefinition } from "./types/theme-definition.type";
 export type { ThemeFeatureOptions } from "./types/theme-feature-options.type";
 
 // ============================================================================
+// Uniwind Pro — Theme Transitions
+// ============================================================================
+export { ThemeTransitionPreset } from "uniwind";
+
+// ============================================================================
 // Components — HeroUI Native re-exports
 // ============================================================================
 export {

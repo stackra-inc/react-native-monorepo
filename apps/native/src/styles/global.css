@@ -59,7 +59,9 @@
 @source "../screens";
 @source "../components";
 @source "../../../../packages/ui/src";
-@source "../../node_modules/heroui-native/lib";
+
+/* Safelist all heroui-native component classes — @source can't scan node_modules */
+@source inline("absolute aspect-square bg-accent bg-accent-soft bg-backdrop bg-danger bg-danger-soft bg-default bg-field bg-field-placeholder bg-overlay bg-separator bg-separator/50 bg-surface bg-surface-secondary bg-surface-tertiary bg-transparent border-0 border-[1.5px] border-accent border-b border-border border-danger border-default border-field border-field-border border-secondary border-tertiary bottom-0 flex-1 flex-col flex-row flex-wrap font-bold font-medium font-normal font-semibold gap-1 gap-1.5 gap-2 gap-2.5 gap-3 h-0.5 h-12 h-32 h-8 h-[24px] h-[36px] h-[48px] h-[56px] h-auto h-full h-hairline inset-0 items-center justify-between justify-center left-0 left-2 left-3 opacity-0 opacity-40 opacity-disabled overflow-hidden p-0 p-0.5 p-1 p-1.5 p-3 p-4 p-5 p-[3px] pb-3 pb-safe-offset-3 pl-9 pointer-events-none pr-12 pt-[3.5px] px-1.5 px-2 px-2.5 px-3 px-3.5 px-4 px-5 py-2 py-3 py-3.5 right-0 right-3 rounded-2xl rounded-3xl rounded-4xl rounded-full rounded-lg rounded-t-4xl rounded-xl self-start shadow-field shadow-none shadow-overlay shadow-surface size-4 size-6 size-8 size-full text-accent text-accent-foreground text-accent-soft-foreground text-base text-danger text-danger-foreground text-default-foreground text-field-foreground text-field-placeholder/50 text-foreground text-lg text-muted text-sm text-success text-warning text-xs top-0 w-0.5 w-10 w-11 w-2 w-[48px] w-full z-10 z-40 disabled:opacity-disabled disabled:pointer-events-none");
 
 /* ── Default Theme (light / dark) ────────────────────────────────────────── */
 
