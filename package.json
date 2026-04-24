@@ -47,7 +47,9 @@
     "graph": "turbo run build --graph=dependency-graph.html",
     "update:deps": "npx -y npm-check-updates -u --peer --root --workspaces",
     "update:interactive": "npx -y npm-check-updates -u --peer --root --workspaces --interactive",
-    "audit": "pnpm audit --audit-level=moderate"
+    "audit": "pnpm audit --audit-level=moderate",
+    "make:package": "./scripts/sync-configs/create-package.sh",
+    "sync:configs": "./scripts/sync-configs/sync-configs.sh"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
