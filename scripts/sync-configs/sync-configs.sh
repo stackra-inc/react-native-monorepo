@@ -102,7 +102,7 @@ process_package() {
   apply_template "$pkg_dir" "tsup.config.ts"             "tsup.config.ts"             "$pkg_name"
   apply_template "$pkg_dir" ".prettierrc.mjs"            ".prettierrc.mjs"            "$pkg_name"
   apply_template "$pkg_dir" "eslint.config.ts"           "eslint.config.ts"           "$pkg_name"
-  apply_template "$pkg_dir" "vitest.config.ts"           "vitest.config.ts"           "$pkg_name"
+  apply_template "$pkg_dir" "jest.config.ts"              "jest.config.ts"             "$pkg_name"
   apply_template "$pkg_dir" ".gitignore"                 ".gitignore"                 "$pkg_name"
 
   # Clean up old config file formats
