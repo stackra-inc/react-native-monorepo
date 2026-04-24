@@ -110,6 +110,119 @@ src/
 └── bootstrap.ts            # DI container initialization
 ```
 
+## Dependency Injection
+
+This app uses
+[@stackra/ts-container](https://www.npmjs.com/package/@stackra/ts-container) for
+NestJS-style dependency injection. Services are declared as injectable classes,
+organized into modules, and resolved automatically via the container.
+
+### How It Works
+
+The DI system has three parts:
+
+**1. `bootstrap.ts`** — initializes the container once at app startup.
+
+```
+_layout.tsx → useEffect → bootstrap() → Application.create(AppModule)
+```
+
+`bootstrap()` is called in the root `_layout.tsx` before the app renders. It
+creates the DI container from `AppModule`, wires up all providers, and connects
+the Facade system. The function is idempotent — calling it twice returns the
+same instance.
+
+**2. `app.module.ts`** — declares what services exist and how they connect.
+
+```typescript
+@Global()
+@Module({
+  providers: [LoggerService],
+  exports: [LoggerService],
+})
+export class AppModule {}
+```
+
+- `@Module({ providers })` — registers services the container can create
+- `@Module({ exports })` — makes services available to other modules
+- `@Global()` — makes exports available everywhere without explicit imports
+
+As the app grows, add more modules (e.g., `ApiModule`, `AuthModule`,
+`StorageModule`) and import them into `AppModule`.
+
+**3. Services** — injectable classes with `@Injectable()`.
+
+```typescript
+@Injectable()
+export class LoggerService {
+  log(message: string, context?: string) { ... }
+}
+```
+
+### Using Services in Screens
+
+Use the `useInject` hook to resolve a service in any React component:
+
+```tsx
+import { useInject } from "@stackra/ts-container";
+import { LoggerService } from "@/services/logger.service";
+
+export function HomeScreen() {
+  const logger = useInject(LoggerService);
+
+  return (
+    <Button onPress={() => logger.log("Pressed!", "HomeScreen")}>
+      Get Started
+    </Button>
+  );
+}
+```
+
+The container resolves `LoggerService` automatically — no manual instantiation,
+no prop drilling, no context boilerplate.
+
+### Adding a New Service
+
+1. Create the service in `src/services/`:
+
+```typescript
+// src/services/api.service.ts
+@Injectable()
+export class ApiService {
+  constructor(private logger: LoggerService) {}
+
+  async fetch(url: string) {
+    this.logger.log(`Fetching ${url}`, "ApiService");
+    return fetch(url).then((r) => r.json());
+  }
+}
+```
+
+2. Register it in `app.module.ts`:
+
+```typescript
+@Module({
+  providers: [LoggerService, ApiService],
+  exports: [LoggerService, ApiService],
+})
+export class AppModule {}
+```
+
+3. Use it in any screen via `useInject(ApiService)`.
+
+### Provider Hierarchy
+
+```
+Application.create(AppModule)
+└── AppModule (@Global)
+    ├── LoggerService (singleton)
+    └── ... your services
+```
+
+All providers are singletons by default. Use
+`@Injectable({ scope: Scope.TRANSIENT })` for a new instance per injection
+point.
+
 ## Themes
 
 Four built-in themes with light/dark variants:
