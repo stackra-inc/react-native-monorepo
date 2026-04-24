@@ -17,8 +17,8 @@ import {
   KeyboardAvoidingView,
   KeyboardProvider,
 } from "react-native-keyboard-controller";
-import "../global.css";
-import { bootstrap } from "../src/bootstrap";
+import "../styles/global.css";
+import { bootstrap } from "../bootstrap";
 
 SplashScreen.setOptions({
   duration: 300,

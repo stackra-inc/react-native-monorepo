@@ -7,28 +7,62 @@
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "platforms": ["ios", "android"],
+
     "ios": {
       "icon": {
-        "light": "./assets/ios-icon-light.png",
-        "dark": "./assets/ios-icon-dark.png"
+        "dark": "./assets/ios-icon-dark.png",
+        "light": "./assets/ios-icon-light.png"
       },
-      "supportsTablet": false,
+      "supportsTablet": true,
       "bundleIdentifier": "com.herouinative.app",
+      "buildNumber": "1",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "This app uses the camera to scan codes and capture photos.",
+        "NSPhotoLibraryUsageDescription": "This app accesses your photos to let you select images.",
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to provide relevant content.",
+        "CFBundleDevelopmentRegion": "en",
+        "UIBackgroundModes": []
+      },
+      "associatedDomains": [],
+      "privacyManifests": {
+        "NSPrivacyAccessedAPITypes": [
+          {
+            "NSPrivacyAccessedAPITypeReasons": ["CA92.1"],
+            "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults"
+          }
+        ]
       }
     },
+
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/android-adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.herouinative.android"
+      "package": "com.herouinative.android",
+      "versionCode": 1,
+      "permissions": ["INTERNET", "ACCESS_NETWORK_STATE", "VIBRATE"],
+      "blockedPermissions": [
+        "READ_PHONE_STATE",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
-    "platforms": ["ios", "android"],
+
     "plugins": [
-      "expo-router",
+      [
+        "expo-router",
+        {
+          "root": "./src/app",
+          "asyncRoutes": false
+        }
+      ],
       "expo-font",
       [
         "expo-splash-screen",
@@ -41,7 +75,39 @@
           },
           "imageWidth": 200
         }
+      ],
+      [
+        "expo-image",
+        {
+          "allowDownscaling": true
+        }
       ]
-    ]
+    ],
+
+    "experiments": {
+      "typedRoutes": true
+    },
+
+    "updates": {
+      "enabled": true,
+      "fallbackToCacheTimeout": 0,
+      "checkAutomatically": "ON_LOAD",
+      "url": "https://u.expo.dev/YOUR_PROJECT_ID"
+    },
+
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "YOUR_PROJECT_ID"
+      }
+    },
+
+    "owner": "YOUR_EXPO_OWNER"
   }
 }

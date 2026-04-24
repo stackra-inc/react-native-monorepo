@@ -2,7 +2,7 @@ import "reflect-metadata";
 
 import { Application } from "@stackra/ts-container";
 import { Facade } from "@stackra/ts-support";
-import { AppModule } from "./modules/app.module";
+import { AppModule } from "./app.module";
 
 let app: Application | null = null;
 

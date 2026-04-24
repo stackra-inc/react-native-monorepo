@@ -1,5 +1,5 @@
 import { Module, Global } from "@stackra/ts-container";
-import { LoggerService } from "../services/logger.service";
+import { LoggerService } from "./services/logger.service";
 
 @Global()
 @Module({

@@ -3,7 +3,7 @@ import { Str } from "@stackra/ts-support";
 import { Button, Card, Alert, Chip } from "heroui-native";
 import { View, Text, ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { LoggerService } from "../src/services/logger.service";
+import { LoggerService } from "../services/logger.service";
 
 export default function HomeScreen() {
   const logger = useInject(LoggerService);
