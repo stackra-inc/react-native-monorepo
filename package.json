@@ -1,9 +1,8 @@
 {
   "name": "react-native-monorepo",
   "version": "0.0.0",
-  "description": "Turborepo + Expo + HeroUI Native monorepo template with pnpm, Uniwind, and Reanimated.",
+  "description": "Turborepo + Expo + HeroUI Native monorepo template with npm workspaces, Uniwind, and Reanimated.",
   "private": true,
-  "type": "module",
   "homepage": "https://github.com/stackra-inc/react-native-monorepo#readme",
   "repository": {
     "type": "git",
@@ -18,6 +17,10 @@
     "email": "dev@stackra.com",
     "url": "https://stackra.com"
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "build:packages": "turbo run build --filter='./packages/*'",
@@ -36,18 +39,15 @@
     "clean:all": "./scripts/cleanup.sh all",
     "clean:deps": "./scripts/cleanup.sh deps",
     "clean:cache": "./scripts/cleanup.sh cache",
-    "reset": "pnpm clean:all && pnpm install",
+    "reset": "npm run clean:all && npm install",
     "prepare": "husky",
-    "preinstall": "npx only-allow pnpm",
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish",
     "release": "turbo run build --filter='./packages/*' && changeset publish",
-    "validate": "pnpm lint && pnpm check-types && pnpm build",
+    "validate": "npm run lint && npm run check-types && npm run build",
     "graph": "turbo run build --graph=dependency-graph.html",
-    "update:deps": "npx -y npm-check-updates -u --peer --root --workspaces",
-    "update:interactive": "npx -y npm-check-updates -u --peer --root --workspaces --interactive",
-    "audit": "pnpm audit --audit-level=moderate",
+    "audit": "npm audit",
     "make:package": "./scripts/sync-configs/create-package.sh",
     "sync:configs": "./scripts/sync-configs/sync-configs.sh"
   },
@@ -64,7 +64,6 @@
     "husky": "^9.1.7",
     "jest": "^30.3.0",
     "lint-staged": "^16.4.0",
-    "only-allow": "^1.2.2",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "0.0.0-insiders.f7d2598",
     "tsup": "^8.5.1",
@@ -73,37 +72,12 @@
     "typescript-eslint": "^8.59.0"
   },
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=10"
+    "node": ">=18"
   },
-  "packageManager": "pnpm@10.33.2",
-  "pnpm": {
-    "overrides": {
-      "react": "19.2.0",
-      "react-native": "0.83.6",
-      "react-native-reanimated": "4.2.1",
-      "react-native-gesture-handler": "2.30.0",
-      "react-native-worklets": "0.7.4",
-      "react-native-safe-area-context": "5.6.2",
-      "react-native-svg": "15.15.3",
-      "react-native-screens": "4.23.0",
-      "react-native-keyboard-controller": "1.20.7",
-      "@gorhom/bottom-sheet": "5.2.8",
-      "tailwind-variants": "3.2.2",
-      "tailwind-merge": "3.4.0",
-      "typescript": "5.9.2"
-    },
-    "onlyBuiltDependencies": [
-      "@zowe/secrets-for-zowe-sdk",
-      "esbuild",
-      "sharp",
-      "uniwind-pro",
-      "unrs-resolver"
-    ]
-  },
+  "trustedDependencies": [
+    "uniwind"
+  ],
   "dependencies": {
-    "expo": "~55.0.17",
-    "react": "19.2.0",
-    "react-native": "0.83.6"
+    "babel-plugin-transform-typescript-metadata": "^0.4.0"
   }
 }

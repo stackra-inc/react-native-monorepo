@@ -29,7 +29,7 @@ export default [
       "**/Pods/",
       "**/.expo/",
       "**/.docs/",
-      "pnpm-lock.yaml",
+      "package-lock.json",
     ],
   },
 

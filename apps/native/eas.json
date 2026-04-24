@@ -7,7 +7,6 @@
   "build": {
     "base": {
       "node": "22.15.0",
-      "pnpm": "10.33.0",
       "env": {
         "EXPO_NO_DOTENV": "1"
       }
