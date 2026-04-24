@@ -98,21 +98,3 @@ export class ThemeRegistry extends BaseRegistry<ThemeDefinition> {
     return undefined;
   }
 }
-
-// ── Singleton ───────────────────────────────────────────────────────────────
-
-/**
- * Global singleton instance of the ThemeRegistry.
- *
- * Used by {@link UIModule} to register themes via `useValue` provider
- * and by {@link ThemeService} for theme lookups. This is the same
- * instance registered in the DI container.
- *
- * @example
- * ```typescript
- * import { themeRegistry } from "@repo/ui";
- *
- * themeRegistry.registerDefinition({ baseName: "custom", ... });
- * ```
- */
-export const themeRegistry = new ThemeRegistry();
