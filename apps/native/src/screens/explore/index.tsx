@@ -6,7 +6,7 @@
  * @module screens/explore
  */
 
-import { Card } from "heroui-native";
+import { Card } from "@repo/ui";
 import { View, Text, ScrollView } from "react-native";
 
 export function ExploreScreen() {

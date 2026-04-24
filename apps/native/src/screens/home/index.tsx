@@ -10,7 +10,7 @@
 
 import { useInject } from "@stackra/ts-container";
 import { Str } from "@stackra/ts-support";
-import { Button, Card, Alert, Chip } from "heroui-native";
+import { Button, Card, Alert, Chip } from "@repo/ui";
 import { View, Text, ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
@@ -33,6 +33,19 @@ export function HomeScreen() {
         <View className="gap-1">
           <Text className="text-3xl font-semibold text-foreground">{appName}</Text>
           <Text className="text-base text-muted">{subtitle}</Text>
+        </View>
+
+        {/* Uniwind Test — plain RN components with Tailwind classes */}
+        <View className="bg-blue-500 p-4 rounded-xl">
+          <Text className="text-white text-lg font-bold">
+            Uniwind Test: Blue bg + white text = working
+          </Text>
+        </View>
+        <View className="bg-red-500 p-4 rounded-xl">
+          <Text className="text-white text-lg font-bold">Red bg test</Text>
+        </View>
+        <View className="bg-green-500 p-4 rounded-xl">
+          <Text className="text-white text-lg font-bold">Green bg test</Text>
         </View>
 
         {/* Success Alert */}

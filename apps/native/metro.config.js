@@ -1,7 +1,7 @@
 /**
  * Metro Bundler Configuration
  *
- * Configures Metro for a pnpm monorepo with:
+ * Configures Metro for an npm monorepo with:
  * - Uniwind Pro (Tailwind CSS v4 for React Native) — outermost wrapper
  * - React Native Reanimated — animation support
  * - Monorepo resolution — watches workspace root, resolves from both local and root node_modules

@@ -9,8 +9,7 @@
  */
 
 import { Tabs } from "expo-router";
-import { useThemeColor } from "heroui-native";
-import { Platform } from "react-native";
+import { useThemeColor } from "@repo/ui";
 
 export default function TabLayout() {
   const [foreground, background, accent, muted] = useThemeColor([
@@ -29,17 +28,14 @@ export default function TabLayout() {
         headerStyle: {
           backgroundColor: background,
         },
+        headerTransparent: false,
         tabBarActiveTintColor: accent,
         tabBarInactiveTintColor: muted,
         tabBarStyle: {
           backgroundColor: background,
           borderTopWidth: 0,
-          ...Platform.select({
-            ios: {
-              position: "absolute" as const,
-            },
-            android: {},
-          }),
+          elevation: 0,
+          shadowOpacity: 0,
         },
         tabBarLabelStyle: {
           fontFamily: "Inter_500Medium",

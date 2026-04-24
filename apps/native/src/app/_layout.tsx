@@ -4,11 +4,11 @@
  * The top-level layout that wraps the entire application. Responsible for:
  * - Loading custom fonts (Inter family)
  * - Bootstrapping the DI container
- * - Providing GestureHandler, Keyboard, DI, and HeroUI contexts
+ * - Providing GestureHandler, Keyboard, DI, and UI contexts
  * - Managing the splash screen lifecycle
  *
- * This file should stay thin — all provider config is defined as constants
- * outside the component to avoid re-creation on each render.
+ * Uses `UIProvider` from `@repo/ui` as the single entry point for all
+ * UI providers (HeroUINativeProvider + ThemeProvider).
  *
  * @module app/_layout
  */
@@ -23,13 +23,13 @@ import {
 import { ContainerProvider } from "@stackra/ts-container";
 import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { HeroUINativeProvider } from "heroui-native";
-import type { HeroUINativeConfig } from "heroui-native";
 import { useCallback, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardAvoidingView, KeyboardProvider } from "react-native-keyboard-controller";
 
+import { UIProvider } from "@repo/ui";
+import type { HeroUINativeConfig } from "@repo/ui";
 import "@/styles/global.css";
 import { bootstrap } from "@/bootstrap";
 
@@ -40,29 +40,10 @@ SplashScreen.setOptions({
   fade: true,
 });
 
-// ── HeroUI Configuration ────────────────────────────────────────────────────
-
-/**
- * Global HeroUI Native provider configuration.
- *
- * Defined outside the component to prevent object re-creation on each render.
- * The `contentWrapper` for toast is created inside AppContent via useCallback
- * since it uses JSX.
- */
-const heroUiConfig: Omit<HeroUINativeConfig, "toast"> = {
-  textProps: {
-    allowFontScaling: true,
-    maxFontSizeMultiplier: 2,
-  },
-  devInfo: {
-    stylingPrinciples: false,
-  },
-};
-
 // ── Inner Content ───────────────────────────────────────────────────────────
 
 /**
- * Inner app content wrapped with DI container and HeroUI provider.
+ * Inner app content wrapped with DI container and UIProvider.
  *
  * Separated from RootLayout so the toast contentWrapper can use useCallback
  * without triggering font/bootstrap re-checks.
@@ -83,7 +64,10 @@ function AppContent() {
   );
 
   const config: HeroUINativeConfig = {
-    ...heroUiConfig,
+    textProps: {
+      allowFontScaling: true,
+      maxFontSizeMultiplier: 2,
+    },
     toast: {
       contentWrapper,
       defaultProps: {
@@ -95,13 +79,16 @@ function AppContent() {
       insets: { top: 0, bottom: 6, left: 12, right: 12 },
       maxVisibleToasts: 3,
     },
+    devInfo: {
+      stylingPrinciples: false,
+    },
   };
 
   return (
     <ContainerProvider>
-      <HeroUINativeProvider config={config}>
+      <UIProvider config={config}>
         <Slot />
-      </HeroUINativeProvider>
+      </UIProvider>
     </ContainerProvider>
   );
 }
@@ -119,8 +106,14 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    bootstrap().then(() => setIsReady(true));
+    console.log("[RootLayout] useEffect: calling bootstrap()...");
+    bootstrap().then(() => {
+      console.log("[RootLayout] bootstrap resolved, setting isReady=true");
+      setIsReady(true);
+    });
   }, []);
+
+  console.log("[RootLayout] render — fontsLoaded:", fontsLoaded, "isReady:", isReady);
 
   if (!fontsLoaded || !isReady) {
     return null;

@@ -6,7 +6,7 @@
  * @module app/(auth)/login
  */
 
-import { Button } from "heroui-native";
+import { Button } from "@repo/ui";
 import { useRouter } from "expo-router";
 import { View, Text } from "react-native";
 

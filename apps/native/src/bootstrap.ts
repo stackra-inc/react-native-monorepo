@@ -15,12 +15,18 @@ let app: Application | null = null;
  * @returns The bootstrapped Application instance
  */
 export async function bootstrap(): Promise<Application> {
+  console.log("[Bootstrap] Starting...");
+
   if (app) {
+    console.log("[Bootstrap] Already bootstrapped, returning existing app");
     return app;
   }
 
+  console.log("[Bootstrap] Creating Application from AppModule...");
   app = await Application.create(AppModule);
+  console.log("[Bootstrap] Application created, setting Facade...");
   Facade.setApplication(app);
+  console.log("[Bootstrap] Facade set. Bootstrap complete.");
 
   return app;
 }

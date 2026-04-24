@@ -9,21 +9,13 @@
  *
  * 1. `tailwindcss`  — Tailwind CSS v4 core (reset, utilities, layers)
  * 2. `uniwind`      — Uniwind bridge that translates Tailwind → RN styles
- * 3. `heroui-native/styles` — HeroUI design tokens (variables, utilities, theme)
+ * 3. HeroUI styles  — design tokens from local @repo/ui source
  * 4. Theme overrides — custom colour palettes registered as Uniwind variants
- *
- * ## How It Works
- *
- * - `@source` tells Tailwind where to scan for class usage so unused styles
- *   are tree-shaken. We point it at the compiled HeroUI library output.
- * - `@layer theme` defines CSS custom properties (design tokens) that HeroUI
- *   components read at runtime via Uniwind's variable resolution.
- * - Each `@variant` block maps to a Uniwind theme name. The active variant is
- *   selected at runtime by `<HeroUINativeProvider>` or the theme switcher.
  *
  * @see metro.config.js — `cssEntryFile` option
  * @see https://docs.uniwind.dev/quickstart
- * @see https://heroui.com/docs/native/getting-started/theming
+ *
+ * @module global.css
  */
 
 /* ── Framework Core ──────────────────────────────────────────────────────── */
@@ -31,9 +23,9 @@
 @import "tailwindcss";
 @import "uniwind";
 
-/* ── HeroUI Design Tokens ────────────────────────────────────────────────── */
+/* ── HeroUI Design Tokens (from local @repo/ui source) ──────────────────── */
 
-@import "heroui-native/styles";
+@import "../../../../packages/ui/src/styles/index.css";
 
 /* ── Custom Theme Variants ───────────────────────────────────────────────── */
 
@@ -45,34 +37,18 @@
 
 /*
  * Tell Tailwind where to scan for class names. Since global.css lives in
- * `src/styles/`, Tailwind only auto-scans from this directory. We must
- * explicitly include all directories that contain className usage:
- *
- * 1. App source — screens, components, layouts in `src/app/` and `src/`
- * 2. @repo/ui   — shared UI package with HeroUI wrappers
- * 3. heroui-native/lib — compiled HeroUI component library
- *
- * Without these directives, Tailwind purges all classes it can't find
- * and components render completely unstyled.
+ * `src/styles/`, we must explicitly include all directories that contain
+ * className usage.
  */
 @source "../app";
 @source "../screens";
 @source "../components";
-@source "../../../../packages/ui/src";
 
-/* Safelist all heroui-native component classes — @source can't scan node_modules */
-@source inline("absolute aspect-square bg-accent bg-accent-soft bg-backdrop bg-danger bg-danger-soft bg-default bg-field bg-field-placeholder bg-overlay bg-separator bg-separator/50 bg-surface bg-surface-secondary bg-surface-tertiary bg-transparent border-0 border-[1.5px] border-accent border-b border-border border-danger border-default border-field border-field-border border-secondary border-tertiary bottom-0 flex-1 flex-col flex-row flex-wrap font-bold font-medium font-normal font-semibold gap-1 gap-1.5 gap-2 gap-2.5 gap-3 h-0.5 h-12 h-32 h-8 h-[24px] h-[36px] h-[48px] h-[56px] h-auto h-full h-hairline inset-0 items-center justify-between justify-center left-0 left-2 left-3 opacity-0 opacity-40 opacity-disabled overflow-hidden p-0 p-0.5 p-1 p-1.5 p-3 p-4 p-5 p-[3px] pb-3 pb-safe-offset-3 pl-9 pointer-events-none pr-12 pt-[3.5px] px-1.5 px-2 px-2.5 px-3 px-3.5 px-4 px-5 py-2 py-3 py-3.5 right-0 right-3 rounded-2xl rounded-3xl rounded-4xl rounded-full rounded-lg rounded-t-4xl rounded-xl self-start shadow-field shadow-none shadow-overlay shadow-surface size-4 size-6 size-8 size-full text-accent text-accent-foreground text-accent-soft-foreground text-base text-danger text-danger-foreground text-default-foreground text-field-foreground text-field-placeholder/50 text-foreground text-lg text-muted text-sm text-success text-warning text-xs top-0 w-0.5 w-10 w-11 w-2 w-[48px] w-full z-10 z-40 disabled:opacity-disabled disabled:pointer-events-none");
+/* @repo/ui — all components, helpers, providers from local source */
+@source "../../../../packages/ui/src";
 
 /* ── Default Theme (light / dark) ────────────────────────────────────────── */
 
-/*
- * The `light` and `dark` variants are the built-in defaults that ship with
- * HeroUI Native. They use the Inter font family loaded via
- * `@expo-google-fonts/inter` in the root layout.
- *
- * Font names must match the keys passed to `useFonts()` — Expo Google Fonts
- * use the format `FamilyName_WeightName` (e.g. `Inter_400Regular`).
- */
 @layer theme {
   :root {
     @variant light {
@@ -81,7 +57,6 @@
       --font-semibold: "Inter_600SemiBold";
       --font-bold: "Inter_700Bold";
 
-      /* Global border-radius scale used by HeroUI components */
       --radius: 0.5rem;
     }
 
