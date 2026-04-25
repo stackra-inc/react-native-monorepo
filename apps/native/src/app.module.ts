@@ -27,7 +27,7 @@ import { LoggerService } from "./services/logger.service";
           baseName: "default",
           label: "Default",
           icon: "sun",
-          accentColor: "oklch(55% 0.25 265)",
+          accentColor: "oklch(66.78% 0.2232 36.66)",
           variants: ["light", "dark"],
         },
         {

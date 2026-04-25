@@ -1,9 +1,10 @@
 /**
  * Home Screen
  *
- * Main landing screen showing HeroUI Native component showcase.
- * Demonstrates Button, Card, Alert, and Chip components with
- * DI-injected LoggerService and Str utilities.
+ * Main landing screen with rich scrollable content designed to
+ * showcase the Liquid Glass navigation effect on iOS 26+. The
+ * content scrolls behind the translucent tab bar and header,
+ * demonstrating the glass material in action.
  *
  * @module screens/home
  */
@@ -11,11 +12,20 @@
 import { useInject } from "@stackra/ts-container";
 import { Str } from "@stackra/ts-support";
 import { Button, Card, Alert, Chip } from "@repo/ui";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import { LoggerService } from "@/services/logger.service";
 
+/**
+ * Home screen component.
+ *
+ * Displays a component showcase with enough scrollable content
+ * for the Liquid Glass tab bar and header to be visible over
+ * the underlying content.
+ *
+ * @returns The home screen UI.
+ */
 export function HomeScreen() {
   const logger = useInject(LoggerService);
 
@@ -26,7 +36,7 @@ export function HomeScreen() {
     <View className="flex-1 bg-background">
       <StatusBar style="auto" />
       <ScrollView
-        contentContainerClassName="p-4 pt-safe-offset-4 pb-safe-offset-6 gap-6"
+        contentContainerClassName="p-4 pb-safe-offset-6 gap-6"
         showsVerticalScrollIndicator={false}
       >
         {/* Header */}
@@ -35,51 +45,15 @@ export function HomeScreen() {
           <Text className="text-base text-muted">{subtitle}</Text>
         </View>
 
-        {/* Uniwind Test — plain RN components with Tailwind classes */}
-        <View className="bg-blue-500 p-4 rounded-xl">
-          <Text className="text-white text-lg font-bold">
-            Uniwind Test: Blue bg + white text = working
-          </Text>
-        </View>
-        <View className="bg-red-500 p-4 rounded-xl">
-          <Text className="text-white text-lg font-bold">Red bg test</Text>
-        </View>
-        <View className="bg-green-500 p-4 rounded-xl">
-          <Text className="text-white text-lg font-bold">Green bg test</Text>
-        </View>
-
-        {/* Success Alert */}
-        <Alert status="success" className="items-center">
-          <Alert.Indicator className="pt-0" />
-          <Alert.Content>
-            <Alert.Title>Setup complete</Alert.Title>
-          </Alert.Content>
-        </Alert>
-
-        {/* Chips */}
-        <View className="flex-row flex-wrap gap-2">
-          <Chip variant="primary" color="accent">
-            Expo 55
-          </Chip>
-          <Chip variant="secondary" color="success">
-            Turborepo
-          </Chip>
-          <Chip variant="tertiary" color="warning">
-            Uniwind
-          </Chip>
-          <Chip variant="soft" color="danger">
-            HeroUI Native
-          </Chip>
-        </View>
-
-        {/* Card */}
+        {/* Hero Card */}
         <Card>
           <View className="gap-4">
             <Card.Body>
-              <Card.Title>Enterprise Ready</Card.Title>
+              <Card.Title>Liquid Glass Navigation</Card.Title>
               <Card.Description>
-                Configured with HeroUI Native, Uniwind (Tailwind v4), Inter fonts, Reanimated,
-                Gesture Handler, Keyboard Controller, DI container, and custom themes.
+                Scroll this content to see the tab bar and header render with Apple's Liquid Glass
+                material on iOS 26+. The translucent glass effect dynamically reflects the content
+                behind it.
               </Card.Description>
             </Card.Body>
             <Card.Footer className="gap-3">
@@ -92,6 +66,30 @@ export function HomeScreen() {
             </Card.Footer>
           </View>
         </Card>
+
+        {/* Success Alert */}
+        <Alert status="success" className="items-center">
+          <Alert.Indicator className="pt-0" />
+          <Alert.Content>
+            <Alert.Title>Native tabs active</Alert.Title>
+          </Alert.Content>
+        </Alert>
+
+        {/* Chips */}
+        <View className="flex-row flex-wrap gap-2">
+          <Chip variant="primary" color="accent">
+            Expo 55
+          </Chip>
+          <Chip variant="secondary" color="success">
+            iOS 26
+          </Chip>
+          <Chip variant="tertiary" color="warning">
+            Liquid Glass
+          </Chip>
+          <Chip variant="soft" color="danger">
+            SF Symbols
+          </Chip>
+        </View>
 
         {/* Button Variants */}
         <View className="gap-3">
@@ -141,6 +139,60 @@ export function HomeScreen() {
             </Alert.Content>
           </Alert>
         </View>
+
+        {/* Cards */}
+        <View className="gap-3">
+          <Text className="text-lg font-semibold text-foreground">Cards</Text>
+          <Card>
+            <Card.Body>
+              <Card.Title>Default Card</Card.Title>
+              <Card.Description>
+                Standard card with surface background. Scroll down to see more content behind the
+                glass navigation.
+              </Card.Description>
+            </Card.Body>
+          </Card>
+          <Card variant="secondary">
+            <Card.Body>
+              <Card.Title>Secondary Card</Card.Title>
+              <Card.Description>Secondary surface variant for visual hierarchy.</Card.Description>
+            </Card.Body>
+          </Card>
+          <Card variant="tertiary">
+            <Card.Body>
+              <Card.Title>Tertiary Card</Card.Title>
+              <Card.Description>Tertiary surface for subtle grouping.</Card.Description>
+            </Card.Body>
+          </Card>
+        </View>
+
+        {/* Color Swatches — visual content for glass effect */}
+        <View className="gap-3">
+          <Text className="text-lg font-semibold text-foreground">Color Palette</Text>
+          <View className="flex-row gap-2">
+            <View className="flex-1 h-20 rounded-xl bg-accent" />
+            <View className="flex-1 h-20 rounded-xl bg-success" />
+            <View className="flex-1 h-20 rounded-xl bg-warning" />
+            <View className="flex-1 h-20 rounded-xl bg-danger" />
+          </View>
+          <View className="flex-row gap-2">
+            <View className="flex-1 h-20 rounded-xl bg-surface" />
+            <View className="flex-1 h-20 rounded-xl bg-surface-secondary" />
+            <View className="flex-1 h-20 rounded-xl bg-surface-tertiary" />
+            <View className="flex-1 h-20 rounded-xl bg-default" />
+          </View>
+        </View>
+
+        {/* Extra padding content so glass effect is visible at bottom */}
+        <Card>
+          <Card.Body>
+            <Card.Title>Enterprise Ready</Card.Title>
+            <Card.Description>
+              Configured with HeroUI Native, Uniwind (Tailwind v4), Inter fonts, Reanimated, Gesture
+              Handler, Keyboard Controller, DI container, and custom themes.
+            </Card.Description>
+          </Card.Body>
+        </Card>
       </ScrollView>
     </View>
   );

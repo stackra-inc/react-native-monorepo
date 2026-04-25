@@ -1,69 +1,51 @@
 /**
- * Tab Navigation Layout
+ * Tab Navigation Layout — Native Tabs
  *
- * Defines the bottom tab navigator for the main app experience.
- * Each tab renders a thin route file that delegates to a screen component
- * in `@/screens/`.
+ * Uses `NativeTabs` from Expo Router for platform-native tab bar rendering.
+ * On iOS 26+ (compiled with Xcode 26), the tab bar automatically renders
+ * with Apple's Liquid Glass material. On older iOS and Android, it falls
+ * back to the standard native tab bar.
+ *
+ * Each tab is a folder containing a `_layout.tsx` with a native Stack
+ * navigator, which gives each tab its own navigation header (also
+ * rendered with Liquid Glass on iOS 26+).
+ *
+ * @see https://docs.expo.dev/router/advanced/native-tabs/
  *
  * @module app/(tabs)/_layout
  */
 
-import { Tabs } from "expo-router";
-import { useThemeColor } from "@repo/ui";
+import { NativeTabs } from "expo-router/unstable-native-tabs";
 
+/**
+ * Native tab layout with Liquid Glass support.
+ *
+ * Renders three tabs: Home, Explore, and Settings. The tab bar
+ * appearance is fully managed by the native platform — no custom
+ * styling needed. Liquid Glass is applied automatically on iOS 26+.
+ *
+ * @returns The native tab navigator layout.
+ */
 export default function TabLayout() {
-  const [foreground, background, accent, muted] = useThemeColor([
-    "foreground",
-    "background",
-    "accent",
-    "muted",
-  ]);
-
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: true,
-        headerTitleStyle: { fontFamily: "Inter_600SemiBold" },
-        headerTintColor: foreground,
-        headerStyle: {
-          backgroundColor: background,
-        },
-        headerTransparent: false,
-        tabBarActiveTintColor: accent,
-        tabBarInactiveTintColor: muted,
-        tabBarStyle: {
-          backgroundColor: background,
-          borderTopWidth: 0,
-          elevation: 0,
-          shadowOpacity: 0,
-        },
-        tabBarLabelStyle: {
-          fontFamily: "Inter_500Medium",
-          fontSize: 11,
-        },
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          tabBarLabel: "Home",
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: "Explore",
-          tabBarLabel: "Explore",
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: "Settings",
-          tabBarLabel: "Settings",
-        }}
-      />
-    </Tabs>
+    <NativeTabs>
+      <NativeTabs.Trigger name="home">
+        <NativeTabs.Trigger.Icon sf={{ default: "house", selected: "house.fill" }} md="home" />
+        <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="explore">
+        <NativeTabs.Trigger.Icon sf={{ default: "safari", selected: "safari.fill" }} md="explore" />
+        <NativeTabs.Trigger.Label>Explore</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="settings">
+        <NativeTabs.Trigger.Icon
+          sf={{ default: "gearshape", selected: "gearshape.fill" }}
+          md="settings"
+        />
+        <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+    </NativeTabs>
   );
 }
