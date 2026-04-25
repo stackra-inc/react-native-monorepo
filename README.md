@@ -2,7 +2,8 @@
 
 Production-ready Turborepo monorepo template for React Native with
 [Expo](https://expo.dev), [HeroUI Native](https://heroui.com/docs/native),
-[Uniwind](https://uniwind.dev) (Tailwind CSS v4), and [pnpm](https://pnpm.io).
+[Uniwind](https://uniwind.dev) (Tailwind CSS v4), and
+[npm](https://www.npmjs.com) workspaces.
 
 Built by [Stackra](https://stackra.com).
 
@@ -32,7 +33,7 @@ Built by [Stackra](https://stackra.com).
 - **Utilities**: @stackra/ts-support (Laravel-style Str, Collection)
 - **Fonts**: Inter (4 weights via @expo-google-fonts)
 - **Keyboard**: react-native-keyboard-controller
-- **Monorepo**: Turborepo + pnpm workspaces
+- **Monorepo**: Turborepo + npm workspaces
 - **Quality**: ESLint, Prettier, Commitlint, Husky, lint-staged
 
 ## Quick Start
@@ -40,7 +41,7 @@ Built by [Stackra](https://stackra.com).
 ### Prerequisites
 
 - Node.js >= 18 (24 recommended)
-- pnpm >= 10
+- npm
 - Xcode (for iOS) or Android Studio (for Android)
 
 ### Setup
@@ -51,7 +52,7 @@ git clone https://github.com/stackra-inc/react-native-monorepo.git
 cd react-native-monorepo
 
 # Install
-pnpm install
+npm install
 
 # Run on iOS simulator
 cd apps/native
@@ -62,7 +63,7 @@ npx expo run:ios --device simulator
 
 ```bash
 # Start Metro bundler
-pnpm dev --filter native
+npm run dev -- --filter native
 
 # Or run directly
 cd apps/native
@@ -108,8 +109,7 @@ npx expo start
 │   ├── ui/                          # Shared component library
 │   └── typescript-config/           # Shared tsconfig
 ├── turbo.json                       # Turborepo task config
-├── pnpm-workspace.yaml              # Workspace definition
-├── .npmrc                           # pnpm config (shamefully-hoist)
+├── package.json                     # Workspace definition (workspaces field)
 ├── .ncurc.json                      # ncu reject list (pinned deps)
 ├── commitlint.config.ts             # Conventional commits
 ├── prettier.config.js               # Code formatting
@@ -120,58 +120,56 @@ npx expo start
 
 ### Development
 
-| Command                    | Description                 |
-| -------------------------- | --------------------------- |
-| `pnpm dev`                 | Start all apps in dev mode  |
-| `pnpm dev --filter native` | Start native app only       |
-| `pnpm build`               | Build all packages and apps |
-| `pnpm start`               | Start all apps              |
+| Command                          | Description                 |
+| -------------------------------- | --------------------------- |
+| `npm run dev`                    | Start all apps in dev mode  |
+| `npm run dev -- --filter native` | Start native app only       |
+| `npm run build`                  | Build all packages and apps |
+| `npm run start`                  | Start all apps              |
 
 ### Quality
 
-| Command             | Description                        |
-| ------------------- | ---------------------------------- |
-| `pnpm lint`         | Run ESLint across all packages     |
-| `pnpm lint:fix`     | Auto-fix lint issues               |
-| `pnpm format`       | Format all files with Prettier     |
-| `pnpm format:check` | Check formatting without writing   |
-| `pnpm check-types`  | TypeScript type checking           |
-| `pnpm validate`     | Run lint + types + build (CI gate) |
+| Command                | Description                        |
+| ---------------------- | ---------------------------------- |
+| `npm run lint`         | Run ESLint across all packages     |
+| `npm run lint:fix`     | Auto-fix lint issues               |
+| `npm run format`       | Format all files with Prettier     |
+| `npm run format:check` | Check formatting without writing   |
+| `npm run check-types`  | TypeScript type checking           |
+| `npm run validate`     | Run lint + types + build (CI gate) |
 
 ### Testing
 
-| Command              | Description                    |
-| -------------------- | ------------------------------ |
-| `pnpm test`          | Run all tests                  |
-| `pnpm test:watch`    | Run tests in watch mode        |
-| `pnpm test:coverage` | Run tests with coverage report |
+| Command                 | Description                    |
+| ----------------------- | ------------------------------ |
+| `npm run test`          | Run all tests                  |
+| `npm run test:watch`    | Run tests in watch mode        |
+| `npm run test:coverage` | Run tests with coverage report |
 
 ### Maintenance
 
-| Command                   | Description                          |
-| ------------------------- | ------------------------------------ |
-| `pnpm clean`              | Remove build artifacts               |
-| `pnpm clean:cache`        | Clear Turbo and build caches         |
-| `pnpm clean:deps`         | Remove all node_modules + lockfile   |
-| `pnpm clean:all`          | Nuclear clean (build + cache + deps) |
-| `pnpm reset`              | Clean everything and reinstall       |
-| `pnpm update:deps`        | Update all deps via ncu              |
-| `pnpm update:interactive` | Interactive dependency update        |
-| `pnpm audit`              | Security audit                       |
+| Command               | Description                          |
+| --------------------- | ------------------------------------ |
+| `npm run clean`       | Remove build artifacts               |
+| `npm run clean:cache` | Clear Turbo and build caches         |
+| `npm run clean:deps`  | Remove all node_modules + lockfile   |
+| `npm run clean:all`   | Nuclear clean (build + cache + deps) |
+| `npm run reset`       | Clean everything and reinstall       |
+| `npm run audit`       | Security audit                       |
 
 ### Release
 
-| Command                  | Description                   |
-| ------------------------ | ----------------------------- |
-| `pnpm changeset`         | Create a changeset            |
-| `pnpm changeset:version` | Bump versions from changesets |
-| `pnpm changeset:publish` | Publish packages              |
-| `pnpm release`           | Build packages + publish      |
+| Command                     | Description                   |
+| --------------------------- | ----------------------------- |
+| `npm run changeset`         | Create a changeset            |
+| `npm run changeset:version` | Bump versions from changesets |
+| `npm run changeset:publish` | Publish packages              |
+| `npm run release`           | Build packages + publish      |
 
 ## Pinned Dependencies
 
-Native dependencies are pinned via `pnpm.overrides` in the root `package.json`
-to ensure Expo 55 compatibility. The `.ncurc.json` in `apps/native` prevents
+Native dependencies are pinned in the root `package.json` (via `overrides`) to
+ensure Expo 55 compatibility. The `.ncurc.json` in `apps/native` prevents
 `ncu -u` from bumping these.
 
 | Package                        | Pinned Version | Reason                |

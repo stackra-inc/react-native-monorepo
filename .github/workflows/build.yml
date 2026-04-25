@@ -1,0 +1,128 @@
+# =============================================================================
+# Build Pipeline — EAS Build
+# =============================================================================
+#
+# Triggers EAS Build to create native binaries in the cloud.
+#
+# Automatic trigger:
+#   On push to main → builds both iOS and Android with the "preview" profile.
+#   This ensures fresh internal-distribution binaries are always available
+#   for QA after every merge.
+#
+# Manual trigger (workflow_dispatch):
+#   Allows selecting a specific build profile and platform from the
+#   GitHub Actions UI. Useful for creating development or production builds
+#   on demand.
+#
+# Prerequisites:
+#   - EXPO_TOKEN secret must be set in the repository (expo.dev → Access Tokens)
+#   - EAS CLI is installed via npx (no global install needed)
+#
+# =============================================================================
+
+name: Build
+
+# ── Triggers ─────────────────────────────────────────────────────────────────
+on:
+  # Automatic: build preview binaries on every push to main.
+  push:
+    branches:
+      - main
+
+  # Manual: select profile and platform from the Actions UI.
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: "EAS Build profile"
+        required: true
+        default: preview
+        type: choice
+        options:
+          - development
+          - preview
+          - production
+      platform:
+        description: "Target platform"
+        required: true
+        default: all
+        type: choice
+        options:
+          - ios
+          - android
+          - all
+
+# ── Permissions ──────────────────────────────────────────────────────────────
+permissions:
+  contents: read
+
+# ── Concurrency ──────────────────────────────────────────────────────────────
+# Only one build per branch at a time. New pushes cancel in-progress builds.
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: EAS Build
+    runs-on: ubuntu-latest
+
+    # ── Default working directory ────────────────────────────────────────────
+    # EAS commands must run from the app directory where eas.json lives.
+    defaults:
+      run:
+        working-directory: apps/native
+
+    env:
+      # ── Expo Authentication ────────────────────────────────────────────────
+      # EXPO_TOKEN authenticates the EAS CLI without interactive login.
+      # Create a robot token at https://expo.dev/accounts/[owner]/settings/access-tokens
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Setup Node.js ─────────────────────────────────────────────────
+      # Node 22 matches the version specified in eas.json base build profile.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # ── 3. Install Dependencies ──────────────────────────────────────────
+      # Full workspace install is needed so Turborepo can resolve packages.
+      - name: Install dependencies
+        run: npm ci
+        working-directory: .
+
+      # ── 4. Setup EAS CLI ─────────────────────────────────────────────────
+      # Install EAS CLI globally for the build step.
+      - name: Setup EAS CLI
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      # ── 5. Build ─────────────────────────────────────────────────────────
+      # For automatic triggers (push to main): build both platforms with preview profile.
+      # For manual triggers: use the selected profile and platform.
+      #
+      # --non-interactive prevents EAS from prompting for input in CI.
+      # --no-wait returns immediately; the build runs on EAS servers.
+      #
+      # If the build command fails, the step fails and the workflow reports
+      # the error. Check the EAS dashboard for build logs and details.
+      - name: Run EAS Build
+        run: |
+          PROFILE="${{ github.event.inputs.profile || 'preview' }}"
+          PLATFORM="${{ github.event.inputs.platform || 'all' }}"
+
+          echo "Building with profile: $PROFILE, platform: $PLATFORM"
+
+          eas build \
+            --profile "$PROFILE" \
+            --platform "$PLATFORM" \
+            --non-interactive \
+            --no-wait

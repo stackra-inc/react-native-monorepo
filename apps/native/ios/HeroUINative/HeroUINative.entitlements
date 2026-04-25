@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  HeroUINative.entitlements
+
+  iOS entitlements for the HeroUI Native app.
+
+  Entitlements declared:
+
+  1. com.apple.developer.associated-domains
+     Purpose: Enables Universal Links / deep linking via the "herouinative" URL
+     scheme configured in app.json ("scheme": "herouinative").
+     Required by: Expo Router deep linking, app.json scheme configuration.
+
+  2. aps-environment
+     Purpose: Enables Apple Push Notification service (APNs). Required for
+     push notifications and EAS OTA update delivery. The value should be
+     "development" for debug builds and "production" for release/store builds.
+     Required by: expo-splash-screen checkAutomatically: "ON_LOAD" (OTA updates),
+     push notification support.
+
+  Note: Xcode and EAS Build will select the correct aps-environment value
+  based on the build configuration (Debug vs Release). The value below
+  defaults to "development" for local builds.
+-->
 <plist version="1.0">
-  <dict/>
+  <dict>
+    <!-- Deep Linking: Universal Links for the herouinative:// scheme -->
+    <key>com.apple.developer.associated-domains</key>
+    <array>
+      <string>applinks:herouinative.app</string>
+    </array>
+
+    <!-- Push Notifications / OTA Updates: APNs environment -->
+    <key>aps-environment</key>
+    <string>development</string>
+  </dict>
 </plist>

@@ -1,0 +1,108 @@
+# =============================================================================
+# Deploy Pipeline — EAS Submit
+# =============================================================================
+#
+# Submits built binaries to the App Store (TestFlight) and Google Play
+# (internal track). This workflow is manual-only to prevent accidental
+# store submissions.
+#
+# How it works:
+#   1. EAS Submit picks the latest successful production build
+#   2. Uploads the binary to App Store Connect / Google Play Console
+#   3. iOS builds go to TestFlight for review
+#   4. Android builds go to the internal track as a draft
+#
+# Prerequisites:
+#   - EXPO_TOKEN secret must be set (expo.dev → Access Tokens)
+#   - Apple credentials configured in eas.json submit.production.ios
+#   - Google Play service account JSON at apps/native/google-services.json
+#     (or configured via EAS secrets)
+#   - A successful production build must exist on EAS
+#
+# See: apps/native/docs/eas-submit-setup.md for credential setup instructions.
+#
+# =============================================================================
+
+name: Deploy
+
+# ── Triggers ─────────────────────────────────────────────────────────────────
+# Manual dispatch only — select the target platform from the Actions UI.
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: "Target platform to submit"
+        required: true
+        default: all
+        type: choice
+        options:
+          - ios
+          - android
+          - all
+
+# ── Permissions ──────────────────────────────────────────────────────────────
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: EAS Submit
+    runs-on: ubuntu-latest
+
+    # ── Default working directory ────────────────────────────────────────────
+    defaults:
+      run:
+        working-directory: apps/native
+
+    env:
+      # ── Expo Authentication ────────────────────────────────────────────────
+      # EXPO_TOKEN authenticates the EAS CLI without interactive login.
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Setup Node.js ─────────────────────────────────────────────────
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # ── 3. Install Dependencies ──────────────────────────────────────────
+      - name: Install dependencies
+        run: npm ci
+        working-directory: .
+
+      # ── 4. Setup EAS CLI ─────────────────────────────────────────────────
+      - name: Setup EAS CLI
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      # ── 5. Submit ────────────────────────────────────────────────────────
+      # Submits the latest production build to the app stores.
+      #
+      # --platform: ios, android, or all
+      # --profile production: uses the submit.production config from eas.json
+      # --non-interactive: prevents prompts in CI
+      # --latest: automatically selects the most recent successful build
+      #
+      # If submission fails, check:
+      #   - Apple: Ensure ASC credentials are correct (see eas-submit-setup.md)
+      #   - Android: Ensure google-services.json is valid and has correct permissions
+      #   - Both: Ensure a production build exists on EAS
+      - name: Run EAS Submit
+        run: |
+          PLATFORM="${{ github.event.inputs.platform }}"
+
+          echo "Submitting to: $PLATFORM"
+
+          eas submit \
+            --profile production \
+            --platform "$PLATFORM" \
+            --non-interactive \
+            --latest

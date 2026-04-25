@@ -2,6 +2,7 @@
  * Root Layout
  *
  * The top-level layout that wraps the entire application. Responsible for:
+ * - Initializing Sentry error tracking (before any component renders)
  * - Loading custom fonts (Inter family)
  * - Bootstrapping the DI container
  * - Providing GestureHandler, Keyboard, DI, and UI contexts
@@ -32,6 +33,28 @@ import { UIProvider } from "@repo/ui";
 import type { HeroUINativeConfig } from "@repo/ui";
 import "@/styles/global.css";
 import { bootstrap } from "@/bootstrap";
+import { initSentry } from "@/config/sentry.config";
+
+// ── Sentry Initialization ───────────────────────────────────────────────────
+// Initialize Sentry before any component renders so that errors during
+// startup are captured. This is a no-op if EXPO_PUBLIC_SENTRY_DSN is empty.
+initSentry();
+
+// TODO: After installing @sentry/react-native, wrap the exported RootLayout
+// with Sentry.wrap() to capture navigation breadcrumbs:
+//
+//   import * as Sentry from "@sentry/react-native";
+//   export default Sentry.wrap(RootLayout);
+//
+// Also add the Sentry Expo plugin to app.json plugins array:
+//
+//   ["@sentry/react-native/expo", {
+//     "organization": "YOUR_SENTRY_ORG",
+//     "project": "YOUR_SENTRY_PROJECT",
+//     "url": "https://sentry.io/"
+//   }]
+//
+// Install with: npx expo install @sentry/react-native
 
 // ── Splash Screen ───────────────────────────────────────────────────────────
 

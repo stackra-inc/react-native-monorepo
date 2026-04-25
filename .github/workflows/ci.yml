@@ -1,0 +1,90 @@
+# =============================================================================
+# CI Pipeline — Lint, Type-Check, and Test
+# =============================================================================
+#
+# Runs on every pull request targeting the main branch.
+# Ensures code quality gates pass before a PR can be merged.
+#
+# Steps:
+#   1. Checkout the repository
+#   2. Set up Node.js 22 with npm cache
+#   3. Install dependencies (npm ci for reproducible installs)
+#   4. Run ESLint across all workspace packages
+#   5. Run TypeScript type checking across all packages
+#   6. Run the test suite across all packages
+#
+# Turborepo remote caching is enabled when TURBO_TOKEN and TURBO_TEAM
+# secrets are configured, significantly speeding up repeated runs.
+#
+# =============================================================================
+
+name: CI
+
+# ── Triggers ─────────────────────────────────────────────────────────────────
+# Run on pull requests targeting main (opened, updated, or reopened).
+on:
+  pull_request:
+    branches:
+      - main
+
+# ── Permissions ──────────────────────────────────────────────────────────────
+# Minimal permissions — read-only access to repository contents.
+permissions:
+  contents: read
+
+# ── Concurrency ──────────────────────────────────────────────────────────────
+# Cancel in-progress runs for the same PR to save CI minutes.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: Lint, Type-Check & Test
+    runs-on: ubuntu-latest
+
+    # ── Turborepo Remote Cache ───────────────────────────────────────────────
+    # These environment variables enable Turborepo's remote caching.
+    # If the secrets are not set, Turbo falls back to local caching.
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────
+      # Clone the repository at the PR's head commit.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Setup Node.js ─────────────────────────────────────────────────
+      # Install Node.js 22 (matching eas.json base profile) and configure
+      # npm's global cache directory for GitHub Actions caching.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # ── 3. Install Dependencies ──────────────────────────────────────────
+      # Use `npm ci` for a clean, reproducible install from package-lock.json.
+      # This is faster than `npm install` and ensures lockfile integrity.
+      - name: Install dependencies
+        run: npm ci
+
+      # ── 4. Lint ──────────────────────────────────────────────────────────
+      # Run ESLint across all workspace packages via Turborepo.
+      # Catches code style issues, unused imports, and potential bugs.
+      - name: Lint
+        run: npm run lint
+
+      # ── 5. Type-Check ───────────────────────────────────────────────────
+      # Run TypeScript compiler in --noEmit mode across all packages.
+      # Catches type errors without producing build output.
+      - name: Type-check
+        run: npm run check-types
+
+      # ── 6. Test ──────────────────────────────────────────────────────────
+      # Run the full test suite across all workspace packages.
+      # If any test fails, the workflow fails and blocks the PR.
+      - name: Test
+        run: npm run test

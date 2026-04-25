@@ -1,5 +1,10 @@
 node_modules/
 
+# Environment files — commit .env.* templates, ignore local overrides
+.env
+.env.local
+.env.*.local
+
 # Allow Tailwind to scan heroui-native lib for class detection
 !node_modules/heroui-native/
 !node_modules/heroui-native/lib/
