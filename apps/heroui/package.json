@@ -59,10 +59,16 @@
   "devDependencies": {
     "@types/react": "~19.2.14",
     "@types/react-native": "^0.73.0",
-    "eslint": "^10.2.1",
+    "eslint": "^9.28.0",
     "eslint-config-expo": "~55.0.0",
     "eslint-import-resolver-node": "^0.3.10",
     "typescript": "~6.0.3"
   },
-  "private": true
+  "private": true,
+  "pnpm": {
+    "overrides": {
+      "eslint": "^9.28.0",
+      "@eslint/js": "^9.28.0"
+    }
+  }
 }
