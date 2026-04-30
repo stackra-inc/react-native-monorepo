@@ -7,9 +7,9 @@
  * @see https://github.com/stackra-inc/mono-cli
  */
 
-import { CliModule } from "@stackra/mono-cli";
 
-export default CliModule.register({
+
+export default ({
   name: "react-native",
   description: "React Native monorepo — Expo apps and shared packages",
   commands: [
