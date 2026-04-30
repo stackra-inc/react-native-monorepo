@@ -1,6 +1,6 @@
 {
   "name": "react-native-monorepo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Turborepo + Expo + HeroUI Native monorepo template with npm workspaces, Uniwind, and Reanimated.",
   "private": true,
   "homepage": "https://github.com/stackra-inc/react-native-monorepo#readme",
@@ -48,15 +48,17 @@
     "validate": "npm run lint && npm run check-types && npm run build",
     "graph": "turbo run build --graph=dependency-graph.html",
     "audit": "npm audit",
-    "make:package": "./scripts/sync-configs/create-package.sh",
-    "sync:configs": "./scripts/sync-configs/sync-configs.sh"
+    "make:package": "./scripts/cli/create-package.sh",
+    "sync:configs": "./scripts/cli/cli.sh",
+    "update:deps": "npx npm-check-updates -u --peer --dep dev,prod,peer --root --workspaces",
+    "update:interactive": "npx npm-check-updates -u --peer --dep dev,prod,peer --root --workspaces --interactive"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
-    "@commitlint/cli": "^20.5.0",
+    "@commitlint/cli": "^20.5.2",
     "@commitlint/config-conventional": "^20.5.0",
     "@eslint/js": "^10.0.1",
-    "@nesvel/tsup-config": "^1.0.3",
+    "@stackra/tsup-config": "^1.0.3",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.6.0",
     "eslint": "^10.2.1",
@@ -64,20 +66,45 @@
     "husky": "^9.1.7",
     "jest": "^30.3.0",
     "lint-staged": "^16.4.0",
+    "only-allow": "^1.2.2",
     "prettier": "^3.8.3",
-    "prettier-plugin-tailwindcss": "0.0.0-insiders.f7d2598",
+    "prettier-plugin-tailwindcss": "0.7.3",
     "tsup": "^8.5.1",
     "turbo": "^2.9.6",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.0"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@firebase/util",
+      "@zowe/secrets-for-zowe-sdk",
+      "esbuild",
+      "protobufjs",
+      "react-native-nitro-modules",
+      "uniwind",
+      "uniwind-pro",
+      "unrs-resolver"
+    ],
+    "overrides": {
+      "heroui-native": "1.0.2",
+      "uniwind-pro": "1.1.0",
+      "react-native-nitro-modules": "0.35.5",
+      "react-native-reanimated": "4.2.1",
+      "react-native-worklets": "0.7.4",
+      "react-native-gesture-handler": "2.30.1",
+      "react-native-safe-area-context": "5.6.2",
+      "react-native-svg": "15.15.3",
+      "tailwind-variants": "3.2.2",
+      "tailwind-merge": "3.5.0",
+      "tailwindcss": "4.2.4"
+    }
+  },
   "engines": {
-    "node": ">=18"
+    "node": ">=22.22.2",
+    "pnpm": ">=10"
   },
   "trustedDependencies": [
     "uniwind"
   ],
-  "dependencies": {
-    "babel-plugin-transform-typescript-metadata": "^0.4.0"
-  }
+  "packageManager": "pnpm@10.33.2"
 }

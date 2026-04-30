@@ -292,10 +292,10 @@ packages/{package-name}/
     }
   },
   "devDependencies": {
-    "@nesvel/eslint-config": "^1.0.5",
-    "@nesvel/prettier-config": "^1.0.3",
-    "@nesvel/tsup-config": "^1.0.3",
-    "@nesvel/typescript-config": "^1.0.4",
+    "@stackra/eslint-config": "^1.0.5",
+    "@stackra/prettier-config": "^1.0.3",
+    "@stackra/tsup-config": "^1.0.3",
+    "@stackra/typescript-config": "^1.0.4",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@vitest/ui": "^4.1.2",
@@ -333,9 +333,9 @@ packages/{package-name}/
 
 **Required devDependencies:**
 
-- `@nesvel/prettier-config` - Prettier configuration
-- `@nesvel/typescript-config` - TypeScript configuration
-- `@nesvel/tsup-config` - Build configuration (optional)
+- `@stackra/prettier-config` - Prettier configuration
+- `@stackra/typescript-config` - TypeScript configuration
+- `@stackra/tsup-config` - Build configuration (optional)
 - `prettier` - Code formatter
 - `tsup` - Build tool
 - `typescript` - TypeScript compiler
@@ -349,12 +349,12 @@ packages/{package-name}/
 
 ```json
 {
-  "extends": "@nesvel/typescript-config/base.json",
+  "extends": "@stackra/typescript-config/base.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": ".",
 
-    /* Module resolution - Override Nesvel's NodeNext for compatibility */
+    /* Module resolution - Override Stackra's NodeNext for compatibility */
     "module": "ESNext",
     "moduleResolution": "bundler",
 
@@ -382,7 +382,7 @@ packages/{package-name}/
 
 **Key Points:**
 
-- Extend Nesvel's base TypeScript config
+- Extend Stackra's base TypeScript config
 - Enable `experimentalDecorators` for DI support
 - Use `@/*` path alias for clean imports
 - Include vitest globals for testing
@@ -493,19 +493,19 @@ coverage/
 /**
  * @fileoverview Prettier Configuration
  *
- * Extends the Nesvel Prettier configuration for consistent code formatting.
+ * Extends the Stackra Prettier configuration for consistent code formatting.
  *
  * @see https://prettier.io/docs/en/configuration.html
  */
 
-export default "@nesvel/prettier-config";
+export default "@stackra/prettier-config";
 ```
 
 **Key Points:**
 
 - MUST be named `prettierrc.ts` (not `.prettierrc.js`)
 - MUST include docblock with `@fileoverview` and `@see` tags
-- Extends `@nesvel/prettier-config` for consistency across packages
+- Extends `@stackra/prettier-config` for consistency across packages
 - Used by `format` and `format:check` scripts
 
 ### 7. Monorepo Commands
@@ -1553,7 +1553,7 @@ export class PackageModule {
    *
    * This method provides a clean way to register custom components
    * without manual dependency injection, following the same pattern
-   * as SearchModule.registerIndex() from @nesvel/nestjs-search.
+   * as SearchModule.registerIndex() from @stackra/nestjs-search.
    *
    * @static
    * @param {IComponentRegistrationOptions} options - Component registration options

@@ -26,6 +26,8 @@ export type { UIProviderProps } from "./providers/ui-provider";
 export { ThemeProvider } from "./providers/theme-provider";
 export type { ThemeProviderProps } from "./providers/theme-provider";
 
+export { NativeThemeProvider } from "./providers/native-theme-provider";
+
 // ============================================================================
 // DI Module
 // ============================================================================
@@ -35,6 +37,8 @@ export { UIModule } from "./ui.module";
 // Services
 // ============================================================================
 export { ThemeService } from "./services/theme.service";
+export { MobileSettingsSyncService } from "./services/mobile-settings-sync.service";
+export type { MobileSettingsSyncConfig } from "./services/mobile-settings-sync.service";
 
 // ============================================================================
 // Registries
@@ -66,6 +70,7 @@ export type { AppThemeContextValue } from "./contexts/theme.context";
 // Components — Custom (Stackra)
 // ============================================================================
 export { ThemeSwitcher } from "./components/theme-switcher.component";
+export { AppUpdateAlert } from "./components/app-update-alert.component";
 
 // ============================================================================
 // Types — Custom (Stackra)

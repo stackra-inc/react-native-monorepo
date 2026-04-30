@@ -2,12 +2,21 @@
   "mcpServers": {
     "tailwindcss-docs": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://gitmcp.io/tailwindlabs/tailwindcss"],
-      "autoApprove": ["search_tailwindcss_documentation"]
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://gitmcp.io/tailwindlabs/tailwindcss"
+      ],
+      "autoApprove": [
+        "search_tailwindcss_documentation"
+      ]
     },
     "next-devtools": {
       "command": "npx",
-      "args": ["-y", "next-devtools-mcp@latest"],
+      "args": [
+        "-y",
+        "next-devtools-mcp@latest"
+      ],
       "disabled": false,
       "autoApprove": [
         "get_build_errors",
@@ -19,25 +28,40 @@
     },
     "heroui-react": {
       "command": "npx",
-      "args": ["-y", "@heroui/react-mcp@latest"],
+      "args": [
+        "-y",
+        "@heroui/react-mcp@latest"
+      ],
       "disabled": false,
       "autoApprove": [
         "get_component",
         "list_components",
         "get_component_props",
         "get_component_examples",
-        "get_theme_config"
+        "get_theme_config",
+        "get_component_docs"
       ]
     },
     "tailwindcss": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://gitmcp.io/tailwindlabs/tailwindcss"],
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://gitmcp.io/tailwindlabs/tailwindcss"
+      ],
       "disabled": false,
-      "autoApprove": ["search_docs", "get_class_reference", "get_config_reference"]
+      "autoApprove": [
+        "search_docs",
+        "get_class_reference",
+        "get_config_reference"
+      ]
     },
     "github": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
       },
@@ -54,7 +78,10 @@
     },
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest"],
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
       "disabled": false,
       "autoApprove": [
         "browser_navigate",
@@ -66,9 +93,16 @@
     },
     "uniwind": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://docs.uniwind.dev/mcp"],
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://docs.uniwind.dev/mcp"
+      ],
       "disabled": false,
-      "autoApprove": ["search_uniwind", "query_docs_filesystem_uniwind"]
+      "autoApprove": [
+        "search_uniwind",
+        "query_docs_filesystem_uniwind"
+      ]
     }
   }
 }

@@ -170,6 +170,14 @@ export class CacheFacade extends Facade { ... }
 - `forRoot()` returns `{ global: true }` so exports are available everywhere
 - Config is provided via a Symbol token (`PACKAGE_CONFIG`)
 - Manager service is provided via both class and Symbol token
+- **All `Symbol.for()` tokens MUST live in `src/constants/tokens.constant.ts`**
+  — never define symbols inline in module files or other locations
+- **No module-level global singletons** — never use
+  `const globalFoo = new Foo()` outside a class. All singletons must be managed
+  by the DI container via `useClass` providers
+- **`forFeature()` must use factory providers** — when `forFeature()` needs to
+  register items on a registry, use a factory provider that injects the
+  DI-managed registry instance, not a module-level global
 - See `module-pattern.md` and `ts-container-architecture.md`
 
 ---
@@ -296,6 +304,11 @@ src/
 - ❌ Commented-out code — delete it, git has history
 - ❌ Empty docblocks — `/** */` is worse than none
 - ❌ Single-line method docblocks — always multi-line with tags
+- ❌ `Symbol.for()` outside `tokens.constant.ts` — all DI tokens must be
+  centralized
+- ❌ Module-level `const x = new SomeClass()` — use DI `useClass` providers
+- ❌ Direct mutation of global singletons in `forFeature()` — use factory
+  providers that inject the DI-managed instance
 
 ---
 
@@ -310,6 +323,9 @@ src/
 - [ ] Every public method has `@param`, `@returns`, `@throws`
 - [ ] File starts with a file-level `@module` docblock
 - [ ] Imports use `import type` for type-only imports
+- [ ] All `Symbol.for()` tokens defined in `tokens.constant.ts` only
+- [ ] No module-level `new SomeClass()` singletons — use DI `useClass`
+- [ ] `forFeature()` uses factory providers, not direct global mutation
 - [ ] All public method return types explicitly annotated
 - [ ] Facade exported from package if new service added
 - [ ] `@stackra/ts-support` in dependencies if using `Str`

@@ -10,7 +10,6 @@
 #   - npm
 #
 # =============================================================================
-
 .PHONY: help install dev build clean test lint format check deploy
 
 .DEFAULT_GOAL := help

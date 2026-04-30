@@ -55,7 +55,7 @@ conventions. TypeScript is the implementation language throughout.
     - Include full JSDoc docblocks on the class and every method
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 10.2, 10.3, 10.4_
 
-  - [ ]\* 2.2 Write property test: Registry registration round-trip
+  - [ ] 2.2 Write property test: Registry registration round-trip
     - **Property 1: Registry registration round-trip**
     - Create `packages/ui/src/registries/__tests__/theme.registry.test.ts`
     - Use `fast-check` to generate random `ThemeDefinition` objects
@@ -63,7 +63,7 @@ conventions. TypeScript is the implementation language throughout.
       `has(baseName)` returns `true` for registered / `false` for unregistered
     - **Validates: Requirements 1.2, 1.5, 1.7**
 
-  - [ ]\* 2.3 Write property test: Registry duplicate overwrite
+  - [ ] 2.3 Write property test: Registry duplicate overwrite
     - **Property 2: Registry duplicate overwrite**
     - Generate pairs of `ThemeDefinition` with same `baseName` but different
       fields
@@ -71,7 +71,7 @@ conventions. TypeScript is the implementation language throughout.
       sequential registration
     - **Validates: Requirements 1.3**
 
-  - [ ]\* 2.4 Write property test: Registry getAll completeness
+  - [ ] 2.4 Write property test: Registry getAll completeness
     - **Property 3: Registry getAll completeness**
     - Generate arrays of `ThemeDefinition` with unique `baseName` values
     - Verify `getAll().length` equals the number of registered entries and all
@@ -98,7 +98,7 @@ conventions. TypeScript is the implementation language throughout.
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3.1, 3.2, 3.3,
       3.4, 3.5, 3.6, 4.1, 4.2, 4.3, 10.2, 10.3, 10.4_
 
-  - [ ]\* 3.2 Write property test: setTheme delegates to Uniwind and persists
+  - [ ] 3.2 Write property test: setTheme delegates to Uniwind and persists
     - **Property 4: setTheme delegates to Uniwind and persists to AsyncStorage**
     - Generate random variant names, call `setTheme`, verify
       `Uniwind.setTheme()` called with exact name AND AsyncStorage write under
@@ -106,20 +106,20 @@ conventions. TypeScript is the implementation language throughout.
     - Mock `Uniwind` and `AsyncStorage`
     - **Validates: Requirements 2.2, 2.3, 3.4**
 
-  - [ ]\* 3.3 Write property test: toggleTheme switches to opposite variant
+  - [ ] 3.3 Write property test: toggleTheme switches to opposite variant
     - **Property 5: toggleTheme switches to opposite variant**
     - Generate registered `ThemeDefinition` + current variant matching one side,
       toggle, verify opposite variant applied
     - **Validates: Requirements 2.4**
 
-  - [ ]\* 3.4 Write property test: isLight and isDark derivation
+  - [ ] 3.4 Write property test: isLight and isDark derivation
     - **Property 6: isLight and isDark derivation**
     - Generate random strings, verify `isLight` is `true` iff name equals
       `"light"` or ends with `"-light"`, `isDark` is `true` iff name equals
       `"dark"` or ends with `"-dark"`
     - **Validates: Requirements 2.6, 2.7, 2.8**
 
-  - [ ]\* 3.5 Write property test: Initialization applies persisted theme
+  - [ ] 3.5 Write property test: Initialization applies persisted theme
     - **Property 7: Initialization applies persisted theme**
     - Generate random variant names, mock AsyncStorage to return them, call
       `initialize()`, verify `Uniwind.setTheme()` called with exact stored value
@@ -148,7 +148,7 @@ conventions. TypeScript is the implementation language throughout.
     - Include full JSDoc docblocks on the class and `forFeature` method
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 10.1, 10.3_
 
-  - [ ]\* 5.3 Write property test: forFeature registers all provided definitions
+  - [ ] 5.3 Write property test: forFeature registers all provided definitions
     - **Property 8: forFeature registers all provided definitions**
     - Generate random `ThemeDefinition` arrays, call `forFeature`, resolve DI
       container, verify `ThemeRegistry` contains every definition by `baseName`
@@ -165,7 +165,7 @@ conventions. TypeScript is the implementation language throughout.
     - Include updated JSDoc docblocks
     - _Requirements: 7.1, 7.2, 7.3, 9.1, 9.3, 9.5, 10.2_
 
-  - [ ]\* 6.2 Write unit tests for ThemeProvider
+  - [ ] 6.2 Write unit tests for ThemeProvider
     - Create `packages/ui/src/providers/__tests__/theme-provider.test.tsx`
     - Test that context value contains all required fields (`currentTheme`,
       `isLight`, `isDark`, `setTheme`, `toggleTheme`)
@@ -188,14 +188,14 @@ conventions. TypeScript is the implementation language throughout.
     - Include full JSDoc docblocks
     - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 10.1, 10.3_
 
-  - [ ]\* 7.2 Write property test: ThemeSwitcher renders all registered themes
+  - [ ] 7.2 Write property test: ThemeSwitcher renders all registered themes
     - **Property 9: ThemeSwitcher renders all registered themes with metadata**
     - Generate random `ThemeDefinition` sets, register them, render
       `ThemeSwitcher`, verify all `label` and `accentColor` values appear
     - Use `@testing-library/react-native`
     - **Validates: Requirements 8.1, 8.2, 8.6**
 
-  - [ ]\* 7.3 Write property test: ThemeSwitcher selects correct variant
+  - [ ] 7.3 Write property test: ThemeSwitcher selects correct variant
     - **Property 10: ThemeSwitcher selects correct variant based on current
       mode**
     - Generate random `ThemeDefinition` + light/dark state, simulate selection,

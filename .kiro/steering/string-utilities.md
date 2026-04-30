@@ -92,7 +92,7 @@ Every package that uses `Str` must have `@stackra/ts-support` in its
 ```json
 {
   "dependencies": {
-    "@stackra/ts-support": "workspace:*"
+    "@stackra/ts-support": "^2.5.7"
   }
 }
 ```
